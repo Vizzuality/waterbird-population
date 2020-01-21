@@ -1,0 +1,27 @@
+
+
+// Colors
+$white:      #fff !default;
+$black:      #000 !default;
+$red: red;
+
+// Breakpoints
+$grid-breakpoints: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$grid-breakpoints: map-merge(
+  (
+    xs: 0,
+    sm: rem(576),
+    md: rem(768),
+    lg: rem(992),
+    xl: rem(1200)
+  ),
+  $grid-breakpoints
+);
+
+// z-index
+$z-index-1: 1;
+$z-index-2: 2;
+$z-index-3: 3;
+$z-index-4: 4;
+$z-index-5: 10;
