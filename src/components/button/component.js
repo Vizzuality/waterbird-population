@@ -3,9 +3,10 @@ import classnames from 'classnames';
 
 import './styles.scss';
 
-const Button = ({ text, classname = 'hola', nonsenseAction }) => {
+const Button = ({ text, classname = 'hola', action, argument }) => {
   const onClick = () => {
-    nonsenseAction('holi');
+    console.log(action, argument)
+    action(argument);
   };
   return <button
     className={classnames('c-button',

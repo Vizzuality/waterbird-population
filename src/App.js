@@ -1,32 +1,29 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-import HomePage from 'pages/home';
-import Other from 'pages/other';
-import Pages from 'pages';
-import NotFoundPage from 'pages/not_found';
+import { BrowserRouter as Router } from 'react-router-dom';
+//import Pages from 'pages';
 import Button from 'components/button';
+import Header from 'components/header';
+//import { nonsenseAction } from 'modules/router';
+import * as rutas from 'modules/router';
+import { nonsenseAction } from './modules/router/actions';
 
-//import './App.css';
+const Lazy = lazy(() => new Promise(resolve => {
+  setTimeout(() => {
+    resolve({ default: () => <Header /> });
+  }, 4000);
+}));
 
-//const Header = lazy(() => import('components/header'));
-// const HomePage = lazy(() => import('pages/home'));
-// const Other = lazy(() => import('pages/other'));
-// const NotFoundPage = lazy(() => import('pages/not_found'));
-const Spinner = () => <Spinner />;
+const Spinner = () => <div>...Loading</div>;
 
-function App() {
+
+const App = () => {
   return (
     <Router>
       <div className="c-app">
-        <Button />
-        {/* <Pages /> */}
+        <Button action={nonsenseAction} argument={'cambio'}
+          />
         <Suspense fallback={<Spinner />}>
-          {/* <Header /> */}
-          <Switch>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/otra" exact component={Other} />
-          </Switch>
+          <Lazy />
         </Suspense>
       </div>
     </Router>
@@ -34,3 +31,5 @@ function App() {
 }
 
 export default App;
+
+

@@ -1,5 +1,7 @@
-
-export const initialState = [{
-  text: 'App initial state',
-  modified: new Date()
+const initialState = [{
+  nonsense: 'App initial state',
+  second: new Date()
 }];
+
+
+export default initialState;

@@ -1,18 +1,20 @@
 import { connectRoutes } from 'redux-first-router';
-
 import { PAGES } from 'pages/constants';
 
 const routesMap = PAGES.reduce((acc, page) => ({
   ...acc,
   [page.name]: {
     path: page.path,
-    ...page.thunk && { thunk: page.thunk }
+    ...{ thunk: page.thunk }
   }
 }), {});
-console.log(routesMap, 'routes')
 
+const options = {
+  location: 'string', // default: 'location'
+  title: 'string',    // default: 'title'
+  scrollTop: false,
+  initialDispatch: false
+}
 
-
-export default routesMap;
-
+export default connectRoutes(routesMap, options);
 

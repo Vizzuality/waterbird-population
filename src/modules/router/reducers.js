@@ -1,22 +1,19 @@
-import { initialState } from './initialState';
-import { combineReducers } from 'redux';
+import { nonsenseAction, secondAction } from './actions';
 
-
-import { NONSENSE_ACTION } from './actions';
-
-
-const router = function location(state = initialState, action) {
-  switch (action.type) {
-  case NONSENSE_ACTION:
-    return {
-      pathname: 'jdajasj'
+export default {
+  [nonsenseAction]: (state, { payload }) => ({
+    ...state,
+    router: {
+      ...state.router,
+      current: payload
     }
-
-
-  default:
-    return state;
-  }
+  }),
+  [secondAction]: (state, { payload }) => ({
+    ...state,
+    router: {
+      ...state.router,
+      pathname: payload
+    }
+  }),
 }
-
-export default router;
 

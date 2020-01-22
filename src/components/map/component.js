@@ -249,7 +249,7 @@ class Map extends Component {
     //     </Popup>
     //   ) : null);
 
-    // applyFilters();
+    // applyFilt  ers();
 
     return (
       <div

@@ -4,18 +4,18 @@ export const PAGES = [
   {
     name: 'PAGE/APP',
     path: '/',
-    page: 'app',
+    thunk: 'app',
   },
   {
     name: NOT_FOUND,
     path: '/404',
-    page: '404'
+    thunk: '404'
   }
   ,
   {
     name: 'PAGE/OTHER',
     path: '/otra',
-    page: 'otra'
+    thunk: 'otra'
   }
 ];
 

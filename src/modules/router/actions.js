@@ -1,8 +1,12 @@
-export const NONSENSE_ACTION = 'NONSENSE_ACTION';
 
+import { createAction } from 'vizzuality-redux-tools';
 
-export function nonsenseAction(id, text) {
-  return { type: NONSENSE_ACTION, id, text };
-}
+export const nonsenseAction = createAction('ROUTER/NONSENSE');
+export const secondAction = createAction('ROUTER/SECOND');
+
+export default {
+  nonsenseAction,
+  secondAction
+};
 
 

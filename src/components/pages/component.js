@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import App from 'pages';
+import App from 'pages/app';
+import Other from 'pages/other';
 import NotFoundPage from 'pages/not_found';
 
 const pageMap = new Map([
   ['PAGE/APP', App],
+  ['PAGE/OTRA', Other],
 ]);
 
 // prompts or error logging should be handled here
 const Pages = ({ page: { current }, initializeApp }) => {
   const Page = pageMap.has(current) ? pageMap.get(current) : NotFoundPage;
+
+
+  console.log(current)
 
   useEffect(() => {
     initializeApp();
