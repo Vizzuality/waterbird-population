@@ -1,19 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from 'config/store';
+import store from 'config/store';
 import { Provider } from 'react-redux';
 
 import 'styles/index.scss';
+import Pages from 'pages';
 
-import App from './App';
 
-
-const store = configureStore();
-
-const rootElement = document.getElementById('root')
-ReactDOM.render(
+const App = () => (
   <Provider store={store}>
-    <App />
-  </Provider>,
-  rootElement
-)
+    <Pages />
+  </Provider>
+);
+
+ReactDOM.render(<App />, document.getElementById('root'));

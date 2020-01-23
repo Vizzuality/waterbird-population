@@ -1,29 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HomePage from 'pages/home';
-import OtherPage from 'pages/other';
-import NotFoundPage from 'pages/not_found';
+import AsyncPage from 'pages/async';
 
-const pageMap = new Map([
-  ['PAGE/APP', HomePage],
-  ['PAGE/OTHER', OtherPage]
-]);
+const Pages = ({ router: { type, routesMap } }) => {
+  const { page } = routesMap[type];
 
-
-const Pages = ({ router }) => {
-  const pathName = router[0].pathname;
-  const Page = pageMap.has(pathName) ? pageMap.get(pathName) : NotFoundPage;
-  return <Page page={pathName} />;
+  return <AsyncPage page={page} />;
 };
 
 Pages.propTypes = {
-  initializeApp: PropTypes.func.isRequired,
-  page: PropTypes.shape({
-    pathName: PropTypes.string.isRequired,
-    payload: PropTypes.shape({}).isRequired
-  }).isRequired
+  router: PropTypes.shape({
+    type: PropTypes.string,
+    routesMap: PropTypes.shape({})
+  }).isRequired,
+
 };
 
 export default Pages;
-
-

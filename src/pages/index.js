@@ -5,5 +5,5 @@ const stateToProps = ({ router }) => ({ router });
 
 export default connect(
   stateToProps,
+  null
 )(Component);
-

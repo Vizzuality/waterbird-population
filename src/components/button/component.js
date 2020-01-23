@@ -3,9 +3,8 @@ import classnames from 'classnames';
 
 import './styles.scss';
 
-const Button = ({ text, classname = 'hola', action, argument }) => {
+const Button = ({ text }) => {
   const onClick = () => {
-    console.log(action, argument)
     action(argument);
   };
   return <button

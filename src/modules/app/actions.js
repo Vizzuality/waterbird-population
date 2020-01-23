@@ -1,10 +1,8 @@
 
 import { createAction } from 'vizzuality-redux-tools';
 
-export const nonsenseAction = createAction('APP/NONSENSE');
-export const secondAction = createAction('APP/SECOND');
+export const initializeApp = createAction('APP/INITIALIZE_APP');
 
 export default {
-  nonsenseAction,
-  secondAction
+  initializeApp
 };

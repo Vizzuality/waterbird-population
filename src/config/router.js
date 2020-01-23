@@ -1,20 +1,26 @@
 import { connectRoutes } from 'redux-first-router';
-import { PAGES } from 'pages/constants';
 
-const routesMap = PAGES.reduce((acc, page) => ({
-  ...acc,
-  [page.name]: {
-    path: page.path,
-    ...{ thunk: page.thunk }
+import { NOT_FOUND } from 'redux-first-router';
+
+export const routes = {
+  HOME: {
+    page: 'home',
+    path: '/'
+  },
+  [NOT_FOUND]: {
+    page: 'not-found',
+    path: '/404'
+  },
+  OTHER: {
+    page: 'otra',
+    path: '/otra'
   }
-}), {});
+};
 
 const options = {
-  location: 'string', // default: 'location'
-  title: 'string',    // default: 'title'
-  scrollTop: false,
-  initialDispatch: false
-}
+  location: 'router',
+};
 
-export default connectRoutes(routesMap, options);
+export default connectRoutes(routes, options);
+
 
