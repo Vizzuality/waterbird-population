@@ -1,15 +1,13 @@
 import React from 'react';
-import classnames from 'classnames';
 
 import './styles.scss';
 
 const Button = ({ text }) => {
   const onClick = () => {
-    action(argument);
+
   };
   return <button
-    className={classnames('c-button',
-      { [classname]: classname })}
+    className="c-button'"
     type='button'
     onClick={onClick}
   >

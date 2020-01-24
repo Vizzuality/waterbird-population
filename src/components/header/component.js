@@ -3,12 +3,12 @@ import classnames from 'classnames';
 
 import './styles.scss';
 
-const Header = (text, classname='hola') => (
+const Header = (text='WATERBIRD POPULATION', classname='') => (
   <div
     className={classnames('c-header',
       {[classname]: classname})}
   >
-     WATERBIRD POPULATION
+     {text}
   </div>
 );
 

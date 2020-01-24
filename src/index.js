@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import store from 'config/store';
 import { Provider } from 'react-redux';
 
-import 'styles/index.scss';
 import Pages from 'pages';
+import 'styles/index.scss';
 
 
 const App = () => (
