@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <script>
+          var env = '%NODE_ENV%';
+          window.dataLayer = window.dataLayer || [];
+        </script>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,9 +29,22 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css" rel="stylesheet" />
+
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+      <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFuZ3JvdmUtYXRsYXMiLCJhIjoiY2p2Mmt6ZXAxMGFkeTN5bnRvcTRwaXZ1ZSJ9.7MjQEjNeWqrB79jp9v7zpw';
+        var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+        center: [-74.5, 40], // starting position [lng, lat]
+        zoom: 9 // starting zoom
+        });
+        </script>
+
+
     <div id="root"></div>
     <!--
       This HTML file is a template.

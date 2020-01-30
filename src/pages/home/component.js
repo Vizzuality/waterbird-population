@@ -1,8 +1,10 @@
 import React from 'react';
-import Header from 'components/header';
+import MapContainer from 'components/map-container';
 
 import './styles.scss';
 
-const Home = () => (<div className="c-home"><Header />home page</div>);
+const Home = () => (<div className="c-home">
+  home page
+  <MapContainer /></div>);
 
 export default Home;

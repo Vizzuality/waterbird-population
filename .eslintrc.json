@@ -1,0 +1,13 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "L": true
+  },
+  "extends": ["vizzuality"],
+  "rules": {
+    "react/jsx-one-expression-per-line": [true, { "allow": "single-child" }]
+  }
+}
