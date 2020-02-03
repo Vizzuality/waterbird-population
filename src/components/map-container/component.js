@@ -1,81 +1,80 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
 import { NavigationControl, FullscreenControl } from 'react-map-gl';
-import classnames from 'classnames';
-
 
 // Components
 import Map from 'components/map';
-// import BasemapSelector from 'components/basemap-selector';
-// import Legend from 'components/map-legend';
+import Legend from 'components/map-container/legend';
 
-import styles from './styles.scss';
+import './styles.scss';
 
 export const MapContainer = ({
   viewport,
-  layers,
   setViewport,
+  layers,
   mapStyle,
+  map,
   bounds
 }) => {
-  // const onViewportChange = (newViewport) => {
-  //   setViewport(pick(newViewport, ['latitude', 'longitude', 'zoom', 'bearing', 'pitch']));
-  // };
 
-  // const resize = () => {
-  //   onViewportChange({
-  //     ...viewport,
-  //     width: window.innerWidth,
-  //     height: window.innerHeight
-  //   });
-  // };
+  useEffect(() => {
+    window.addEventListener('resize', resize);
+    resize();
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', resize);
-  //   resize();
+    return function cleanup() {
+      window.removeEventListener('resize', resize);
+    };
+    // eslint-disable-next-line
+  }, []);
 
-  //   return function cleanup() {
-  //     window.removeEventListener('resize', resize);
-  //   };
-  //   // eslint-disable-next-line
-  // }, []);
+  const onViewportChange = () => {
+    const { width, height, latitude, longitude, zoom } = viewport;
+  };
 
-
-
-
+  const resize = () => {
+    onViewportChange({
+      ...viewport,
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+  };
 
   return (
-    <div className=''>
+    <div className='c-map-container'>
       <Map
         viewport={viewport}
         // bounds={bounds}
-        // mapStyle='mapbox://styles/mapbox/light-v9'
+        mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
       // onViewportChange={onViewportChange}
       // onClick={clickHandler}
       // interactiveLayerIds={interactiveLayerIds}
       // onPopupClose={popupCloseHandler}
       >
-        {map => (
-          <Fragment>
-            <LayerManager
-              map={map}
-              plugin={PluginMapboxGl}
-            // onLayerLoading={loading => setMapLoading(loading)}
-            >
-              {!!layers && layers.map((l, i) => {
-                return (
-                  <Layer
-                    key={l.id}
-                    {...l}
-                  />
-                )
-              })}
-            </LayerManager>
-            {/*
+
+        <Fragment>
+          <LayerManager
+            map={map}
+            plugin={PluginMapboxGl}
+          // onLayerLoading={loading => setMapLoading(loading)}
+          >
+            {!!layers && layers.map((l, i) => {
+              return (
+                <Layer
+                  key={l.id}
+                  zIndex={1000 - i}
+                  {...l}
+                />
+              )
+
+            })}
+          </LayerManager>
+
+          {/*
             {shouldRenderPopup &&
               <Popup
                 {...interactionLatLng}
@@ -92,10 +91,14 @@ export const MapContainer = ({
                 />
               </Popup>
             } */}
-          </Fragment>
+        </Fragment>
         )}
 
+        <NavigationControl className="map-controls" />
+        <FullscreenControl className="map-fullscreen" />
+
       </Map>
+      <Legend />
     </div>
   );
 };

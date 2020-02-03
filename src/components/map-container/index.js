@@ -2,6 +2,7 @@
 import { connect } from 'react-redux';
 
 import MapContainer from './component';
+import { activeLayers } from './constants';
 
 
 
@@ -10,7 +11,7 @@ import MapContainer from './component';
 export default connect(
   state => ({
     // bounds: getActiveBoundsLayer(state),
-    // layers: getActiveLayers(state)
+    layers: activeLayers
 
   })
 )(MapContainer);
