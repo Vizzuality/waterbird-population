@@ -57,32 +57,29 @@ export const MapContainer = ({
       // interactiveLayerIds={interactiveLayerIds}
       // onPopupClose={popupCloseHandler}
       >
+        {(map) =>  (
+          <Fragment>
+            <LayerManager
+              map={map}
+              plugin={PluginMapboxGl}
+            >
+              {!!layers && layers.map((l, i) => {
+                return (
+                  <Layer
+                    key={l.id}
 
-        { (map) =>  (<Fragment>
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-          >
-            {!!layers && layers.map((l, i) => {
-              return (
-                <Layer
-                  key={l.id}
+                    {...l}
+                  />
+                )
 
-                  {...l}
-                />
-              )
-
-            })}
-          </LayerManager>
-
-
-          <NavigationControl className="map-controls" />
-        <FullscreenControl className="map-fullscreen" />
-        </Fragment>)
-        })}
+              })}
+            </LayerManager>
 
 
-
+            <NavigationControl className="map-controls" />
+            <FullscreenControl className="map-fullscreen" />
+          </Fragment>
+        )}
       </Map>
       <Legend />
     </div>
