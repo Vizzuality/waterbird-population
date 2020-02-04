@@ -21,6 +21,8 @@ export const MapContainer = ({
   bounds
 }) => {
 
+
+
   useEffect(() => {
     window.addEventListener('resize', resize);
     resize();
@@ -56,17 +58,16 @@ export const MapContainer = ({
       // onPopupClose={popupCloseHandler}
       >
 
-        <Fragment>
+        { (map) =>  (<Fragment>
           <LayerManager
             map={map}
             plugin={PluginMapboxGl}
-          // onLayerLoading={loading => setMapLoading(loading)}
           >
             {!!layers && layers.map((l, i) => {
               return (
                 <Layer
                   key={l.id}
-                  zIndex={1000 - i}
+
                   {...l}
                 />
               )
@@ -74,28 +75,13 @@ export const MapContainer = ({
             })}
           </LayerManager>
 
-          {/*
-            {shouldRenderPopup &&
-              <Popup
-                {...interactionLatLng}
-                closeButton
-                closeOnClick={false}
-                onClose={this.handleClosePopup}
-                className="rw-popup-layer"
-                maxWidth="250px"
-              >
-                <LayerPopup
-                  data={layerPopupData}
-                  latlng={layerPopupLatlng}
-                  onChangeInteractiveLayer={setLayerInteractionSelected}
-                />
-              </Popup>
-            } */}
-        </Fragment>
-        )}
 
-        <NavigationControl className="map-controls" />
+          <NavigationControl className="map-controls" />
         <FullscreenControl className="map-fullscreen" />
+        </Fragment>)
+        })}
+
+
 
       </Map>
       <Legend />
