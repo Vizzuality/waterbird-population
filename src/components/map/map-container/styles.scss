@@ -1,0 +1,22 @@
+.c-map-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  // Mapbox override
+  :global(.mapboxgl-ctrl-group:not(:empty)) {
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+
+  :global(.mapboxgl-ctrl-group > button) {
+    background-color: white;
+    border: none;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 25px;
+    height: 25px;
+    margin: 10px;
+  }
+}
