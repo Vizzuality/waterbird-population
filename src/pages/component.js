@@ -4,8 +4,13 @@ import AsyncPage from 'pages/async';
 
 const Pages = ({ router: { type, routesMap } }) => {
   const { page } = routesMap[type];
+  console.log(routesMap);
 
-  return <AsyncPage page={page} />;
+  return (
+    <>
+      {Object.keys(routesMap).map(route => page === routesMap[route].page && <AsyncPage page={page} /> )}
+    </>
+  );
 };
 
 Pages.propTypes = {

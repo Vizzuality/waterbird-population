@@ -7,10 +7,7 @@ import { menuItems } from './constants';
 import './styles.scss';
 
 const NavBar = () => {
-
   const handleChange = (e) => {
-    console.log(e, 'event')
-    debugger
     return <Link to={e.path} />
 }
 

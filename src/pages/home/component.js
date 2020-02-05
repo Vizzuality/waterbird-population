@@ -1,10 +1,11 @@
 import React from 'react';
-import MapContainer from 'components/map-container';
+import Link from 'redux-first-router-link';
 
 import './styles.scss';
 
 const Home = () => (<div className="c-home">
-  home page
-  <MapContainer /></div>);
+  <Link to='/'>Home</Link>
+  <Link to='/map'>Map</Link>
+</div>);
 
 export default Home;

@@ -1,5 +1,4 @@
 
-
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { handleModule } from 'vizzuality-redux-tools';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';

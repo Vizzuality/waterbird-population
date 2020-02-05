@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'redux-first-router-link';
 import Modal from 'components/modal';
-import NavBar from 'components/nav-bar';
 
 import './styles.scss';
 

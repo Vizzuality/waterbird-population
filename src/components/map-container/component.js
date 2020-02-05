@@ -36,7 +36,7 @@ export const MapContainer = ({
   const onViewportChange = () => {
     const { width, height, latitude, longitude, zoom } = viewport;
   };
-console.log(map)
+
   const resize = () => {
     onViewportChange({
       ...viewport,
@@ -47,7 +47,6 @@ console.log(map)
 
   return (
     <div className='c-map-container'>
-      {console.log('mapa')}
       <Map
         viewport={viewport}
         // bounds={bounds}
@@ -80,7 +79,7 @@ console.log(map)
             <NavigationControl className="map-controls" />
             <FullscreenControl className="map-fullscreen" />
           </Fragment>
-        })}
+        }
 
       </Map>
       <Legend />
