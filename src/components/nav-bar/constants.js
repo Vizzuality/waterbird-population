@@ -13,7 +13,7 @@ export const menuItems = [
     dropdown: {
       options: [
         { label: 'What are Waterbirds?', value: 1 },
-        { label: 'What is waterbird population?', value: 2 },        ,
+        { label: 'What is waterbird population?', value: 2 },
         { label: 'What are flyways?', value: 3 },
         { label: 'Glossary', value: 4 }
       ]
@@ -26,7 +26,7 @@ export const menuItems = [
     dropdown: {
       options: [
         { label: 'Species & Population', value: 1 },
-        { label: 'Population Estimates', value: 2 },        ,
+        { label: 'Population Estimates', value: 2 },
         { label: 'Population Trends', value: 3 },
         { label: '1% threshold', value: 4 } ]
     },
