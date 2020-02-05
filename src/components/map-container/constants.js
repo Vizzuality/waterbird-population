@@ -3,7 +3,6 @@ export const activeLayers = [
   // GEOJSON DATA LAYER
   {
     id: 'multipolygon',
-
     type: 'geojson',
     source: {
       type: 'geojson',

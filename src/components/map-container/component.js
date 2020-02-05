@@ -36,7 +36,7 @@ export const MapContainer = ({
   const onViewportChange = () => {
     const { width, height, latitude, longitude, zoom } = viewport;
   };
-
+console.log(map)
   const resize = () => {
     onViewportChange({
       ...viewport,
@@ -47,6 +47,7 @@ export const MapContainer = ({
 
   return (
     <div className='c-map-container'>
+      {console.log('mapa')}
       <Map
         viewport={viewport}
         // bounds={bounds}
@@ -58,30 +59,28 @@ export const MapContainer = ({
       // onPopupClose={popupCloseHandler}
       >
 
-        { (map) =>  (<Fragment>
-          <LayerManager
-            map={map}
-            plugin={PluginMapboxGl}
-          >
-            {!!layers && layers.map((l, i) => {
-              return (
-                <Layer
-                  key={l.id}
+        {(map) =>
+          <Fragment>
+            <LayerManager
+              map={map}
+              plugin={PluginMapboxGl}
+            >
+              {!!layers && layers.map((l, i) => {
+                return (
+                  <Layer
+                    key={l.id}
 
-                  {...l}
-                />
-              )
+                    {...l}
+                  />
+                )
 
-            })}
-          </LayerManager>
+              })}
+            </LayerManager>
 
-
-          <NavigationControl className="map-controls" />
-        <FullscreenControl className="map-fullscreen" />
-        </Fragment>)
+            <NavigationControl className="map-controls" />
+            <FullscreenControl className="map-fullscreen" />
+          </Fragment>
         })}
-
-
 
       </Map>
       <Legend />

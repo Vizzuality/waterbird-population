@@ -1,0 +1,10 @@
+.c-nav-bar {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: flex-end;
+
+  .nav-bar-item {
+    padding: 20px;
+  }
+}

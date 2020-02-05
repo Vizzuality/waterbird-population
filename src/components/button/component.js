@@ -1,18 +1,23 @@
 import React from 'react';
-
+import classnames from 'classnames';
 import './styles.scss';
 
-const Button = ({ text }) => {
-  const onClick = () => {
+export default (props) => {
+  const { children,
+    isDisabled,
+    className,
+    ...domProps } = props;
 
-  };
-  return <button
-    className="c-button'"
-    type='button'
-    onClick={onClick}
-  >
-    {text}
-  </button>
+  return (
+    <button
+      type="button"
+      className={classnames({
+        ['disabled']: isDisabled,
+        [className]: className
+      })}
+      {...domProps}
+    >
+      {children}
+    </button>
+  );
 };
-
-export default Button;
