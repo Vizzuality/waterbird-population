@@ -6,9 +6,9 @@ import { menuItems } from './constants';
 
 import './styles.scss';
 
-const NavBar = () => {
-  const handleChange = (item) => {
-
+const NavBar = ({ setActiveTab }) => {
+  const handleChange = (e, item) => {
+    setActiveTab(e.value)
   }
 
   return (
@@ -21,7 +21,7 @@ const NavBar = () => {
                 <Dropdown
                   options={item.dropdown.options}
                   placeholder={item.name}
-                  onChange={() => handleChange(item)}
+                  onChange={(e) => handleChange(e, item)}
                 />
             </li>)
         || ((!item.dropdown && item.component) &&

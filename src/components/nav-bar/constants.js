@@ -12,10 +12,10 @@ export const menuItems = [
     name: 'background',
     dropdown: {
       options: [
-        { label: 'What are Waterbirds?', value: 1 },
-        { label: 'What is waterbird population?', value: 2 },
-        { label: 'What are flyways?', value: 3 },
-        { label: 'Glossary', value: 4 }
+        { label: 'What are Waterbirds?', value: 'WAW' },
+        { label: 'What is waterbird population?', value: 'WIWP' },
+        { label: 'What are flyways?', value: 'WAF' },
+        { label: 'Glossary', value: 'GLOSSARY' }
       ]
     },
     component: false,
@@ -35,12 +35,7 @@ export const menuItems = [
   },
   {
     name: 'credits',
-    dropdown: {
-      options: [
-        { label: 'What are Waterbirds', value: 1 },
-        { label: 'What is waterbird population', value: 2 }
-      ]
-    },
+    dropdown: false,
     component: false,
     path: '/credits'
   },
