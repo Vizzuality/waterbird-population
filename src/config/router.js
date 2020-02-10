@@ -27,7 +27,7 @@ export const routes = {
     page: 'credits',
     path: '/credits'
   },
-  FAP: {
+  FAQ: {
     page: 'faq',
     path: '/faq'
   },
