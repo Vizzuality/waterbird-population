@@ -13,24 +13,24 @@ export const menuItems = [
     name: 'background',
     dropdown: {
       options: [
-        { label: 'What are Waterbirds?', value: 'WAW' },
-        { label: 'What is waterbird population?', value: 'WIWP' },
-        { label: 'What are flyways?', value: 'WAF' },
-        { label: 'Glossary', value: 'GLOSSARY' }
+        { name: 'What are Waterbirds?', id: 'WAW' },
+        { name: 'What is waterbird population?', id: 'WIWP' },
+        { name: 'What are flyways?', id: 'WAF' },
+        { name: 'Glossary', id: 'Glossary' }
       ]
     },
     component: false,
     path: '/background',
     type: 'BACKGROUND',
-  },
+   },
   {
     name: 'data presentation',
     dropdown: {
       options: [
-        { label: 'Species & Population', value: 1 },
-        { label: 'Population Estimates', value: 2 },
-        { label: 'Population Trends', value: 3 },
-        { label: '1% threshold', value: 4 } ]
+        { name: 'Species & Population', id: 'S&P' },
+        { name: 'Population Estimates', id: 'PE' },
+        { name: 'Population Trends', id: 'PT' },
+        { name: '1% threshold', id: 'Treshold' } ]
     },
     component: false,
     path: '/data',

@@ -17,11 +17,11 @@ export const routes = {
   },
   BACKGROUND: {
     page: 'background',
-    path: '/background'
+    path: '/background/:id'
   },
   DATA: {
     page: 'data',
-    path: '/data'
+    path: '/data/:id'
   },
   CREDITS: {
     page: 'credits',
