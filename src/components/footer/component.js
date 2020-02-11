@@ -11,7 +11,8 @@ const Footer = () =>
    <div className="c-footer">
      <div className="footer-header">
        <h2>Do you want to take part?</h2>
-       <Button>Join us</Button>
+       <Button className="-border-color-1">Contact us</Button>
+       <Button className="-background color-1">Join us</Button>
      </div>
      <div className="footer-navigation">
        <NavMenu className='footer'/>

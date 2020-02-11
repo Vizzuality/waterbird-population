@@ -7,7 +7,6 @@ export default (props) => {
     type,
     className,
     ...domProps } = props;
-
   return (
     <button
       type={type || 'button'}
