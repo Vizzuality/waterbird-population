@@ -4,7 +4,7 @@ import './styles.scss';
 import TabsMenu from 'components/tabs-menu';
 
 
-const Header = ({infoId}) =>
+const Header = ({ infoId }) =>
   <div className="c-header">
     <h1>{PagesInfo[infoId].title}</h1>
     <p>{PagesInfo[infoId].headerDescription || null}</p>
