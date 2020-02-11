@@ -7,4 +7,5 @@ const mapDispatchToProps = {
   setActiveTab
 };
 
-export default connect(mapDispatchToProps)(Component);
+export default connect(null,mapDispatchToProps)(Component);
+

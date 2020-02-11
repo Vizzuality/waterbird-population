@@ -1,11 +1,12 @@
 import React from 'react';
-import PagesInfo from 'pages/constants';
 import './styles.scss';
 
 
 const TabsMenu = ({ tabs, setActiveTab }) => {
-  const setTab = (currentTab) => setActiveTab(currentTab)
-  return <ul className="c-menu-item">
+
+  const setTab = (currentTab) => setActiveTab(currentTab);
+
+  return <ul className="c-menu-items">
     {tabs.map(tab =>
       <li
         className="menu-item-header"
