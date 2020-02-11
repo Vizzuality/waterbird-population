@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import Dropdown from 'react-dropdown';
 
@@ -27,6 +28,10 @@ const NavBar = ({ setRouter }) => {
       )}
     </ul>
   )
+};
+
+NavBar.propTypes = {
+  setRouter: PropTypes.func.isRequired
 };
 
  export default NavBar;

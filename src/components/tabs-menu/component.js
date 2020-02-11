@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './styles.scss';
 
 
@@ -19,6 +21,11 @@ const TabsMenu = ({ tabs, setActiveTab }) => {
       )
     }
   </ul>
+};
+
+TabsMenu.propTypes = {
+  tabs: PropTypes.array.isRequired,
+  setActiveTab: PropTypes.func.isRequired
 };
 
 export default TabsMenu;
