@@ -6,7 +6,8 @@ import { Provider } from 'react-redux';
 
 import NavBar from 'components/nav-bar';
 import Pages from 'pages';
-// import 'styles/index.scss';
+
+import 'styles/index.scss';
 
 
 const App = () => (
