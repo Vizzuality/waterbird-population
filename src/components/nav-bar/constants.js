@@ -7,6 +7,7 @@ export const menuItems = [
     dropdown: false,
     component: false,
     path: '/explore',
+    type: 'EXPLORE'
   },
   {
     name: 'background',
@@ -19,7 +20,8 @@ export const menuItems = [
       ]
     },
     component: false,
-    path: '/background'
+    path: '/background',
+    type: 'BACKGROUND',
   },
   {
     name: 'data presentation',
@@ -31,19 +33,22 @@ export const menuItems = [
         { label: '1% threshold', value: 4 } ]
     },
     component: false,
-    path: '/data'
+    path: '/data',
+    type: 'DATA',
   },
   {
     name: 'credits',
     dropdown: false,
     component: false,
-    path: '/credits'
+    path: '/credits',
+    type: 'CREDITS',
   },
   {
     name: 'faq',
     dropdown: false,
     component: false,
-    path: '/faq'
+    path: '/faq',
+    type: 'FAQ',
   },
   {
     name: 'login',
