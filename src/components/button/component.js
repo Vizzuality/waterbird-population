@@ -4,16 +4,17 @@ import './styles.scss';
 
 export default (props) => {
   const { children,
-    isDisabled,
     className,
+    dark,
+    light,
     ...domProps } = props;
 
   return (
     <button
       type="button"
       className={classnames('c-button', {
-        ['disabled']: isDisabled,
-        [className]: className
+        'dark': dark,
+        'light': light
       })}
       {...domProps}
     >

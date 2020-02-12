@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 
 import Header from 'components/header';
 import Pages from 'pages';
+import Footer from 'components/footer';
 
 import 'styles/index.scss';
 
@@ -15,6 +16,7 @@ const App = () => (
     <div className="app">
       <Header />
       <Pages className="l-pages"/>
+      <Footer />
     </div>
   </Provider>
 );
