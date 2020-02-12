@@ -1,0 +1,30 @@
+@import './settings.scss';
+
+body {
+  background-color: $background-color;
+  line-height: $body-line-height;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+
+
+a {
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

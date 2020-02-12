@@ -1,10 +1,5 @@
-.c-nav-bar {
-  width: 100%;
-  position: fixed;
-  display: flex;
-  justify-content: flex-end;
+@import 'styles/settings';
 
-  .nav-bar-item {
-    padding: 20px;
-  }
+.c-login {
+  padding: 20px;
 }

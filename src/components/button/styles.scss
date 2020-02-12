@@ -1,3 +1,11 @@
+@import 'styles/settings';
+
 .c-button {
+  padding: 20px;
+  border-radius: 7px;
+  background-color: $black;
+  color: $white;
+  font-family: Arial;
+  line-height: 16px;
 }
 
