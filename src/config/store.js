@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import * as pages from 'modules/pages';
+import { handleModule } from 'vizzuality-redux-tools';
 
 import router from './router';
 
@@ -11,7 +13,8 @@ const {
 } = router;
 
 const reducers = combineReducers({
-  router: routerReducer
+  router: routerReducer,
+  pages: handleModule(pages)
 });
 
 const middleware = applyMiddleware(routerMiddleware);
