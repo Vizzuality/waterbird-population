@@ -6,7 +6,7 @@
   margin: auto;
   display: flex;
   justify-content: flex-end;
-  font-family: $main-font;
+  font-family: $font-family-1;
   line-height: 18px;
 
   .nav-menu-item {
@@ -39,7 +39,7 @@
           display: flex;
           flex-direction: column;
           position: relative;
-          background-color: $header-color;
+          background-color: $color-1;
           > li {
             padding: 10px 0;
           }
