@@ -1,0 +1,27 @@
+@import 'styles/settings';
+
+.c-search {
+  width: 100%;
+  height: 100%;
+
+  input {
+    padding: 20px;
+    position: relative;
+    // color: $color-7;
+    &::placeholder {
+      font-style: italic;
+      padding-bottom: 10px;
+
+
+
+    }
+    &::placeholder:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background-color: #222222;
+    }
+  }
+}
