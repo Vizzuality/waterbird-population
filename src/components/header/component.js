@@ -1,17 +1,17 @@
 import React from 'react';
-import PagesInfo from 'pages/constants';
+
+//import Logo from 'images/logo';
+import NavMenu from 'components/nav-menu';
+import Login from 'components/login';
+
 import './styles.scss';
-import TabsMenu from 'components/tabs-menu';
 
-
-const Header = ({ infoId }) =>
+const Header = () =>
   <div className="c-header">
-    <h1>{PagesInfo[infoId].title}</h1>
-    <p>{PagesInfo[infoId].headerDescription || null}</p>
-    <div className="header-menu">
-      {PagesInfo[infoId].tabs
-      ? <TabsMenu tabs={PagesInfo[infoId].tabs}/>
-      : null}
+    {/* <img src={logo} alt="Wetlands International Logo" /> */}
+    <div className="header-navigation">
+      <NavMenu className='header'/>
+      <Login />
     </div>
   </div>
 

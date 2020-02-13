@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from 'components/header';
+import Hero from 'components/hero';
 
 import './styles.scss';
 
 const CreditsPage = () => (
   <div className="l-credits">
-    <Header infoId='credits' />
+    <Hero infoId='credits' />
   </div>);
 
 export default CreditsPage;

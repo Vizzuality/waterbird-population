@@ -1,3 +1,3 @@
 export default {
-  activeTab: ''
+  activeTab: 'WAW'
 };
