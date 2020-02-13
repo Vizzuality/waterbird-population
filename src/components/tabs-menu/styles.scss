@@ -1,5 +1,16 @@
+@import 'styles/settings';
+
 .c-menu-items {
   position: relative;
   width: 100%;
   display: flex;
+  background-color: $white;
+
+  .menu-item-header {
+    padding: 15px;
+
+    &.active {
+      background-color: $white;
+    }
+  }
 }

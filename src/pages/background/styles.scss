@@ -1,0 +1,21 @@
+@import 'styles/settings';
+
+.l-background {
+  display: flex;
+  flex-direction: column;
+
+  .background-content {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    padding: 50px 100px;
+
+    h3 {
+      font-size: 30px;
+      line-height: 40px;
+    }
+    p {
+      line-height: 26px;
+    }
+  }
+}
