@@ -27,11 +27,33 @@ const PagesInfo = {
   DATA: {
     title: 'Data presentation',
     tabs: [
-      { name: 'Species & Population', id: 'S&P' },
+      { name: 'Species & Population', id: 'SP' },
       { name: 'Population Estimates', id: 'PE' },
       { name: 'Population Trends', id: 'PT'},
       { name: '1% threshold', id: 'Threshold'}
-    ]
+    ],
+    tabsInfo: [
+      {
+        id: 'SP',
+        intro: '',
+        content: ''
+      },
+      {
+        id: 'PE',
+        intro: '',
+        content: ''
+      },
+      {
+        id: 'PT',
+        intro: '',
+        content: ''
+      },
+      {
+        id: 'Threshold',
+        intro: '',
+        content: ''
+      }
+    ],
   },
   CREDITS: { title: 'Credits', description: null },
   FAQ: { title: 'FAQ', description: null }
