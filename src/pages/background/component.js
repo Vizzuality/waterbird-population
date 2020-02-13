@@ -5,11 +5,11 @@ import './styles.scss';
 
 const BackgroundPage = ({ currentTab, currentPage }) => {
   const page = PagesInfo[currentPage];
-  const tabInfo = page.tabsInfo.find(tab => tab.id === currentTab)
+  const tabInfo = page.tabsInfo.find(tab => tab.id === currentTab.id)
   return (
     <div className="l-background">
       <h1>{page.title}</h1>
-      <Card info={tabInfo} tabs={page.tabs} />
+      <Card info={tabInfo} tabs={page.tabs} page={currentPage} />
     </div>
   );
 }

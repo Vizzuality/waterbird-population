@@ -4,7 +4,7 @@ import Component from './component';
 
 const mapStateToProps = state => ({
   currentPage: state.router.type,
-  currentTab: state.pages.activeTab
+  currentTab: state.router.payload
 })
 
 export default connect(mapStateToProps)(Component);

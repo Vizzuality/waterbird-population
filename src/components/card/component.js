@@ -6,10 +6,10 @@ import TabsMenu from 'components/tabs-menu';
 import './styles.scss';
 
 
-const Card = ({ info, tabs }) =>
+const Card = ({ info, tabs, page }) =>
   <div className="c-card">
     <div className="card-navigation">
-      <TabsMenu tabs={tabs}/>
+      <TabsMenu tabs={tabs} page={page}/>
     </div>
     <div className="card-content">
       <div className="card-intro">

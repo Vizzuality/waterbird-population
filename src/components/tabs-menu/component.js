@@ -1,32 +1,25 @@
 import React from 'react';
 import classnames from 'classnames';
+
+import Link from 'redux-first-router-link';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const TabsMenu = ({ current, tabs, setActiveTab }) => {
-  const setTab = (currentTab) => setActiveTab(currentTab);
-
-  return <ul className="c-menu-items">
+const TabsMenu = ({ current, tabs, page }) =>
+  <div className="c-menu-items">
     {tabs.map(tab =>
-      <li
-        className={classnames('menu-item',
-          { 'active': current === tab.id } )}
-        tabIndex="0"
-        role="button"
-        onClick={() => setTab(tab.id)}
-      >
-      {tab.name}
-      </li>
-      )
-    }
-  </ul>
-};
+      <Link
+        className={classnames('menu-item', { 'active': tab.id === current.id })}
+        to={ { type: page,  payload : { id:`${tab.id}` }}}>
+          {tab.name}
+      </Link>)}
+  </div>
 
 TabsMenu.propTypes = {
-  current: PropTypes.string.isRequired,
   tabs: PropTypes.array.isRequired,
-  setActiveTab: PropTypes.func.isRequired
+  page: PropTypes.string.isRequired,
+  current: PropTypes.string.isRequired
 };
 
 export default TabsMenu;
