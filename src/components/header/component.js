@@ -10,7 +10,7 @@ const Header = () =>
   <div className="c-header">
     {/* <img src={logo} alt="Wetlands International Logo" /> */}
     <div className="header-navigation">
-      <NavMenu />
+      <NavMenu className='header'/>
       <Login />
     </div>
   </div>

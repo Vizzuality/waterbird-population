@@ -1,0 +1,27 @@
+@import 'styles/settings';
+
+.c-footer {
+  width: 100%;
+  color: $white;
+  background-color: $color-6;
+  padding: $padding 100px;
+  font-family: $font-family-1;
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 34px;
+  }
+
+  .footer-header {
+    display: flex;
+    padding: $padding 0;
+    justify-content: space-between;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer-navigation {
+    width: 100%;
+    display: flex;
+  }
+}
