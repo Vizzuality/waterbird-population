@@ -26,7 +26,7 @@
           content: '';
           position: absolute;
           margin: 5px;
-          @include arrow(5px, 2px, $black, 'down');
+          @include arrow(8px, 2px, $black, 'down');
         }
       }
 

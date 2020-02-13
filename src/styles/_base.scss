@@ -1,9 +1,13 @@
 @import './settings.scss';
 
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
 body {
   background-color: $color-7;
   line-height: $body-line-height;
-  font-family: $main-font;
+  font-family: $font-family-1;
 }
 
 button {
