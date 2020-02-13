@@ -4,15 +4,13 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-
 const TabsMenu = ({ current, tabs, setActiveTab }) => {
-
-  const setTab = (currentTab) => console.log(currentTab) || setActiveTab(currentTab);
+  const setTab = (currentTab) => setActiveTab(currentTab);
 
   return <ul className="c-menu-items">
     {tabs.map(tab =>
       <li
-        className={classnames('menu-item-header',
+        className={classnames('menu-item',
           { 'active': current === tab.id } )}
         tabIndex="0"
         role="button"
@@ -26,6 +24,7 @@ const TabsMenu = ({ current, tabs, setActiveTab }) => {
 };
 
 TabsMenu.propTypes = {
+  current: PropTypes.string.isRequired,
   tabs: PropTypes.array.isRequired,
   setActiveTab: PropTypes.func.isRequired
 };

@@ -1,21 +1,19 @@
 @import 'styles/settings';
 
 .l-background {
-  display: flex;
-  flex-direction: column;
+  background-color: $color-8;
+  padding: 100px;
 
-  .background-content {
-    display: flex;
-    flex-direction: column;
-    background-color: $white;
-    padding: 50px 100px;
+  h1 {
+    font-size: 60px;
+    font-weight: bold;
+    line-height: 73px;
+    color: $white;
+    text-align: center;
+    padding-bottom: 80px;
+  }
 
-    h3 {
-      font-size: 30px;
-      line-height: 40px;
-    }
-    p {
-      line-height: 26px;
-    }
+  p {
+    line-height: 26px;
   }
 }

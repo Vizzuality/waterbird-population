@@ -1,18 +1,17 @@
 import React from 'react';
-import Hero from 'components/hero';
-
-import pageInfo from './constants';
-
+import Card from 'components/card';
+import PagesInfo from 'pages/constants';
 import './styles.scss';
 
-const BackgroundPage = ({ current }) => (
-  <div className="l-background">
-    <Hero infoId='background' />
-    {pageInfo[current] &&
-      <div className='background-content'>
-        <h3>{pageInfo[current].intro}</h3>
-        <p>{pageInfo[current].description}</p>
-      </div>}
-  </div>);
+const BackgroundPage = ({ currentTab, currentPage }) => {
+  const page = PagesInfo[currentPage];
+  const tabInfo = page.tabsInfo.find(tab => tab.id === currentTab)
+  return (
+    <div className="l-background">
+      <h1>{page.title}</h1>
+      <Card info={tabInfo} tabs={page.tabs} />
+    </div>
+  );
+}
 
 export default BackgroundPage;

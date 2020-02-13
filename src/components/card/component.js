@@ -6,19 +6,20 @@ import TabsMenu from 'components/tabs-menu';
 import './styles.scss';
 
 
-const Card = ({ info }) =>
+const Card = ({ info, tabs }) =>
   <div className="c-card">
     <div className="card-navigation">
-      {info.tabs
-      ? <TabsMenu tabs={info.tabs}/>
-      : null}
+      <TabsMenu tabs={tabs}/>
     </div>
-    <div className="card-intro">
-      <h1>{info.intro}</h1>
-      {/* <img src={} alt={} /> */}
+    <div className="card-content">
+      <div className="card-intro">
+        <h3>{info.intro}</h3>
+        {/* <img src={} alt={} /> */}
+      </div>
+      <div>
+        <p className="card-info">{info.content}</p>
+      </div>
     </div>
-    <p>{info.content}</p>
-
   </div>
 
 Card.propTypes = {
@@ -26,7 +27,7 @@ Card.propTypes = {
     intro: PropTypes.string,
     content: PropTypes.string,
     tabs: PropTypes.array
-  }).isRequiered
+  }).isRequired
 }
 
 export default Card;
