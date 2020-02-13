@@ -1,22 +1,24 @@
 import React from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import './styles.scss';
 
 
-const TabsMenu = ({ tabs, setActiveTab }) => {
+const TabsMenu = ({ current, tabs, setActiveTab }) => {
 
-  const setTab = (currentTab) => setActiveTab(currentTab);
+  const setTab = (currentTab) => console.log(currentTab) || setActiveTab(currentTab);
 
   return <ul className="c-menu-items">
     {tabs.map(tab =>
       <li
-        className="menu-item-header"
+        className={classnames('menu-item-header',
+          { 'active': current === tab.id } )}
         tabIndex="0"
         role="button"
-        onClick={() => setTab(tab)}
+        onClick={() => setTab(tab.id)}
       >
-      {tab}
+      {tab.name}
       </li>
       )
     }

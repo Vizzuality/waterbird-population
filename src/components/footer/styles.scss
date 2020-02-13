@@ -1,14 +1,11 @@
 @import 'styles/settings';
 
 .c-footer {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100%;
   color: $white;
+  background-color: $color-6;
   padding: $padding 100px;
-  font-family: $main-font;
+  font-family: $font-family-1;
 
   h2 {
     font-size: 30px;

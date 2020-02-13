@@ -6,7 +6,7 @@
   margin: auto;
   display: flex;
   justify-content: flex-end;
-  font-family: $main-font;
+  font-family: $font-family-1;
   line-height: 18px;
 
   .nav-menu-item {
@@ -23,7 +23,7 @@
       margin-right: 5px;
 
       .dropdown-list {
-        background-color: $header-color;
+        background-color: $white;
         display: none;
       }
 
@@ -60,7 +60,7 @@
           content: '';
           position: absolute;
           margin: 5px;
-          @include triangle(5px, $black, 'down');
+          @include arrow(5px,2px, $black, 'down');
         }
       }
     }
@@ -77,7 +77,7 @@
     }
 
     .dropdown-list {
-      background-color: $background-color;
+      background-color: $color-6;
       line-height: 30px;
     }
   }
