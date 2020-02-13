@@ -4,7 +4,6 @@ import './styles.scss';
 
 export default (props) => {
   const { children,
-    isDisabled,
     className,
     ...domProps } = props;
 
@@ -12,7 +11,6 @@ export default (props) => {
     <button
       type="button"
       className={classnames('c-button', {
-        ['disabled']: isDisabled,
         [className]: className
       })}
       {...domProps}

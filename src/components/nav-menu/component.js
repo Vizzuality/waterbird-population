@@ -1,14 +1,19 @@
 import React from 'react';
+import classnames from 'classnames';
 import Link from 'redux-first-router-link';
 
 import { menuItems } from './constants';
 
 import './styles.scss';
 
-const NavMenu = () => {
+const NavMenu = ({ className }) => {
 
   return (
-    <div className="c-nav-menu">
+    <div className={classnames("c-nav-menu",
+     {
+      'header': className === 'header',
+      'footer': className === 'footer',
+     })}>
       {menuItems.map(
         item => (!item.dropdown && !item.component)
           ? <div className="nav-menu-item"><Link to={item.path}>{item.name}</Link></div>
