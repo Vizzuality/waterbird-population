@@ -8,6 +8,7 @@
   justify-content: flex-end;
   font-family: $font-family-1;
   line-height: 19px;
+  padding: 30px 100px;
 
   .nav-menu-item {
     padding-right: 50px;
@@ -19,6 +20,26 @@
 
   &.header {
     color: rgba($color-6, 0.5);
+
+    h3 {
+      box-sizing: border-box;
+      position: relative;
+      &.active {
+        &:before {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          width: 30%;
+          border-radius: 2.5px;
+          height: 5px;
+          background-color: $color-2;
+          margin: auto;
+          z-index: 2;
+          left: 50%;
+          transform: translateX(-25%);
+        }
+      }
+    }
 
     .dropdown {
       position: relative;
@@ -47,23 +68,6 @@
       }
 
       h3 {
-        box-sizing: border-box;
-        position: relative;
-        &:hover {
-          &:before {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            width: 30%;
-            border-radius: 2.5px;
-            height: 5px;
-            background-color: $color-2;
-            margin: auto;
-            z-index: 2;
-            left: 50%;
-            transform: translateX(-25%);
-          }
-        }
 
         &:after {
           content: '';

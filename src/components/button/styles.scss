@@ -7,15 +7,5 @@
   color: $white;
   font-family: Allen;
   line-height: 16px;
-
-  &.dark {
-    background-color: $black;
-    color: $white;
-  }
-
-  &.light {
-    background-color: $white;
-    color: $black;
-  }
 }
 

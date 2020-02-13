@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Link from 'redux-first-router-link';
-import PropTypes from 'prop-types';
 
 import './styles.scss';
 
