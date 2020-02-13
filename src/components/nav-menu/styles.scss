@@ -8,6 +8,7 @@
   justify-content: flex-end;
   font-family: $font-family-1;
   line-height: 18px;
+  color: rgba($color-6, 0.5);
 
   .nav-menu-item {
     padding: 35px 15px;
@@ -26,7 +27,7 @@
           content: '';
           position: absolute;
           margin: 5px;
-          @include triangle(5px, $black, 'down');
+          @include arrow(5px, 2px, $black, 'down');
         }
       }
 
