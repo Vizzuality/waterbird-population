@@ -8,14 +8,16 @@
   font-family: Allen;
   line-height: 16px;
 
-  &.dark {
-    background-color: $black;
-    color: $white;
+  &.primary {
+    background-color: $color-3;
   }
 
-  &.light {
-    background-color: $white;
-    color: $black;
+  &.secondary {
+    background-color: $color-2;
+  }
+
+  &.big {
+    padding: 20px;
   }
 }
 
