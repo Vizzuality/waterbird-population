@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from 'components/header';
+import Hero from 'components/hero';
 
 import './styles.scss';
 
 const BackgroundPage = () => (
   <div className="l-background">
-    <Header infoId='background' />
+    <Hero infoId='background' />
   </div>);
 
 export default BackgroundPage;

@@ -3,14 +3,14 @@ import Login from 'components/login';
 
 export const menuItems = [
   {
-    name: 'explore',
+    name: 'Explore',
     dropdown: false,
     component: false,
     path: '/explore',
     type: 'EXPLORE'
   },
   {
-    name: 'background',
+    name: 'Background',
     dropdown: {
       options: [
         { name: 'What are Waterbirds?', id: 'WAW' },
@@ -24,7 +24,7 @@ export const menuItems = [
     type: 'BACKGROUND',
    },
   {
-    name: 'data presentation',
+    name: 'Data presentation',
     dropdown: {
       options: [
         { name: 'Species & Population', id: 'S&P' },
@@ -37,22 +37,17 @@ export const menuItems = [
     type: 'DATA',
   },
   {
-    name: 'credits',
+    name: 'Credits',
     dropdown: false,
     component: false,
     path: '/credits',
     type: 'CREDITS',
   },
   {
-    name: 'faq',
+    name: 'FAQ',
     dropdown: false,
     component: false,
     path: '/faq',
     type: 'FAQ',
-  },
-  {
-    name: 'login',
-    dropdown: false,
-    component: <Login />
   }
 ];

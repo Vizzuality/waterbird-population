@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from 'components/header';
+import Hero from 'components/hero';
 
 import './styles.scss';
 
 const FaqPage = () => (
   <div className="l-faq">
-    <Header infoId='faq' />
+    <Hero infoId='faq' />
   </div>);
 
 export default FaqPage;

@@ -1,0 +1,58 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.c-nav-menu {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: flex-end;
+  font-family: $font-family-1;
+  line-height: 18px;
+
+  .nav-menu-item {
+    padding: 35px 15px;
+
+    > a {
+      text-decoration: none;
+    }
+
+    &.dropdown {
+
+      h3 {
+        position: relative;
+        box-sizing: border-box;
+
+        &:after {
+          content: '';
+          position: absolute;
+          margin: 5px;
+          @include triangle(5px, $black, 'down');
+        }
+      }
+
+      &:hover {
+        border-top: 2px solid $black;
+
+        .dropdown-list {
+          box-sizing: border-box;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          background-color: $color-1;
+          > li {
+            padding: 10px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .dropdown-list {
+    display: none;
+  }
+
+  &.footer {
+    justify-content: flex-start;
+  }
+}
