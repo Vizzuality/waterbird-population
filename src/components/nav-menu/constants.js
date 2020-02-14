@@ -24,7 +24,7 @@ export const menuItems = [
     name: 'Data presentation',
     dropdown: {
       options: [
-        { name: 'Species & Population', id: 'S&P' },
+        { name: 'Species & Population', id: 'SP' },
         { name: 'Population Estimates', id: 'PE' },
         { name: 'Population Trends', id: 'PT' },
         { name: '1% threshold', id: 'Threshold' } ]

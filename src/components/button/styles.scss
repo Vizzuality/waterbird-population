@@ -3,19 +3,9 @@
 .c-button {
   padding: 10px 20px;
   border-radius: 7px;
-  background-color: $color-3;
+  background-color: $color-2;
   color: $white;
   font-family: Allen;
   line-height: 16px;
-
-  &.dark {
-    background-color: $black;
-    color: $white;
-  }
-
-  &.light {
-    background-color: $white;
-    color: $black;
-  }
 }
 

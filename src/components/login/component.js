@@ -11,7 +11,7 @@ const Login = ({ toggleModal }) => {
   }
   return (
     <div className="c-login">
-      <Button dark onClick={handleClick}>Login</Button>
+      <Button onClick={handleClick}>Login</Button>
     </div>
   )
 }
