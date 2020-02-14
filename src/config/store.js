@@ -1,7 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
-import * as pages from 'modules/pages';
-
 import router from './router';
 
 const {
