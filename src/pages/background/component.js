@@ -1,11 +1,7 @@
 import React from 'react';
-import Hero from 'components/hero';
 
-import './styles.scss';
+import StaticPage from 'pages/static-page';
 
-const BackgroundPage = () => (
-  <div className="l-background">
-    <Hero infoId='background' />
-  </div>);
+const BackgroundPage = () => <StaticPage />
 
 export default BackgroundPage;

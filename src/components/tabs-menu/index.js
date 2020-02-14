@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
-import { setActiveTab } from 'modules/pages/actions';
 
 import Component from './component';
 
-const mapDispatchToProps = {
-  setActiveTab
-};
+const mapStateToProps = state => ({
+  current: state.router.payload
+})
 
-export default connect(null,mapDispatchToProps)(Component);
+export default connect(mapStateToProps)(Component);
 

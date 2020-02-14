@@ -1,6 +1,3 @@
-import React from 'react';
-import Login from 'components/login';
-
 export const menuItems = [
   {
     name: 'Explore',
@@ -27,10 +24,10 @@ export const menuItems = [
     name: 'Data presentation',
     dropdown: {
       options: [
-        { name: 'Species & Population', id: 'S&P' },
+        { name: 'Species & Population', id: 'SP' },
         { name: 'Population Estimates', id: 'PE' },
         { name: 'Population Trends', id: 'PT' },
-        { name: '1% threshold', id: 'Treshold' } ]
+        { name: '1% threshold', id: 'Threshold' } ]
     },
     component: false,
     path: '/data',

@@ -1,5 +1,30 @@
+@import 'styles/settings';
+
 .c-menu-items {
-  position: relative;
   width: 100%;
   display: flex;
+  padding: 30px 75px;
+  border-bottom: 1px solid #D8D8D8;
+
+  .menu-item {
+    color: $color-9;
+    flex-grow: 1;
+    font-family: Aller;
+    font-weight: bold;
+    line-height: 26px;
+    position: relative;
+
+    &.active:after {
+      content: '';
+      position: absolute;
+      width: 30%;
+      border-radius: 2.5px;
+      height: 5px;
+      background-color: $color-3;
+      bottom: -5px;
+      z-index: 2;
+      left: 50%;
+      transform: translateX(-75%);
+    }
+  }
 }

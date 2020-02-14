@@ -7,53 +7,91 @@
   display: flex;
   justify-content: flex-end;
   font-family: $font-family-1;
-  line-height: 18px;
-  color: rgba($color-6, 0.5);
+  line-height: 19px;
+  padding: 30px 100px;
 
   .nav-menu-item {
-    padding: 35px 15px;
+    padding-right: 50px;
 
     > a {
       text-decoration: none;
     }
+  }
 
-    &.dropdown {
+  &.header {
+    color: rgba($color-6, 0.5);
 
-      h3 {
-        position: relative;
-        box-sizing: border-box;
-
-        &:after {
+    h3 {
+      box-sizing: border-box;
+      position: relative;
+      &.active {
+        &:before {
           content: '';
           position: absolute;
-          margin: 5px;
-          @include arrow(5px, 2px, $black, 'down');
+          bottom: -10px;
+          width: 30%;
+          border-radius: 2.5px;
+          height: 5px;
+          background-color: $color-2;
+          margin: auto;
+          z-index: 2;
+          left: 50%;
+          transform: translateX(-25%);
         }
+      }
+    }
+
+    .dropdown {
+      position: relative;
+      margin-right: 5px;
+
+      .dropdown-list {
+        background-color: $white;
+        display: none;
       }
 
       &:hover {
-        border-top: 2px solid $black;
+        color: rgba($color-6, 1);
 
         .dropdown-list {
           box-sizing: border-box;
           padding: 20px;
           display: flex;
           flex-direction: column;
-          position: relative;
-          background-color: $color-1;
+          position: absolute;
+          left: 0;
+          min-width: 200px;
           > li {
             padding: 10px 0;
           }
         }
       }
-    }
-  }
 
-  .dropdown-list {
-    display: none;
+      h3 {
+
+        &:after {
+          content: '';
+          position: absolute;
+          margin: 5px;
+          @include arrow(9px,2px, $black, 'down');
+        }
+      }
+    }
   }
 
   &.footer {
     justify-content: flex-start;
+    color: $white;
+    padding: $padding 0;
+
+    h3 {
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+
+    .dropdown-list {
+      background-color: $color-6;
+      line-height: 30px;
+    }
   }
 }

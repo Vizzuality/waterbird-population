@@ -7,9 +7,11 @@ import './styles.scss';
 
 const Hero = ({ infoId }) =>
   <div className="c-hero">
-    <h1>{PagesInfo[infoId].title}</h1>
-    <p>{PagesInfo[infoId].headerDescription || null}</p>
-    <div className="header-menu">
+    <div className="hero-intro">
+      <h1>{PagesInfo[infoId].title}</h1>
+      <p>{PagesInfo[infoId].headerDescription || null}</p>
+    </div>
+    <div className="hero-menu">
       {PagesInfo[infoId].tabs
       ? <TabsMenu tabs={PagesInfo[infoId].tabs}/>
       : null}

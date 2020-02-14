@@ -1,23 +1,35 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import Link from 'redux-first-router-link';
 
 import { menuItems } from './constants';
 
 import './styles.scss';
 
-const NavMenu = () => {
-
+const NavMenu = ({ className, current }) => {
   return (
-    <div className="c-nav-menu">
+    <div className={classnames("c-nav-menu",
+     {
+      'header': className === 'header',
+      'footer': className === 'footer',
+     })}>
       {menuItems.map(
         item => (!item.dropdown && !item.component)
-          ? <div className="nav-menu-item"><Link to={item.path}>{item.name}</Link></div>
+          ? <div className="nav-menu-item">
+              <Link to={item.path}>
+                <h3 className={classnames({ 'active': current === item.type})}>
+                  {item.name}
+                </h3>
+              </Link></div>
           : (item.dropdown && !item.component && (
             <div className="nav-menu-item dropdown">
-              <h3>{item.name}</h3>
+              <h3 className={classnames({ 'active': current === item.type})}>
+                {item.name}
+              </h3>
               <ul className="dropdown-list">
                 {item.dropdown.options.map(opt =>
-                  <li>
+                  <li key={opt.id}>
                     <Link to={`${item.path}/${opt.id}`}>
                       {opt.name}
                     </Link>
@@ -30,6 +42,11 @@ const NavMenu = () => {
       }
     </div>
   )
+};
+
+NavMenu.propTypes = {
+  className: PropTypes.string.isRequired,
+  current: PropTypes.string.isRequired
 };
 
 export default NavMenu;
