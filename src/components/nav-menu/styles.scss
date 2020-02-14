@@ -19,7 +19,7 @@
   }
 
   &.header {
-    color: rgba($color-6, 0.5);
+    color: rgba($color-grey-8, 0.5);
 
     h3 {
       box-sizing: border-box;
@@ -32,7 +32,7 @@
           width: 30px;
           border-radius: 2.5px;
           height: 5px;
-          background-color: $color-2;
+          background-color: $color-1;
           margin: auto;
           z-index: 2;
           left: 50%;
@@ -51,7 +51,7 @@
       }
 
       &:hover {
-        color: rgba($color-6, 1);
+        color: rgba($color-grey-8, 1);
 
         .dropdown-list {
           box-sizing: border-box;
@@ -90,7 +90,7 @@
     }
 
     .dropdown-list {
-      background-color: $color-6;
+      background-color: $color-grey-8;
       line-height: 30px;
     }
   }

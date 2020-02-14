@@ -6,9 +6,9 @@
   border-bottom: 1px solid #D8D8D8;
 
   .menu-item {
-    color: $color-9;
     font-family: $font-family-1;
     margin-right: 50px;
+    color: $color-grey-7;
     font-weight: bold;
     line-height: 26px;
     position: relative;
@@ -19,7 +19,7 @@
       width: 30px;
       border-radius: 2.5px;
       height: 5px;
-      background-color: $color-3;
+      background-color: $color-2;
       bottom: -5px;
       z-index: 2;
       left: 50%;
