@@ -2,7 +2,7 @@
 
 .c-card {
   box-sizing: border-box;
-  border: 1px solid rgba($color-7, 0.26);
+  border: 1px solid rgba($color-grey-4, 0.26);
   border-radius: 42px;
   background-color: $white;
   box-shadow: -2px 0 20px 0 rgba(0,0,0,0.09), 2px 0 20px 0 rgba(0,0,0,0.05);
@@ -18,7 +18,7 @@
       grid-template-columns: 4fr 2fr;
 
       h3 {
-        color: $color-6;
+        color: $color-grey-8;
         font-family: 'Aller';
         font-size: 28px;
         line-height: 43px;
