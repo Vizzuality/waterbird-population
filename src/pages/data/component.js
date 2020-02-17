@@ -1,11 +1,7 @@
 import React from 'react';
-import Hero from 'components/hero';
 
-import './styles.scss';
+import StaticPage from 'pages/static-page';
 
-const DataPresentationPage = () => (
-  <div className="l-data">
-    <Hero infoId='data' />
-  </div>);
+const DataPresentationPage = () =><StaticPage />
 
 export default DataPresentationPage;

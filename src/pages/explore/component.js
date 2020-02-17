@@ -6,8 +6,14 @@ import './styles.scss';
 
 const ExplorePage = () => (
   <div className="l-explore">
-    <Search />
-    <MapContainer />
+    <div className="map-section">
+      <MapContainer />
+    </div>
+    <div clasName="">
+      <Search />
+    </div>
+
+
   </div>);
 
 export default ExplorePage;
