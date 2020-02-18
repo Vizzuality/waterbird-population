@@ -17,7 +17,7 @@ const Search = () => {
     <div className="c-search">
       <input
         autoFocus
-        type="text"
+        type="search"
         className="search-input"
         placeholder='Search family, species, region, conservation framework...'
         onChange={updateSearch}

@@ -1,11 +1,13 @@
+@import 'styles/settings';
+
 .c-map-container {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 180px); //header and search height
   position: relative;
 
   // Mapbox override
   :global(.mapboxgl-ctrl-group:not(:empty)) {
-    border-radius: 10px;
+    border-radius: $border-radius;
     margin-bottom: 5px;
   }
 
@@ -19,4 +21,12 @@
     height: 25px;
     margin: 10px;
   }
+
+  .mapboxgl-ctrl {
+    margin-left: 8px;
+
+  }
+  .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+  }
+
 }

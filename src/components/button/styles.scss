@@ -3,7 +3,6 @@
 .c-button {
   padding: 10px 20px;
   border-radius: 7px;
-  background-color: $color-2;
   color: $white;
   font-family: Allen;
   line-height: 16px;
@@ -18,6 +17,15 @@
 
   &.big {
     padding: 20px;
+  }
+
+  &.disabled {
+    border: 1px dashed rgba(#1C1B27, 0.4);
+    border-radius: $border-radius;
+    color: $color-grey-5;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
   }
 }
 
