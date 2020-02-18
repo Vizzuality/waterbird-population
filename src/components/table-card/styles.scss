@@ -1,0 +1,90 @@
+@import 'styles/settings';
+
+.c-table-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+  border: 1px solid rgba($color-grey-8, 0.1);
+  border-radius: $border-radius;
+
+  .table-card-header {
+    display: flex;
+
+    .table-card-title {
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 18px;
+        line-height: 21px;
+        text-align: start;
+        padding-bottom: 20px;
+
+
+        &.table-subtitle {
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .table-card-buttons {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+
+      :first-child {
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          right: -10px;
+          height: 100%;
+          width: 1px;
+          background-color: $color-grey-3;
+        }
+      }
+
+      button {
+        color: $color-2;
+        margin: 0 10px;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 20px;
+      }
+    }
+  }
+
+  table {
+    font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+    display: table;
+    border-collapse: separate;
+
+    tbody {
+      padding-bottom: 20px;
+    }
+
+    th, td {
+      text-align: left;
+      padding-right: 20px;
+    }
+
+    th {
+      line-height: 16px;
+    }
+
+    td {
+      font-family: $font-family-2;
+      font-weight: bold;
+      line-height: 19px;
+
+      a {
+        color: $color-2;
+      }
+    }
+  }
+}
+
