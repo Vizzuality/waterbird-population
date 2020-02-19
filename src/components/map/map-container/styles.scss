@@ -1,22 +1,62 @@
+@import 'styles/settings';
+
 .c-map-container {
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 180px); //header and search height
   position: relative;
 
-  // Mapbox override
-  :global(.mapboxgl-ctrl-group:not(:empty)) {
-    border-radius: 10px;
-    margin-bottom: 5px;
-  }
+  .map-controls {
+    position: absolute;
+    right: 100px;
+    top: 20px;
 
-  :global(.mapboxgl-ctrl-group > button) {
-    background-color: white;
-    border: none;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 25px;
-    height: 25px;
-    margin: 10px;
+    // Mapbox override
+    .mapboxgl-ctrl-group:not(:empty) {
+        box-shadow: 0 4px 12px 0 rgba($black, .08);
+    }
+
+    .mapboxgl-ctrl-group > button {
+      border: none;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 25px;
+      height: 25px;
+    }
+
+    .mapboxgl-ctrl-group {
+      margin: 10px;
+    }
+
+    .map-navigation {
+      height: 70px;
+      width: 45px;
+      border-radius: $border-radius;
+
+      > button[title='Zoom In'] {
+        // background-image: url('') !important;
+      }
+
+      > button[title='Zoom Out'] {
+        border: none;
+        // background-image: url('') !important;
+
+      }
+
+      > button[title='Reset North'] {
+        display: none;
+      }
+    }
+
+    .map-fullscreen {
+      height: 45px;
+      width: 45px;
+      border-radius: $border-radius;
+      > button[title='Toggle fullscreen'] {
+        // background-image: url('') !important;
+
+      }
+    }
   }
 }
+
