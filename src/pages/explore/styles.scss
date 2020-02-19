@@ -3,16 +3,26 @@
 .l-explore {
   background-color: $white;
 
-  .table-section {
+  .results-section {
     padding: 40px 100px;
     display: flex;
     flex-direction: column;
 
-    .table-control {
+    .results-buttons {
       display: flex;
       justify-content: space-between;
+      height: 175px;
       padding-top: 40px;
-      position: relative;
+      padding-bottom: 40px;
+
+      .results-filters {
+        display: flex;
+        align-items: center;
+
+        :first-child {
+          margin-right: 20px;
+        }
+      }
 
       &:after {
         content: '';
@@ -20,14 +30,10 @@
         height: 1px;
         width: 100%;
         position: absolute;
-        bottom: -40px;
+        bottom: -120px;
         left: 0;
         background-color: $color-grey-3;
       }
-
-    }
-    .content-info {
-
     }
   }
 }
