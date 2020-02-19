@@ -2,6 +2,7 @@
 
 .l-explore {
   background-color: $white;
+  font-family: $font-family-1;
 
   .results-section {
     padding: 40px 100px;
@@ -11,9 +12,7 @@
     .results-buttons {
       display: flex;
       justify-content: space-between;
-      height: 175px;
-      padding-top: 40px;
-      padding-bottom: 40px;
+      padding: 40px 0 100px 0;
 
       .results-filters {
         display: flex;

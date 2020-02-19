@@ -3,7 +3,7 @@ import MapContainer from 'components/map/map-container';
 import Button from 'components/button';
 import SearchResults from 'components/search-results';
 import Icon from 'components/icon';
-import TableCardInfo from 'components/table-card';
+import TableCard from 'components/table-card';
 import Search from 'components/search';
 
 import './styles.scss';
@@ -11,7 +11,7 @@ import './styles.scss';
 const ExplorePage = () => (
   <div className="l-explore">
     <div className="map-section">
-      {/* <MapContainer /> */}
+      <MapContainer />
     </div>
     <div className="results-section">
       <Search />
@@ -30,6 +30,7 @@ const ExplorePage = () => (
       </div>
       <div className="table-results">
         <SearchResults />
+        <TableCard />
       </div>
 
     </div>
