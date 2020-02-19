@@ -1,10 +1,12 @@
 import React from 'react';
-import MapContainer from 'components/map/map-container';
+
 import Button from 'components/button';
-import SearchResults from 'components/search-results';
 import Icon from 'components/icon';
-import TableCard from 'components/table-card';
+
+import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
+import DataControls from 'components/data-controls';
+import DataResults from 'components/data-results';
 
 import './styles.scss';
 
@@ -15,24 +17,8 @@ const ExplorePage = () => (
     </div>
     <div className="results-section">
       <Search />
-      <div className="results-buttons">
-        <div>
-          <Button className="disabled">
-            {/* <Icon name="download"/> */}
-            Download results
-          </Button>
-        </div>
-        <div className="results-filters">
-          <p>Content configuration:</p>
-          <Button className="collapse small" />
-        </div>
-
-      </div>
-      <div className="table-results">
-        <SearchResults />
-        <TableCard />
-      </div>
-
+      <DataControls />
+      <DataResults />
     </div>
 
 

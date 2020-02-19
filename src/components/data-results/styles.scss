@@ -1,8 +1,6 @@
 @import 'styles/settings';
 
-.c-search-results {
-
-  padding-bottom: 40px;
+.c-data-results {
 
   .results-title {
     display: flex;
@@ -70,6 +68,7 @@
     justify-content: flex-start;
     font-size: 16px;
     line-height: 26px;
+    padding-bottom: 40px;
 
     * {
       margin-right: 50px;

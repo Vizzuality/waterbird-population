@@ -4,15 +4,16 @@ import PropTypes from 'prop-types';
 import image from 'images/ostralegus.jpg'
 
 import CardTableInfo from './constants';
+import TableCard from 'components/table-card';
 
 import './styles.scss';
 
 
-const SearchResults = ({ }) => {
+const DataResults = ({ }) => {
   const info = CardTableInfo; // info coming from props when we get data
 
   return (
-    <div className="c-search-results">
+    <div className="c-data-results">
       <div className="results-title">
         <h1>
           <span>Family:</span>
@@ -34,13 +35,14 @@ const SearchResults = ({ }) => {
         <img src={image} alt='Haematopodidae' />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
+      <TableCard />
     </div>
   )
 }
 
 
-SearchResults.propTypes = {
+DataResults.propTypes = {
   info: PropTypes.shape({}).isRequired
 }
 
-export default SearchResults;
+export default DataResults;
