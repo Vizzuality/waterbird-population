@@ -1,3 +1,8 @@
+import React from 'react';
+import TableCard from 'components/table-card';
+import SpeciesPopulation from 'pages/data/s&p';
+import PopulationEstimates from 'pages/data/pe';
+
 const PagesInfo = {
   BACKGROUND: {
     title: 'Background',
@@ -28,6 +33,7 @@ const PagesInfo = {
   DATA: {
     title: 'Data presentation',
     tabs: [
+      { name: 'Summary information', id: 'Summary' },
       { name: 'Species & Population', id: 'SP' },
       { name: 'Population Estimates', id: 'PE' },
       { name: 'Population Trends', id: 'PT'},
@@ -35,14 +41,17 @@ const PagesInfo = {
     ],
     tabsInfo: [
       {
-        id: 'SP',
+        id: 'Summary',
         intro: '',
-        content: ''
+        content: <TableCard />
+      },
+      {
+        id: 'SP',
+        content: <SpeciesPopulation />
       },
       {
         id: 'PE',
-        intro: '',
-        content: ''
+        content: <PopulationEstimates />
       },
       {
         id: 'PT',
