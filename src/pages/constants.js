@@ -2,6 +2,8 @@ import React from 'react';
 import TableCard from 'components/table-card';
 import SpeciesPopulation from 'pages/data/s&p';
 import PopulationEstimates from 'pages/data/pe';
+import PopulationTrends from 'pages/data/trends';
+import Threshold from 'pages/data/threshold';
 
 const PagesInfo = {
   BACKGROUND: {
@@ -56,12 +58,11 @@ const PagesInfo = {
       {
         id: 'PT',
         intro: '',
-        content: ''
+        content: <PopulationTrends />
       },
       {
         id: 'Threshold',
-        intro: '',
-        content: ''
+        content: <Threshold />
       }
     ],
   },

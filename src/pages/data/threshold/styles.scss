@@ -1,0 +1,45 @@
+@import 'styles/settings';
+
+.l-threshold {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+
+    h2 {
+      font-size: 28px;
+      line-height: 43px;
+      margin-top: 20px;
+    }
+    p {
+      line-height: 26px;
+      margin: 20px 0;
+
+      a {
+        color: $color-2;
+      }
+    }
+  }
+  li {
+
+    &.bullet {
+      list-style-type: disc;
+      list-style-position: inside;
+
+      span {
+        position: relative;
+        left: -10px;
+      }
+    }
+
+    &.numbered {
+     list-style: decimal;
+     list-style-position: inside;
+      div,
+      span {
+        display: inline;
+        font-weight: bold;
+      }
+    }
+  }
+}
