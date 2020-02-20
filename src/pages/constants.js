@@ -1,9 +1,12 @@
 import React from 'react';
 import TableCard from 'components/table-card';
-import SpeciesPopulation from 'pages/data/s&p';
-import PopulationEstimates from 'pages/data/pe';
-import PopulationTrends from 'pages/data/trends';
-import Threshold from 'pages/data/threshold';
+
+import TabInfo from 'pages/static-tabs';
+
+import { speciesPopulationInfo } from 'pages/data/constants/s&p';
+import populationEstimatesInfo from 'pages/data/constants/pe';
+import thresholdInfo from 'pages/data/constants/threshold';
+import trendsInfo from 'pages/data/constants/trends';
 
 const PagesInfo = {
   BACKGROUND: {
@@ -44,25 +47,23 @@ const PagesInfo = {
     tabsInfo: [
       {
         id: 'Summary',
-        intro: '',
         content: <TableCard />
       },
       {
         id: 'SP',
-        content: <SpeciesPopulation />
+        content: <TabInfo info={speciesPopulationInfo}/>
       },
       {
         id: 'PE',
-        content: <PopulationEstimates />
+        content: <TabInfo info={populationEstimatesInfo}/>
       },
       {
         id: 'PT',
-        intro: '',
-        content: <PopulationTrends />
+        content: <TabInfo info={trendsInfo}/>
       },
       {
         id: 'Threshold',
-        content: <Threshold />
+        content: <TabInfo info={thresholdInfo}/>
       }
     ],
   },
