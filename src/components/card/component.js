@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import TabsMenu from 'components/tabs-menu';
 
 import './styles.scss';
-
 
 const Card = ({ info, tabs, page }) =>
   <div className="c-card">
@@ -12,14 +10,8 @@ const Card = ({ info, tabs, page }) =>
       <TabsMenu tabs={tabs} page={page}/>
     </div>
     <div className="card-content">
-    {info.intro &&
-      <div className="card-intro">
-        <h3>{info.intro}</h3>
-        {/* <img src={} alt={} /> */}
-      </div>}
-      <div>
-        <p className="card-info">{info.content}</p>
-      </div>
+      {info.intro || null}
+      {info.content || null}
     </div>
   </div>
 

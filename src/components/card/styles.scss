@@ -8,8 +8,11 @@
   box-shadow: -2px 0 20px 0 rgba(0,0,0,0.09), 2px 0 20px 0 rgba(0,0,0,0.05);
   position: relative;
   font-family: $font-family-1;
+  margin: auto;
+  max-width: 900px;
 
   .card-content {
+
     > div {
       padding: 50px 75px;
     }
@@ -27,7 +30,19 @@
     }
   }
 
-  .card-info {
-    line-height: 26px;
+  // Specific
+
+  // WAW
+  .card-hero {
+    display: grid;
+    grid-template-columns: 60% 30%;
+
+
+    img {
+      position: absolute;
+      max-height: 440px;
+      top: -50px;
+      right: -75px;
+    }
   }
 }

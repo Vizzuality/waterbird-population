@@ -11,17 +11,17 @@
 
   // Theme
 
-  &.primary {
+  &._primary {
     background-color: $color-1;
   }
 
-  &.secondary {
+  &._secondary {
     background-color: $color-2;
   }
 
   // Size
 
-  &.big {
+  &._big {
     padding: 20px;
   }
 
