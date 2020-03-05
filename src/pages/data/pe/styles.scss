@@ -1,45 +1,90 @@
-@import 'styles/settings';
+  // @import 'styles/settings';
 
-.l-population-estimates {
-  display: flex;
-  flex-direction: column;
+  // .l-population-estimates {
+  //   display: flex;
+  //   flex-direction: column;
+  //   position: relative;
 
-  .content {
+  //   .content {
 
-    h2 {
-      font-size: 28px;
-      line-height: 43px;
-      margin-top: 20px;
-    }
-    p {
-      line-height: 26px;
-      margin: 20px 0;
+  //     h2 {
+  //       font-size: 28px;
+  //       line-height: 43px;
+  //       margin-top: 20px;
+  //     }
 
-      a {
-        color: $color-2;
-      }
-    }
-  }
-  li {
+  //     p {
+  //       line-height: 26px;
+  //       margin: 20px 0;
 
-    &.bullet {
-      list-style-type: disc;
-      list-style-position: inside;
+  //       a {
+  //         color: $color-2;
+  //       }
+  //     }
 
-      span {
-        position: relative;
-        left: -10px;
-      }
-    }
+  //   }
 
-    &.numbered {
-     list-style: decimal;
-     list-style-position: inside;
-      div,
-      span {
-        display: inline;
-        font-weight: bold;
-      }
-    }
-  }
-}
+  //   ul {
+  //     width: 100%;
+  //     position: relative;
+  //     list-style-position: inside;
+  //     margin: 20px 0;
+
+  //     &.glossary-list {
+  //       display: flex;
+  //       flex-wrap: wrap;
+
+  //       li {
+  //         width: 350px;
+  //         padding-right: 20px;
+  //         justify-content: flex-start;
+  //       }
+  //     }
+
+  //     &.locations-list {
+  //       font-size: 12px;
+  //       line-height: 17px;
+  //       margin-top: 50px;
+
+  //       &:before {
+  //         content: '';
+  //         position: absolute;
+  //         top: -20px;
+  //         left: 0;
+  //         right: 0;
+  //         background-color: $color-grey-3;
+  //         height: 1px;
+  //       }
+
+  //       li {
+  //         padding: 10px 0;
+  //       }
+  //     }
+
+  //     li {
+  //       &.bullet-list {
+  //         list-style-type: disc;
+  //         padding-left: -10px;
+
+  //       }
+  //     }
+  //   }
+
+  //   ol {
+  //     list-style-type: decimal;
+  //     list-style-position: inside;
+  //     margin: 20px 0;
+
+  //     li {
+
+  //     }
+  //   }
+
+  //   li {
+  //     padding: 10px 0;
+
+  //     span {
+  //       font-weight: bold;
+  //     }
+  //   }
+  // }

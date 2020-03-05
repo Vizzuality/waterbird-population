@@ -2,10 +2,10 @@
 $white:      #fff !default;
 $black:      #000 !default;
 
-$color-1: #BFD630;
-$color-2: #0282B0;
+// $color-1: #BFD630;
+// $color-2: #0282B0;
 
-// Greys
+// // Greys
 $color-grey-1: #E5E5E5;
 $color-grey-2: #F2F2F2;
 $color-grey-3: #D8D8D8;
@@ -17,39 +17,69 @@ $color-grey-7: #1D1C2B;
 $color-grey-8: #1C1B27;
 
 
-// Font
-$body-line-height: 26px;
-$font-family-1: 'Aller';
-$font-family-2: 'Open Sans', sans-serif;
+// // Font
+ $body-line-height: 26px;
+// $font-family-1: 'Aller';
+// $font-family-2: 'Open Sans', sans-serif;
 
-$font-family-bold: 'Aller-Bold';
+// $font-family-bold: 'Aller-Bold';
 
-// Spacing
+// // Spacing
 
-$padding: 50px;
+ $padding: 50px;
 
 
-// Border
+// // Border
 
-$border-radius: 10px;
+ $border-radius: 10px;
 
-// // Breakpoints
-// $grid-breakpoints: () !default;
-// // stylelint-disable-next-line scss/dollar-variable-default
-// $grid-breakpoints: map-merge(
-//   (
-//     xs: 0,
-//     sm: ,
-//     md: ,
-//     lg: ,
-//     xl:
-//   ),
-//   $grid-breakpoints
-// );
+// // // Breakpoints
+// // $grid-breakpoints: () !default;
+// // // stylelint-disable-next-line scss/dollar-variable-default
+// // $grid-breakpoints: map-merge(
+// //   (
+// //     xs: 0,
+// //     sm: ,
+// //     md: ,
+// //     lg: ,
+// //     xl:
+// //   ),
+// //   $grid-breakpoints
+// // );
 
-// z-index
+// // z-index
 $z-index-1: 1;
 $z-index-2: 2;
 $z-index-3: 3;
 $z-index-4: 4;
 $z-index-5: 10;
+
+
+// <link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,700|Roboto:400,500,700&display=swap" rel="stylesheet">
+
+// Fonts
+
+$font-family-1: 'Crimson Text';
+$font-family-2: 'Roboto';
+
+$font-weight-regular: 300;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+// Colors
+$color-1: #D8D8D8;
+$color-2: #C68E54;
+$color-3: #C5A475;
+$color-4: #8E3721;
+$color-5: #1A203C;
+
+$color-cream-1: #F2F3EF;
+$color-cream-2: #FCFCFC;
+$color-cream-3: #979797;
+
+$color-grey-1: rgba(108,123,159,0.85);
+$color-grey-2: #2D3548;
+$color-grey-3: #2D3548;
+$color-grey-4: #201E1F;
+
+
+

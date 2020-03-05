@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import Image from 'images/ostralegus.jpg'
 import TabsMenu from 'components/tabs-menu';
 
 import './styles.scss';
@@ -14,11 +14,10 @@ const Card = ({ info, tabs, page }) =>
     <div className="card-content">
     {info.intro &&
       <div className="card-intro">
-        <h3>{info.intro}</h3>
-        {/* <img src={} alt={} /> */}
+        {info.intro}
       </div>}
       <div>
-        <p className="card-info">{info.content}</p>
+        <div className="card-info">{info.content}</div>
       </div>
     </div>
   </div>

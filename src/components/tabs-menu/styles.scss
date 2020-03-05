@@ -2,12 +2,12 @@
 
 .c-menu-items {
   display: flex;
+  justify-content: space-between;
   padding: 30px 75px;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid $color-grey-3;
 
   .menu-item {
     font-family: $font-family-1;
-    margin-right: 50px;
     color: $color-grey-7;
     font-weight: bold;
     line-height: 26px;
@@ -23,7 +23,7 @@
       bottom: -5px;
       z-index: 2;
       left: 50%;
-      transform: translateX(-25%);
+      transform: translateX(-50%);
     }
   }
 }

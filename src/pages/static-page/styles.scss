@@ -1,8 +1,13 @@
 @import 'styles/settings';
 
 .l-static {
-  background-color: $color-grey-2;
+  background-image: url('/images/ostralegus.png');
+  background-position-x: center;
+  background-position-y: top;
+  background-size: cover;
+  width: 100%;
   padding: 100px;
+  font-family: $font-family-1;
 
   h1 {
     font-size: 60px;

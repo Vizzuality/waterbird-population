@@ -8,8 +8,13 @@
   box-shadow: -2px 0 20px 0 rgba(0,0,0,0.09), 2px 0 20px 0 rgba(0,0,0,0.05);
   position: relative;
   font-family: $font-family-1;
+  margin: auto;
+  max-width: 900px;
 
   .card-content {
+    position: relative;
+    box-sizing: content-box;
+
     > div {
       padding: 50px 75px;
     }
@@ -24,6 +29,14 @@
         font-size: 28px;
         line-height: 43px;
       }
+    }
+
+    .card-hero {
+      display: flex;
+      position: absolute;
+      top: 0;
+      right: 0;
+
     }
   }
 
