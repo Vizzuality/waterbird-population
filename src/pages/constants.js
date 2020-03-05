@@ -12,7 +12,6 @@ import WIWPInfo from 'pages/background/constants/wiwp';
 import WAFInfo from 'pages/background/constants/waf';
 import glossaryInfo from 'pages/background/constants/glossary';
 
-
 const PagesInfo = {
   BACKGROUND: {
     title: 'Background',
@@ -53,12 +52,11 @@ const PagesInfo = {
     tabsInfo: [
       {
         id: 'Summary',
-        intro: '',
         content: <TableCard />
       },
       {
         id: 'SP',
-        content: <TabInfo info={SpeciesPopulationInfo} />
+        content: <TabInfo info={SpeciesPopulationInfo}  />
       },
       {
         id: 'PE',

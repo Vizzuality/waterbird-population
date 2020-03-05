@@ -6,7 +6,7 @@ const CardTableInfo = {
     'Population': 'South Asia (Non-Bre)',
   },
   columns: {
-   'Size': '1000000 - 10000001',
+    'Size': '1000000 - 10000001',
     'Size estimate quality': 'Best guess',
     'Trend': 'DEC',
     'Tren quality': 'No quality assessment',

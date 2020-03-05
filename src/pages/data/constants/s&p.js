@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SpeciesPopulationInfo = [
+const speciesPopulationInfo = [
   {
     title: 'Taxonomy & Nomenclature.',
     description: (
@@ -11,7 +11,7 @@ const SpeciesPopulationInfo = [
   },
   {
     title: 'Populations.',
-    description:(
+    description: (
       <div>
         <p>The population column contains the name of the subspecies concerned and/or a brief geographical description to separate the population from other populations of the same subspecies (or other populations of a monotypic species). The primary source for treatment of species at subspecific level has been the Handbook of the Birds of the World (del Hoyo et al. 1992, 1996). However, the treatment of the grebes follows O’Donnell & Fjeldså 1995, and the herons follow Hafner et al. 2003 (see above). Some additional subspecies that are recognised by other sources but not listed in the Handbook of the Birds of the World have been included in brackets, as have newly recognised subspecies. Subspecies that are considered by most modern authorities to be invalid are omitted.</p>
         <p>Populations that have been identified primarily on the basis of their breeding ranges have been identified with the suffix (bre); those identified primarily on the basis of their non-breeding (‘wintering’) ranges with the suffix (non-bre).</p>
@@ -22,7 +22,7 @@ const SpeciesPopulationInfo = [
   },
   {
     title: 'Breeding & Non-Breeding Range.',
-    description:(
+    description: (
       <div>
         <p>Two columns define the main breeding range and core non-breeding (‘wintering’ or ‘contranuptial’) range of every recognised population of a species or subspecies. Many migratory species, especially the long-distance migrants, sometimes stray far outside their normal ranges. The occurrence of these vagrants has not been taken into account in the range descriptions, which are intended to indicate where the great bulk of the population occurs during its normal annual cycle. In the case of sedentary species, a single entry in the Breeding range column describes the overall range of the population concerned.</p>
         <p>It will be noticed that in many cases there is considerable similarity between the breeding ranges or non-breeding ranges of two or more populations of the same species. In some cases, this is because of a genuine overlap in the distribution of the populations. Thus, many populations defined on the basis of their breeding ranges are known to mix extensively with other populations of the same species in their non-breeding (‘wintering’) range, while many populations defined on the basis of their non-breeding ranges are known to overlap extensively with other populations on their breeding grounds. In many other cases, however, the main reason for an apparent similarity in ranges during the non-breeding season is uncertainty as to the limits of the non-breeding range of a particular population within the non-breeding range of the species or subspecies as a whole. In these cases, the non-breeding range is given only in very general terms, and will need refining as further information becomes available.</p>
@@ -32,7 +32,7 @@ const SpeciesPopulationInfo = [
   },
   {
     description: (
-      <ul className="locations-list">
+      <ul>
         <li><strong>North North Africa - </strong>Algeria, Egypt, Libya, Morocco, Tunisia.</li>
         <li><strong>North-west Africa - </strong>Morocco, Algeria and Tunisia.</li>
         <li><strong>West Africa - </strong>Benin, Burkina Faso, Cameroon, Cape Verde, Chad, Côte d'Ivoire, the Gambia, Ghana, Guinea, Guinea-Bissau, Liberia, Mali, Mauritania, Niger, Nigeria, Senegal, Sierra Leone, Togo.</li>
@@ -83,4 +83,4 @@ const SpeciesPopulationInfo = [
   }
 ];
 
-export default SpeciesPopulationInfo;
+export default speciesPopulationInfo;

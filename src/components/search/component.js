@@ -22,8 +22,8 @@ const Search = () => {
         placeholder='Search family, species, region, conservation framework...'
         onChange={updateSearch}
       />
-    <Button className="secondary big" onClick={handleClick}>
-      {/* <Icon name="filters"/> */}
+      <Button className="secondary big" onClick={handleClick}>
+        {/* <Icon name="filters"/> */}
         Advanced filters
       </Button>
     </div>

@@ -77,8 +77,11 @@ export const MapContainer = ({
               })}
             </LayerManager>
 
-            <NavigationControl className="map-controls" />
-            <FullscreenControl className="map-fullscreen" />
+            <div className="map-controls">
+              <NavigationControl className="map-navigation" />
+              <FullscreenControl className="map-fullscreen" />
+            </div>
+
           </Fragment>
         }
 
