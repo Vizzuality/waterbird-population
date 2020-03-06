@@ -3,10 +3,10 @@ import TableCard from 'components/table-card';
 
 import TabInfo from 'pages/static-tabs';
 
-import SpeciesPopulationInfo from 'pages/data/constants/s&p';
-import PopulationEstimatesInfo from 'pages/data/constants/pe';
-import ThresholdInfo from 'pages/data/constants/threshold';
-import PopulationTrendsInfo from 'pages/data/constants/trends';
+import SpeciesPopulationInfo from 'pages/data/s&p/constants';
+import PopulationEstimatesInfo from 'pages/data/pe/constants';
+import ThresholdInfo from 'pages/data/threshold/constants';
+import PopulationTrendsInfo from 'pages/data/trends/constants/';
 import WAWInfo from 'pages/background/waw/constants';
 import WIWPInfo from 'pages/background/wiwp/constants';
 import WAFInfo from 'pages/background/waf/constants';
