@@ -32,28 +32,10 @@
 
   // Specific
 
-  // WAW
-  .card-hero {
-    display: grid;
-    grid-template-columns: 60% 30%;
 
 
-    img {
-      position: absolute;
-      max-height: 440px;
-      top: -50px;
-      right: -75px;
-    }
 
 
-  }
-  .img-text {
-    color: rgba($color-grey-8, 0.5);
-      font-size: 16px;
-      font-style: italic;
-      line-height: 26px;
-
-  }
 
   ._WIWP-image {
     max-width: 276px;

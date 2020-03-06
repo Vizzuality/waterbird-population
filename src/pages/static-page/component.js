@@ -13,7 +13,6 @@ const StaticPage = ({ currentTab, currentPage }) => {
       <div>
         <h1>{page.title}</h1>
       </div>
-
       <Card info={tabInfo} tabs={page.tabs} page={currentPage} />
     </div>
   );

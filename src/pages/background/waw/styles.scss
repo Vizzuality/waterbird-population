@@ -1,0 +1,13 @@
+  .l-waw-card {
+    .intro-container {
+      display: grid;
+      grid-template-columns: 60% 30%;
+
+      img {
+        position: absolute;
+        max-height: 440px;
+        top: -50px;
+        right: -75px;
+      }
+    }
+  }

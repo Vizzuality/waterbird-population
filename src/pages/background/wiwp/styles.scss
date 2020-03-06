@@ -1,0 +1,22 @@
+
+@import 'styles/settings';
+
+.l-wiwp-card {
+
+  .flex-container {
+    display: flex;
+    padding: 50px 0;
+
+    .image-text-container {
+      padding-left: $padding;
+
+      .img-text {
+        color: rgba($color-grey-8, 0.5);
+        font-size: 16px;
+        font-style: italic;
+        line-height: 26px;
+      }
+    }
+  }
+}
+
