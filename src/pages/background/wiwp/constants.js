@@ -10,13 +10,13 @@ const WIWPInfo = [
       <div className="l-wiwp-card">
         <h2>For a full and detailed discussion of this question, readers are referred to the introductory chapters of the Atlas of Anatidae Populations in Africa and Western Eurasia (Scott and Rose 1996) A waterbird population can be defined as a distinct assemblage of individuals which does not experience significant emigration or immigration.</h2>
         <p>This definition can only be fulfilled if the interchange of individuals between populations remains at a low level. The degree to which exchange of individuals occurs will determine gene flow and hence the justification for recognising subspecies or merely populations.</p>
-        <div className="flex-container">
+        <div className="img-container">
           <img
             src={Image}
             alt="Northern Pintail, by Neil Fifer"
-            className="_WIWP-image" />
+          />
           <div className="image-text-container">
-            <p><strong>Northern Pintail,</strong> by Neil Fifer.</p>
+            <p><strong>Northern Pintail,</strong> <br />by Neil Fifer.</p>
             <p className="img-text">Is a globally distributed species with less clearly defined populations.</p>
           </div>
         </div>
