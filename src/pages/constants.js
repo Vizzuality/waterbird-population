@@ -7,10 +7,10 @@ import SpeciesPopulationInfo from 'pages/data/constants/s&p';
 import PopulationEstimatesInfo from 'pages/data/constants/pe';
 import ThresholdInfo from 'pages/data/constants/threshold';
 import PopulationTrendsInfo from 'pages/data/constants/trends';
-import WAWInfo from 'pages/background/constants/waw';
-import WIWPInfo from 'pages/background/constants/wiwp';
-import WAFInfo from 'pages/background/constants/waf';
-import glossaryInfo from 'pages/background/constants/glossary';
+import WAWInfo from 'pages/background/waw/constants';
+import WIWPInfo from 'pages/background/wiwp/constants';
+import WAFInfo from 'pages/background/waf/constants';
+import glossaryInfo from 'pages/background/glossary/constants';
 
 const PagesInfo = {
   BACKGROUND: {

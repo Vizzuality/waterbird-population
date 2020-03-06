@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Image from 'images/background-tab/duckWIWP.png';
+
+import './styles.scss';
+
 const WIWPInfo = [
   {
     intro: (
@@ -10,12 +14,15 @@ const WIWPInfo = [
     description: (
       <div>
         <p>This definition can only be fulfilled if the interchange of individuals between populations remains at a low level. The degree to which exchange of individuals occurs will determine gene flow and hence the justification for recognising subspecies or merely populations.</p>
-        <div>
-          {/* <img src={} alt={} /> */}
+        <div className="flex-container">
+          <img
+            src={Image}
+            alt="Northern Pintail, by Neil Fifer"
+            className="_WIWP-image" />
           <div>
             <div>
-              <p>Northern Pintail, by Neil Fifer.</p>
-              <p>Is a globally distributed species with less clearly defined populations.</p>
+              <p><strong>Northern Pintail,</strong> by Neil Fifer.</p>
+              <p className="img-text">Is a globally distributed species with less clearly defined populations.</p>
             </div>
           </div>
         </div>

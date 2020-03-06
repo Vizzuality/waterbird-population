@@ -1,0 +1,21 @@
+@import 'styles/settings';
+
+.l-glossary-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: $padding;
+
+  li {
+    display: flex;
+    padding-bottom: $padding;
+    align-items: center;
+
+    p {
+      padding-left: 40px;
+    }
+
+    img {
+      max-height: 50px;
+    }
+  }
+}

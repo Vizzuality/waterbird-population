@@ -44,5 +44,20 @@
       top: -50px;
       right: -75px;
     }
+
+
   }
+  .img-text {
+    color: rgba($color-grey-8, 0.5);
+      font-size: 16px;
+      font-style: italic;
+      line-height: 26px;
+
+  }
+
+  ._WIWP-image {
+    max-width: 276px;
+    margin-left: -75px;
+    border-radius: 0 10px 10px 0;
+}
 }
