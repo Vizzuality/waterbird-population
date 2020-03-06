@@ -3,12 +3,24 @@
 
 .l-wiwp-card {
 
-  .flex-container {
+  .img-container {
     display: flex;
     padding: 50px 0;
 
+    img {
+      max-height: 150px;
+      margin-left: -75px;
+      border-radius: 0 10px 10px 0;
+    }
+
     .image-text-container {
       padding-left: $padding;
+      max-width: 250px;
+      max-height: 150px;
+
+      p {
+        margin-top: 0;
+      }
 
       .img-text {
         color: rgba($color-grey-8, 0.5);
