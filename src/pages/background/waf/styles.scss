@@ -1,0 +1,19 @@
+
+.l-waf-card {
+  position: relative;
+
+  div {
+    position: relative;
+    margin-bottom: 30px;
+
+    &.image-container {
+      min-height: 400px;
+
+      img {
+        margin-left: -75px;
+        margin-bottom: 20px;
+        width: calc(100% + 150px);
+      }
+    }
+  }
+}
