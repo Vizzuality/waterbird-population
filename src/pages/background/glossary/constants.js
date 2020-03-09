@@ -5,9 +5,6 @@ import EAAFImage from './images/EAAF.png';
 import EUBDImage from './images/EUBD.png';
 import WHSRNImage from './images/WHSRN.png';
 
-
-import './styles.scss';
-
 const glossaryInfo = [
   {
     description: (

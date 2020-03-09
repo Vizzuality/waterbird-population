@@ -31,7 +31,7 @@ const ThresholdInfo = [
   {
     title: 'Rounding of one percent thresholds.',
     description: (
-      <ul>1% thresholds have been rounded according to the following standard:
+      <ul><p>1% thresholds have been rounded according to the following standard:</p>
         <li>- 1% thresholds between 1 and 10 : rounded to nearest 1</li>
         <li>- 1% thresholds between 101 and 1,000 : rounded to nearest 10</li>
         <li>- 1% thresholds over 1,000 : rounded to nearest 100</li>

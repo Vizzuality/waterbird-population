@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import TabsMenu from 'components/tabs-menu';
 
 import './styles.scss';
@@ -9,7 +10,8 @@ const Card = ({ info, tabs, page }) =>
     <div className="card-navigation">
       <TabsMenu tabs={tabs} page={page}/>
     </div>
-    <div className="card-content">
+    <div className={classnames('card-content',
+      { [info.id]: info.id })}>
       {info.intro || null}
       {info.content || null}
     </div>

@@ -5,8 +5,8 @@ import './styles.scss';
 const TabInfo = ({ info, extraSection }) =>
   <div className="l-tab-info">
     {info.map(info => (
-      <div className="content">
-        {(info.title || info.intro) && info.title || info.intro}
+      <div>
+        {info.title && <h2>{info.title}</h2>}
         {info.description}
       </div>
     ))}

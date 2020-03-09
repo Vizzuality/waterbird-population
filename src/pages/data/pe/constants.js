@@ -22,10 +22,10 @@ const PopulationEstimatesInfo = [
   {
     description: (
       <ul>
-        <li className="bullet-list">Same start and end year, if the whole population has been censused in the same year. If the source of information is a boreal winter census (Dec-Jan) and covers two years, add the first year as the start and the next year as end year.</li>
-        <li className="bullet-list">Start and end year different, if the population has been censused/estimated in different years during a longer period. The start year will be year in which the first part of the population was censused/estimated and the end year will be year in which the last part of the population was censused/estimated.</li>
-        <li className="bullet-list">If the estimate comes from a publication but it is not clear when the estimate was made, use the year of the publication and subtract 1 year for both start and end year.</li>
-        <li className="bullet-list">If the estimate comes from a number of publications or from a review of publications but it is not clear when the estimate was made, use the year of the earliest publication – 1 as start year and the year of the last publication – 1 as the end year'</li>
+        <li>Same start and end year, if the whole population has been censused in the same year. If the source of information is a boreal winter census (Dec-Jan) and covers two years, add the first year as the start and the next year as end year.</li>
+        <li>Start and end year different, if the population has been censused/estimated in different years during a longer period. The start year will be year in which the first part of the population was censused/estimated and the end year will be year in which the last part of the population was censused/estimated.</li>
+        <li>If the estimate comes from a publication but it is not clear when the estimate was made, use the year of the publication and subtract 1 year for both start and end year.</li>
+        <li>If the estimate comes from a number of publications or from a review of publications but it is not clear when the estimate was made, use the year of the earliest publication – 1 as start year and the year of the last publication – 1 as the end year'</li>
       </ul>
     )
   },
@@ -40,7 +40,7 @@ const PopulationEstimatesInfo = [
   {
     title: 'Estimate Quality',
     description: (
-      <ol>All From CSR5 and WPE5 onwards, four categories of quality assessments are used:
+      <ol><p>All From CSR5 and WPE5 onwards, four categories of quality assessments are used:</p>
         <li><span>No estimate: </span> No population estimate is available;</li>
         <li><span>Best guess: </span> Population estimate is only possible with large or uncertain ranges;</li>
         <li><span>Expert opinion: </span> Population estimate is based on incomplete survey and monitoring data and population size has been developed employing some expert opinion for extrapolating from this data with more accuracy than a best guess;</li>

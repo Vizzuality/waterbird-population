@@ -1,8 +1,6 @@
 import React from 'react';
 import Image from 'images/background-tab/duck.png';
 
-import './styles.scss';
-
 const WAWInfo = [
   {
     description: (

@@ -4,7 +4,7 @@ const TrendsInfo = [
   {
     title: 'Population Trends.',
     description: (
-      <ul>The following trend codes are used in the online application:
+      <ul><p>The following trend codes are used in the online application:</p>
         <li><span>DEC:</span> Declining</li>
         <li><span>INC:</span> Increasing</li>
         <li><span>STA:</span> Stable</li>

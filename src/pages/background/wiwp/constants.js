@@ -2,8 +2,6 @@ import React from 'react';
 
 import Image from 'images/background-tab/duckWIWP.png';
 
-import './styles.scss';
-
 const WIWPInfo = [
   {
     description: (
