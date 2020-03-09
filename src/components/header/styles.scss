@@ -1,12 +1,17 @@
 @import 'styles/settings';
 
 .c-header {
-  //position: fixed;
   height: 85px;
   width: 100%;
   background-color: $white;
   display: flex;
   justify-content: space-between;
+  padding: 20px 100px;
+  align-content: center;
+
+  img {
+    max-width: 160px;
+  }
 
   .header-navigation {
     width: 100%;

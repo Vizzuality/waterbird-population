@@ -1,6 +1,6 @@
 import React from 'react';
 
-//import Logo from 'images/logo';
+import Logo from 'images/logo.png';
 import NavMenu from 'components/nav-menu';
 import Login from 'components/login';
 
@@ -8,7 +8,7 @@ import './styles.scss';
 
 const Header = () =>
   <div className="c-header">
-    {/* <img src={logo} alt="Wetlands International Logo" /> */}
+    <img src={Logo} alt="Wetlands International" />
     <div className="header-navigation">
       <NavMenu className='header'/>
       <Login />
