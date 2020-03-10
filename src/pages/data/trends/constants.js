@@ -4,15 +4,18 @@ const TrendsInfo = [
   {
     title: 'Population Trends.',
     description: (
-      <ul><p>The following trend codes are used in the online application:</p>
-        <li><span>DEC:</span> Declining</li>
-        <li><span>INC:</span> Increasing</li>
-        <li><span>STA:</span> Stable</li>
-        <li><span>FLU:</span> Fluctuating</li>
-        <li><span>EXT:</span> Extinct</li>
-        <li>Unknown</li>
-        <li>In cases where the trend is less certain a "?" may be appended, or 2 trend types separated by a "/" e.g. DEC/STA. However this has been avoided as much as possible.</li>
-      </ul>
+      <div>
+        <p>The following trend codes are used in the online application:</p>
+        <ul>
+          <li><span>DEC:</span> Declining</li>
+          <li><span>INC:</span> Increasing</li>
+          <li><span>STA:</span> Stable</li>
+          <li><span>FLU:</span> Fluctuating</li>
+          <li><span>EXT:</span> Extinct</li>
+          <li>Unknown</li>
+          <li>In cases where the trend is less certain a "?" may be appended, or 2 trend types separated by a "/" e.g. DEC/STA. However this has been avoided as much as possible.</li>
+        </ul>
+      </div>
     )
   },
   {

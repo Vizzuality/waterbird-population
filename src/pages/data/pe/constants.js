@@ -40,12 +40,15 @@ const PopulationEstimatesInfo = [
   {
     title: 'Estimate Quality',
     description: (
-      <ol><p>All From CSR5 and WPE5 onwards, four categories of quality assessments are used:</p>
-        <li><span>No estimate: </span> No population estimate is available;</li>
-        <li><span>Best guess: </span> Population estimate is only possible with large or uncertain ranges;</li>
-        <li><span>Expert opinion: </span> Population estimate is based on incomplete survey and monitoring data and population size has been developed employing some expert opinion for extrapolating from this data with more accuracy than a best guess;</li>
-        <li><span>Census based: </span> Population estimate is based on almost complete census or statistically adequate sampling.</li>
-      </ol>
+      <div>
+        <p>From CSR5 and WPE5 onwards, four categories of quality assessments are used:</p>
+        <ol>
+          <li><span>No estimate: </span> No population estimate is available;</li>
+          <li><span>Best guess: </span> Population estimate is only possible with large or uncertain ranges;</li>
+          <li><span>Expert opinion: </span> Population estimate is based on incomplete survey and monitoring data and population size has been developed employing some expert opinion for extrapolating from this data with more accuracy than a best guess;</li>
+          <li><span>Census based: </span> Population estimate is based on almost complete census or statistically adequate sampling.</li>
+        </ol>
+      </div>
     )
   },
   {
