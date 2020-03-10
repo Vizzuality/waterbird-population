@@ -7,10 +7,12 @@ Modal.setAppElement('#root');
 export default (props) => {
   const { children, ...domProps } = props;
   return (
-    <Modal
+    <Modal className="c-modal"
       {...domProps}
     >
-      {children}
+      <div className="modal-content">
+        {children}
+      </div>
     </Modal>
   );
 };

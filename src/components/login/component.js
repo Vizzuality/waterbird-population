@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import classnames from 'classnames';
 import Button from 'components/button';
 import Modal from 'components/modal';
-import './styles.scss';
 
 
-const Login = ({ toggleModal }) => {
+const Login = () => {
+  const [isOpen, toggleModal] = useState(false);
 
   const handleClick = () => {
-    toggleModal();
+    toggleModal(!isOpen);
   }
+
   return (
     <div className="c-login">
-      <Button onClick={handleClick}>Login</Button>
+      <Button onClick={handleClick} className="-primary">Login</Button>
+      <Modal
+        isOpen={isOpen}
+        onRequestClose={()=>toggleModal(false)}>
+
+
+      Login
+      </Modal>
     </div>
   )
 }

@@ -65,6 +65,7 @@ export const MapContainer = ({
               plugin={PluginMapboxGl}
             >
               {!!layers && layers.map((l, i) => {
+                console.log(l, '******')
                 return (
                   <Layer
                     key={l.id}
