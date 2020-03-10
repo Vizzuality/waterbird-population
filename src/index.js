@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import Header from 'components/header';
 import Pages from 'pages';
 import Footer from 'components/footer';
+import LanguajeSelector from 'components/language-selector';
 
 import 'styles/index.scss';
 
@@ -17,6 +18,7 @@ const App = () => (
       <Header />
       <Pages className="l-pages"/>
       <Footer />
+      <LanguajeSelector language="English"/>
     </div>
   </Provider>
 );

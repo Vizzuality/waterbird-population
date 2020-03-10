@@ -1,0 +1,26 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.c-language-selector {
+  position: fixed;
+  bottom: 0;
+  left: 100px;
+  padding: 3px 30px 3px 20px;
+  border-radius: 10px 10px 0 0;
+  background-color: $color-grey-5;
+  color: $white;
+  font-family: $font-family-1;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 11px;
+  text-transform: uppercase;
+
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    right: 13px;
+    transform: translateY(-50%);
+    @include arrow(8px,2px, $white, 'down');
+  }
+}
