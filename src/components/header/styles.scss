@@ -7,7 +7,6 @@
   display: flex;
   justify-content: space-between;
   padding: 20px 100px;
-  align-content: center;
 
   img {
     max-width: 160px;
@@ -17,5 +16,6 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
+    align-items: center;
   }
 }

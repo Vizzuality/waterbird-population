@@ -71,7 +71,7 @@
         &:after {
           content: '';
           position: absolute;
-          margin: 5px;
+          margin: 5px 10px;
           @include arrow(9px,2px, $black, 'down');
         }
       }

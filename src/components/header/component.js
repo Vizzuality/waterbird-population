@@ -8,7 +8,9 @@ import './styles.scss';
 
 const Header = () =>
   <div className="c-header">
-    <img src={Logo} alt="Wetlands International" />
+    <a href="https://www.wetlands.org/">
+      <img src={Logo} alt="Wetlands International" />
+    </a>
     <div className="header-navigation">
       <NavMenu className='header'/>
       <Login />
