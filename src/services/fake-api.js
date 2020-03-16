@@ -168,16 +168,16 @@ export const species = [
     'id': 0,
     'common_name': 'African Woollyneck',
     'scientific_name': 'Ciconia microscelis',
-    'genus': 'Ciconia', //is it neccessary?
+    'genus': 'Ciconia',
     'family_id': 12,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
-    'red_list_id': 4, // table(red list category)
+    'red_list_id': 4, // table(red list category): description??
   },
   {
     'id': 1,
     'common_name': 'Black Stork',
     'scientific_name': 'Ciconia nigra',
-    'genus': 'Ciconia', //is it neccessary?
+    'genus': 'Ciconia',
     'family_id': 12,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 1,
@@ -185,7 +185,7 @@ export const species = [
     'id': 2,
     'common_name': 'Marabou',
     'scientific_name': 'Leptoptilos crumenifer',
-    'genus': 'Leptoptilos', //is it neccessary?
+    'genus': 'Leptoptilos',
     'family_id': 12,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 2,
@@ -194,7 +194,7 @@ export const species = [
     'id': 3,
     'common_name': ,
     'scientific_name': 'Ciconia-nigra',
-    'genus': '', //is it neccessary?
+    'genus': '',
     'family_id': 9,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 4,
@@ -203,7 +203,7 @@ export const species = [
     'id': 4,
     'common_name': 'Yellow-billed Stork',
     'scientific_name': 'Mycteria ibis',
-    'genus': 'Mycteria', //is it neccessary?
+    'genus': 'Mycteria',
     'family_id': 20,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 3,
@@ -212,7 +212,7 @@ export const species = [
     'id': 5,
     'common_name': 'Crab-plover',
     'scientific_name': 'Dromas ardeola',
-    'genus': 'Dromas', //is it neccessary?
+    'genus': 'Dromas',
     'family_id': 4,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 4,
@@ -220,7 +220,7 @@ export const species = [
     'id': 6,
     'common_name': 'Lesser Frigatebird',
     'scientific_name': 'Fregata ariel',
-    'genus': 'Fregata', //is it neccessary?
+    'genus': 'Fregata',
     'family_id': 9,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 1,
@@ -229,7 +229,7 @@ export const species = [
     'id': 7,
     'common_name': 'Great Frigatebird',
     'scientific_name': 'Fregata minor',
-    'genus': 'Fregata', //is it neccessary?
+    'genus': 'Fregata',
     'family_id': 12,
     'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam hendrerit dolor mi. Nullam viverra lectus felis, eget laoreet orci luctus ac. Donec quam ex, ornare et feugiat id, convallis sed diam. Morbi mollis vulputate est aliquam consectetur. Pellentesque ultricies vulputate diam. Vivamus finibus varius placerat. Etiam ullamcorper ex enim, a iaculis urna malesuada nec. Ut sed elit consectetur, pulvinar dui eleifend, scelerisque ante. Nulla efficitur ullamcorper ante non varius. Aliquam ac mattis metus, id maximus orci. Curabitur iaculis congue erat. Ut dictum viverra nulla, sit amet vehicula velit facilisis at.',
     'red_list_id': 3,
