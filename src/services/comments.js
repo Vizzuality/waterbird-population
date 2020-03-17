@@ -29,7 +29,7 @@ export const fetchComments = (params = {}, headers = {}) => {
 };
 
 export const createComments = (params = {}, headers = {}) => {
-  return API.post(`sql/${id}`, { params }, { headers })
+  return API.post('sql', { params }, { headers })
     .then(response => console.log(response))
     .catch((e) => {
       console.log(e)
@@ -37,7 +37,7 @@ export const createComments = (params = {}, headers = {}) => {
 };
 
 export const deleteComment = (params = {}, headers = {}) => {
-  return API.delete(`sql/${id}`, { params }, { headers })
+  return API.delete('sql', { params }, { headers })
     .then(response => console.log(response))
     .catch((e) => {
       console.log(e)
@@ -45,7 +45,7 @@ export const deleteComment = (params = {}, headers = {}) => {
 };
 
 export const updateComment = (params = {}, headers = {}) => {
-  return API.patch(`sql/${id}`, { params }, { headers })
+  return API.patch('sql', { params }, { headers })
     .then(response => console.log(response))
     .catch((e) => {
       console.log(e)
