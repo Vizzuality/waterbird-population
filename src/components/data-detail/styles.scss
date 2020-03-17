@@ -1,0 +1,70 @@
+@import 'styles/settings';
+
+.c-data-detail {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+
+    h2 {
+      padding: 15px 0;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 29px;
+    }
+  }
+
+
+  > table {
+    display: flex;
+    flex-direction: column;
+  }
+
+  td  {
+    padding: 15px 15px 15px 0;
+    font-size: 16px;
+    line-height: 19px;
+  }
+
+  th {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+  }
+
+
+  span {
+    padding-right: 15px;
+
+    &.name {
+      font-weight: bold;
+    }
+
+    &.tag {
+      border-radius: 4px;
+      padding: 5px 10px 5px 25px;
+      background-color: #40A30B;
+      color: $white;
+      font-size: 10px;
+      line-height: 11px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        height: 6px;
+        width: 6px;
+        background-color: $white;
+      }
+    }
+  }
+}
