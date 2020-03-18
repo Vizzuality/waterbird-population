@@ -23,6 +23,11 @@
       background-color: $color-2;
       border: none;
     }
+
+    &.-tertiary {
+      background-color: $color-grey-1;
+      color: $color-grey-8;
+    }
   }
 
   &.-border {
@@ -66,6 +71,7 @@
   }
 
   // Functionality
+
 
   &.-download {
     border: 1px dashed rgba($color-grey-8, 0.4);

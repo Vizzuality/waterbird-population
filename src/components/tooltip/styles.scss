@@ -1,0 +1,95 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.tippy-tooltip-content {
+  padding: 75px 100px;
+  box-sizing: border-box;
+  border: 1px solid rgba($color-grey-8, 0.1);
+  background-color: $white;
+  box-shadow: 0 10px 10px 0 rgba($black, 0.09);
+  font-family: $font-family-1;
+  border-radius: 9px;
+  position: relative;
+  margin: 30px 150px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    background-color: $white;
+    @include arrow(20px,1px, rgba($color-grey-8, 0.1), 'up');
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    padding-bottom: 5px;
+
+    span {
+      opacity: 0.5;
+      font-family: $font-family-2;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 17px;
+      padding-left: 5px;
+    }
+  }
+
+  .comments-content {
+    padding: 0 30px;
+
+    p {
+      padding-bottom: 80px;
+      font-size: 14px;
+      line-height: 23px;
+      text-shadow: 0 1px 4px 0 rgba($black,0.5);
+    }
+
+    textarea {
+      box-sizing: border-box;
+      height: 85px;
+      width: 100%;
+      border: 1px solid rgba($color-grey-4, 0.3);
+      border-radius: 5px;
+      padding: 5px 20px;
+      font-size: 14px;
+      line-height: 20px;
+      text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+
+      &::placeholder {
+        color: $color-grey-8;
+        font-style: italic;
+      }
+    }
+  }
+
+  .tooltip-controls {
+    display: flex;
+    padding: 20px 100px;
+
+    input,
+    button {
+      min-width: 160px;
+      padding: 20px 0;
+      font-size: 14px;
+      font-family: $font-family-1;
+      border-radius: 9px;
+      line-height: 20px;
+      font-weight: bold;
+    }
+
+    input {
+      margin-left: 20px;
+      color: $white;
+      background-color: $color-2;
+
+      &.-disable {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
