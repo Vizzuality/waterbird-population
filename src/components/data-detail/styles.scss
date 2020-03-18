@@ -3,28 +3,40 @@
 .c-data-detail {
   display: flex;
   flex-direction: column;
+  position: relative;
 
-  .h1 {
-    font-size: 24px;
-    font-weight: bold;
-    line-height: 29px;
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+
+    h2 {
+      padding: 15px 0;
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 29px;
+    }
   }
+
 
   > table {
     display: flex;
     flex-direction: column;
   }
 
-  th {
+  td  {
+    padding: 15px 15px 15px 0;
     font-size: 16px;
     line-height: 19px;
   }
 
-  .td {
+  th {
     font-size: 14px;
     font-weight: bold;
     line-height: 16px;
   }
+
 
   span {
     padding-right: 15px;
@@ -53,39 +65,6 @@
         width: 6px;
         background-color: $white;
       }
-    }
-  }
-
-  button {
-    box-sizing: border-box;
-    border: 2px solid rgba($color-grey-8, 0.2);
-    border-radius: 3px;
-    padding: 0px 20px;
-    line-height: 21px;
-  }
-
-
-
-  .results-description {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 16px;
-    line-height: 26px;
-    padding-bottom: 40px;
-
-    * {
-      margin-right: 50px;
-    }
-
-    img {
-      height: 105px;
-      width: 105px;
-      border: 1px solid rgba($color-grey-4, 0.65);
-      border-radius: 10px;
-    }
-
-    p {
-      max-width: 700px;
     }
   }
 }
