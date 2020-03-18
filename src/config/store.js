@@ -11,7 +11,7 @@ const {
 } = router;
 
 const reducers = combineReducers({
-  router: routerReducer,
+  router: routerReducer
 });
 
 const middleware = applyMiddleware(routerMiddleware);
