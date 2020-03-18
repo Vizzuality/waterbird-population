@@ -8,7 +8,6 @@
   justify-content: flex-end;
   font-family: $font-family-1;
   line-height: 19px;
-  padding: 30px 100px;
 
   .nav-menu-item {
     padding-right: 50px;
@@ -36,7 +35,7 @@
           margin: auto;
           z-index: 2;
           left: 50%;
-          transform: translateX(-25%);
+          transform: translateX(-50%);
         }
       }
     }
@@ -72,7 +71,7 @@
         &:after {
           content: '';
           position: absolute;
-          margin: 5px;
+          margin: 5px 10px;
           @include arrow(9px,2px, $black, 'down');
         }
       }

@@ -6,7 +6,7 @@ import Icon from 'components/icon';
 import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
-import DataResults from 'components/data-results';
+import TableDeatil from 'components/table-detail';
 
 import './styles.scss';
 
@@ -18,7 +18,7 @@ const ExplorePage = () => (
     <div className="results-section">
       <Search />
       <DataControls />
-      <DataResults />
+      <TableDeatil />
     </div>
 
 

@@ -9,16 +9,15 @@ const DataControls = ({ }) => {
   return (
     <div className="c-data-controls">
       <div>
-        <Button className="disabled">
+        <Button className="-download">
           {/* <Icon name="download"/> */}
           Download results
           </Button>
       </div>
       <div className="data-filters">
         <p>Content configuration:</p>
-        <Button className="collapse small" />
+        <Button className="-collapse -small" />
       </div>
-
     </div>
   )
 }

@@ -1,24 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import classnames from 'classnames';
 import TabsMenu from 'components/tabs-menu';
 
 import './styles.scss';
-
 
 const Card = ({ info, tabs, page }) =>
   <div className="c-card">
     <div className="card-navigation">
       <TabsMenu tabs={tabs} page={page}/>
     </div>
-    <div className="card-content">
-      <div className="card-intro">
-        <h3>{info.intro}</h3>
-        {/* <img src={} alt={} /> */}
-      </div>
-      <div>
-        <p className="card-info">{info.content}</p>
-      </div>
+    <div className={classnames('card-content',
+      { [info.id]: info.id })}>
+      {info.intro || null}
+      {info.content || null}
     </div>
   </div>
 

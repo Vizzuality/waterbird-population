@@ -2,24 +2,35 @@
 @import 'styles/mixins';
 
 .c-button {
-  padding: 10px 20px;
+  padding: 5px 30px;
   border-radius: 7px;
   color: $white;
-  line-height: 16px;
+  line-height: 19px;
+  font-size: 16px;
+  font-family: $font-family-1;
 
-  &.primary {
+  // ** MODIFIERS ** //
+
+  // Theme
+
+  &.-primary {
+    color: $color-3;
     background-color: $color-1;
   }
 
-  &.secondary {
+  &.-secondary {
     background-color: $color-2;
   }
 
-  &.big {
+  // Size
+
+  &.-big {
     padding: 20px;
   }
 
-  &.disabled {
+  // Functionality
+
+  &.-download {
     border: 1px dashed rgba(#1C1B27, 0.4);
     border-radius: $border-radius;
     color: $color-grey-5;
@@ -28,8 +39,8 @@
     line-height: 20px;
   }
 
-  &.collapse {
-    &.small {
+  &.-collapse {
+    &.-small {
       position: relative;
       height: 45px;
       width: 45px;

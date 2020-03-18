@@ -7,8 +7,26 @@
   background-color: $white;
   box-shadow: -2px 0 20px 0 rgba(0,0,0,0.09), 2px 0 20px 0 rgba(0,0,0,0.05);
   position: relative;
+  font-family: $font-family-1;
+  margin: auto;
+  max-width: 900px;
 
   .card-content {
+
+    h2 {
+      font-size: 28px;
+      line-height: 43px;
+    }
+
+    p {
+      line-height: 26px;
+      margin: 20px 0;
+
+      a {
+        color: $color-2;
+      }
+    }
+
     > div {
       padding: 50px 75px;
     }
@@ -24,9 +42,154 @@
         line-height: 43px;
       }
     }
-  }
 
-  .card-info {
-    line-height: 26px;
+    ol {
+      list-style: decimal;
+      list-style-position: inside;
+
+      div {
+        span {
+          display: inline;
+          font-weight: bold;
+        }
+      }
+    }
+
+    li {
+      padding-bottom: 20px;
+     }
+
+    // Tabs specific
+
+    &.PE {
+      ul {
+        position: relative;
+
+        li {
+          font-size: 16px;
+          line-height: 26px;
+          list-style-type: disc;
+          list-style-position: inside;
+
+          span {
+            position: relative;
+            left: -10px;
+          }
+        }
+
+        &:before {
+          content: none;
+        }
+      }
+    }
+
+    &.SP {
+
+      ul {
+        position: relative;
+        margin-top: 20px;
+
+        li {
+          font-size: 12px;
+          line-height: 17px;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: -20px;
+          width: 100%;
+          height: 1px;
+          background-color: $color-grey-3;
+        }
+      }
+    }
+
+    &.Glossary {
+
+      ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: $padding;
+
+        li {
+          display: flex;
+          padding-bottom: $padding;
+          align-items: center;
+
+          p {
+            padding-left: 40px;
+          }
+
+          img {
+            max-height: 50px;
+          }
+        }
+      }
+    }
+
+    &.WAF {
+      position: relative;
+
+      div {
+        position: relative;
+        margin-bottom: 30px;
+
+        &.image-container {
+          min-height: 400px;
+
+          img {
+            margin-left: -75px;
+            margin-bottom: 20px;
+            width: calc(100% + 150px);
+          }
+        }
+      }
+    }
+
+    &.WAW {
+      .intro-container {
+        display: grid;
+        grid-template-columns: 60% 30%;
+        position: relative;
+
+        img {
+          position: absolute;
+          max-height: 440px;
+          top: -50px;
+          right: -75px;
+        }
+      }
+    }
+
+    &.WIWP {
+      .img-container {
+        display: flex;
+        padding: 50px 0;
+
+        img {
+          max-height: 150px;
+          margin-left: -75px;
+          border-radius: 0 10px 10px 0;
+        }
+
+        .image-text-container {
+          padding-left: $padding;
+          max-width: 250px;
+          max-height: 150px;
+
+          p {
+            margin-top: 0;
+          }
+
+          .img-text {
+            color: rgba($color-grey-8, 0.5);
+            font-size: 16px;
+            font-style: italic;
+            line-height: 26px;
+          }
+        }
+      }
+    }
   }
 }
