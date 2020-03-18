@@ -2,6 +2,9 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 
 import router from './router';
+import { handleModule } from 'vizzuality-redux-tools';
+
+import * as map from 'modules/map';
 
 const {
   initialDispatch,
@@ -11,7 +14,8 @@ const {
 } = router;
 
 const reducers = combineReducers({
-  router: routerReducer
+  router: routerReducer,
+  map: handleModule(map)
 });
 
 const middleware = applyMiddleware(routerMiddleware);

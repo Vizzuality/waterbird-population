@@ -1,3 +1,58 @@
-.c-map-legend {
+@import 'styles/settings';
+@import 'styles/mixins';
 
+.c-map-legend {
+  position: absolute;
+  bottom: 50px;
+  left: 100px;
+  z-index: $z-index-1;
+  padding: 20px;
+  border-radius: $border-radius;
+  background-color: $white;
+  box-shadow: 0 4px 12px 0 rgba($black, 0.08);
+  max-width: 250px;
+
+  h4 {
+    position: relative;
+    margin-bottom: 20px;
+
+    &:after {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      @include arrow(9px,2px, $color-grey-8, 'down');
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  li {
+    display: flex;
+    font-size: 12px;
+    line-height: 20px;
+    text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+    align-items: center;
+
+    span {
+      position: relative;
+      width: 12px;
+      height: 4px;
+      border-radius: 50px;
+      margin-right: 10px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 4px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    p {
+      padding: 5px;
+      color: $color-grey-8;
+    }
+  }
 }
