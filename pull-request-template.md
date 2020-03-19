@@ -1,4 +1,4 @@
-Upda te changelog if needed!
+Update changelog if needed!
 
 Description of the PR
 
