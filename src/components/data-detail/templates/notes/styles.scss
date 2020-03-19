@@ -1,0 +1,26 @@
+@import 'styles/settings';
+
+.c-notes {
+  ul {
+    li {
+      position: relative;
+      padding-left: 15px;
+      padding-bottom: 40px;
+      color: #042727;
+      line-height: 26px;
+
+      &:before {
+        content: '•';
+        color: $color-2;
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    &.-collapse {
+      li:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+}
