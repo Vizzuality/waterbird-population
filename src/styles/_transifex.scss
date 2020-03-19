@@ -33,14 +33,18 @@
     }
   }
 
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 6px;
-    right: 13px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    @include arrow(8px,2px, $white, 'down');
+  .txlive-langselector-toggle {
+    .txlive-langselector-marker {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        right: 13px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        @include arrow(8px,2px, $white, 'down');
+      }
+    }
   }
 }
 
