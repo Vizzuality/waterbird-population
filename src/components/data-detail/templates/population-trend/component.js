@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import Button from 'components/button';
 import Tooltip from 'components/tooltip';
+import Comments from 'components/data-detail/comments';
 
 import info from './constants';
 import './styles.scss';
@@ -13,7 +14,7 @@ const PopulationTrend = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [isOpen, toggleComment] = useState(false);
-  const [isDisable, disableButton] = useState(true);
+
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
@@ -23,10 +24,6 @@ const PopulationTrend = ({ data }) => {
     toggleComment(!isOpen)
   };
 
-  const handleChange = (e) => {
-    e.target.value.length > 0 ? disableButton(false) : disableButton(true)
-  };
-{console.log(isDisable)}
 
   return (
     <div className="c-population-trend">
@@ -59,53 +56,33 @@ const PopulationTrend = ({ data }) => {
                 <Tooltip
                   trigger="click"
                   useContext
-                  html={<div>
-                    <h3>Xabi Vega<span>3 days ago</span></h3>
-                    <div className="comments-content">
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation Start year: 2006.  ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-                      <form method="post">
-                        <textarea
-                          name="Write your message"
-                          placeholder="Write your message"
-                          onChange={handleChange}
-                          rows="4" />
-                        <div className="tooltip-controls">
-                          <Button
-                            onClick={handleClickComments}
-                            disable={isDisable}
-                            className="-background -tertiary"
-                          >
-                            Cancel
-                          </Button>
-
-                          <input
-                            type="submit"
-                            value="Add comment"
-                            className={classnames({ ['-disable']: isDisable })} />
-                        </div>
-                      </form>
-                    </div>
-                  </div>}
-                >
+                  html={
+                    <Comments
+                      toggleComment
+                      isOpen
+                   //   info TO-DO- add dinamycally
+                    />
+                  }
+               >
                   <Button
-                    onClick={handleClickComments}
-                    className={classnames('-border -small',
-                      {
-                        ['-secondary']: isOpen,
-                        ['-primary']: !isOpen
-                      }
-                    )}
-                  >
-                    {isOpen ? 'Close' : 'Comments'}
-                  </Button>
+                  onClick={handleClickComments}
+                  className={classnames('-border -small',
+                    {
+                      ['-secondary']: isOpen,
+                      ['-primary']: !isOpen
+                    }
+                  )}
+                >
+                  {isOpen ? 'Close' : 'Comments'}
+                </Button>
                 </Tooltip>
               </td>
             </tr>
           </tbody>
         </table>
-      )
-      }
-    </div>
+  )
+}
+    </div >
   )
 };
 
