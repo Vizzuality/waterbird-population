@@ -83,26 +83,26 @@
     font-weight: bold;
     line-height: 20px;
 
-    // &.-collapse {
-    //   color: $color-grey-8;
+    &.-collapse {
+      color: $color-grey-8;
 
-    //   &.-small {
-    //     position: relative;
-    //     height: 45px;
-    //     width: 45px;
-    //     border-radius: $border-radius;
-    //     background-color: $white;
-    //     box-shadow: 0 4px 12px 0 rgba($black, .08);
+      &.-small {
+        position: relative;
+        height: 45px;
+        width: 45px;
+        border-radius: $border-radius;
+        background-color: $white;
+        box-shadow: 0 4px 12px 0 rgba($black, .08);
 
-    //     &:after {
-    //       content: '';
-    //       position: absolute;
-    //       top: 18px;
-    //       left: 18px;
-    //       @include arrow(9px,2px, $color-grey-8, 'down');
-    //     }
-    //   }
-    // }
+        &:after {
+          content: '';
+          position: absolute;
+          top: 18px;
+          left: 18px;
+          @include arrow(9px,2px, $color-grey-8, 'down');
+        }
+      }
+    }
   }
   &.-disable {
     opacity: 0.5;
