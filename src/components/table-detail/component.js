@@ -11,7 +11,6 @@ import './styles.scss';
 
 const TableDetail = ({ }) => {
   const info = TableInfo; // info coming from props when we get data
-  console.log(info.data.map(i => i))
   return (
     <div className="c-data-detail">
       <h1>

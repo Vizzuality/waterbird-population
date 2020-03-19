@@ -30,7 +30,7 @@ const BasemapSelector = ({ current, basemaps, setBasemap }) => {
             data-basemap={b.id}
             onClick={onChangeBasemap}
             className={classnames('basemapThumb', {
-              ['-selected']: current === b.id
+              '-selected': current === b.id
             })}
             backgroundImage={thumbs[b.id]}
           />

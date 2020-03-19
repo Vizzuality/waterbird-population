@@ -21,14 +21,14 @@ const References = () => {
         onClick={handleClick}
         className={classnames(
           {
-            ['-secondary']: isCollapsed,
-            ['-collapse']: !isCollapsed
+            '-secondary': isCollapsed,
+            '-collapse': !isCollapsed
           }
         )}>
         {isCollapsed ? 'Expand' : 'Collapse'}
       </Button>
     </div>
-    <ul className={classnames({ ['-collapse']: !isCollapsed })}>
+    <ul className={classnames({ '-collapse': !isCollapsed })}>
       {info.data.map(data =>
         <li>{data}</li>)}
     </ul>

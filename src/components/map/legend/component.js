@@ -24,8 +24,8 @@ const Legend = () => {
             type="button"
             onClick={handleClick}
             className={classnames(
-              { ['-collapse']: isCollapse },
-              { ['-expand']: !isCollapse })} />
+              { '-collapse': isCollapse },
+              { '-expand': !isCollapse })} />
         </div>
         <BasemapSelector />
       </div>
