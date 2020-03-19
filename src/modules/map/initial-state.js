@@ -1,3 +1,13 @@
 export default {
-  basemap: 'light',
+  basemaps: [
+    {
+      id: 'light',
+      name: 'Light'
+    },
+    {
+      id: 'satellite',
+      name: 'Satellite'
+    }
+  ],
+  selectedBasemap: 'light',
 };
