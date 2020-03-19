@@ -20,6 +20,7 @@
 
   &.-secondary {
     background-color: $color-2;
+    border: none;
   }
 
   // Size
@@ -31,7 +32,7 @@
   // Functionality
 
   &.-download {
-    border: 1px dashed rgba(#1C1B27, 0.4);
+    border: 1px dashed rgba($color-grey-8, 0.4);
     border-radius: $border-radius;
     color: $color-grey-5;
     font-size: 14px;
@@ -40,6 +41,8 @@
   }
 
   &.-collapse {
+    color: $color-grey-8;
+
     &.-small {
       position: relative;
       height: 45px;
