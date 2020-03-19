@@ -1,7 +1,10 @@
 @import 'styles/settings';
 
 .c-population-trend {
+  overflow: hidden;
 
-
-}
+  &.-collapse {
+    height: 190px;
+  }
+};
 

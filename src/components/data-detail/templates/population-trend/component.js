@@ -26,7 +26,8 @@ const PopulationTrend = ({ data }) => {
 
 
   return (
-    <div className="c-population-trend">
+    <div className={classnames('c-population-trend',
+      { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>{info.title}</h2>
         <Button
