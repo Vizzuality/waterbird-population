@@ -10,7 +10,7 @@
 
     .mapboxgl-popup-tip {
       border-bottom-color: $color-grey-5;
-      border-width: 5px;
+      border-width: 5px !important;
     }
 
     .mapboxgl-popup-content {

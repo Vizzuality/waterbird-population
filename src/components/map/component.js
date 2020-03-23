@@ -64,6 +64,9 @@ class Map extends Component {
     /** A function that exposes when the map is loaded. It returns and object with the `this.map` and `this.mapContainer` reference. */
     onLoad: PropTypes.func,
 
+    /** A function that exposes when the mouse moves over the map. */
+    onHover: PropTypes.func,
+
     /** A function that exposes the viewport */
     onViewportChange: PropTypes.func,
 
@@ -81,6 +84,7 @@ class Map extends Component {
 
     onViewportChange: () => { },
     onLoad: () => { },
+    onHover: () => { },
     onReady: () => { },
     getCursor: ({ isHovering, isDragging }) => {
       if (isHovering) return 'pointer';
@@ -144,6 +148,10 @@ class Map extends Component {
       map: this.map,
       mapContainer: this.mapContainer
     });
+  };
+
+  onHover = (e) => {
+    console.log(e.lngLat, 'hovering')
   };
 
   onViewportChange = (v, i) => {
@@ -272,6 +280,7 @@ class Map extends Component {
           onViewportChange={this.onViewportChange}
           onResize={this.onResize}
           onLoad={this.onLoad}
+          onHover={this.onHover}
           // getCursor={getCursor}
 
           transitionInterpolator={new FlyToInterpolator()}
@@ -285,6 +294,7 @@ class Map extends Component {
             anchor="top" >
               Click on the map to reveal relevant populations.
           </Popup>
+
           {loaded &&
             !!this.map &&
             typeof children === 'function' &&
