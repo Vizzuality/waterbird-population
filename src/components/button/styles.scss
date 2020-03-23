@@ -82,9 +82,7 @@
     padding: 3px 5px;
   }
 
-
   // Functionality
-
 
   &.-download {
     border: 1px dashed rgba($color-grey-8, 0.4);
@@ -117,6 +115,10 @@
   }
   &.-disable {
     opacity: 0.5;
+  }
+
+  * {
+    margin-right: 15px;
   }
 }
 
