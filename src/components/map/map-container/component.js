@@ -7,6 +7,7 @@ import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
 // Components
 import Map from 'components/map';
+import PopUp from 'components/map/pop-up';
 import Legend from 'components/map/legend';
 import ShareControl from 'components/share';
 
@@ -18,7 +19,7 @@ export const MapContainer = ({
   layers,
   mapStyle,
   map,
-  bounds
+  bounds,
 }) => {
 
   useEffect(() => {
@@ -82,11 +83,11 @@ export const MapContainer = ({
           </Fragment>
         }
       </Map>
+      <PopUp />
       <Legend />
     </div>
   );
 };
-
 
 MapContainer.propTypes = {
   viewport: PropTypes.shape({}),

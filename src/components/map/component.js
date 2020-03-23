@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
+import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS, Popup } from 'react-map-gl';
 import { fitBounds } from 'viewport-mercator-project';
 
 import { easeCubic } from 'd3-ease';
@@ -79,9 +79,9 @@ class Map extends Component {
     dragPan: true,
     dragRotate: true,
 
-    onViewportChange: () => {},
-    onLoad: () => {},
-    onReady: () => {},
+    onViewportChange: () => { },
+    onLoad: () => { },
+    onReady: () => { },
     getCursor: ({ isHovering, isDragging }) => {
       if (isHovering) return 'pointer';
       if (isDragging) return 'grabbing';
@@ -95,7 +95,8 @@ class Map extends Component {
       ...this.props.viewport // eslint-disable-line
     },
     flying: false,
-    loaded: false
+    loaded: false,
+    showPopup: true
   };
 
   componentDidMount() {
@@ -276,6 +277,14 @@ class Map extends Component {
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
+          <Popup
+            latitude={35.74}
+            longitude={4.21}
+            closeButton={false}
+            closeOnClick={true}
+            anchor="top" >
+              Click on the map to reveal relevant populations.
+          </Popup>
           {loaded &&
             !!this.map &&
             typeof children === 'function' &&
