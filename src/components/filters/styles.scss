@@ -1,12 +1,19 @@
 @import 'styles/settings';
 
 .c-filters {
+  position: relative;
 
   h3 {
     color: $color-grey-6;
     font-size: 30px;
     font-weight: bold;
     line-height: 36px;
+    padding-bottom: 40px;
+  }
+
+  .modal-button {
+    position: absolute;
+    border-radius: 50%;
   }
 
   .filters-content {

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import Icon from 'components/icon';
 import Button from 'components/button';
 import Select from 'components/select';
 
@@ -17,7 +18,9 @@ const Filters = ({ activeFilters, onClick }) => {
   return (
     <div className="c-filters">
       <h3>Filter options:</h3>
-      <button type="button" onClick={handleClick} />
+      {/* <button type="button" className="modal-button" onClick={handleClick}>
+        <Icon name="close" className="-big"/>
+      </button> */}
       <div className="filters-content">
         {filters.map(filter =>
           <div className="filters">
@@ -38,11 +41,13 @@ const Filters = ({ activeFilters, onClick }) => {
           onClick={handleClick}
         >
           Cancel
-          </Button>
+        </Button>
         <Button
           className={classnames('-background -secondary -big', {
             '-disable': activeFilters && activeFilters.length <= 0
-          })}>Apply filters</Button>
+          })}>
+            Apply filters
+        </Button>
       </div>
     </div>
   )

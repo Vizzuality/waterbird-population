@@ -34,8 +34,8 @@ const Search = ({ activeFilters }) => {
         Advanced filters
       </Button>
       <Modal
-      isOpen={isOpen}
-      onRequestClose={() => toggleModal(false)}
+        isOpen={isOpen}
+        onRequestClose={() => toggleModal(false)}
     >
       <Filters
         activeFilters={activeFilters}
