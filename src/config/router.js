@@ -38,6 +38,10 @@ export const routes = {
   OTHER: {
     page: 'otra',
     path: '/otra'
+  },
+  IMAGES: {
+    page: 'images',
+    path: '/images/:id'
   }
 };
 

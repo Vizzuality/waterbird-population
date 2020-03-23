@@ -1,24 +1,23 @@
 @import 'styles/settings';
 
- .c-modal {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  background-color: rgba($white, 0.1);
+  .c-modal {
+    background-color: rgba($white, 0.1);
+    justify-content: center;
 
-  .modal-content {
-    position: absolute;
-    box-sizing: border-box;
-    height: 700px;
-    width: 800px;
-    border: 1px solid rgba($black, 0.1);
-    border-radius: 10px;
-    background-color: $white;
-    box-shadow: 0 4px 12px 0 rgba($black, 0.15);
-  }
-}
+   .modal-content {
+      position: relative;
+      top: 20px;
+      margin: auto;
+      padding: 45px;
+      box-sizing: border-box;
+      width: 900px;
+      height: 100%;
+      border: 1px solid rgba($black, 0.1);
+      border-radius: 10px;
+      background-color: $white;
+      box-shadow: 0 4px 12px 0 rgba($black, 0.15);
+   }
+ }
 
 
 
