@@ -32,7 +32,7 @@ const BasemapSelector = ({ current, basemaps, setBasemap }) => {
             className={classnames('basemapThumb', {
               '-selected': current === b.id
             })}
-            style={{ 'background-image': thumbs[b.id] }}
+            style={{ backgroundImage: `url(${thumbs[b.id]})` }}
           />
         ))}
       </div>
