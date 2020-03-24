@@ -45,7 +45,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-    <Link to="/images/Biogeographic">
+    <Link target="_blank" to="/images/Biogeographic">
     <Icon name="info" />
   </Link>
     )
@@ -59,7 +59,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-      <Link to="/images/Ramsar">
+      <Link target="_blank" to="/images/Ramsar">
         <Icon name="info" />
       </Link>
     )

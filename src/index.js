@@ -19,7 +19,7 @@ const App = () => {
       <div className="app">
         {page !== 'IMAGES' && <Header />}
         <Pages className="l-pages" />
-        {page !== <Footer />}
+        {page !== 'IMAGES' && <Footer />}
         <Icons />
       </div>
     </Provider>

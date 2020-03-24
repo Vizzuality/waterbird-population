@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'components/modal';
 
@@ -9,8 +9,6 @@ import './styles.scss';
 
 const ImagesPage = ({ currentImage }) => {
 
-  const [isOpen, toggleModal] = useState(true);
-
   const ids = {
     Ramsar: RamsarImage,
     Biogeographic: BiogeographicImage,
@@ -20,8 +18,8 @@ const ImagesPage = ({ currentImage }) => {
 
     <div className="l-images">
       <Modal
-        isOpen={isOpen}
-        onRequestClose={() => toggleModal(false)}
+        isOpen={true}
+        onClose={false}
         className="images-modal"
       >
         <div className="content">
