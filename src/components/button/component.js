@@ -4,12 +4,13 @@ import './styles.scss';
 
 export default (props) => {
   const { children,
+    type,
     className,
     ...domProps } = props;
 
   return (
     <button
-      type="button"
+      type={type || 'button'}
       className={classnames('c-button', {
         [className]: className
       })}

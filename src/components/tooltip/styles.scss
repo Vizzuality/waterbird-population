@@ -1,0 +1,26 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.tippy-tooltip-content {
+  padding: 75px 100px;
+  box-sizing: border-box;
+  border: 1px solid rgba($color-grey-8, 0.1);
+  background-color: $white;
+  box-shadow: 0 10px 10px 0 rgba($black, 0.09);
+  font-family: $font-family-1;
+  border-radius: 9px;
+  position: relative;
+  margin: 30px 150px;
+  align-content: center;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    background-color: $white;
+    @include arrow(20px,1px, rgba($color-grey-8, 0.1), 'up');
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
+

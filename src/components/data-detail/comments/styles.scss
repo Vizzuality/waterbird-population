@@ -1,0 +1,57 @@
+@import 'styles/settings';
+
+.c-comments {
+  h3 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+    padding-bottom: 10px;
+
+    span {
+      opacity: 0.5;
+      font-family: $font-family-2;
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 17px;
+      padding-left: 5px;
+    }
+  }
+
+  .comments-content {
+    padding: 0 30px;
+
+    p {
+      padding-bottom: 80px;
+      font-size: 14px;
+      line-height: 23px;
+      text-shadow: 0 1px 4px 0 rgba($black,0.5);
+    }
+
+    textarea {
+      box-sizing: border-box;
+      height: 85px;
+      width: 100%;
+      border: 1px solid rgba($color-grey-4, 0.3);
+      border-radius: 5px;
+      padding: 5px 20px;
+      font-size: 14px;
+      line-height: 20px;
+      text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+
+      &::placeholder {
+        color: $color-grey-8;
+        font-style: italic;
+      }
+    }
+  }
+
+  .tooltip-controls {
+    display: flex;
+    justify-content: center;
+    padding: 20px 100px;
+
+    :first-child {
+      margin-right: 30px;
+    }
+  }
+}
