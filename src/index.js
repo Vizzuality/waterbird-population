@@ -17,6 +17,7 @@ const App = () => (
       <Header />
       <Pages className="l-pages"/>
       <Footer />
+      <div id="transifex-picker" />
     </div>
   </Provider>
 );
