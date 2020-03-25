@@ -9,8 +9,11 @@ Modal.setAppElement('#root');
 export default (props) => {
   const { children, onRequestClose, onClose = true, ...domProps } = props;
   return (
-    <Modal className="c-modal"
+    <Modal
+      className="c-modal"
+      onRequestClose={onRequestClose}
       {...domProps}
+
     >
       <div className="modal-content">
         {onClose &&
