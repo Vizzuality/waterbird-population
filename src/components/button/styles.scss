@@ -2,12 +2,16 @@
 @import 'styles/mixins';
 
 .c-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 5px 30px;
   border-radius: 9px;
   color: $white;
   line-height: 19px;
   font-size: 16px;
   font-family: $font-family-1;
+  text-align: center;
 
   // ** MODIFIERS ** //
 
@@ -55,14 +59,21 @@
 
   // Size
 
-  &.-big {
+  &.-huge {
     padding: 30px;
+    min-width: 160px;
+    font-size: 14px;
+  }
+
+  &.-big {
+    padding: 20px;
     min-width: 160px;
   }
 
   &.-medium {
     font-size: 14px;
-    border-radius: 3px;
+    padding: 20px 45px;
+    border-radius: 10px;
   }
 
   &.-small {
@@ -71,9 +82,7 @@
     padding: 3px 5px;
   }
 
-
   // Functionality
-
 
   &.-download {
     border: 1px dashed rgba($color-grey-8, 0.4);
@@ -105,6 +114,10 @@
   }
   &.-disable {
     opacity: 0.5;
+  }
+
+  * {
+    margin-right: 15px;
   }
 }
 
