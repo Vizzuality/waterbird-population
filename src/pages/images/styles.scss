@@ -1,19 +1,14 @@
 @import 'styles/settings';
 
-.images-modal {
+.l-images {
   display: flex;
+  justify-content: center;
   height: 100%;
+  padding: 30px;
 
-  .content {
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    height: 100%;
-
-    img {
-      width: 90%;
-      height: auto;
-    }
+  img {
+    width: 90%;
+    height: auto;
   }
 }
 

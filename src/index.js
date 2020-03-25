@@ -20,7 +20,7 @@ const App = () => {
         {page !== 'IMAGES' && <Header />}
         <Pages className="l-pages" />
         {page !== 'IMAGES' && <Footer />}
-        <div id="transifex-picker" />
+        {page !== 'IMAGES' && <div id="transifex-picker" />}
         <Icons />
       </div>
     </Provider>
