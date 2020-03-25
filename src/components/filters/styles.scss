@@ -1,0 +1,50 @@
+@import 'styles/settings';
+
+.c-filters {
+  position: relative;
+
+  h3 {
+    color: $color-grey-6;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 36px;
+    padding-bottom: 40px;
+  }
+
+  .modal-button {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .filters-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding-bottom: 70px;
+
+    .filters {
+      padding-bottom: 30px;
+      max-width: 240px;
+
+      .filter-type {
+        display: flex;
+        justify-content: space-between;
+
+        label {
+          display: block;
+          font-size: 14px;
+          line-height: 16px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .filters-buttons {
+    display: flex;
+    justify-content: center;
+
+    *:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}
