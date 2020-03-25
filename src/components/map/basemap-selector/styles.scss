@@ -1,0 +1,33 @@
+@import 'styles/settings';
+
+.c-basemap-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+  }
+
+  .options {
+    display: flex;
+
+    button {
+      width: 42px;
+      height: 42px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-left: 10px;
+
+      &.-selected {
+        box-sizing: border-box;
+        border: 3px solid #077FAC;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px 0 rgba(7,127,172,0.43);
+      }
+    }
+  }
+}
