@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const Select = ({ options, defaultOption }) => {
-
-  defaultOption="All families"
+const Select = ({ options, defaultOption = "All families" }) => {
   const [selectedOption, changeOption] = useState(defaultOption);
 
   const handleChange = () => {
