@@ -26,7 +26,7 @@ const PopulationPercent = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-trend',
+    <div className={classnames('c-population-percent',
       { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>{info.title}</h2>
@@ -61,28 +61,27 @@ const PopulationPercent = ({ data }) => {
                     <Comments
                       toggleComment
                       isOpen
-                   //   info TO-DO- add dinamycally
+                    //   info TO-DO- add dinamycally
                     />
                   }
-               >
-                  <Button
-                  onClick={handleClickComments}
-                  className={classnames('-border -small',
-                    {
-                      ['-secondary']: isOpen,
-                      ['-primary']: !isOpen
-                    }
-                  )}
                 >
-                  {isOpen ? 'Close' : 'Comments'}
-                </Button>
+                  <Button
+                    onClick={handleClickComments}
+                    className={classnames('-border -small',
+                      {
+                        ['-secondary']: isOpen,
+                        ['-primary']: !isOpen
+                      }
+                    )}
+                  >
+                    {isOpen ? 'Close' : 'Comments'}
+                  </Button>
                 </Tooltip>
               </td>
             </tr>
           </tbody>
         </table>
-  )
-}
+      )}
     </div >
   )
 };

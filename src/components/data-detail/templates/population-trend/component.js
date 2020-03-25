@@ -61,28 +61,27 @@ const PopulationTrend = ({ data }) => {
                     <Comments
                       toggleComment
                       isOpen
-                   //   info TO-DO- add dinamycally
+                    //   info TO-DO- add dinamycally
                     />
                   }
-               >
-                  <Button
-                  onClick={handleClickComments}
-                  className={classnames('-border -small',
-                    {
-                      ['-secondary']: isOpen,
-                      ['-primary']: !isOpen
-                    }
-                  )}
                 >
-                  {isOpen ? 'Close' : 'Comments'}
-                </Button>
+                  <Button
+                    onClick={handleClickComments}
+                    className={classnames('-border -small',
+                      {
+                        ['-secondary']: isOpen,
+                        ['-primary']: !isOpen
+                      }
+                    )}
+                  >
+                    {isOpen ? 'Close' : 'Comments'}
+                  </Button>
                 </Tooltip>
               </td>
             </tr>
           </tbody>
         </table>
-  )
-}
+      )}
     </div >
   )
 };

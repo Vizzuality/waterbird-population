@@ -1,10 +1,24 @@
 @import 'styles/settings';
 
-.c-population-trend {
+.c-population-percent {
+  position: relative;
+  padding-bottom: 40px;
   overflow: hidden;
 
   &.-collapse {
-    height: 190px;
+    tbody {
+      tr:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba($color-grey-8, 0.5);
   }
 };
-
