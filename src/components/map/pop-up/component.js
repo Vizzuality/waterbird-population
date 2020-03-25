@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -7,18 +7,21 @@ import Icon from 'components/icon';
 import './styles.scss';
 
 import info from './constants.js';
+import { setPopUp } from 'modules/map/actions';
 
-const PopUp = ({  }) => {
+const PopUp = ({ popUpState, coordinates, setPopUp }) => {
 
-  const [isOpen, toggleState] = useState(true);
+  useEffect(() => {
+    setPopUp(popUpState)
+  }, [popUpState]);
 
   const handleClick = () => {
-    toggleState(!isOpen)
+    setPopUp(!popUpState)
   }
 
   return (
     <div className={classnames('c-map-pop-up', {
-      '-collapse': !isOpen
+      '-collapse': !popUpState
     })}>
       <div className="pop-up-content">
         <div className="content-info">
@@ -26,13 +29,13 @@ const PopUp = ({  }) => {
           <div className="content-control">
             <h4>{info.place}</h4>
             <button type="button" className="modal-button" onClick={handleClick}>
-              <Icon name="close" className="-huge" />
+              <Icon name="close" className="-small" />
             </button>
           </div>
         </div>
         <div className="content-info">
           <h5>Coordinates:</h5>
-          <p>{info.coordinates}</p>
+          <p>{`${coordinates[0]}, ${coordinates[1]}`}</p>
         </div>
       </div>
     </div>

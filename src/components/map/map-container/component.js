@@ -20,6 +20,9 @@ export const MapContainer = ({
   mapStyle,
   map,
   bounds,
+  coordinates,
+  isOpen,
+  setPopUp
 }) => {
 
   useEffect(() => {
@@ -83,7 +86,10 @@ export const MapContainer = ({
           </Fragment>
         }
       </Map>
-      <PopUp />
+      <PopUp
+        setPopUp={setPopUp}
+        popUpState={isOpen}
+        coordinates={coordinates}/>
       <Legend />
     </div>
   );

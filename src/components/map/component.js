@@ -116,7 +116,10 @@ class Map extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { viewport: prevViewport, bounds: prevBounds } = prevProps;
+    const {
+      viewport: prevViewport,
+      bounds: prevBounds,
+    } = prevProps;
     const { viewport, bounds } = this.props;
     const { viewport: stateViewport } = this.state;
 
@@ -151,8 +154,15 @@ class Map extends Component {
   };
 
   onHover = (e) => {
-    console.log(e.lngLat, 'hovering')
+    const { setLocation } = this.props;
+    setLocation(e.lngLat);
   };
+
+  onClick = (e) => {
+    const { setLocation, setPopUp } = this.props;
+    setLocation(e.lngLat);
+    setPopUp(true);
+  }
 
   onViewportChange = (v, i) => {
     const { onViewportChange } = this.props;
@@ -244,6 +254,7 @@ class Map extends Component {
       touchRotate,
       doubleClickZoom,
       mapboxApiAccessToken,
+      coordinates,
       ...mapboxProps
     } = this.props;
     const { viewport, loaded, flying } = this.state;
@@ -281,18 +292,19 @@ class Map extends Component {
           onResize={this.onResize}
           onLoad={this.onLoad}
           onHover={this.onHover}
+          onClick={this.onClick}
           // getCursor={getCursor}
 
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
           <Popup
-            latitude={35.74}
-            longitude={4.21}
+            longitude={coordinates[0]}
+            latitude={coordinates[1]}
             closeButton={false}
             closeOnClick={true}
             anchor="top" >
-              Click on the map to reveal relevant populations.
+              <p>Click on the map to reveal relevant populations.</p>
           </Popup>
 
           {loaded &&
