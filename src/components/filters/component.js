@@ -18,9 +18,6 @@ const Filters = ({ activeFilters, onClick }) => {
   return (
     <div className="c-filters">
       <h3>Filter options:</h3>
-      {/* <button type="button" className="modal-button" onClick={handleClick}>
-        <Icon name="close" className="-big"/>
-      </button> */}
       <div className="filters-content">
         {filters.map(filter =>
           <div className="filters">

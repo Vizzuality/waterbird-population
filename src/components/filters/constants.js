@@ -73,7 +73,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-      <a href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
+      <a target="_blank" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
         <Icon name="info" />
       </a>
     )
