@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 
@@ -9,6 +9,7 @@ import { NavigationControl, FullscreenControl } from 'react-map-gl';
 // Components
 import Map from 'components/map';
 import Legend from 'components/map/legend';
+import ShareControl from 'components/share';
 
 import './styles.scss';
 
@@ -45,6 +46,17 @@ export const MapContainer = ({
     });
   };
 
+  // const handleClick = () => {
+  //   console.log(window.location.href, 'dirección')
+  //   const data = onCopyLink();
+  //   console.log(data, 'reproducir datos')
+  // }
+  const [isOpen, toggleModal] = useState(false);
+
+  const handleClick = () => {
+    toggleModal(!isOpen);
+  }
+
   return (
     <div className='c-map-container'>
       <Map
@@ -79,8 +91,12 @@ export const MapContainer = ({
             <div className="map-controls">
               <NavigationControl className="map-navigation" />
               <FullscreenControl className="map-fullscreen" />
+              <ShareControl className="map-share"
+                isOpen={isOpen}
+                onClick={handleClick}
+                toggleModal={toggleModal}
+              />
             </div>
-
           </Fragment>
         }
 

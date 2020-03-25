@@ -10,9 +10,37 @@
     right: 100px;
     top: 20px;
 
+    .map-share {
+      > button {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
     // Mapbox override
+
+    .mapboxgl-ctrl {
+      > button {
+        &.mapboxgl-ctrl-zoom-in,
+        &.mapboxgl-ctrl-zoom-out {
+          position: relative;
+          width: 100% !important;
+          height: 50% !important;
+
+          > span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+
     .mapboxgl-ctrl-group:not(:empty) {
-        box-shadow: 0 4px 12px 0 rgba($black, .08);
+      width: 45px;
+      border-radius: $border-radius;
+      box-shadow: 0 4px 12px 0 rgba($black, .08);
     }
 
     .mapboxgl-ctrl-group > button {
@@ -20,8 +48,6 @@
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      width: 25px;
-      height: 25px;
     }
 
     .mapboxgl-ctrl-group {
@@ -30,16 +56,14 @@
 
     .map-navigation {
       height: 70px;
-      width: 45px;
-      border-radius: $border-radius;
 
       > button[title='Zoom In'] {
-        // background-image: url('') !important;
+       // background-image: url('') !important;
       }
 
       > button[title='Zoom Out'] {
         border: none;
-        // background-image: url('') !important;
+       // background-image: url('') !important;
 
       }
 
@@ -48,14 +72,12 @@
       }
     }
 
-    .map-fullscreen {
+    .map-share {
       height: 45px;
-      width: 45px;
-      border-radius: $border-radius;
-      > button[title='Toggle fullscreen'] {
-        // background-image: url('') !important;
+    }
 
-      }
+    .map-fullscreen {
+      display: none;
     }
   }
 }
