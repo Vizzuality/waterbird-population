@@ -11,13 +11,23 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
 
   const inputEl = useRef();
   const url = window.location.href;
-  const [link, setLink] = useState('');
+  const [isCopied, setCopy] = useState(false);
 
   const handleClick = () => {
     const { current } = inputEl;
-    setLink(current.value)
     current.select()
-    document.execCommand('copy');
+
+    try {
+      document.execCommand('copy');
+      setCopy(true)
+
+      setTimeout(() => {
+        setCopy(false)
+        inputEl.blur();
+      }, 2000);
+    } catch (err) {
+      console.warn('Oops, unable to copy');
+    }
   };
 
   return (
@@ -40,7 +50,7 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
                   className="-background -primary -medium"
                   onClick={handleClick}
                 >
-                  {link ? 'Copied' : 'Copy'}
+                  {isCopied ? 'Copied' : 'Copy'}
                 </Button>
               </div>
             </div>
@@ -61,8 +71,8 @@ ShareControl.propTypes = {
 
 ShareControl.defaultProps = {
   isOpen: false,
-  onClick:  () => {},
-  toggleModal: () => {}
+  onClick: () => { },
+  toggleModal: () => { }
 };
 
 export default ShareControl;
