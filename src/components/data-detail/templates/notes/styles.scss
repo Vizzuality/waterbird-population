@@ -1,6 +1,8 @@
 @import 'styles/settings';
 
 .c-notes {
+  position: relative;
+
   ul {
     li {
       position: relative;
@@ -23,4 +25,13 @@
       }
     }
   }
-}
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba($color-grey-8, 0.5);
+  }
+};

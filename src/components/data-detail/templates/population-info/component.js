@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -9,7 +9,7 @@ import Comments from 'components/data-detail/comments';
 import info from './constants';
 import './styles.scss';
 
-const PopulationTrend = ({ data }) => {
+const PopulationInfo = ({ data }) => {
   data = [info]
 
   const [isCollapsed, toggleCollapse] = useState(true);
@@ -26,7 +26,7 @@ const PopulationTrend = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-trend',
+    <div className={classnames('c-population-info',
       { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>{info.title}</h2>
@@ -52,7 +52,7 @@ const PopulationTrend = ({ data }) => {
           </thead>
           <tbody>
             <tr>
-              {(info.data.data1).map(i => <td>{i}</td>)}
+              {(info.data.data).map(i => <td>{i}</td>)}
               <td className="button">
                 <Tooltip
                   trigger="click"
@@ -61,36 +61,37 @@ const PopulationTrend = ({ data }) => {
                     <Comments
                       toggleComment
                       isOpen
-                    //   info TO-DO- add dinamycally
+                   //   info TO-DO- add dinamycally
                     />
                   }
-                >
+               >
                   <Button
-                    onClick={handleClickComments}
-                    className={classnames('-border -small',
-                      {
-                        ['-secondary']: isOpen,
-                        ['-primary']: !isOpen
-                      }
-                    )}
-                  >
-                    {isOpen ? 'Close' : 'Comments'}
-                  </Button>
+                  onClick={handleClickComments}
+                  className={classnames('-border -small',
+                    {
+                      ['-secondary']: isOpen,
+                      ['-primary']: !isOpen
+                    }
+                  )}
+                >
+                  {isOpen ? 'Close' : 'Comments'}
+                </Button>
                 </Tooltip>
               </td>
             </tr>
           </tbody>
         </table>
-      )}
+  )
+}
     </div >
   )
 };
 
-PopulationTrend.propTypes = {
+PopulationInfo.propTypes = {
   info: PropTypes.shape({
     title: PropTypes.string.isRequired,
     data: PropTypes.array
   }).isRequired
 }
 
-export default PopulationTrend;
+export default PopulationInfo;
