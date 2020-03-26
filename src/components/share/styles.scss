@@ -5,6 +5,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  pointer-events: none;
 
   .share-content {
     h2 {
@@ -31,6 +33,7 @@
       button {
         border-radius: 10px;
         padding: 10px 20px;
+        cursor: pointer;
       }
     }
   }

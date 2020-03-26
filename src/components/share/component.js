@@ -20,15 +20,15 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
     try {
       document.execCommand('copy');
       setCopy(true)
-
       setTimeout(() => {
         setCopy(false)
-        inputEl.blur();
-      }, 2000);
+        current.blur();
+      }, 3000);
     } catch (err) {
       console.warn('Oops, unable to copy');
     }
   };
+
 
   return (
     <div class="mapboxgl-ctrl mapboxgl-ctrl-group  map-share">
