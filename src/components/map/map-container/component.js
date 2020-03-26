@@ -57,7 +57,7 @@ export const MapContainer = ({
       // onViewportChange={onViewportChange}
       // onClick={clickHandler}
       // interactiveLayerIds={interactiveLayerIds}
-      // onPopupClose={popupCloseHandler}
+      //  onPopupClose={popupCloseHandler}
       >
 
         {(map) =>

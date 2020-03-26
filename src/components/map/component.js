@@ -100,7 +100,7 @@ class Map extends Component {
     },
     flying: false,
     loaded: false,
-    showPopup: true
+    showPopup: false
   };
 
   componentDidMount() {
@@ -154,13 +154,17 @@ class Map extends Component {
   };
 
   onHover = (e) => {
+    e.preventDefault();
     const { setLocation } = this.props;
+    this.setState({ showPopup: true });
     setLocation(e.lngLat);
+    setTimeout(() => {
+      this.setState({ showPopup: false });
+    }, 3000);
   };
 
-  onClick = (e) => {
-    const { setLocation, setPopUp } = this.props;
-    setLocation(e.lngLat);
+  onClick = () => {
+    const { setPopUp } = this.props;
     setPopUp(true);
   }
 
@@ -257,7 +261,7 @@ class Map extends Component {
       coordinates,
       ...mapboxProps
     } = this.props;
-    const { viewport, loaded, flying } = this.state;
+    const { viewport, loaded, flying, showPopup } = this.state;
 
     return (
       <div
@@ -293,19 +297,20 @@ class Map extends Component {
           onLoad={this.onLoad}
           onHover={this.onHover}
           onClick={this.onClick}
-          // getCursor={getCursor}
+          getCursor={getCursor}
 
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
-          <Popup
+          { showPopup &&
+            <Popup
             longitude={coordinates[0]}
             latitude={coordinates[1]}
             closeButton={false}
-            closeOnClick={true}
             anchor="top" >
               <p>Click on the map to reveal relevant populations.</p>
-          </Popup>
+            </Popup>
+          }
 
           {loaded &&
             !!this.map &&
