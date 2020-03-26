@@ -43,27 +43,42 @@
       box-shadow: 0 4px 12px 0 rgba($black, .08);
     }
 
-    .mapboxgl-ctrl-group > button {
-      border: none;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    .mapboxgl-ctrl-group {
+
+      button {
+        border: none;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: auto;
+      }
     }
 
     .mapboxgl-ctrl-group {
       margin: 10px;
+
+      button {
+        span {
+          display: none;
+        }
+      }
     }
 
     .map-navigation {
       height: 70px;
 
       > button[title='Zoom In'] {
-       // background-image: url('') !important;
+        background-size: auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('./icons/zoomin.svg') !important;
       }
 
       > button[title='Zoom Out'] {
         border: none;
-       // background-image: url('') !important;
+        background-size: auto;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-image: url('./icons/zoomout.svg') !important;
 
       }
 
@@ -74,6 +89,10 @@
 
     .map-share {
       height: 45px;
+      background-size: auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('./icons/share.svg') !important;
     }
 
     .map-fullscreen {

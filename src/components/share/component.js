@@ -56,7 +56,6 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
             </div>
           </div>
         </Modal>
-        <Icon name="share" />
       </button>
     </div>
 
