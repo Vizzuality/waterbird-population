@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import classnames from 'classnames';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import info from './constants';

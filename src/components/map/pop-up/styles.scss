@@ -12,6 +12,8 @@
   z-index: 1;
   display: flex;
   padding: 15px 30px;
+  opacity: 1;
+  transition: all 250ms linear;
 
   .pop-up-content {
     display: flex;

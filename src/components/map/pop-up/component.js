@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import propTypes from 'prop-types';
 import classnames from 'classnames';
 
 import Icon from 'components/icon';
 
-import './styles.scss';
-
 import info from './constants.js';
-import { setPopUp } from 'modules/map/actions';
+import './styles.scss';
 
 const PopUp = ({ popUpState, coordinates, setPopUp }) => {
 
@@ -17,6 +15,7 @@ const PopUp = ({ popUpState, coordinates, setPopUp }) => {
 
   const handleClick = () => {
     setPopUp(!popUpState)
+
   }
 
   return (

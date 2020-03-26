@@ -47,7 +47,9 @@ const Comments = ({ toggleComment, isOpen }) => {
 
         <Button
           type="submit"
-          className={classnames('-background -secondary -big', { ['-disable']: isDisable })}>
+          className={classnames('-background -secondary -big',
+            { '-disable': isDisable })}
+        >
           Add comment
         </Button>
       </div>

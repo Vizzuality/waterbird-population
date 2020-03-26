@@ -16,7 +16,7 @@ const Legend = () => {
 
   return (
     <div className={classnames('c-map-legend',
-      { ['-collapse']: isCollapse }) }>
+      { '-collapse': isCollapse }) }>
       <div className="legend-header">
         <div className="legend-controls">
           <h4>Map settings</h4>

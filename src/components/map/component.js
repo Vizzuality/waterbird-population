@@ -160,7 +160,7 @@ class Map extends Component {
     setLocation(e.lngLat);
     setTimeout(() => {
       this.setState({ showPopup: false });
-    }, 3000);
+    }, 2000);
   };
 
   onClick = () => {
