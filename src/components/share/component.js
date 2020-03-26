@@ -1,17 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Modal from 'components/modal';
+import React, { useState, useRef } from 'react';
 
+import Modal from 'components/modal';
 import Button from 'components/button';
-import Icon from 'components/icon';
 
 import './styles.scss';
 
-const ShareControl = ({ isOpen, onClick, toggleModal }) => {
-
+const ShareControl = () => {
   const inputEl = useRef();
   const url = window.location.href;
-  const [isCopied, setCopy] = useState(false);
+  const [{ isCopied, isOpen }, setState] = useState(
+    { isCopied: false, isOpen: false }
+    );
 
   const handleClick = () => {
     const { current } = inputEl;
@@ -19,9 +18,9 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
 
     try {
       document.execCommand('copy');
-      setCopy(true)
+      setState({ isCopied: true })
       setTimeout(() => {
-        setCopy(false)
+        setState({ isCopied: false })
         current.blur();
       }, 3000);
     } catch (err) {
@@ -29,13 +28,17 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
     }
   };
 
+  const handleModal = () => {
+    setState({ isOpen: !isOpen })
+  }
+
 
   return (
     <div class="mapboxgl-ctrl mapboxgl-ctrl-group  map-share">
-      <button className="mapboxgl-ctrl-icon" onClick={onClick}>
+      <button className="mapboxgl-ctrl-icon" onClick={handleModal}>
         <Modal
           isOpen={isOpen}
-          onRequestClose={() => toggleModal(false)}
+          onRequestClose={() => setState({ isOpen: false })}
         >
           <div className="c-share">
             <div className="share-content">
@@ -58,20 +61,7 @@ const ShareControl = ({ isOpen, onClick, toggleModal }) => {
         </Modal>
       </button>
     </div>
-
   )
-};
-
-ShareControl.propTypes = {
-  isOpen: PropTypes.bool,
-  onClick: PropTypes.func,
-  toggleModal: PropTypes.func
-};
-
-ShareControl.defaultProps = {
-  isOpen: false,
-  onClick: () => { },
-  toggleModal: () => { }
 };
 
 export default ShareControl;
