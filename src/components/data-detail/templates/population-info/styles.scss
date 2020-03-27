@@ -1,0 +1,120 @@
+@import 'styles/seetings';
+
+.c-population-info {
+
+  .info-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+    .grid-item-1 {
+      grid-column: 1 / 2;
+      grid-row: 1;
+    }
+    .grid-item-2 {
+      grid-column: 2 / 5;
+      grid-row: 1;
+    }
+    .grid-item-3 {
+      grid-column: 1 / 2;
+      grid-row: 2;
+    }
+    .grid-item-4 {
+      grid-column: 2 / 5;
+      grid-row: 2;
+    }
+    .grid-item-5 {
+      grid-column: 1 / 2;
+      grid-row: 3;
+    }
+    .grid-item-6 {
+      grid-column: 2 / 3;
+      grid-row: 3;
+    }
+    .grid-item-7 {
+      grid-column: 3 / 4;
+      grid-row: 3;
+    }
+    .grid-item-8 {
+      grid-column: 4 / 5;
+      grid-row: 3;
+    }
+    .grid-item-9 {
+      grid-column: 1 / 2;
+      grid-row: 4;
+    }
+    .grid-item-10 {
+      grid-column: 2 / 5;
+      grid-row: 4;
+    }
+    .grid-item-11 {
+      grid-column: 1 / 2;
+      grid-row: 5;
+    }
+    .grid-item-12 {
+      grid-column: 2 / 3;
+      grid-row: 5;
+    }
+    .grid-item-13 {
+      grid-column: 3 / 4;
+      grid-row: 5;
+    }
+    .grid-item-14 {
+      grid-column: 4 / 5;
+      grid-row: 5;
+    }
+    .grid-item-15 {
+      grid-column: 1 / 2;
+      grid-row: 6;
+    }
+    .grid-item-16 {
+      grid-column: 2 / 5;
+      grid-row: 6;
+    }
+    .grid-item-17 {
+      grid-column: 1 / 2;
+      grid-row: 7;
+    }
+    .grid-item-18 {
+      grid-column: 2 / 5;
+      grid-row: 7;
+    }
+
+  }
+
+  .head {
+    padding-bottom: 35px;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 19px;
+  }
+
+  .info {
+    padding-bottom: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 16px;
+
+    &.tag {
+      border-radius: 4px;
+      padding: 5px 10px 5px 25px;
+      background-color: #40A30B;
+      color: $white;
+      font-size: 10px;
+      line-height: 11px;
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        height: 6px;
+        width: 6px;
+        background-color: $white;
+      }
+    }
+  }
+}
