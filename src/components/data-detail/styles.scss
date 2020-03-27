@@ -33,7 +33,8 @@
         padding-top: 20px;
 
         &.button {
-          text-align: right;
+          display: flex;
+          justify-content: flex-end;
         }
       }
     }

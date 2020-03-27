@@ -9,7 +9,7 @@ import Comments from 'components/data-detail/comments';
 import info from './constants';
 import './styles.scss';
 
-const PopulationTrend = ({ data }) => {
+const PopulationSize = ({ data }) => {
   data = [info]
 
   const [isCollapsed, toggleCollapse] = useState(true);
@@ -26,7 +26,7 @@ const PopulationTrend = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-trend',
+    <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>{info.title}</h2>
@@ -52,7 +52,7 @@ const PopulationTrend = ({ data }) => {
           </thead>
           <tbody>
             <tr>
-              {(info.data.data1).map(i => <td>{i}</td>)}
+              {(info.data.data).map(i => <td>{i}</td>)}
               <td className="button">
                 <Tooltip
                   trigger="click"
@@ -86,11 +86,11 @@ const PopulationTrend = ({ data }) => {
   )
 };
 
-PopulationTrend.propTypes = {
+PopulationSize.propTypes = {
   info: PropTypes.shape({
     title: PropTypes.string.isRequired,
     data: PropTypes.array
   }).isRequired
 }
 
-export default PopulationTrend;
+export default PopulationSize;
