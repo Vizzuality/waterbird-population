@@ -11,15 +11,15 @@ const PopulationInfo = () => (
       <h2>{info.title}</h2>
     </div>
     <div className="info-content">
-      <div className="grid-item-1">
-        <p className="head">Order name</p>
-
-      </div>
-      <div className="grid-item-2">
-        <p className="info">Anseriformes</p>
-
-      </div>
-      <div className="grid-item-3">
+      {info.data.map((i, j) => console.log(i,j) ||
+        <div className={`grid-item-${j+1}`}>
+          <div className="item-content">
+            <p className="head">{Object.keys(i)}</p>
+            <p className="info">{Object.values(i)}</p>
+          </div>
+        </div>
+      )}
+      {/* <div className="grid-item-3">
         <p className="head">Order family</p>
 
       </div>
@@ -75,7 +75,7 @@ const PopulationInfo = () => (
       </div>
       <div className="grid-item-18">
         <p className="info">Asia</p>
-      </div>
+      </div> */}
     </div>
   </div>
 )
