@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import Icon from 'components/icon';
 
@@ -10,44 +11,52 @@ import './styles.scss';
 
 const TableCard = ({ }) => {
   const info = CardTableInfo; // info coming from props when we get data
+  const tag = true;
 
-  return <div className="c-table-card">
-    <div className="table-card-header">
-      <div className="table-card-title">
-        <h4 className="table-title">{Object.keys(info.title)}</h4>
-        <h4 className="table-subtitle">{Object.values(info.title)}</h4>
+  return <div className="c-card-info">
+    <div className="card-header">
+      <div className="card-title">
+        <div className="title">
+        <h4>
+          {Object.keys(info.title)}
+        </h4>
+        {tag && <span>under review</span>}
+        </div>
+        <h4 className="subtitle">{Object.values(info.title)}</h4>
       </div>
 
-      <div className="table-card-buttons">
+      <div className="card-buttons">
         <button type="button">
-          More info
-          {/* <Icon name="info" /> */}
+          <p>More info</p>
+          <Icon name="info" />
         </button>
         <button type="button">
-          Download data
-          {/* <Icon name="download" /> */}
+          <p>Download data</p>
+          <Icon name="download" />
         </button>
       </div>
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          {Object.keys(info.columns).map(i => <th scope="column">{i}</th>)}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          {Object.values(info.columns).map(i => <td scope="column">{i}</td>)}
-        </tr>
-      </tbody>
-    </table>
+    <div className="card-data">
+      {info.data.map(i =>
+        <div>
+          {console.log(typeof(Object.keys(i)[0]))}
+          <p className="data-property">{Object.keys(i)}</p>
+          <p className={classnames('data-value',
+           // { '-number': typeof(Object.keys(i)[0] === Number) }
+           )}
+          >
+            {Object.values(i)}
+          </p>
+        </div>
+      )}
+    </div>
   </div>
 }
 
 
 TableCard.propTypes = {
-  info: PropTypes.shape({}).isRequired
+  info: PropTypes.array.isRequired
 }
 
 export default TableCard;

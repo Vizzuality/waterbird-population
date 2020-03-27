@@ -1,50 +1,68 @@
 @import 'styles/settings';
 
-.c-table-card {
+.c-card-info {
   display: flex;
   flex-direction: column;
+  font-family: $font-family-1;
   padding: 20px;
   position: relative;
   border: 1px solid rgba($color-grey-8, 0.1);
   border-radius: $border-radius;
 
-  .table-card-header {
+  .card-header {
     display: flex;
 
-    .table-card-title {
+    .card-title {
       display: flex;
       flex-direction: column;
+      width: 100%;
 
-      h4 {
-        font-size: 18px;
-        line-height: 21px;
-        text-align: start;
+      .title {
+        display: flex;
+        align-items: center;
         padding-bottom: 20px;
 
+        h4 {
+          font-size: 18px;
+          line-height: 21px;
+          padding-right: 10px;
 
-        &.table-subtitle {
-          letter-spacing: 1px;
+          &.subtitle {
+            letter-spacing: 1px;
+            text-transform: uppercase;
+          }
+        }
+
+        span {
+          position: relative;
+          border-radius: 4px;
+          background-color: rgba($color-grey-5, 0.2);
+          font-size: 10px;
+          letter-spacing: 0;
+          line-height: 11px;
+          padding: 4px 20px;
+          text-transform: uppercase;
+
+          &:before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            height: 6px;
+            width: 6px;
+            background-color: $color-grey-5;
+          }
         }
       }
     }
 
-    .table-card-buttons {
+    .card-buttons {
       width: 100%;
       display: flex;
       justify-content: flex-end;
       align-items: flex-start;
-
-      :first-child {
-        position: relative;
-        &:after {
-          content: '';
-          position: absolute;
-          right: -10px;
-          height: 100%;
-          width: 1px;
-          background-color: $color-grey-3;
-        }
-      }
 
       button {
         color: $color-2;
@@ -52,39 +70,51 @@
         font-size: 14px;
         font-weight: bold;
         line-height: 20px;
+        align-items: center;
+        display: flex;
+
+        &:first-child {
+          position: relative;
+
+          &:after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            height: 100%;
+            width: 1px;
+            background-color: $color-grey-3;
+          }
+        }
+
+        p {
+          padding-right: 10px;
+          display: inline;
+        }
       }
+
+
+
     }
   }
 
-  table {
+  .card-data {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 15px;
     font-size: 14px;
-    width: 100%;
-    border-collapse: collapse;
-    display: table;
-    border-collapse: separate;
+    letter-spacing: 0;
 
-    tbody {
-      padding-bottom: 20px;
-    }
-
-    th, td {
-      text-align: left;
-      padding-right: 20px;
-    }
-
-    th {
+    .data-property {
       line-height: 16px;
+      padding-bottom: 5px;
     }
+    .data-value {
+        font-weight: bold;
+        line-height: 19px;
 
-    td {
-      font-family: $font-family-2;
-      font-weight: bold;
-      line-height: 19px;
-
-      a {
-        color: $color-2;
+      &.-number {
+        font-family: $font-family-2;
       }
     }
   }
 }
-
