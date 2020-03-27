@@ -1,4 +1,7 @@
+@import 'styles/settings';
+
 .c-conservation-framework {
+  position: relative;
   line-height: 19px;
   padding-bottom: 40px;
 
@@ -8,4 +11,4 @@
     line-height: 16px;
     padding-top: 10px;
   }
-}
+};

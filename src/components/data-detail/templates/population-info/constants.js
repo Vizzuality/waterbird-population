@@ -1,43 +1,15 @@
 const TableInfo = {
   title: 'Population information',
-  data: (
-      {
-        property: 'Order name',
-        name: 'Anseriformes'
-      },
-      {
-        property: 'Family name',
-        name: 'Anatidae'
-      },
-      {
-        list: [
-          {
-            firstProperty: 'Scientific name',
-            name: 'DEC'
-          },
-          {
-            property: 'Common name',
-            name: 'Northern Pintail'
-          },
-        ],
-      },
-      {
-        property: 'Population name',
-        name: 'South Asia (non-bre)'
-      },
-      {
-        property: 'Breeding range',
-        name: 'Central Siberia, Central Asia'
-      },
-      {
-        property: 'Red List',
-        tag: 'LEAST CONCERN'
-      },
-      {
-        property: 'Ramsar regions',
-        name: 'Asia'
-      }
-  )
+  data: [
+      { 'Order name':'Anseriformes' },
+      { 'Family name': 'Anatidae'},
+      { 'Scientific name': 'DEC' },
+      { 'Common name': 'Northern Pintail'},
+      { 'Population name': 'South Asia (non-bre)' },
+      { 'Breeding range' : 'Central Siberia, Central Asia' },
+      { 'Red List' : 'LEAST CONCERN' },
+      { 'Ramsar regions' : 'Asia' }
+    ]
 };
 
 export default TableInfo;

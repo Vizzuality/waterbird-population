@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -68,7 +68,7 @@ const PopulationInfo = () => (
         <p className="head">Red list</p>
       </div>
       <div className="grid-item-16">
-        <p className="info">Least concern</p>
+        <p className="info tag">Least concern</p>
       </div>
       <div className="grid-item-17">
         <p className="head">Ramsar region</p>

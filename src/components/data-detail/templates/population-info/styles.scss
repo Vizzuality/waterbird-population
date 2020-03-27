@@ -1,4 +1,4 @@
-@import 'styles/seetings';
+//@import 'styles/seetings';
 
 .c-population-info {
 
@@ -99,7 +99,7 @@
       border-radius: 4px;
       padding: 5px 10px 5px 25px;
       background-color: #40A30B;
-      color: $white;
+      color: white;
       font-size: 10px;
       line-height: 11px;
       position: relative;
@@ -113,8 +113,12 @@
         transform: translateY(-50%);
         height: 6px;
         width: 6px;
-        background-color: $white;
+        background-color: white;
       }
+    }
+
+    p {
+      display: inline;
     }
   }
 }
