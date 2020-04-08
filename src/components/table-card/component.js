@@ -15,30 +15,29 @@ const TableCard = ({ }) => {
   const tag = true;
 
   return <div className="c-card-info">
-    <div className="card-header">
-      <div className="card-title">
-        <div className="title">
-          <h4>
-            {Object.keys(info.title)}
-          </h4>
-          {tag && <span>under review</span>}
-        </div>
-        <h4 className="subtitle">{Object.values(info.title)}</h4>
-      </div>
-
-      <div className="card-buttons">
-        <button type="button">
-          <p>More info</p>
-          <Icon name="info" />
-        </button>
-        <button type="button">
-          <p>Download data</p>
-          <Icon name="download" />
-        </button>
-      </div>
-    </div>
-
     <Link to="/explore/info">
+      <div className="card-header">
+        <div className="card-title">
+          <div className="title">
+            <h4>
+              {Object.keys(info.title)}
+            </h4>
+            {tag && <span>under review</span>}
+          </div>
+          <h4 className="subtitle">{Object.values(info.title)}</h4>
+        </div>
+
+        <div className="card-buttons">
+          <button type="button">
+            <p>More info</p>
+            <Icon name="info" />
+          </button>
+          <button type="button">
+            <p>Download data</p>
+            <Icon name="download" />
+          </button>
+        </div>
+      </div>
       <div className="card-data">
         {info.data.map(i =>
           <div>
