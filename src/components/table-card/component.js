@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'redux-first-router-link';
 import classnames from 'classnames';
 
 import Icon from 'components/icon';
@@ -17,10 +18,10 @@ const TableCard = ({ }) => {
     <div className="card-header">
       <div className="card-title">
         <div className="title">
-        <h4>
-          {Object.keys(info.title)}
-        </h4>
-        {tag && <span>under review</span>}
+          <h4>
+            {Object.keys(info.title)}
+          </h4>
+          {tag && <span>under review</span>}
         </div>
         <h4 className="subtitle">{Object.values(info.title)}</h4>
       </div>
@@ -37,23 +38,24 @@ const TableCard = ({ }) => {
       </div>
     </div>
 
-    <div className="card-data">
-      {info.data.map(i =>
-        <div>
-          {console.log(typeof(Object.keys(i)[0]))}
-          <p className="data-property">{Object.keys(i)}</p>
-          <p className={classnames('data-value',
-           // { '-number': typeof(Object.keys(i)[0] === Number) }
-           )}
-          >
-            {Object.values(i)}
-          </p>
-        </div>
-      )}
-    </div>
+    <Link to="/explore/info">
+      <div className="card-data">
+        {info.data.map(i =>
+          <div>
+            {console.log(typeof (Object.keys(i)[0]))}
+            <p className="data-property">{Object.keys(i)}</p>
+            <p className={classnames('data-value',
+              // { '-number': typeof(Object.keys(i)[0] === Number) }
+            )}
+            >
+              {Object.values(i)}
+            </p>
+          </div>
+        )}
+      </div>
+    </Link>
   </div>
 }
-
 
 TableCard.propTypes = {
   info: PropTypes.array.isRequired

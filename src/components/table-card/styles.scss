@@ -104,10 +104,25 @@
 
   .card-data {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
     font-size: 14px;
     letter-spacing: 0;
+
+    @media (min-width: map-get($breakpoints, sm)) {
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+    }
+
+    @media (min-width: map-get($breakpoints, md)) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 15px;
+    }
+
+    @media (min-width: map-get($breakpoints, lg)) {
+      grid-template-columns: repeat(6, 1fr);
+      grid-gap: 15px;
+    }
 
     .data-property {
       line-height: 16px;

@@ -15,6 +15,10 @@ export const routes = {
     page: 'explore',
     path: '/explore'
   },
+  EXPLORE_DETAIL: {
+    page: 'explore/info',
+    path: '/explore/info'
+  },
   BACKGROUND: {
     page: 'background',
     path: '/background/:id'
