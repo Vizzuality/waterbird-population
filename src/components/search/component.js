@@ -36,6 +36,7 @@ const Search = ({ activeFilters }) => {
       <Modal
         isOpen={isOpen}
         onRequestClose={() => toggleModal(false)}
+        style={{ width: '900px' }}
     >
       <Filters
         activeFilters={activeFilters}
