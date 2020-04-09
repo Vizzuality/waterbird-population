@@ -1,6 +1,7 @@
 @import 'styles/settings';
 
 .c-select {
+  min-width: 250px;
 
   .react-select__control {
     padding: 5px 10px;
@@ -23,6 +24,10 @@
       svg {
         fill: $black;
       }
+    }
+    .react-select__placeholder {
+      color: rgba($black, 0.85);
+      font-style: italic;
     }
   }
 }

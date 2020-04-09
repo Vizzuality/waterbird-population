@@ -1,0 +1,25 @@
+@import 'styles/settings';
+
+
+.c-widget-element {
+  h2 {
+    // height: 52px;
+    // width: 305px;
+    // color: #1C1B27;
+    // font-family: Aller;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 26px;
+  }
+
+  .widget-select {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    p {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}

@@ -7,6 +7,13 @@ export const menuItems = [
     type: 'EXPLORE'
   },
   {
+    name: 'Analyze',
+    dropdown: false,
+    component: false,
+    path: '/analyze',
+    type: 'ANALYZE'
+  },
+  {
     name: 'Background',
     dropdown: {
       options: [
