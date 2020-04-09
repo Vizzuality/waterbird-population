@@ -2,18 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'components/card';
 import PagesInfo from 'pages/constants';
+import Image from 'static/waves.png';
 
 import './styles.scss';
 
 const StaticPage = ({ currentTab, currentPage }) => {
   const page = PagesInfo[currentPage];
-  const tabInfo = page.tabsInfo.find(tab => tab.id === currentTab.id)
+
+  const info = page.tabs && page.tabsInfo
+    ? page.tabsInfo.find(tab => tab.id === currentTab.id)
+    : page
+
   return (
-    <div className="l-static">
+    <div className="l-static" style={{ backgroundImage: `url(${Image})` }}>
       <div>
         <h1>{page.title}</h1>
       </div>
-      <Card info={tabInfo} tabs={page.tabs} page={currentPage} />
+      <Card
+        info={info}
+        tabs={page.tabs || null}
+        page={currentPage} />
     </div>
   );
 }

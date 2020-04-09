@@ -3,6 +3,7 @@ import TableCard from 'components/table-card';
 
 import TabInfo from 'pages/static-tabs';
 
+import WidgetsWrapper from "components/widget";
 import SpeciesPopulationInfo from 'pages/data/s&p/constants';
 import PopulationEstimatesInfo from 'pages/data/pe/constants';
 import ThresholdInfo from 'pages/data/threshold/constants';
@@ -13,6 +14,12 @@ import WAFInfo from 'pages/background/waf/constants';
 import glossaryInfo from 'pages/background/glossary/constants';
 
 const PagesInfo = {
+  ANALYZE: {
+    title: 'Analyze',
+    tabs: false,
+    tabsInfo: false,
+    content: <WidgetsWrapper />
+  },
   BACKGROUND: {
     title: 'Background',
     tabs: [
