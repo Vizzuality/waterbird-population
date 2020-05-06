@@ -41,3 +41,17 @@ $z-index-5: 10;
 $font-weight-regular: 300;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
+
+// Breakpoints
+$sm: 384px;
+$md: 768px;
+$lg: 940px;
+$xlg: 1280px;
+
+$screen-max-width: 1024px;
+$breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xlg: $xlg
+);

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'components/button';
+import Icon from 'components/icon';
 
 import './styles.scss';
 
@@ -10,7 +11,7 @@ const DataControls = ({ }) => {
     <div className="c-data-controls">
       <div>
         <Button className="-download">
-          {/* <Icon name="download"/> */}
+          <Icon name="download"/>
           Download results
           </Button>
       </div>
