@@ -1,0 +1,49 @@
+@import 'styles/settings';
+
+.map-share {
+  pointer-events: all;
+}
+.c-share {
+  .form-fields {
+    display: flex;
+    flex-direction: column;
+
+    > label {
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 29px;
+    }
+
+    .share-content {
+      display: flex;
+      padding: 15px;
+      border: none;
+      border-radius: $border-radius;
+
+      box-shadow: 0 4px 12px 0 rgba($black, 0.08);
+
+      > input {
+        display: flex;
+        align-items: center;
+        border: 0;
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 8px;
+        position: relative;
+      }
+      .share-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          border-radius: 10px;
+          padding: 10px 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

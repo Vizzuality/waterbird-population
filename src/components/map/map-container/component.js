@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
 import { NavigationControl, FullscreenControl } from 'react-map-gl';
@@ -9,6 +8,7 @@ import { NavigationControl, FullscreenControl } from 'react-map-gl';
 // Components
 import Map from 'components/map';
 import Legend from 'components/map/legend';
+import ShareControl from 'components/share';
 
 import './styles.scss';
 
@@ -20,8 +20,6 @@ export const MapContainer = ({
   map,
   bounds
 }) => {
-
-
 
   useEffect(() => {
     window.addEventListener('resize', resize);
@@ -79,11 +77,10 @@ export const MapContainer = ({
             <div className="map-controls">
               <NavigationControl className="map-navigation" />
               <FullscreenControl className="map-fullscreen" />
+              <ShareControl className="map-share" />
             </div>
-
           </Fragment>
         }
-
       </Map>
       <Legend />
     </div>
