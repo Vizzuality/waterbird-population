@@ -153,18 +153,17 @@ class Map extends Component {
     });
   };
 
-  onHover = (e) => {
-    e.preventDefault();
-    const { setLocation } = this.props;
+  onHover = () => {
     this.setState({ showPopup: true });
-    setLocation(e.lngLat);
     setTimeout(() => {
       this.setState({ showPopup: false });
     }, 2000);
   };
 
-  onClick = () => {
-    const { setPopUp } = this.props;
+  onClick = (e) => {
+    e.preventDefault();
+    const { setPopUp, setLocation } = this.props;
+    setLocation(e.lngLat);
     setPopUp(true);
   }
 
