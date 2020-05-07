@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 // Components
 import DataControls from 'components/data-controls';
 import Select from 'components/select';
+import Spinner from 'components/spinner';
 
 // styles
 import './styles.scss';
 
-const WidgetWrapper = ({ title, url, body, children, info, id, fetchWidget }) => {
-
+const WidgetWrapper = ({ key, title, url, body, children, info, id, fetchWidget, ...props }) => {
   const [widgetData,] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,12 +36,10 @@ const WidgetWrapper = ({ title, url, body, children, info, id, fetchWidget }) =>
       </div>
     </div>
 
-
-
-    {/* <div className="widget-content">
-        {loading && <Spinner position="relative" />}
-        {!loading && children({ widgetData, id, ...this.props })}
-      </div> */}
+    <div className="widget-content">
+      {/* {loading && <Spinner position="relative" />} */}
+      {children}
+    </div>
   </div>
 }
 
