@@ -2,22 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import TabsMenu from 'components/tabs-menu';
+import { fetchSpecies } from 'services/species';
+
 
 import './styles.scss';
 
-const Card = ({ info, tabs, page }) =>
-  <div className="c-card">
-    {tabs &&
-      <div className="card-navigation">
-        <TabsMenu tabs={tabs} page={page} />
+const Card = ({ info, tabs, page }) => {
+  const hola = fetchSpecies();
+  console.log(process.env)
+  return (
+
+    <div className="c-card">
+      {tabs &&
+        <div className="card-navigation">
+          <TabsMenu tabs={tabs} page={page} />
+        </div>
+      }
+      <div className={classnames('card-content',
+        { [info.id]: info.id })}>
+        {info.intro || null}
+        {info.content || null}
       </div>
-    }
-    <div className={classnames('card-content',
-      { [info.id]: info.id })}>
-      {info.intro || null}
-      {info.content || null}
     </div>
-  </div>
+  );
+};
+
 
 Card.propTypes = {
   infoId: PropTypes.shape({
