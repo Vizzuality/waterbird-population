@@ -1,0 +1,76 @@
+@import 'styles/settings';
+
+.c-section1 {
+  padding: 190px 0 160px 0;
+  color: $white;
+  background-image: url('../images/section1.png');
+  background-size: cover;
+
+  h1 {
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: 66px;
+  }
+
+  .home-subtitle {
+    letter-spacing: 0;
+    line-height: 31px;
+    font-size: 18px;
+    padding: 20px 0;
+  }
+
+  h2 {
+    margin-top: 200px;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: 43px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 20px;
+
+      &.center {
+        text-align: center;
+      }
+    }
+
+
+
+  nav {
+    padding: 20px;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        padding: 10px 20px;
+        width: 250px;
+        border-radius: 0 10px 0 10px;
+        background-color: $color-2;
+        margin: auto;
+        margin-bottom: 5px;
+
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: $white;
+          font-size: 14px;
+          font-weight: bold;
+          letter-spacing: 0.78px;
+        }
+      }
+    }
+  }
+
+  .bottom-text {
+    line-height: 31px;
+  }
+}

@@ -45,13 +45,15 @@ $font-weight-medium: 500;
 $font-weight-bold: 700;
 
 // Breakpoints
-$sm: 384px;
+// https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
+$xsm: 300px;
+$sm: 576px;
 $md: 768px;
-$lg: 940px;
-$xlg: 1280px;
+$lg: 1024px;
+$xlg: 1200px;
 
-$screen-max-width: 1024px;
 $breakpoints: (
+  xsm: $xsm,
   sm: $sm,
   md: $md,
   lg: $lg,
