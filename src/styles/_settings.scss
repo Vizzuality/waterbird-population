@@ -59,3 +59,20 @@ $breakpoints: (
   lg: $lg,
   xlg: $xlg
 );
+
+// Flexbox grid
+$sm: 30rem;
+$md: 48rem;
+$lg: 62rem;
+$xlg: 80rem;
+
+$flexboxgrid-max-width: 1024px;
+$flexboxgrid-grid-columns: 12;
+$flexboxgrid-gutter-width: 1.5rem;
+$flexboxgrid-outer-margin: 1.5rem;
+$flexboxgrid-breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xlg: $xlg
+);
