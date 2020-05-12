@@ -1,6 +1,7 @@
 @import 'styles/settings';
 
 .c-section1 {
+  position: relative;
   padding: 190px 0 160px 0;
   color: $white;
   background-image: url('../images/section1-bg.png');
@@ -8,8 +9,8 @@
 
   img {
     position: absolute;
-    top: -190px;
-    right: -150px;
+    top: 0px;
+    right: 0px;
     max-width: 400px;
     height: auto;
 
@@ -60,11 +61,11 @@
 
       li {
         padding: 0 20px;
-        width: 250px;
         border-radius: 0 10px 0 10px;
         background-color: $color-2;
         margin: auto;
         margin-bottom: 5px;
+        width: 100%;
 
         &:hover {
           background-color: $white;
@@ -84,6 +85,10 @@
 
           &:hover {
             color: $color-2;
+          }
+
+          svg {
+            margin-left: 20px;
           }
         }
       }

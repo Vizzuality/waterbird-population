@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classnames from 'classnames';
 import Icon from 'components/icon';
 import Image from '../images/section1.png';
 
@@ -15,13 +16,13 @@ const Section1 = () => {
 
   return (
     <section className="c-section1">
+      <div className="col-md-5 col-sm-12">
+        <img src={Image} alt="Wetlands International" />
+      </div>
       <div className="wrapper">
-        <div className="row">
+        <div className="row start-xs">
           <div className="col-md-7 col-sm-12">
-            <h1>Waterbird <br /> Population Estimates</h1>
-          </div>
-          <div className="col-md-5 col-sm-12">
-            <img src={Image} alt="Wetlands International" />
+            <h1>Waterbirds <br /> Populations Portal.</h1>
           </div>
         </div>
         <div className="row">
@@ -43,10 +44,15 @@ const Section1 = () => {
                   <div className="row start-lg center-xs equal-height ">
                     {Links.map(({ label, href }) => (
                       <div className="col-lg-3 col-md-4 col-sm-6 col-xsm-12 center-xs">
-                        <li key={label}  onMouseEnter={handleOver} onMouseLeave={handleOver} >
+                        <li key={label} onMouseEnter={handleOver} onMouseLeave={handleOver} >
                           <a target="_blank" rel="noopener noreferrer" href={href}>
                             {label}
-                            <Icon className="-huge" name={!hoverActive ? "flecha_01" : "flecha_02"} />
+                            <Icon className={classnames('-huge', {
+                              '-hidden': hoverActive
+                            })} name="flecha_01" />
+                            <Icon className={classnames('-huge', {
+                              '-hidden': !hoverActive
+                            })} name="flecha_02" />
                           </a>
                         </li>
                       </div>
