@@ -7,17 +7,19 @@
     max-width: 400px;
     width: 100%;
     height: auto;
+    margin-left: -25px;
   }
 
   h2 {
-    padding-left: 40px;
     font-size: 32px;
     line-height: 43px;
+    padding: 20px;
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
+    padding: 20px;
 
     li {
       padding: 20px 0;
