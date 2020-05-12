@@ -3,15 +3,16 @@
   .c-modal {
     background-color: rgba($white, 0.1);
     justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    display: flex;
+    height: 100%;
 
    .modal-content {
       position: relative;
-      top: 20px;
       margin: auto;
-      padding: 45px;
       box-sizing: border-box;
-      width: 900px;
-      height: 100%;
       border: 1px solid rgba($black, 0.1);
       border-radius: 10px;
       background-color: $white;
