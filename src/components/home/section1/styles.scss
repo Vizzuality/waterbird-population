@@ -3,8 +3,20 @@
 .c-section1 {
   padding: 190px 0 160px 0;
   color: $white;
-  background-image: url('../images/section1.png');
+  background-image: url('../images/section1-bg.png');
   background-size: cover;
+
+  img {
+    position: absolute;
+    top: -190px;
+    right: -150px;
+    max-width: 400px;
+    height: auto;
+
+    @media (max-width: map-get($breakpoints, sm)) {
+      display: none;
+    }
+  }
 
   h1 {
     font-size: 64px;
@@ -13,7 +25,7 @@
   }
 
   .home-subtitle {
-    letter-spacing: 0;
+    letter-spacing: 1;
     line-height: 31px;
     font-size: 18px;
     padding: 20px 0;
@@ -32,13 +44,12 @@
     font-weight: bold;
     letter-spacing: 0;
     line-height: 20px;
+    padding: 20px 0;
 
       &.center {
         text-align: center;
       }
     }
-
-
 
   nav {
     padding: 20px;
@@ -48,23 +59,32 @@
       flex-wrap: wrap;
 
       li {
-        padding: 10px 20px;
+        padding: 0 20px;
         width: 250px;
         border-radius: 0 10px 0 10px;
         background-color: $color-2;
         margin: auto;
         margin-bottom: 5px;
 
+        &:hover {
+          background-color: $white;
+        }
+
         a {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          color: $white;
           text-decoration: none;
           text-transform: uppercase;
-          color: $white;
           font-size: 14px;
           font-weight: bold;
           letter-spacing: 0.78px;
+          min-height: 66px;
+
+          &:hover {
+            color: $color-2;
+          }
         }
       }
     }
