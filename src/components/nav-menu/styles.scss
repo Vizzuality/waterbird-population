@@ -75,14 +75,18 @@
         }
       }
     }
+
+    @media (min-width: map-get($breakpoints, sm)) {
+      flex-direction: column;
+    }
   }
 
   &.footer {
     justify-content: flex-start;
-    color: $white;
     padding: $padding 0;
 
     h3 {
+      color: $white;
       font-weight: bold;
       padding-bottom: 10px;
     }
@@ -90,6 +94,13 @@
     .dropdown-list {
       background-color: $color-grey-8;
       line-height: 30px;
+      a {
+        color: $white;
+      }
     }
+  }
+
+  @media (max-width: map-get($breakpoints, md)) {
+    flex-direction: column;
   }
 }
