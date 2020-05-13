@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'redux-first-router-link';
 
-import NavMenu from 'components/nav-menu'
+import NavMenu from 'components/nav-menu';
+import Image from './images/logo_EAD.png';
 
 import './styles.scss';
 
@@ -17,13 +18,22 @@ const Footer = () =>
           className="c-button -border -medium -tertiary"
         >
           Contact us
-          </a>
-          <Link className="c-button -background -medium -primary" to={ { type: "REGISTER", payload: { pathname: "register" } }}>Join us</Link>
+        </a>
+        <Link className="c-button -background -medium -primary" to={{ type: "REGISTER", payload: { pathname: "register" } }}>Join us</Link>
       </div>
     </section>
     <section className="footer-navigation">
       <NavMenu className='footer' />
     </section>
+    <aside>
+      <a
+        href="https://www.ead.gov.ae/en"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src={Image} alt='Environment Agency – Abu Dhabi (EAD)' />
+      </a>
+    </aside>
   </footer>
 
 export default Footer;
