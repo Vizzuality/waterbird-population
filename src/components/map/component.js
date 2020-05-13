@@ -61,6 +61,9 @@ class Map extends Component {
     /** A function that exposes when the map is ready. It returns and object with the `this.map` and `this.mapContainer` reference. */
     onReady: PropTypes.func,
 
+    /** A function that exposes when the cursor is out of the map. */
+    onMouseOut: PropTypes.func,
+
     /** A function that exposes when the map is loaded. It returns and object with the `this.map` and `this.mapContainer` reference. */
     onLoad: PropTypes.func,
 
@@ -100,7 +103,8 @@ class Map extends Component {
     },
     flying: false,
     loaded: false,
-    showPopup: false
+    showPopup: false,
+    popUpCoordinates: '',
   };
 
   componentDidMount() {
@@ -143,6 +147,10 @@ class Map extends Component {
     }
   }
 
+  onMouseOut = () => {
+    this.setState({ showPopup: false });
+  };
+
   onLoad = () => {
     const { onLoad } = this.props;
     this.setState({ loaded: true });
@@ -153,11 +161,8 @@ class Map extends Component {
     });
   };
 
-  onHover = () => {
-    this.setState({ showPopup: true });
-    setTimeout(() => {
-      this.setState({ showPopup: false });
-    }, 2000);
+  onHover = (e) => {
+    this.setState({ showPopup: true, popUpCoordinates: e.lngLat });
   };
 
   onClick = (e) => {
@@ -260,7 +265,7 @@ class Map extends Component {
       coordinates,
       ...mapboxProps
     } = this.props;
-    const { viewport, loaded, flying, showPopup } = this.state;
+    const { viewport, loaded, flying, showPopup, popUpCoordinates } = this.state;
 
     return (
       <div
@@ -295,18 +300,22 @@ class Map extends Component {
           onResize={this.onResize}
           onLoad={this.onLoad}
           onHover={this.onHover}
+          onMouseOut={this.onMouseOut}
           onClick={this.onClick}
           getCursor={getCursor}
+
 
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
           { showPopup &&
             <Popup
-            longitude={coordinates[0]}
-            latitude={coordinates[1]}
-            closeButton={false}
-            anchor="top" >
+              longitude={popUpCoordinates[0]}
+              latitude={popUpCoordinates[1]}
+              closeButton={false}
+              onMouseLeave={() => { console.log('holafg') }}
+              anchor="top"
+            >
               <p>Click on the map to reveal relevant populations.</p>
             </Popup>
           }
@@ -315,6 +324,7 @@ class Map extends Component {
             !!this.map &&
             typeof children === 'function' &&
             children(this.map)}
+
         </ReactMapGL>
       </div>
     );

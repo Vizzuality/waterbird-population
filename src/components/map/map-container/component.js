@@ -37,6 +37,7 @@ export const MapContainer = ({
 
   const onViewportChange = () => {
     const { width, height, latitude, longitude, zoom } = viewport;
+
   };
 
   const resize = () => {
@@ -54,7 +55,7 @@ export const MapContainer = ({
         // bounds={bounds}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-      // onViewportChange={onViewportChange}
+        onViewportChange={onViewportChange}
       // onClick={clickHandler}
       // interactiveLayerIds={interactiveLayerIds}
       //  onPopupClose={popupCloseHandler}

@@ -41,7 +41,6 @@ const TableCard = ({ }) => {
       <div className="card-data">
         {info.data.map(i =>
           <div>
-            {console.log(typeof (Object.keys(i)[0]))}
             <p className="data-property">{Object.keys(i)}</p>
             <p className={classnames('data-value',
               // { '-number': typeof(Object.keys(i)[0] === Number) }
