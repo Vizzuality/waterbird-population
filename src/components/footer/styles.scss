@@ -41,11 +41,11 @@
 
       @media (max-width: map-get($breakpoints, md)) {
         flex-direction: column;
+        margin-top: 20px;
       }
     }
     @media (max-width: map-get($breakpoints, md)) {
       flex-direction: column;
-      margin-top: 20px;
     }
   }
 
