@@ -20,6 +20,7 @@ export const MapContainer = ({
   mapStyle,
   map,
   bounds,
+  scrollZoom = false,
   coordinates,
   isOpen,
   setPopUp
@@ -53,6 +54,7 @@ export const MapContainer = ({
       <Map
         viewport={viewport}
         // bounds={bounds}
+        scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={onViewportChange}
