@@ -75,10 +75,6 @@
         }
       }
     }
-
-    @media (min-width: map-get($breakpoints, sm)) {
-      flex-direction: column;
-    }
   }
 
   &.footer {
@@ -98,9 +94,8 @@
         color: $white;
       }
     }
-  }
-
-  @media (max-width: map-get($breakpoints, md)) {
-    flex-direction: column;
+    @media (max-width: map-get($breakpoints, sm)) {
+      flex-direction: column;
+    }
   }
 }
