@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -34,8 +34,8 @@ const PopulationTrend = ({ data }) => {
           onClick={handleClick}
           className={classnames('-secondary -medium',
             {
-              ['-background']: isCollapsed,
-              ['-border']: !isCollapsed
+              '-background': isCollapsed,
+              '-border': !isCollapsed
             }
           )}
         >
@@ -69,8 +69,8 @@ const PopulationTrend = ({ data }) => {
                     onClick={handleClickComments}
                     className={classnames('-border -small',
                       {
-                        ['-secondary']: isOpen,
-                        ['-primary']: !isOpen
+                        '-secondary': isOpen,
+                        '-primary': !isOpen
                       }
                     )}
                   >

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
+import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS, Popup } from 'react-map-gl';
 import { fitBounds } from 'viewport-mercator-project';
 
 import { easeCubic } from 'd3-ease';
@@ -61,8 +61,14 @@ class Map extends Component {
     /** A function that exposes when the map is ready. It returns and object with the `this.map` and `this.mapContainer` reference. */
     onReady: PropTypes.func,
 
+    /** A function that exposes when the cursor is out of the map. */
+    onMouseOut: PropTypes.func,
+
     /** A function that exposes when the map is loaded. It returns and object with the `this.map` and `this.mapContainer` reference. */
     onLoad: PropTypes.func,
+
+    /** A function that exposes when the mouse moves over the map. */
+    onHover: PropTypes.func,
 
     /** A function that exposes the viewport */
     onViewportChange: PropTypes.func,
@@ -79,9 +85,10 @@ class Map extends Component {
     dragPan: true,
     dragRotate: true,
 
-    onViewportChange: () => {},
-    onLoad: () => {},
-    onReady: () => {},
+    onViewportChange: () => { },
+    onLoad: () => { },
+    onHover: () => { },
+    onReady: () => { },
     getCursor: ({ isHovering, isDragging }) => {
       if (isHovering) return 'pointer';
       if (isDragging) return 'grabbing';
@@ -95,7 +102,9 @@ class Map extends Component {
       ...this.props.viewport // eslint-disable-line
     },
     flying: false,
-    loaded: false
+    loaded: false,
+    showPopup: false,
+    popUpCoordinates: '',
   };
 
   componentDidMount() {
@@ -111,7 +120,10 @@ class Map extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { viewport: prevViewport, bounds: prevBounds } = prevProps;
+    const {
+      viewport: prevViewport,
+      bounds: prevBounds,
+    } = prevProps;
     const { viewport, bounds } = this.props;
     const { viewport: stateViewport } = this.state;
 
@@ -135,6 +147,10 @@ class Map extends Component {
     }
   }
 
+  onMouseOut = () => {
+    this.setState({ showPopup: false });
+  };
+
   onLoad = () => {
     const { onLoad } = this.props;
     this.setState({ loaded: true });
@@ -144,6 +160,17 @@ class Map extends Component {
       mapContainer: this.mapContainer
     });
   };
+
+  onHover = (e) => {
+    this.setState({ showPopup: true, popUpCoordinates: e.lngLat });
+  };
+
+  onClick = (e) => {
+    e.preventDefault();
+    const { setPopUp, setLocation } = this.props;
+    setLocation(e.lngLat);
+    setPopUp(true);
+  }
 
   onViewportChange = (v, i) => {
     const { onViewportChange } = this.props;
@@ -235,9 +262,10 @@ class Map extends Component {
       touchRotate,
       doubleClickZoom,
       mapboxApiAccessToken,
+      coordinates,
       ...mapboxProps
     } = this.props;
-    const { viewport, loaded, flying } = this.state;
+    const { viewport, loaded, flying, showPopup, popUpCoordinates } = this.state;
 
     return (
       <div
@@ -271,15 +299,32 @@ class Map extends Component {
           onViewportChange={this.onViewportChange}
           onResize={this.onResize}
           onLoad={this.onLoad}
-          // getCursor={getCursor}
+          onHover={this.onHover}
+          onMouseOut={this.onMouseOut}
+          onClick={this.onClick}
+          getCursor={getCursor}
+
 
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
+          { showPopup &&
+            <Popup
+              longitude={popUpCoordinates[0]}
+              latitude={popUpCoordinates[1]}
+              closeButton={false}
+              onMouseLeave={() => { console.log('holafg') }}
+              anchor="top"
+            >
+              <p>Click on the map to reveal relevant populations.</p>
+            </Popup>
+          }
+
           {loaded &&
             !!this.map &&
             typeof children === 'function' &&
             children(this.map)}
+
         </ReactMapGL>
       </div>
     );

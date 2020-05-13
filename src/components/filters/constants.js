@@ -45,7 +45,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-    <Link target="_blank" to="/images/Biogeographic">
+    <Link target="_blank" rel="noopener noreferrer" to="/images/Biogeographic">
     <Icon name="info" />
   </Link>
     )
@@ -59,7 +59,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-      <Link target="_blank" to="/images/Ramsar">
+      <Link target="_blank" rel="noopener noreferrer" to="/images/Ramsar">
         <Icon name="info" />
       </Link>
     )
@@ -73,7 +73,7 @@ const filters = [
       { 'label': '', 'value': ''},
     ],
     info: (
-      <a target="_blank" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
+      <a target="_blank" rel="noopener noreferrer" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
         <Icon name="info" />
       </a>
     )

@@ -26,7 +26,7 @@ const Icons = () => (
       </symbol>
       <symbol id="icon-close" viewBox="0 0 32 32">
         <title>close</title>
-        <path fill="#fff" style={{ fill: 'var(--color1, #fff)' }, { stroke: 'var(--color1, #fff)' }} stroke="#fff" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="3.2" d="M30.4 16c0 7.953-6.447 14.4-14.4 14.4s-14.4-6.447-14.4-14.4c0-7.953 6.447-14.4 14.4-14.4s14.4 6.447 14.4 14.4z"></path>
+        <path fill="#fff" style={{ fill: 'var(--color1, #fff)', stroke: 'var(--color1, #fff)' }} stroke="#fff" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="3.2" d="M30.4 16c0 7.953-6.447 14.4-14.4 14.4s-14.4-6.447-14.4-14.4c0-7.953 6.447-14.4 14.4-14.4s14.4 6.447 14.4 14.4z"></path>
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="3.2" d="M21.236 10.764l-10.473 10.473"></path>
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="4" stroke-width="3.2" d="M21.236 21.236l-10.473-10.473"></path>
       </symbol>
@@ -54,7 +54,7 @@ const Icons = () => (
       </symbol>
       <symbol id="icon-info" viewBox="0 0 32 32">
         <title>info</title>
-        <path fill="#0282b0" style={{ fill: 'var(--color2, #0282b0)' }, { stroke: 'var(--color2, #0282b0)' }} stroke="#0282b0" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.5556" d="M30.222 16c0 7.855-6.367 14.222-14.222 14.222s-14.222-6.367-14.222-14.222c0-7.855 6.367-14.222 14.222-14.222s14.222 6.367 14.222 14.222z"></path>
+        <path fill="#0282b0" style={{ fill: 'var(--color2, #0282b0)', stroke: 'var(--color2, #0282b0)' }} stroke="#0282b0" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="3.5556" d="M30.222 16c0 7.855-6.367 14.222-14.222 14.222s-14.222-6.367-14.222-14.222c0-7.855 6.367-14.222 14.222-14.222s14.222 6.367 14.222 14.222z"></path>
         <path fill="#fff" style={{ fill: 'var(--color1, #fff)' }} d="M13.926 13.926h4.148v10.37h-4.148v-10.37z"></path>
         <path fill="#fff" style={{ fill: 'var(--color1, #fff)' }} d="M18.074 9.778c0 1.145-0.929 2.074-2.074 2.074s-2.074-0.929-2.074-2.074c0-1.145 0.929-2.074 2.074-2.074s2.074 0.929 2.074 2.074z"></path>
       </symbol>
