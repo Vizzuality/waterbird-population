@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -7,9 +7,16 @@ import Button from 'components/button';
 import Select from 'components/select';
 
 import filters from './constants';
+import { fetchFamilies } from 'services/families';
 import './styles.scss';
 
 const Filters = ({ activeFilters, onClick }) => {
+
+  const [families, setFamilies] = useState([])
+
+  useEffect(() => {
+    fetchFamilies().then(data=>setFamilies(data));
+  }, [families]);
 
   const handleClick = () => {
     onClick(false);
@@ -22,7 +29,7 @@ const Filters = ({ activeFilters, onClick }) => {
         {filters.map(filter =>
           <div className="filters">
             <div className="filter-type">
-              <label>{filter.type}</label>
+              <label>{filter.label}</label>
               {filter.info ? filter.info : null}
             </div>
             <Select

@@ -5,7 +5,8 @@ import Icon from 'components/icon';
 
 const filters = [
   {
-    'type': 'Taxonomic',
+    'label': 'Taxonomic',
+    'type': 'families',
     'options': [
       { 'label': '', 'value': ''},
       { 'label': '', 'value': ''},
@@ -14,7 +15,8 @@ const filters = [
     ]
   },
   {
-    'type': 'Publication',
+    'label': 'Publication',
+    'type': 'publications',
     'options': [
       { 'label': '', 'value': ''},
       { 'label': '', 'value': ''},
@@ -23,6 +25,7 @@ const filters = [
     ]
   },
   {
+    'label': 'Conservation Framework',
     'type': 'Conservation Framework',
     'options': [
       { 'label': '', 'value': ''},
@@ -37,6 +40,7 @@ const filters = [
     )
   },
   {
+    'label': 'Biogeographic/ Flyway region',
     'type': 'Biogeographic/ Flyway region',
     'options': [
       { 'label': '', 'value': ''},
@@ -51,6 +55,7 @@ const filters = [
     )
   },
   {
+    'label': 'Ramsar region',
     'type': 'Ramsar region',
     'options': [
       { 'label': '', 'value': ''},
@@ -65,6 +70,7 @@ const filters = [
     )
   },
   {
+    'label': 'Red list',
     'type': 'Red list',
     'options': [
       { 'label': '', 'value': ''},
