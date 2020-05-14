@@ -4,6 +4,7 @@ import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import DataResults from 'components/data-results';
+//import Spinner from 'components/spinner';
 
 import { fetchFamilies } from 'services/families';
 
@@ -25,7 +26,10 @@ const ExplorePage = () => {
     <div className="results-section">
       <Search  />
       <DataControls />
-      {families.map(family => <DataResults family={family} />)}
+      {families
+        ? families.map(family => <DataResults family={family} />)
+        : '...loading' // <Spinner />
+      }
     </div>
   </div>
  )

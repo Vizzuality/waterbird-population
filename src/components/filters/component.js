@@ -15,7 +15,7 @@ const Filters = ({ activeFilters, onClick }) => {
   const [families, setFamilies] = useState([])
 
   useEffect(() => {
-    fetchFamilies().then(data=>setFamilies(data));
+    fetchFamilies().then(data => setFamilies(data));
   }, [families]);
 
   const handleClick = () => {
