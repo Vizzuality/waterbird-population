@@ -16,7 +16,7 @@ const ExplorePage = () => {
 
   useEffect(() => {
     fetchFamilies().then(data=>setFamilies(data));
-  }, [families]);
+  }, []);
 
  return (
   <div className="l-explore">
@@ -26,7 +26,7 @@ const ExplorePage = () => {
     <div className="results-section">
       <Search  />
       <DataControls />
-      {families
+      {families.length > 0
         ? families.map(family => <DataResults family={family} />)
         : '...loading' // <Spinner />
       }
