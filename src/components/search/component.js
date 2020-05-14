@@ -8,7 +8,7 @@ import Filters from 'components/filters';
 import './styles.scss';
 
 
-const Search = ({ activeFilters }) => {
+const Search = ({ activeFilters, families }) => {
 
   const updateSearch = (e) => {
 
@@ -40,6 +40,7 @@ const Search = ({ activeFilters }) => {
     >
       <Filters
         activeFilters={activeFilters}
+        families={families}
         onClick={toggleModal}/>
       </Modal>
     </div>
