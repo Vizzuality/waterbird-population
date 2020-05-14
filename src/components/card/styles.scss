@@ -191,5 +191,23 @@
         }
       }
     }
+
+    &.ec {
+
+      li {
+
+        padding-bottom: 0;
+      }
+
+      h4 {
+        line-height: 32px;
+        font-weight: bold;
+      }
+
+      p {
+        margin-top: 0;
+        line-height: 32px;
+      }
+    }
   }
 }

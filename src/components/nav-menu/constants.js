@@ -36,7 +36,12 @@ export const menuItems = [
   },
   {
     name: 'Credits',
-    dropdown: false,
+    dropdown: {
+      options: [
+        { name: 'Funders & Supporters', id: 'fs' },
+        { name: 'Editors & Contributors', id: 'ec' }
+      ]
+    },
     component: false,
     path: '/credits',
     type: 'CREDITS',

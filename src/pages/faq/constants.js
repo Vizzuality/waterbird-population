@@ -13,7 +13,15 @@ const FaqInfo = [
     title: 'I have registered for the website. Why can’t I log in?',
     description: (
       <div>
-        <p>Both username and password are case sensitive. If you continue to have problems logging in, contact Wetlands International staff: wpe@wetlands.org</p>
+        <p>Both username and password are case sensitive. If you continue to have problems logging in, contact Wetlands International staff:
+          <a
+            href={`mailto:?to=wpe@wetlands.org&body= I can't acces to my account`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            &nbsp; wpe@wetlands.org
+          </a>
+        </p>
       </div>
     ),
   },
@@ -53,24 +61,31 @@ const FaqInfo = [
           <li>Please ensure you do not have other search criteria selected that may be restricting your search.</li>
         </ol>
       </div>
-        ),
-      },
+    ),
+  },
   {
-          title: 'How can I report an error or provide updated information?',
-        description: (
+    title: 'How can I report an error or provide updated information?',
+    description: (
       <div>
-          <p>Please provide full details, including references to wpe@wetlands.org. We will then submit this information for review to our specialist network. Please note that changes to estimates, trends and 1% thresholds are only published in new editions.</p>
-        </div>
-        ),
-      },
+        <p>Please provide full details, including references to
+          <a
+            href={`mailto:?to=wpe@wetlands.org`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            &nbsp; wpe@wetlands.org.
+          </a> We will then submit this information for review to our specialist network. Please note that changes to estimates, trends and 1% thresholds are only published in new editions.</p>
+      </div>
+    ),
+  },
   {
-          title: 'Why is there a limit to the number of records I can export in one batch?',
-        description: (
+    title: 'Why is there a limit to the number of records I can export in one batch?',
+    description: (
       <div>
-          <p>Selecting a very large number of populations to export will cause the system to slow down and your download would either crash or take a very long time to complete. We therefore limit the number of records that can be downloaded in a single batch to improve the speed and efficiency of downloads for all users.</p>
-        </div>
-        ),
-      }
-    ];
+        <p>Selecting a very large number of populations to export will cause the system to slow down and your download would either crash or take a very long time to complete. We therefore limit the number of records that can be downloaded in a single batch to improve the speed and efficiency of downloads for all users.</p>
+      </div>
+    ),
+  }
+];
 
-    export default FaqInfo;
+export default FaqInfo;

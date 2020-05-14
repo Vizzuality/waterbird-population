@@ -11,11 +11,11 @@ const CardTableInfo = {
     { 'Trend': 'DEC' },
     { 'Tren quality': 'No quality assessment' },
     { '1% Threshold': 20000 },
-    { 'Notes': <a href="">S8055</a> },
+    { 'Notes': <a target="_blank" rel="noopener noreferrer" href="">S8055</a> },
     { 'Size - Year': 0 - 0 },
-    { 'Size references': <a href="">R407</a> },
+    { 'Size references': <a target="_blank" rel="noopener noreferrer" href="">R407</a> },
     { 'Trend - Year': 1977 - 1991 },
-    { 'Trend references': <a href="">R519</a> },
+    { 'Trend references': <a target="_blank" rel="noopener noreferrer" href="">R519</a> },
     { '1% Yearest': 2010 }
   ]
 };

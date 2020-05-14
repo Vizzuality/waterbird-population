@@ -9,7 +9,6 @@ const StaticPage = ({ currentTab, currentPage }) => {
 
   const page = PagesInfo[currentPage];
   const cardInfo = page.tabs ? page.info.find(tab => tab.id === currentTab.id) : page.info;
-
   return (
     <div className="l-static">
       <div>

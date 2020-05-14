@@ -11,6 +11,8 @@ import WAWInfo from 'pages/background/waw/constants';
 import WIWPInfo from 'pages/background/wiwp/constants';
 import WAFInfo from 'pages/background/waf/constants';
 import glossaryInfo from 'pages/background/glossary/constants';
+import FSInfo from 'pages/credits/fs.js';
+import ECInfo from 'pages/credits/ec.js';
 import FaqInfo from 'pages/faq/constants';
 
 const PagesInfo = {
@@ -75,7 +77,23 @@ const PagesInfo = {
       }
     ],
   },
-  CREDITS: { title: 'Credits', description: null },
+  CREDITS: {
+    title: 'Credits',
+    tabs:[
+      { name: 'Funders & Supporters', id: 'fs' },
+      { name: 'Editors & Contributors', id: 'ec' }
+    ],
+    info: [
+      {
+        id: 'fs',
+        content: <TableCard info={FSInfo} />
+      },
+      {
+        id: 'ec',
+        content: <TabInfo info={ECInfo} />
+      }
+    ]
+  },
   FAQ: {
     title: 'Frequently Asked Questions',
     tabs: false,
