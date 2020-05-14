@@ -26,7 +26,7 @@ const ExplorePage = () => {
     <div className="results-section">
       <Search  />
       <DataControls />
-      {families.length > 0
+      {families && families.length > 0
         ? families.map(family => <DataResults family={family} />)
         : '...loading' // <Spinner />
       }
