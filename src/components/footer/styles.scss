@@ -6,6 +6,7 @@
   background-color: $color-grey-8;
   padding: $padding 100px;
   font-family: $font-family-1;
+  position: relative;
 
   h2 {
     font-size: 30px;
@@ -15,13 +16,51 @@
 
   .footer-header {
     display: flex;
+    align-items: center;
     padding: $padding 0;
     justify-content: space-between;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+    .footer-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      *:not(:last-child) {
+        margin-right: 20px;
+
+        @media (max-width: map-get($breakpoints, md)) {
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+
+        @media (max-width: map-get($breakpoints, sm)) {
+          margin-bottom: 0;
+        }
+      }
+
+      @media (max-width: map-get($breakpoints, md)) {
+        flex-direction: column;
+        margin-top: 20px;
+      }
+    }
+    @media (max-width: map-get($breakpoints, md)) {
+      flex-direction: column;
+    }
   }
 
   .footer-navigation {
     width: 100%;
     display: flex;
+  }
+
+  aside {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $white;
+    display: flex;
+    justify-content: center;
   }
 }
