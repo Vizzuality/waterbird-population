@@ -23,18 +23,15 @@ export const API = setup({
   }
 });
 
-export const fetchSpecies = (params = {
-}) => {
-  const query = `SELECT
- id
- FROM species_1`
-    return API.get(`sql?q=${species}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`, {
-      q: `${query}`,
-      api_key: `${process.env.REACT_APP_CARTO_API_TOKEN}`
-    })
-  .then(response => console.log(response))
+export const fetchSpecies = () => {
+
+  const q = `SELECT id FROM species_1`;
+  const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
+
+  return API.get(`sql?q=${q}&api_key=${api_key}`)
+  .then(data => console.log(data))
   .catch((e) => {
-    // const { status, statusText } = response;
+   // const { status, statusText } = response;
     console.log(e)
   });
 };
