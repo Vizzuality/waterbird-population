@@ -1,18 +1,10 @@
-import React, { useState } from 'react';
-import classnames from 'classnames';
-import Icon from 'components/icon';
+import React from 'react';
 import Image from '../images/section1.png';
 
 import Links from './constants';
 import './styles.scss';
 
 const Section1 = () => {
-
-  const [hoverActive, toggleHover] = useState(false);
-
-  const handleOver = () => {
-    toggleHover(!hoverActive)
-  };
 
   return (
     <section className="c-section1">
@@ -44,15 +36,9 @@ const Section1 = () => {
                   <div className="row start-lg center-xs equal-height ">
                     {Links.map(({ label, href }) => (
                       <div className="col-lg-3 col-md-4 col-sm-6 col-xsm-12 center-xs">
-                        <li key={label} onMouseEnter={handleOver} onMouseLeave={handleOver} >
+                        <li key={label}>
                           <a target="_blank" rel="noopener noreferrer" href={href}>
                             {label}
-                            <Icon className={classnames('-huge', {
-                              '-hidden': hoverActive
-                            })} name="flecha_01" />
-                            <Icon className={classnames('-huge', {
-                              '-hidden': !hoverActive
-                            })} name="flecha_02" />
                           </a>
                         </li>
                       </div>
