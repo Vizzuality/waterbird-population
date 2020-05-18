@@ -11,17 +11,20 @@ import WAWInfo from 'pages/background/waw/constants';
 import WIWPInfo from 'pages/background/wiwp/constants';
 import WAFInfo from 'pages/background/waf/constants';
 import glossaryInfo from 'pages/background/glossary/constants';
+import FSInfo from 'pages/credits/fs.js';
+import ECInfo from 'pages/credits/ec.js';
+import FaqInfo from 'pages/faq/constants';
 
 const PagesInfo = {
   BACKGROUND: {
     title: 'Background',
     tabs: [
-      { name: 'What are Waterbirds?', id: 'WAW'},
+      { name: 'What are Waterbirds?', id: 'WAW' },
       { name: 'What is waterbird population?', id: 'WIWP' },
       { name: 'What are flyways?', id: 'WAF' },
-      { name: 'Glossary', id: 'Glossary'}
+      { name: 'Glossary', id: 'Glossary' }
     ],
-    tabsInfo: [
+    info: [
       {
         id: 'WAW',
         content: <TabInfo info={WAWInfo} />
@@ -46,17 +49,17 @@ const PagesInfo = {
       { name: 'Summary information', id: 'Summary' },
       { name: 'Species & Population', id: 'SP' },
       { name: 'Population Estimates', id: 'PE' },
-      { name: 'Population Trends', id: 'PT'},
-      { name: '1% threshold', id: 'Threshold'}
+      { name: 'Population Trends', id: 'PT' },
+      { name: '1% threshold', id: 'Threshold' }
     ],
-    tabsInfo: [
+    info: [
       {
         id: 'Summary',
         content: <TableCard />
       },
       {
         id: 'SP',
-        content: <TabInfo info={SpeciesPopulationInfo}  />
+        content: <TabInfo info={SpeciesPopulationInfo} />
       },
       {
         id: 'PE',
@@ -74,8 +77,32 @@ const PagesInfo = {
       }
     ],
   },
-  CREDITS: { title: 'Credits', description: null },
-  FAQ: { title: 'FAQ', description: null }
+  CREDITS: {
+    title: 'Credits',
+    tabs:[
+      { name: 'Funders & Supporters', id: 'fs' },
+      { name: 'Editors & Contributors', id: 'ec' }
+    ],
+    info: [
+      {
+        id: 'fs',
+        content: <TableCard info={FSInfo} />
+      },
+      {
+        id: 'ec',
+        content: <TabInfo info={ECInfo} />
+      }
+    ]
+  },
+  FAQ: {
+    title: 'Frequently Asked Questions',
+    tabs: false,
+    info:
+    {
+      id: 'faq',
+      content: <TabInfo info={FaqInfo} />
+    }
+  }
 }
 
 export default PagesInfo;

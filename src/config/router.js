@@ -29,7 +29,7 @@ export const routes = {
   },
   CREDITS: {
     page: 'credits',
-    path: '/credits'
+    path: '/credits/:id'
   },
   FAQ: {
     page: 'faq',

@@ -6,14 +6,15 @@ import PagesInfo from 'pages/constants';
 import './styles.scss';
 
 const StaticPage = ({ currentTab, currentPage }) => {
+
   const page = PagesInfo[currentPage];
-  const tabInfo = page.tabsInfo.find(tab => tab.id === currentTab.id)
+  const cardInfo = page.tabs ? page.info.find(tab => tab.id === currentTab.id) : page.info;
   return (
     <div className="l-static">
       <div>
         <h1>{page.title}</h1>
       </div>
-      <Card info={tabInfo} tabs={page.tabs} page={currentPage} />
+      <Card info={cardInfo} tabs={page.tabs} page={currentPage} />
     </div>
   );
 }
