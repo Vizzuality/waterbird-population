@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import DataResults from 'components/data-results';
+//import Spinner from 'components/spinner';
+
+import { fetchFamilies } from 'services/families';
 
 import './styles.scss';
 
 const ExplorePage = () => {
+
+  const [families, setFamilies] = useState([])
+
+  useEffect(() => {
+    fetchFamilies().then(data=>setFamilies(data));
+  }, []);
 
  return (
   <div className="l-explore">
@@ -15,9 +24,12 @@ const ExplorePage = () => {
       <MapContainer />
     </div>
     <div className="results-section">
-      <Search />
+      <Search  />
       <DataControls />
-      <DataResults />
+      {families && families.length > 0
+        ? families.map(family => <DataResults family={family} />)
+        : '...loading' // <Spinner />
+      }
     </div>
   </div>
  )

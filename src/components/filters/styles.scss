@@ -2,13 +2,13 @@
 
 .c-filters {
   position: relative;
+  padding: $padding-modal;
 
   h3 {
     color: $color-grey-6;
     font-size: 30px;
     font-weight: bold;
     line-height: 36px;
-    padding-bottom: 40px;
   }
 
   .modal-button {
@@ -19,7 +19,8 @@
   .filters-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-bottom: 70px;
+    grid-gap: 45px;
+    padding: 40px 0;
 
     .filters {
       padding-bottom: 30px;
