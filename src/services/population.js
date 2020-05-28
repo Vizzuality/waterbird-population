@@ -6,7 +6,7 @@ const store = localforage.createInstance({
     localforage.INDEXEDDB,
     localforage.LOCALSTORAGE
   ],
-  name: 'wpe-families'
+  name: 'wpe-red-list-categories'
 });
 
 export const API = setup({
@@ -22,9 +22,9 @@ export const API = setup({
   }
 });
 
-export const fetchFamilies = () => {
+export const fetchPopulations = (specie) => {
 
-  const q = `SELECT id,name FROM family WHERE familynameincluded = 1`;
+  const q = `SELECT populations FROM populations_species_no_geo WHERE species = '${specie}'`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
   .then(({ data }) => data.rows)
@@ -32,5 +32,4 @@ export const fetchFamilies = () => {
     console.log(e, 'error')
   });
 };
-
 

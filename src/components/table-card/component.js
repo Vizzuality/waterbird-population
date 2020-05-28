@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import classnames from 'classnames';
 
 import Icon from 'components/icon';
 
+import { fetchPopulations } from 'services/population';
 import CardTableInfo from './constants';
 
 import './styles.scss';
 
 
-const TableCard = ({ }) => {
+const TableCard = ({specie}) => {
   const info = CardTableInfo; // info coming from props when we get data
   const tag = true;
+
+  useEffect(() => {
+    fetchPopulations(specie).then(data => console.log(data));
+  });
 
   return <div className="c-card-info">
     <Link to="/explore/info">

@@ -1,5 +1,6 @@
 import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
+import queryString from 'query-string';
 import * as species from 'services/species';
 
 const store = localforage.createInstance({
@@ -23,13 +24,18 @@ export const API = setup({
   }
 });
 
-export const fetchSpecies = () => {
-
-  const q = `SELECT id FROM species_1`;
+export const fetchSpecies = (familyName) => {
+  const q = `
+  SELECT english_name,scientific_name,french_name,family,iucn_category,r.description,r.iucn
+  FROM species s
+  JOIN redlistcategory r
+  ON s.iucn_category = TRIM(r.iucn)
+  WHERE family = '${familyName}'
+ `;
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
 
   return API.get(`sql?q=${q}&api_key=${api_key}`)
-  .then(data => console.log(data))
+  .then(data => data)
   .catch((e) => {
    // const { status, statusText } = response;
     console.log(e)

@@ -27,8 +27,12 @@
     span {
       padding-right: 15px;
 
-      &.name {
+      &.-cientific {
         font-weight: bold;
+      }
+
+      &.-specific {
+        font-style: italic;
       }
 
       &.tag {
