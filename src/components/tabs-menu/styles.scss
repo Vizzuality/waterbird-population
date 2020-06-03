@@ -1,10 +1,13 @@
 @import 'styles/settings';
 
 .c-menu-items {
-  display: flex;
-  justify-content: space-between;
-  padding: 30px 75px;
-  border-bottom: 1px solid $color-grey-3;
+
+  &.-tabs {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 75px;
+    border-bottom: 1px solid $color-grey-3;
+  }
 
   .menu-item {
     font-family: $font-family-1;

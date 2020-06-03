@@ -1,10 +1,10 @@
 @import 'styles/settings';
 
 .l-static {
-  background-image: url('/images/ostralegus.png');
+  background-image: url('images/waves.png');
   background-position-x: center;
   background-position-y: top;
-  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
   padding: 100px;
   font-family: $font-family-1;
