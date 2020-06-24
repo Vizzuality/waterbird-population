@@ -7,7 +7,7 @@ $color-2: #0282B0;
 $color-3: #1D1E2E;
 
 // // Greys
-$color-grey-1: #E5E5E5;
+$color-grey-1: #F7F9F9;
 $color-grey-2: #F2F2F2;
 $color-grey-3: #D8D8D8;
 
@@ -76,3 +76,13 @@ $flexboxgrid-breakpoints: (
   lg: $lg,
   xlg: $xlg
 );
+
+
+// card styles
+@mixin card-background {
+  box-sizing: border-box;
+  background-color: $white;
+  border: 1px solid rgba($color-grey-8, 0.1);
+  border-radius: $border-radius;
+  box-shadow: 0 10px 10px 0 rgba($black, 0.09);
+}

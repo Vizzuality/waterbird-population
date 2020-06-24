@@ -4,6 +4,7 @@ import Image from 'images/background-tab/duckWIWP.png';
 
 const WIWPInfo = [
   {
+    id: 'WIWPInfo',
     description: (
       <div className="l-wiwp-card">
         <h2>For a full and detailed discussion of this question, readers are referred to the introductory chapters of the Atlas of Anatidae Populations in Africa and Western Eurasia (Scott and Rose 1996) A waterbird population can be defined as a distinct assemblage of individuals which does not experience significant emigration or immigration.</h2>

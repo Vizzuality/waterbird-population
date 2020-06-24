@@ -6,7 +6,7 @@ const Pages = ({ router: { type, routesMap } }) => {
   const { page } = routesMap[type];
   return (
     <>
-      {Object.keys(routesMap).map(route => page === routesMap[route].page && <AsyncPage page={page} /> )}
+      {Object.keys(routesMap).map(route => page === routesMap[route].page && <AsyncPage key={page} page={page} /> )}
     </>
   );
 };

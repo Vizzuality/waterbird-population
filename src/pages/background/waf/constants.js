@@ -5,6 +5,7 @@ import Flyway3Image from './images/map_03.png';
 
 const WAFInfo = [
   {
+    id: 'WAFInfo',
     description: (
       <div className="l-waf-card">
         <div>

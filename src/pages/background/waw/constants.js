@@ -3,6 +3,7 @@ import Image from 'images/background-tab/duck.png';
 
 const WAWInfo = [
   {
+    id: 'WAWInfo',
     description: (
       <div className="l-waw-card">
         <div className="intro-container">

@@ -20,11 +20,12 @@ const Card = ({ info, tabs, page }) => (
 
 
 Card.propTypes = {
-  infoId: PropTypes.shape({
-    intro: PropTypes.string,
-    content: PropTypes.string,
-    tabs: PropTypes.array
-  }).isRequired
-}
+  info: PropTypes.shape({}).isRequired,
+  content: PropTypes.string,
+  tabs: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool
+  ]).isRequired,
+};
 
 export default Card;

@@ -1,7 +1,5 @@
 import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
-import queryString from 'query-string';
-import * as species from 'services/species';
 
 const store = localforage.createInstance({
   driver: [
@@ -24,13 +22,13 @@ export const API = setup({
   }
 });
 
-export const fetchSpecies = (familyName) => {
+export const fetchSpecies = (familyId) => {
   const q = `
-  SELECT english_name,scientific_name,french_name,family,iucn_category,r.description,r.iucn
-  FROM species s
-  JOIN redlistcategory r
-  ON s.iucn_category = TRIM(r.iucn)
-  WHERE family = '${familyName}'
+  SELECT s.id AS specieid,commonname,scientificname,familyenglish,iucn_id,r.description,r.iucn,r.id
+  FROM species_1 s
+  LEFT JOIN redlistcategory r
+  ON s.iucn_id = r.id
+  WHERE familyname_id = '${familyId}'
  `;
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
 
@@ -41,15 +39,3 @@ export const fetchSpecies = (familyName) => {
     console.log(e)
   });
 };
-
-// export const fetchCountries = () => {
-//   const query = `
-//     SELECT country,
-//       country_iso as iso
-//     FROM ${process.env.REACT_APP_DATA_TABLENAME}
-//     GROUP BY country, country_iso
-//     ORDER BY country
-//   `;
-
-//   return cartoApi(query);
-// };
