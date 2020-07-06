@@ -7,6 +7,7 @@ import WHSRNImage from './images/WHSRN.png';
 
 const glossaryInfo = [
   {
+    id: 'glossaryInfo',
     description: (
       <ul className="l-glossary-card">
         <li>

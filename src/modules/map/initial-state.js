@@ -10,6 +10,6 @@ export default {
     }
   ],
   selectedBasemap: 'light',
-lonLat: [0, 0],
-popUp: false,
+  lonLat: [0, 0],
+  popUp: false,
 };

@@ -12,6 +12,7 @@ const TabsMenu = ({ current, tabs, page }) =>
   })}>
     {tabs && tabs.map(tab =>
       <Link
+        key={tab.id}
         className={classnames('menu-item', { 'active': tab.id === current.id })}
         to={ { type: page,  payload : { id:`${tab.id}` }}}>
           {tab.name}
@@ -19,9 +20,12 @@ const TabsMenu = ({ current, tabs, page }) =>
   </div>
 
 TabsMenu.propTypes = {
-  tabs: PropTypes.array.isRequired,
+  tabs: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.bool
+  ]).isRequired,
   page: PropTypes.string.isRequired,
-  current: PropTypes.string.isRequired
+  current: PropTypes.shape({}).isRequired
 };
 
 export default TabsMenu;

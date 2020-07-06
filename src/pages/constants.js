@@ -1,5 +1,4 @@
 import React from 'react';
-import TableCard from 'components/table-card';
 
 import TabInfo from 'pages/static-tabs';
 
@@ -46,17 +45,12 @@ const PagesInfo = {
   DATA: {
     title: 'Data presentation',
     tabs: [
-      { name: 'Summary information', id: 'Summary' },
       { name: 'Species & Population', id: 'SP' },
       { name: 'Population Estimates', id: 'PE' },
       { name: 'Population Trends', id: 'PT' },
       { name: '1% threshold', id: 'Threshold' }
     ],
     info: [
-      {
-        id: 'Summary',
-        content: <TableCard />
-      },
       {
         id: 'SP',
         content: <TabInfo info={SpeciesPopulationInfo} />
@@ -86,7 +80,7 @@ const PagesInfo = {
     info: [
       {
         id: 'fs',
-        content: <TableCard info={FSInfo} />
+        content: <TabInfo info={FSInfo} />
       },
       {
         id: 'ec',

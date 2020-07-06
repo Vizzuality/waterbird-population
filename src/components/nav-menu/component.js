@@ -16,14 +16,14 @@ const NavMenu = ({ className, current }) => {
       })}>
       {menuItems.map(
         item => (!item.dropdown && !item.component)
-          ? <div className="nav-menu-item">
+          ? <div key={item.name} className="nav-menu-item">
             <Link to={{ type: `${item.type}`, pathname: `${item.path}` }}>
               <h3 className={classnames({ '-active': current === item.type })}>
                 {item.name}
               </h3>
             </Link></div>
           : (item.dropdown && !item.component && (
-            <div className="nav-menu-item dropdown">
+            <div key={item.name} className="nav-menu-item dropdown">
               <Link to={{
                 type: `${item.type}`,
                 pathname: `${item.path}`,
@@ -48,7 +48,7 @@ const NavMenu = ({ className, current }) => {
               </ul>
             </div>
           )
-          ))
+        ))
       }
     </div>
   )

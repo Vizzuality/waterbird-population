@@ -313,7 +313,7 @@ class Map extends Component {
               longitude={popUpCoordinates[0]}
               latitude={popUpCoordinates[1]}
               closeButton={false}
-              onMouseLeave={() => { console.log('holafg') }}
+              onMouseLeave={() => {  }}
               anchor="top"
             >
               <p>Click on the map to reveal relevant populations.</p>

@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import Button from 'components/button';
-import TableCard from 'components/table-card';
 
-import image from 'images/ostralegus.jpg'
+// components
+import Button from 'components/button';
+import SpeciesData from 'components/species-data';
+
+// services
+import { fetchSpecies } from 'services/species';
 
 import './styles.scss';
+
 
 const DataResults = ({ family }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
+  const [species, setSpecies] = useState([]);
 
   const handleClick = () => {
+    fetchSpecies(family.id).then(({ data }) => setSpecies(data.rows))
     toggleCollapse(!isCollapsed)
-  }
+  };
+
 
   return (
     <section className="c-data-results">
@@ -37,22 +44,10 @@ const DataResults = ({ family }) => {
       <div className={classnames('results-detail', {
         '-hidden': isCollapsed
       })}>
-        <div className="results-title">
-          <h2>
-            <span>Species:</span>
-            <span className="name">Haematopus ostralegus (Eurasian Oystercatcher)</span>
-            <span className="tag">LEAST CONCERN</span>
-
-          </h2>
-          <button type="button">Collapse</button>
-        </div>
-        <div className="results-description">
-          <img src={image} alt='Haematopodidae' />
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-        </div>
-        <TableCard />
+        {species.map((specie) => (
+          <SpeciesData info={specie} />
+        ))}
       </div>
-
     </section>
   );
 };

@@ -11,7 +11,7 @@ const PopUp = ({ popUpState, coordinates, setPopUp }) => {
 
   useEffect(() => {
     setPopUp(popUpState)
-  }, [popUpState]);
+  }, [popUpState, setPopUp]);
 
   const handleClick = () => {
     setPopUp(!popUpState)
