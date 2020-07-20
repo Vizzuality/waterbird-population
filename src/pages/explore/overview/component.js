@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import DataResults from 'components/data-results';
-//import Spinner from 'components/spinner';
+import MapContainer from './map';
 
 import { fetchFamilies } from 'services/families';
 

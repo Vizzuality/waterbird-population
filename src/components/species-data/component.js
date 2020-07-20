@@ -59,7 +59,8 @@ const SpeciesData = ({ info }) => {
       {populations && populations.map(population =>
         <PopulationsCard
           population={population}
-          specie={[
+          specieid={specieid}
+          species={[
             { 'Order name': commonname },
             { 'Family name': familyenglish },
             { 'Scientific name': scientificname },

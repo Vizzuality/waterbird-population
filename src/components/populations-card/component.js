@@ -8,11 +8,13 @@ import Icon from 'components/icon';
 import './styles.scss';
 
 
-const PopulationsCard = ({ population: { info, size, trends, percent }, filters, specie }) => {
+const PopulationsCard = (props) => {
+  const { population: { info, size, trends, percent }, filters, specieid, species } = props;
   const tag = true;
-  return <section className="c-card-info">
-    <Link to="/explore/info">
+  console.log(props);
 
+  return <section className="c-card-info">
+    <Link to={`/explore/${specieid}`}>
       <div className="card-header">
         <div className="card-title">
           <div className="title">

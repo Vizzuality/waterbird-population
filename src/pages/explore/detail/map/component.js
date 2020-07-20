@@ -5,25 +5,22 @@ import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
 import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
+import { getParams } from 'utils/layers';
+
 // Components
 import Map from 'components/map';
 import PopUp from 'components/map/pop-up';
 import Legend from 'components/map/legend';
 import ShareControl from 'components/share';
 
-import './styles.scss';
-
 export const MapContainer = ({
   viewport,
-  setViewport,
   layers,
-  mapStyle,
-  map,
-  bounds,
   scrollZoom = false,
   coordinates,
   isOpen,
-  setPopUp
+  setPopUp,
+  router
 }) => {
 
   useEffect(() => {
@@ -49,18 +46,23 @@ export const MapContainer = ({
     });
   };
 
+  console.log(router);
+
+  const parsedLayers = layers.map(l => {
+    return {
+      ...l,
+      params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
+    }
+  })
+
   return (
     <div className='c-map-container'>
       <Map
         viewport={viewport}
-        // bounds={bounds}
         scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={onViewportChange}
-      // onClick={clickHandler}
-      // interactiveLayerIds={interactiveLayerIds}
-      //  onPopupClose={popupCloseHandler}
       >
 
         {(map) =>
@@ -69,11 +71,10 @@ export const MapContainer = ({
               map={map}
               plugin={PluginMapboxGl}
             >
-              {!!layers && layers.map((l, i) => {
+              {!!parsedLayers && parsedLayers.map((l, i) => {
                 return (
                   <Layer
                     key={l.id}
-
                     {...l}
                   />
                 )
