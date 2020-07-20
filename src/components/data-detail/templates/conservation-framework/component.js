@@ -15,7 +15,7 @@ const ConservationFramework = () => (
         <li>{data}</li>)}
     </ul>
   </div>
-)
+);
 
 ConservationFramework.propTypes = {
   info: PropTypes.shape({

@@ -9,12 +9,13 @@ import PopulationsCard from 'components/populations-card';
 // services
 import { fetchPopulations } from 'services/population';
 
+
 import image from 'images/ostralegus.jpg'
 
 import './styles.scss';
 
 
-const SpeciesData = ({ info }) => {
+const SpeciesData = ({ info, populations, setPopulations }) => {
   const {
     commonname,
     description,
@@ -24,10 +25,8 @@ const SpeciesData = ({ info }) => {
     specieid
   } = info;
   const [isCollapsed, toggleCollapse] = useState(true);
-  const [populations, setPopulations] = useState([]);
-
   const handleClick = () => {
-    fetchPopulations(specieid).then(data => setPopulations(data));
+    fetchPopulations(specieid).then(data => setPopulations({ id: specieid, data}));
     toggleCollapse(!isCollapsed)
   };
 
@@ -35,6 +34,7 @@ const SpeciesData = ({ info }) => {
     <section className="c-data-results">
       <div className="results-title">
         <h2>
+          {console.log(populations)}
           <span>Species:</span>
           <span className="name -cientific">{scientificname}</span>
           <span className="name -specific">({commonname})</span>
@@ -56,16 +56,8 @@ const SpeciesData = ({ info }) => {
         <img src={image} alt='Haematopodidae' />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
-      {populations && populations.map(population =>
-        <PopulationsCard
-          population={population}
-          specieid={specieid}
-          species={[
-            { 'Order name': commonname },
-            { 'Family name': familyenglish },
-            { 'Scientific name': scientificname },
-            { 'Red list': iucn }
-          ]} />)}
+      <PopulationsCard specieId={specieid} />
+
     </section>
   );
 };
