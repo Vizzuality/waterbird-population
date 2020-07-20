@@ -11,7 +11,7 @@ import Notes from './templates/notes';
 import './styles.scss';
 
 
-const DataDetail = ({ info }) =>
+const DataDetail = () =>  (
     <div className="c-data-detail">
       <ConservationFramework />
       <PopulationSize />
@@ -20,9 +20,7 @@ const DataDetail = ({ info }) =>
       <References />
       <Notes />
     </div>
+  );
 
-DataDetail.propTypes = {
-  info: PropTypes.shape({}).isRequired
-}
 
 export default DataDetail;
