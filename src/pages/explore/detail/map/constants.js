@@ -8,9 +8,6 @@ export const activeLayers = [
       type: 'geojson',
       data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=2fbf264d4431656a7d979682d59b6f5c79c9e3b4&format=geojson`
     },
-    paramsConfig: [
-      { key: 'specieid', required: true }
-    ],
     render: {
       layers: [
         {
@@ -18,7 +15,7 @@ export const activeLayers = [
           //  "source-layer": "layer0",
           paint: {
             'fill-color': '#FFBB00',
-            'fill-opacity': 0.5
+            'fill-opacity': 0.25
           }
         },
         {
@@ -31,6 +28,12 @@ export const activeLayers = [
           }
         }
       ]
+    },
+    paramsConfig: [
+      { key: 'specieid', required: true }
+    ],
+    interactionConfig: {
+      enable: true
     }
   },
 ];

@@ -7,21 +7,13 @@ import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
 // Components
 import Map from 'components/map';
-import PopUp from 'components/map/pop-up';
 import Legend from 'components/map/legend';
 import ShareControl from 'components/share';
 
 export const MapContainer = ({
   viewport,
-  setViewport,
   layers,
-  mapStyle,
-  map,
-  bounds,
-  scrollZoom = false,
-  coordinates,
-  isOpen,
-  setPopUp
+  scrollZoom = false
 }) => {
 
   useEffect(() => {
@@ -82,10 +74,6 @@ export const MapContainer = ({
           </Fragment>
         }
       </Map>
-      <PopUp
-        setPopUp={setPopUp}
-        popUpState={isOpen}
-        coordinates={coordinates}/>
       <Legend />
     </div>
   );
@@ -93,7 +81,6 @@ export const MapContainer = ({
 
 MapContainer.propTypes = {
   viewport: PropTypes.shape({}),
-  setViewport: PropTypes.func,
   isCollapse: PropTypes.bool.isRequired,
   mapboxApiAccessToken: PropTypes.string.isRequired,
   mapStyle: PropTypes.shape({}).isRequired,
@@ -114,9 +101,7 @@ MapContainer.defaultProps = {
     maxZoom: 16,
     bearing: 0,
     pitch: 0
-  },
-
-  setViewport: () => { },
+  }
 };
 
 export default MapContainer;

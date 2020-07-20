@@ -10609,6 +10609,13 @@ redux-first-router-link@^2.1.1:
     rudy-history "^1.0.0"
     rudy-match-path "^0.3.0"
 
+redux-first-router-restore-scroll@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/redux-first-router-restore-scroll/-/redux-first-router-restore-scroll-1.2.2.tgz#301f206cf8c08005eaace4f3c9a1fb8fcd8e9347"
+  integrity sha512-b+FB/4zhQskIvIpJcvuBDnpDUBh2nQDOnOe5a4GS828Ak5z6ziuNA35NXUNmkr2H+0ZyHwoQmIahQ1i4KCLbCw==
+  dependencies:
+    scroll-behavior "^0.9.3"
+
 redux-first-router@^2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/redux-first-router/-/redux-first-router-2.1.5.tgz#3e250478ddef15656fddc4efd268e345b0b3aa98"
@@ -11219,6 +11226,14 @@ schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0, schema-utils@^2.2
   dependencies:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
+
+scroll-behavior@^0.9.3:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.9.12.tgz#1c22d273ec4ce6cd4714a443fead50227da9424c"
+  integrity sha512-18sirtyq1P/VsBX6O/vgw20Np+ngduFXEMO4/NDFXabdOKBL2kjPVUpz1y0+jm99EWwFJafxf5/tCyMeXt9Xyg==
+  dependencies:
+    dom-helpers "^3.4.0"
+    invariant "^2.2.4"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"

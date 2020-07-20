@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
+
+import isEmpty from 'lodash/isEmpty';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
@@ -9,60 +11,58 @@ import { getParams } from 'utils/layers';
 
 // Components
 import Map from 'components/map';
-import PopUp from 'components/map/pop-up';
 import Legend from 'components/map/legend';
 import ShareControl from 'components/share';
 
 export const MapContainer = ({
-  viewport,
   layers,
   scrollZoom = false,
-  coordinates,
-  isOpen,
-  setPopUp,
   router
 }) => {
-
-  useEffect(() => {
-    window.addEventListener('resize', resize);
-    resize();
-
-    return function cleanup() {
-      window.removeEventListener('resize', resize);
-    };
-    // eslint-disable-next-line
-  }, []);
-
-  const onViewportChange = () => {
-    const { width, height, latitude, longitude, zoom } = viewport;
-
-  };
-
-  const resize = () => {
-    onViewportChange({
-      ...viewport,
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  };
-
-  console.log(router);
+  const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
   const parsedLayers = layers.map(l => {
     return {
       ...l,
       params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
     }
-  })
+  });
+
+  const onAfterAdd = layerModel => {
+    if (!isEmpty(layerModel.interactionConfig)) {
+      layerModel.mapLayer.layers.forEach(l => {
+        const { id } = l;
+
+        if (!interactiveLayerIds.includes(id)) {
+          setInteractiveLayerIds(prevInteractiveLayersIds => [...prevInteractiveLayersIds, id]);
+        }
+      });
+    }
+  };
+
+  const onAfterRemove = layerModel => {
+    if (!isEmpty(layerModel.interactionConfig)) {
+      layerModel.mapLayer.layers.forEach(l => {
+        const { id } = l;
+
+        if (interactiveLayerIds.includes(id)) {
+          setInteractiveLayerIds(prevInteractiveLayersIds => {
+            const arr = prevInteractiveLayersIds.filter(e => e !== id);
+
+            return arr;
+          });
+        }
+      });
+    }
+  };
 
   return (
     <div className='c-map-container'>
       <Map
-        viewport={viewport}
         scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        onViewportChange={onViewportChange}
+        interactiveLayerIds={interactiveLayerIds}
       >
 
         {(map) =>
@@ -76,6 +76,8 @@ export const MapContainer = ({
                   <Layer
                     key={l.id}
                     {...l}
+                    onAfterAdd={onAfterAdd}
+                    onAfterRemove={onAfterRemove}
                   />
                 )
 
@@ -90,18 +92,12 @@ export const MapContainer = ({
           </Fragment>
         }
       </Map>
-      <PopUp
-        setPopUp={setPopUp}
-        popUpState={isOpen}
-        coordinates={coordinates}/>
       <Legend />
     </div>
   );
 };
 
 MapContainer.propTypes = {
-  viewport: PropTypes.shape({}),
-  setViewport: PropTypes.func,
   isCollapse: PropTypes.bool.isRequired,
   mapboxApiAccessToken: PropTypes.string.isRequired,
   mapStyle: PropTypes.shape({}).isRequired,
@@ -113,18 +109,6 @@ MapContainer.propTypes = {
 };
 
 MapContainer.defaultProps = {
-  viewport: {
-    width: window.innerWidth,
-    height: window.innerHeight,
-    longitude: 0,
-    latitude: 0,
-    zoom: 2,
-    maxZoom: 16,
-    bearing: 0,
-    pitch: 0
-  },
-
-  setViewport: () => { },
 };
 
 export default MapContainer;
