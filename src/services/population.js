@@ -30,6 +30,7 @@ export const fetchPopulations = (specieid) => {
     nonbreedingrange,
     n.id,
     species_id,
+    s.id AS population_size_id,
     s.startyear,
     s.endyear,
     s.minimum,
@@ -39,8 +40,12 @@ export const fetchPopulations = (specieid) => {
     o.yearset,
     o.onepercent,
     o.populationid,
-    t.startyear,
-    t.endyear,
+    p.population_id,
+    p.publication_id,
+    pub.description AS pub_description,
+    pub.published,
+    t.startyear AS trend_start_year,
+    t.endyear AS trend_end_year,
     t.trend_id,
     t.trendquality_id,
     q.description,
@@ -50,38 +55,13 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN populationsize s ON n.id = s.population_id
   LEFT JOIN populationonepercentlevel o ON n.id = o.populationid
   LEFT JOIN populationtrend t ON n.id = t.population_id
+  LEFT JOIN populationpublication p ON p.population_id = s.population_id
+  LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
   WHERE species_id = '${specieid}'`;
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data }) => data.rows.map((pop) =>
-    {
-      return {
-        'info': {
-          'population_name': pop.populationname || '',
-          'breeding_range': pop.breedingrange || '',
-          'non-breeding_range': pop.nonbreedingrange || '',
-        },
-        'size': {
-          'start_year': pop.startyear || '',
-          'end_year': pop.endyear || '',
-          'minimum': pop.minimum || '',
-          'maximun': pop.maximum || '',
-          'notes': pop.notes || '',
-        },
-        'trends': {
-          'start_year': pop.startyear || '',
-          'end_year': pop.endyear || '',
-          'trend': pop.trendcode || '',
-          'trend_quality': pop.description || '',
-        },
-        'percent': {
-          'yearset': pop.yearset || '',
-          'percent': pop.onepercent || '',
-        }
-
-    }})
-  )
+  .then(({ data }) => console.log(data.rows, 'servicio')|| data.rows)
   .catch((e) => {
     console.log(e, 'error')
   });
