@@ -1,5 +1,7 @@
 export default {
-  populations: {},
+  populations: {
+    current: '',
+  },
   filters: {
     size: true,
     'size_quality': true,

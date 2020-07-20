@@ -1,4 +1,4 @@
-import { setFilters, setPopulations } from './actions';
+import { setFilters, setPopulations, setCurrent } from './actions';
 
 export default {
   [setFilters]: (state, { payload }) => ({
@@ -10,6 +10,13 @@ export default {
     populations: {
       ...state.populations,
       [payload.id]: payload.data
+    }
+  }),
+  [setCurrent]: (state, { payload }) => ({
+    ...state,
+    populations: {
+      ...state.populations,
+      current: payload
     }
   }),
 };

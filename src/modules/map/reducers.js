@@ -12,5 +12,5 @@ export default {
   [setPopUp]: (state, { payload }) => ({
     ...state,
     popUp: payload
-  })
+  }),
 };
