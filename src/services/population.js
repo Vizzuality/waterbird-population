@@ -60,11 +60,12 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
   WHERE species_id = '${specieid}'`;
+
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data }) => console.log(data.rows, 'servicio')|| data.rows)
-  .catch((e) => {
-    console.log(e, 'error')
-  });
+    .then(({ data }) => console.log(data.rows, 'servicio')|| data.rows)
+    .catch((e) => {
+      console.log(e, 'error')
+    });
 };
 
 

@@ -13,6 +13,7 @@ import { getParams } from 'utils/layers';
 import Map from 'components/map';
 import Legend from 'components/map/legend';
 import ShareControl from 'components/share';
+import PopulationsSelector from 'components/populations-selector';
 
 export const MapContainer = ({
   layers,
@@ -58,6 +59,7 @@ export const MapContainer = ({
 
   return (
     <div className='c-map-container'>
+      <PopulationsSelector />
       <Map
         scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
