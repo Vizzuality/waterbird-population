@@ -13,7 +13,6 @@ import Map from 'components/map';
 import Legend from 'components/map/legend';
 import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
-import ShareControl from 'components/map/controls/share';
 import PopulationsSelector from 'components/populations-selector';
 
 
