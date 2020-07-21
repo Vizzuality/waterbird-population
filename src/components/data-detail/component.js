@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import PopulationInfo from './templates/population-info';
 import ConservationFramework from './templates/conservation-framework';
 import PopulationSize from './templates/population-size';
 import PopulationTrend from './templates/population-trend';
@@ -13,6 +14,7 @@ import './styles.scss';
 
 const DataDetail = () =>  (
     <div className="c-data-detail">
+      <PopulationInfo />
       <ConservationFramework />
       <PopulationSize />
       <PopulationTrend />

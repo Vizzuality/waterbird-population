@@ -1,32 +1,15 @@
 
 const populationInfo = {
   title: 'Population Information',
-  data: {
-    heads:
-      [
-        'Order name',
-        'Order family',
-        'Scientific name',
-        'Common name',
-        'Population name',
-        'Breeding range',
-        'Non-breeding name',
-        'Red list',
-        'Ramsar regions'
-      ],
-    data:
-      [
-        'Anseriformes',
-        'Anatidae',
-        'Anas acuta',
-        'Northern Pintail',
-        'South Asia (non-bre)',
-        'Central Siberis, Central Asia',
-        'S Asia',
-        'Least concern',
-        'Asia'
-      ]
-    }
+  data: [
+    [{ head: 'Order name', value: 'Anseriformes' }],
+    [{ head: 'Order family', value: 'Anatidae' }],
+    [{ head: 'Common name', value: 'Northern Pintail' }, { head: 'Scientific name', value: 'Anas acuta' }],
+    [{ head: 'Population name', value: 'South Asia (non-bre)' }],
+    [{ head: 'Breeding range', value: 'Central Siberis, Central Asia' }, { head: 'Non-breeding name', value: 'S Asia' }],
+    [{ head: 'Red list', value: 'Least concern' }],
+    [{ head: 'Ramsar regions', value: 'Asia' }]
+  ]
 };
 
 export default populationInfo;

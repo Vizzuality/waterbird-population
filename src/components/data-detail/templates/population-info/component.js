@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
@@ -44,45 +44,20 @@ const PopulationInfo = ({ data }) => {
       </div>
       {data.map(info =>
         <table>
-          <thead>
-            <tr>
-              {(info.data.heads).map(head => <th>{head}</th>)}
-              <div></div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {(info.data.data).map(i => <td>{i}</td>)}
-              <td className="button">
-                <Tooltip
-                  trigger="click"
-                  useContext
-                  html={
-                    <Comments
-                      toggleComment
-                      isOpen
-                   //   info TO-DO- add dinamycally
-                    />
-                  }
-               >
-                  <Button
-                  onClick={handleClickComments}
-                  className={classnames('-border -small',
-                    {
-                      ['-secondary']: isOpen,
-                      ['-primary']: !isOpen
-                    }
-                  )}
-                >
-                  {isOpen ? 'Close' : 'Comments'}
-                </Button>
-                </Tooltip>
-              </td>
-            </tr>
-          </tbody>
+          {(info.data.map(i => {
+            return (
+              <tr>
+                {i.map(i2 => (
+                  <Fragment>
+                    <th>{i2.head}</th>
+                    <td>{i2.value}</td>
+                  </Fragment>
+                ))}
+              </tr>
+            );
+          }))}
         </table>
-  )
-}
+      )}
     </div >
   )
 };
