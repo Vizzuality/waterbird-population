@@ -23,9 +23,11 @@ const ExploreDetailPage = (props) => {
       <div className="map-section">
         <MapContainer />
       </div>
-      <div className="results-section">
-        <DataControls />
-        <DataDetail />
+      <div className="wrapper">
+        <div className="results-section">
+          <DataControls />
+          <DataDetail />
+        </div>
       </div>
     </div>
   )

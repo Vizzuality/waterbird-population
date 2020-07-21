@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
@@ -7,11 +7,12 @@ import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
 // Components
 import Map from 'components/map';
+import MapControls from 'components/map/controls';
+import ZoomControl from 'components/map/controls/zoom';
 import Legend from 'components/map/legend';
-import ShareControl from 'components/share';
+
 
 export const MapContainer = ({
-  viewport,
   layers,
   scrollZoom = false
 }) => {
@@ -26,13 +27,22 @@ export const MapContainer = ({
     // eslint-disable-next-line
   }, []);
 
-  const onViewportChange = () => {
-    const { width, height, latitude, longitude, zoom } = viewport;
+  const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
 
+  const onViewportChange = (viewport) => {
+    setViewport(viewport);
+  }
+
+  const onZoomChange = (zoom) => {
+    setViewport({
+      zoom,
+      transitionDuration: 250
+    });
   };
 
+
   const resize = () => {
-    onViewportChange({
+    setViewport({
       ...viewport,
       width: window.innerWidth,
       height: window.innerHeight
@@ -65,15 +75,17 @@ export const MapContainer = ({
 
               })}
             </LayerManager>
-
-            <div className="map-controls">
-              <NavigationControl className="map-navigation" />
-              <FullscreenControl className="map-fullscreen" />
-              <ShareControl className="map-share" />
-            </div>
           </Fragment>
         }
       </Map>
+
+      <MapControls>
+        <ZoomControl
+          viewport={viewport}
+          onClick={onZoomChange}
+        />
+      </MapControls>
+
       <Legend />
     </div>
   );

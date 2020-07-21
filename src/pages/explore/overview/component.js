@@ -22,13 +22,15 @@ const ExplorePage = () => {
     <div className="map-section">
       <MapContainer />
     </div>
-    <div className="results-section">
-      <Search  />
-      <DataControls />
-      {families && families.length > 0
-        ? families.map(family => <DataResults family={family} />)
-        : '...loading' // <Spinner />
-      }
+    <div className="wrapper">
+      <div className="results-section">
+        <Search  />
+        <DataControls />
+        {families && families.length > 0
+          ? families.map(family => <DataResults family={family} />)
+          : '...loading' // <Spinner />
+        }
+      </div>
     </div>
   </div>
  )

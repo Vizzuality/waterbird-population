@@ -5,21 +5,24 @@ import isEmpty from 'lodash/isEmpty';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
-import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
 import { getParams } from 'utils/layers';
 
 // Components
 import Map from 'components/map';
 import Legend from 'components/map/legend';
-import ShareControl from 'components/share';
+import MapControls from 'components/map/controls';
+import ZoomControl from 'components/map/controls/zoom';
+import ShareControl from 'components/map/controls/share';
 import PopulationsSelector from 'components/populations-selector';
+
 
 export const MapContainer = ({
   layers,
   scrollZoom = false,
   router
 }) => {
+  const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
   const parsedLayers = layers.map(l => {
@@ -28,6 +31,13 @@ export const MapContainer = ({
       params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
     }
   });
+
+  const onZoomChange = (zoom) => {
+    setViewport({
+      zoom,
+      transitionDuration: 250
+    });
+  };
 
   const onAfterAdd = layerModel => {
     if (!isEmpty(layerModel.interactionConfig)) {
@@ -61,6 +71,7 @@ export const MapContainer = ({
     <div className='c-map-container'>
       <PopulationsSelector />
       <Map
+        viewport={viewport}
         scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
@@ -85,15 +96,16 @@ export const MapContainer = ({
 
               })}
             </LayerManager>
-
-            <div className="map-controls">
-              <NavigationControl className="map-navigation" />
-              <FullscreenControl className="map-fullscreen" />
-              <ShareControl className="map-share" />
-            </div>
           </Fragment>
         }
       </Map>
+      <MapControls>
+        <ZoomControl
+          viewport={viewport}
+          onClick={onZoomChange}
+        />
+      </MapControls>
+
       <Legend />
     </div>
   );

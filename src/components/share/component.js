@@ -46,7 +46,7 @@ const ShareControl = () => {
             <div className="c-filters-action-buttons">
               <Button className="-border-color-1" onClick={toggleModal}>
                 Close
-            </Button>
+              </Button>
             </div>
           )}
         >
