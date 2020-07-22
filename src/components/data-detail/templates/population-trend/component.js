@@ -100,10 +100,6 @@ const PopulationTrend = ({ data }) => {
 };
 
 PopulationTrend.propTypes = {
-  info: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    data: PropTypes.array
-  }).isRequired
 }
 
 export default PopulationTrend;

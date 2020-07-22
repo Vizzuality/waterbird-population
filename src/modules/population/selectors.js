@@ -7,6 +7,22 @@ export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
 
+export const selectPopulationOptions = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+
+    return _data[_specie_id].map(p => {
+      return {
+        label: trim(p.name) || '-',
+        value: p.id,
+        family: p.family.name,
+        specie: p.specie.commonname
+      }
+    });
+  }
+);
+
 export const selectPopulationInfoData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
@@ -104,6 +120,7 @@ export const selectPopulationPercentData = createSelector(
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
+  populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationSizeData: selectPopulationSizeData,
   populationTrendData: selectPopulationTrendData,

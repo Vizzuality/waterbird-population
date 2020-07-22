@@ -6,18 +6,18 @@ import Icon from 'components/icon';
 
 import './styles.scss';
 
-const PopulationsSelector = ({ populations, selected, onChange }) => {
-  const [current, setCurrent] = useState(populations.find(p => p.value === selected) || populations[0]);
+const PopulationsSelector = ({ data, selected, onChange }) => {
+  const [current, setCurrent] = useState({});
 
   useEffect(() => {
-    if (selected) setCurrent(populations.find(p => p.value === selected));
-  }, [selected])
+    setCurrent(data.find(p => p.value === +selected) || data[0] || {});
+  }, [data, selected])
 
   const onSelectChange = (e) => {
     const { value } = e.currentTarget;
-    setCurrent(populations.find(p => p.value === value));
+    setCurrent(data.find(p => p.value === +value));
 
-    if (onChange) onChange(value);
+    if (onChange) onChange(+value);
   }
 
   return (
@@ -35,7 +35,7 @@ const PopulationsSelector = ({ populations, selected, onChange }) => {
                 value={current.value}
                 onChange={onSelectChange}
               >
-                {populations.map(p => (
+                {data.map(p => (
                   <option key={p.value} value={p.value}>{p.label}</option>
                 ))}
               </select>
@@ -44,12 +44,12 @@ const PopulationsSelector = ({ populations, selected, onChange }) => {
 
           <div className="populations-selector--content-info">
             <h5>Family:</h5>
-            <p>Anatidae</p>
+            <p>{current.family}</p>
           </div>
 
           <div className="populations-selector--content-info">
             <h5>Species:</h5>
-            <p>Norther Pintail (Anas ocuta)</p>
+            <p>{current.specie}</p>
           </div>
         </div>
       </div>
@@ -58,19 +58,19 @@ const PopulationsSelector = ({ populations, selected, onChange }) => {
 };
 
 PopulationsSelector.propTypes = {
-  populations: PropTypes.array,
-  selected: PropTypes.string,
+  data: PropTypes.array,
+  selected: PropTypes.number,
   onChange: PropTypes.func
 };
 
 PopulationsSelector.defaultProps = {
-  populations: [
+  data: [
     { label: 'Western Siberia/SW Asia, NE & Eastern Africa', value: 'population_id_1' },
     { label: 'Populations 2', value: 'population_id_2' },
     { label: 'Populations 3', value: 'population_id_3' },
     { label: 'Populations 4', value: 'population_id_4' }
   ],
-  selected: '',
+  selected: null,
   onChange: null
 };
 

@@ -17,9 +17,11 @@ import PopulationsSelector from 'components/populations-selector';
 
 
 export const MapContainer = ({
+  populationOptions,
   layers,
   scrollZoom = false,
-  router
+  router,
+  setRouter
 }) => {
   const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
@@ -68,7 +70,16 @@ export const MapContainer = ({
 
   return (
     <div className='c-map-container'>
-      <PopulationsSelector />
+      <PopulationsSelector
+        data={populationOptions}
+        selected={router.payload.population_id}
+        onChange={(value) => {
+          setRouter('EXPLORE_DETAIL', {
+            specie_id: router.payload.specie_id,
+            population_id: value
+          })
+        }}
+      />
       <Map
         viewport={viewport}
         scrollZoom={scrollZoom}

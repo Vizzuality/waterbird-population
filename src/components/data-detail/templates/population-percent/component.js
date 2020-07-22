@@ -94,10 +94,6 @@ const PopulationPercent = ({ data }) => {
 };
 
 PopulationPercent.propTypes = {
-  info: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    data: PropTypes.array
-  }).isRequired
 }
 
 export default PopulationPercent;
