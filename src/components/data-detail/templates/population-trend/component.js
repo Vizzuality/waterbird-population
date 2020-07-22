@@ -27,7 +27,7 @@ const PopulationTrend = ({ data }) => {
     <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
       <div className="header">
-        <h2>Population size</h2>
+        <h2>Population trend</h2>
         <Button
           onClick={handleClick}
           className={classnames('-secondary -medium',

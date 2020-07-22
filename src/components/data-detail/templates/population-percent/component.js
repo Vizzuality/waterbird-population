@@ -6,11 +6,9 @@ import Button from 'components/button';
 import Tooltip from 'components/tooltip';
 import Comments from 'components/data-detail/comments';
 
-import info from './constants';
 import './styles.scss';
 
 const PopulationPercent = ({ data }) => {
-  data = [info]
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [isOpen, toggleComment] = useState(false);
@@ -26,10 +24,10 @@ const PopulationPercent = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-percent',
+    <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
       <div className="header">
-        <h2>{info.title}</h2>
+        <h2>Population 1% level</h2>
         <Button
           onClick={handleClick}
           className={classnames('-secondary -medium',
@@ -42,18 +40,27 @@ const PopulationPercent = ({ data }) => {
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
       </div>
-      {data.map(info =>
-        <table>
-          <thead>
-            <tr>
-              {(info.data.heads).map(head => <th>{head}</th>)}
-              <div></div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {(info.data.data).map(i => <td>{i}</td>)}
-              <td className="button">
+
+      <table>
+        <thead>
+          <tr>
+            <th>Publication</th>
+            <th>Yearset</th>
+            <th>1 percent</th>
+            <th>Notes</th>
+            <th />
+          </tr>
+        </thead>
+
+        <tbody>
+          {(data).map(d =>
+            <tr key={d.publication}>
+              <td>{d.publication}</td>
+              <td>{d.yearset}</td>
+              <td>{d.onepercent}</td>
+              <td>TO DO</td>
+              <td>TO DO</td>
+              {/* <td className="button">
                 <Tooltip
                   trigger="click"
                   useContext
@@ -77,11 +84,11 @@ const PopulationPercent = ({ data }) => {
                     {isOpen ? 'Close' : 'Comments'}
                   </Button>
                 </Tooltip>
-              </td>
+              </td> */}
             </tr>
-          </tbody>
-        </table>
-      )}
+          )}
+        </tbody>
+      </table>
     </div >
   )
 };

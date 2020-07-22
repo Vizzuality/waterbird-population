@@ -81,9 +81,31 @@ export const selectPopulationTrendData = createSelector(
   }
 );
 
+export const selectPopulationPercentData = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+
+    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+
+    return population.publications.map(p => {
+      const { id, name: publication } = p;
+      const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
+      const { yearset, onepercent } = percentlevel;
+
+      return {
+        publication,
+        yearset,
+        onepercent
+      }
+    })
+  }
+);
+
 
 export const selectPopulationDetailProps = createStructuredSelector({
   populationInfoData: selectPopulationInfoData,
   populationSizeData: selectPopulationSizeData,
-  populationTrendData: selectPopulationTrendData
+  populationTrendData: selectPopulationTrendData,
+  populationPercentData: selectPopulationPercentData
 });
