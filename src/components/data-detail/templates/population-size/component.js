@@ -6,11 +6,9 @@ import Button from 'components/button';
 import Tooltip from 'components/tooltip';
 import Comments from 'components/data-detail/comments';
 
-import info from './constants';
 import './styles.scss';
 
 const PopulationSize = ({ data }) => {
-  data = [info]
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [isOpen, toggleComment] = useState(false);
@@ -29,7 +27,7 @@ const PopulationSize = ({ data }) => {
     <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
       <div className="header">
-        <h2>{info.title}</h2>
+        <h2>Population size</h2>
         <Button
           onClick={handleClick}
           className={classnames('-secondary -medium',
@@ -42,18 +40,34 @@ const PopulationSize = ({ data }) => {
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
       </div>
-      {data.map(info =>
-        <table>
-          <thead>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Publication</th>
+            <th>Start year</th>
+            <th>End year</th>
+            <th>Minimum</th>
+            <th>Maximum</th>
+            <th>Estimate quality</th>
+            <th>Notes</th>
+            <th>References</th>
+            <th />
+          </tr>
+        </thead>
+
+        <tbody>
+          {(data).map(d =>
             <tr>
-              {(info.data.heads).map(head => <th>{head}</th>)}
-              <div></div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {(info.data.data).map(i => <td>{i}</td>)}
-              <td className="button">
+              <td>{d.publication}</td>
+              <td>{d.startyear}</td>
+              <td>{d.endyear}</td>
+              <td>{d.minimum}</td>
+              <td>{d.maximum}</td>
+              <td>TO DO</td>
+              <td>TO DO</td>
+              <td>TO DO</td>
+              {/* <td className="button">
                 <Tooltip
                   trigger="click"
                   useContext
@@ -77,11 +91,11 @@ const PopulationSize = ({ data }) => {
                     {isOpen ? 'Close' : 'Comments'}
                   </Button>
                 </Tooltip>
-              </td>
+              </td> */}
             </tr>
-          </tbody>
-        </table>
-      )}
+          )}
+        </tbody>
+      </table>
     </div >
   )
 };

@@ -65,6 +65,7 @@ export const fetchPopulations = (specieid) => {
 
     p.population_id,
     p.publication_id,
+    p.populationsize_id,
 
     pub.id as pub_id,
     pub.published as pub_published,
@@ -80,14 +81,14 @@ export const fetchPopulations = (specieid) => {
     trend.trendcode as trend_code,
     trend.trendsum as trend_sum
   FROM populationname n
+  LEFT JOIN populationpublication p ON p.population_id = n.id
   LEFT JOIN species_1 sp ON n.species_id = sp.id
   LEFT JOIN family f ON f.id = sp.familyname_id
   LEFT JOIN familyorder fo ON fo.id = f.grouping_id
   LEFT JOIN redlistcategory r ON sp.iucn_id = r.id
-  LEFT JOIN populationsize s ON n.id = s.population_id
-  LEFT JOIN populationonepercentlevel o ON n.id = o.populationid
-  LEFT JOIN populationtrend t ON n.id = t.population_id
-  LEFT JOIN populationpublication p ON p.population_id = s.population_id
+  LEFT JOIN populationsize s ON p.populationsize_id = s.id
+  LEFT JOIN populationonepercentlevel o ON p.onepercent_id = o.id
+  LEFT JOIN populationtrend t ON p.populationtrend_id = t.id
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id)
@@ -135,7 +136,8 @@ export const fetchPopulations = (specieid) => {
       'id', populationonepercentlevel_id,
       'yearset', populationonepercentlevel_yearset,
       'onepercent', populationonepercentlevel_onepercent,
-      'population_id', populationonepercentlevel_population_id
+      'population_id', populationonepercentlevel_population_id,
+      'publication_id', publication_id
     ))
     as populationonepercentlevel,
 

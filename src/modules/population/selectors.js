@@ -35,6 +35,55 @@ export const selectPopulationInfoData = createSelector(
   }
 );
 
+export const selectPopulationSizeData = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+
+    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+
+    return population.publications.map(p => {
+      const { id, name } = p;
+      const size = population.sizes.find(s => s.publication_id === id);
+      const { startyear, endyear, maximum, minimum } = size;
+
+      return {
+        publication: name,
+        startyear,
+        endyear,
+        maximum,
+        minimum
+      }
+    })
+  }
+);
+
+export const selectPopulationTrendData = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+
+    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+
+    return population.publications.map(p => {
+      const { id, name: publication } = p;
+      const trend = population.trends.find(s => s.publication_id === id);
+      const { startyear, endyear, name, quality } = trend;
+
+      return {
+        publication,
+        startyear,
+        endyear,
+        name,
+        quality
+      }
+    })
+  }
+);
+
+
 export const selectPopulationDetailProps = createStructuredSelector({
-  populationInfoData: selectPopulationInfoData
+  populationInfoData: selectPopulationInfoData,
+  populationSizeData: selectPopulationSizeData,
+  populationTrendData: selectPopulationTrendData
 });
