@@ -30,6 +30,25 @@ export const fetchPopulations = (specieid) => {
     n.nonbreedingrange,
     n.id,
     n.species_id,
+    n.africa,
+    n.asia,
+    n.europe,
+    n.neotropics,
+    n.northamerica,
+    n.oceania,
+
+    fo.id AS familyorder_id,
+    fo.name AS familyorder_name,
+
+    f.id AS family_id,
+    f.name AS family_name,
+
+    sp.id AS specie_id,
+    sp.commonname AS specie_commonname,
+    sp.scientificname AS specie_scientificname,
+
+    r.id AS redlistcategory_id,
+    r.description AS redlistcategory_name,
 
     s.id AS population_size_id,
     s.startyear AS population_size_startyear,
@@ -61,6 +80,10 @@ export const fetchPopulations = (specieid) => {
     trend.trendcode as trend_code,
     trend.trendsum as trend_sum
   FROM populationname n
+  LEFT JOIN species_1 sp ON n.species_id = sp.id
+  LEFT JOIN family f ON f.id = sp.familyname_id
+  LEFT JOIN familyorder fo ON fo.id = f.grouping_id
+  LEFT JOIN redlistcategory r ON sp.iucn_id = r.id
   LEFT JOIN populationsize s ON n.id = s.population_id
   LEFT JOIN populationonepercentlevel o ON n.id = o.populationid
   LEFT JOIN populationtrend t ON n.id = t.population_id
@@ -75,6 +98,28 @@ export const fetchPopulations = (specieid) => {
     breedingrange,
     nonbreedingrange,
     species_id,
+    asia,
+    africa,
+    europe,
+    neotropics,
+    northamerica,
+    oceania,
+
+    jsonb_build_object(
+      'id', family_id,
+      'name', family_name,
+      'ordername', familyorder_name
+    )
+    as family,
+
+    jsonb_build_object(
+      'id', specie_id,
+      'commonname', specie_commonname,
+      'scientificname', specie_scientificname,
+      'redlistcategory', redlistcategory_name
+    )
+    as specie,
+
 
     jsonb_agg(distinct jsonb_build_object(
       'id', population_size_id,
@@ -114,7 +159,28 @@ export const fetchPopulations = (specieid) => {
     as trends
 
 
-    from population_data where species_id=${specieid} group by id, name, breedingrange, nonbreedingrange, species_id`;
+    from population_data where species_id=${specieid}
+
+    group by
+    id,
+    name,
+    breedingrange,
+    nonbreedingrange,
+    asia,
+    africa,
+    europe,
+    neotropics,
+    northamerica,
+    oceania,
+    species_id,
+    specie_id,
+    specie_commonname,
+    specie_scientificname,
+    family_id,
+    family_name,
+    familyorder_name,
+    redlistcategory_name
+  `;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
     .then(({ data }) => console.log(data.rows, 'servicio')|| data.rows)

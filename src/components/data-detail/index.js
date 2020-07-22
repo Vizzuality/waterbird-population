@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
 
 import Component from './component';
+import { selectPopulationDetailProps } from 'modules/population/selectors';
 
 const mapStateToProps = state => ({
-  // activeFilters: state.filters.active,
+  ...selectPopulationDetailProps(state)
 });
 
 
