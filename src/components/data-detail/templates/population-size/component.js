@@ -58,7 +58,7 @@ const PopulationSize = ({ data }) => {
 
         <tbody>
           {(data).map(d =>
-            <tr>
+            <tr key={d.publication}>
               <td>{d.publication}</td>
               <td>{d.startyear}</td>
               <td>{d.endyear}</td>

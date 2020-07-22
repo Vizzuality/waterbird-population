@@ -8,7 +8,7 @@ import Comments from 'components/data-detail/comments';
 
 import './styles.scss';
 
-const PopulationSize = ({ data }) => {
+const PopulationTrend = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [isOpen, toggleComment] = useState(false);
@@ -57,7 +57,7 @@ const PopulationSize = ({ data }) => {
 
         <tbody>
           {(data).map(d =>
-            <tr>
+            <tr key={d.publication}>
               <td>{d.publication}</td>
               <td>{d.startyear}</td>
               <td>{d.endyear}</td>
@@ -99,11 +99,11 @@ const PopulationSize = ({ data }) => {
   )
 };
 
-PopulationSize.propTypes = {
+PopulationTrend.propTypes = {
   info: PropTypes.shape({
     title: PropTypes.string.isRequired,
     data: PropTypes.array
   }).isRequired
 }
 
-export default PopulationSize;
+export default PopulationTrend;
