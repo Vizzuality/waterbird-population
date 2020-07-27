@@ -126,3 +126,53 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationTrendData: selectPopulationTrendData,
   populationPercentData: selectPopulationPercentData
 });
+
+const populations = state => state.population.populations;
+
+const filters = state => state.population.filters;
+
+export const getCardData = createSelector(
+  [populations],
+  (_populations) => {
+    console.log(_populations)
+
+
+
+// var populations = _populations[3288],
+  var  result = _populations[3288].reduce(function (r, a) {
+        r[a.populationname] = r[a.populationname] || [];
+        r[a.populationname].push(a);
+        return r;
+    }, Object.create(null));
+
+console.log(result);
+
+    const populationsData = _populations[3288].map(pop => {
+      return {
+        'info': {
+          'population_name': pop.populationname,
+          'breeding_range': pop.breedingrange,
+          'non-breeding_range': pop.nonbreedingrange,
+        },
+        'size': {
+          'start_year': pop.startyear || '',
+          'end_year': pop.endyear || '',
+          'minimum': pop.minimum || '',
+          'maximun': pop.maximum || '',
+          'notes': pop.notes || '',
+        },
+        'trends': {
+          'start_year': pop.startyear || '',
+          'end_year': pop.endyear || '',
+          'trend': pop.trendcode || '',
+          'trend_quality': pop.description || '',
+        },
+        'percent': {
+          'yearset': pop.yearset || '',
+          'percent': pop.onepercent || '',
+        }
+      }
+    })
+    return populationsData
+  }
+);
