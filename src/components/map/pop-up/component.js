@@ -10,13 +10,14 @@ import './styles.scss';
 const PopUp = ({ popUpState, coordinates, setPopUp }) => {
 
   useEffect(() => {
-    setPopUp(popUpState)
+    setPopUp && setPopUp(popUpState)
   }, [popUpState, setPopUp]);
 
   const handleClick = () => {
-    setPopUp(!popUpState)
-
+    setPopUp && setPopUp(!popUpState)
   }
+
+  if(!popUpState || !coordinates) return null;
 
   return (
     <div className={classnames('c-map-pop-up', {

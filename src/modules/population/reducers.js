@@ -7,16 +7,13 @@ export default {
   }),
   [setPopulations]: (state, { payload }) => ({
     ...state,
-    populations: {
+    data: {
       ...state.populations,
       [payload.id]: payload.data
     }
   }),
   [setCurrent]: (state, { payload }) => ({
     ...state,
-    populations: {
-      ...state.populations,
-      current: payload
-    }
+    current: payload
   }),
 };

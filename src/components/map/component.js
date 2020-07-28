@@ -102,9 +102,7 @@ class Map extends Component {
       ...this.props.viewport // eslint-disable-line
     },
     flying: false,
-    loaded: false,
-    showPopup: false,
-    popUpCoordinates: '',
+    loaded: false
   };
 
   componentDidMount() {
@@ -147,10 +145,6 @@ class Map extends Component {
     }
   }
 
-  onMouseOut = () => {
-    this.setState({ showPopup: false });
-  };
-
   onLoad = () => {
     const { onLoad } = this.props;
     this.setState({ loaded: true });
@@ -162,15 +156,19 @@ class Map extends Component {
   };
 
   onHover = (e) => {
-    this.setState({ showPopup: true, popUpCoordinates: e.lngLat });
+    const { onHover } = this.props;
+    if (onHover) onHover(e);
   };
 
   onClick = (e) => {
-    e.preventDefault();
-    const { setPopUp, setLocation } = this.props;
-    setLocation(e.lngLat);
-    setPopUp(true);
+    const { onClick } = this.props;
+    if (onClick) onClick(e);
   }
+
+  onMouseOut = (e) => {
+    const { onMouseOut } = this.props;
+    if (onMouseOut) onMouseOut(e);
+  };
 
   onViewportChange = (v, i) => {
     const { onViewportChange } = this.props;
@@ -262,10 +260,9 @@ class Map extends Component {
       touchRotate,
       doubleClickZoom,
       mapboxApiAccessToken,
-      coordinates,
       ...mapboxProps
     } = this.props;
-    const { viewport, loaded, flying, showPopup, popUpCoordinates } = this.state;
+    const { viewport, loaded, flying } = this.state;
 
     return (
       <div
@@ -304,22 +301,9 @@ class Map extends Component {
           onClick={this.onClick}
           getCursor={getCursor}
 
-
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
         >
-          { showPopup &&
-            <Popup
-              longitude={popUpCoordinates[0]}
-              latitude={popUpCoordinates[1]}
-              closeButton={false}
-              onMouseLeave={() => {  }}
-              anchor="top"
-            >
-              <p>Click on the map to reveal relevant populations.</p>
-            </Popup>
-          }
-
           {loaded &&
             !!this.map &&
             typeof children === 'function' &&

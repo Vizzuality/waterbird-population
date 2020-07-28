@@ -3,10 +3,6 @@ import React, { useState, useRef } from 'react';
 
 import Modal from 'components/modal';
 import Button from 'components/button';
-import FacebookIcon from 'components/map/map-container/icons/share.svg';
-import TwitterIcon from 'components/map/map-container/icons/share.svg';
-import LinkedynIcon from 'components/map/map-container/icons/share.svg';
-import EmailIcon from 'components/map/map-container/icons/share.svg';
 
 const ShareControl = () => {
   const inputElUrl = useRef();
@@ -50,7 +46,7 @@ const ShareControl = () => {
             <div className="c-filters-action-buttons">
               <Button className="-border-color-1" onClick={toggleModal}>
                 Close
-            </Button>
+              </Button>
             </div>
           )}
         >
@@ -66,14 +62,14 @@ const ShareControl = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {'Facebook' || <img alt="share-facebook" src={FacebookIcon} />}
+                    {'Facebook'}
                   </a>
                   <a
                     href={`https://twitter.com/share?url=${url}`}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {'Twitter' || <img alt="share-twitter" src={TwitterIcon} />}
+                    {'Twitter'}
                   </a>
 
                   <a
@@ -81,7 +77,7 @@ const ShareControl = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {'Email' || <img alt="share-email" src={EmailIcon} />}
+                    {'Email'}
                   </a>
 
                   <a
@@ -89,7 +85,7 @@ const ShareControl = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    {'Linkedyn' || <img alt="share-linkedin" src={LinkedynIcon} />}
+                    {'Linkedyn'}
                   </a>
 
                   <Button className="-background -primary -medium" onClick={() => handleClick('Url')}>

@@ -1,7 +1,6 @@
 export default {
-  populations: {
-    current: '',
-  },
+  current: null,
+  data: {},
   filters: {
     size: true,
     'size_quality': true,
@@ -32,11 +31,6 @@ export default {
   'Population 1% level': [
     { '1 percent': '' },
     { 'Yearset': '' }
-  ],
-  'Population information': [
-    { 'Breeding range': '' },
-    { 'Non-breeding range': '' },
-    { 'Population name': '' }
   ],
   'Population size': [
     { 'End year': '' },

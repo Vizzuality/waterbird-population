@@ -13,6 +13,7 @@
   font-family: $font-family-1;
   text-align: center;
   box-sizing: border-box;
+  white-space: nowrap;
 
   // ** MODIFIERS ** //
 
@@ -61,7 +62,6 @@
 
   &.-huge {
     padding: 30px;
-    min-width: 160px;
     font-size: 14px;
   }
 

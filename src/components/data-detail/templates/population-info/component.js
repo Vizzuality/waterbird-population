@@ -1,97 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-import Button from 'components/button';
-import Tooltip from 'components/tooltip';
-import Comments from 'components/data-detail/comments';
-
-import info from './constants';
 import './styles.scss';
 
 const PopulationInfo = ({ data }) => {
-  data = [info]
-
-  const [isCollapsed, toggleCollapse] = useState(true);
-  const [isOpen, toggleComment] = useState(false);
-
-
-  const handleClick = () => {
-    toggleCollapse(!isCollapsed)
-  };
-
-  const handleClickComments = () => {
-    toggleComment(!isOpen)
-  };
-
-
   return (
-    <div className={classnames('c-population-info',
-      { '-collapse': isCollapsed })}>
+    <div className={classnames('c-population-info')}>
       <div className="header">
-        <h2>{info.title}</h2>
-        <Button
-          onClick={handleClick}
-          className={classnames('-secondary -medium',
-            {
-              ['-background']: isCollapsed,
-              ['-border']: !isCollapsed
-            }
-          )}
-        >
-          {isCollapsed ? 'Expand' : 'Collapse'}
-        </Button>
+        <h2>Population information</h2>
       </div>
-      {data.map(info =>
-        <table>
-          <thead>
-            <tr>
-              {(info.data.heads).map(head => <th>{head}</th>)}
-              <div></div>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {(info.data.data).map(i => <td>{i}</td>)}
-              <td className="button">
-                <Tooltip
-                  trigger="click"
-                  useContext
-                  html={
-                    <Comments
-                      toggleComment
-                      isOpen
-                   //   info TO-DO- add dinamycally
-                    />
-                  }
-               >
-                  <Button
-                  onClick={handleClickComments}
-                  className={classnames('-border -small',
-                    {
-                      ['-secondary']: isOpen,
-                      ['-primary']: !isOpen
-                    }
-                  )}
-                >
-                  {isOpen ? 'Close' : 'Comments'}
-                </Button>
-                </Tooltip>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-  )
-}
+
+      <div className="population-info--summary">
+        {(data.map((i, ix) => {
+          return (
+            <div key={ix} className="population-info--summary-item">
+              {i.map(i2 => (
+                <div key={i2.head} className="population-info--summary-item-container">
+                  <div className="population-info--summary-item-head">{i2.head}</div>
+                  <div
+                    className={classnames({
+                      "population-info--summary-item-value": true,
+                      [i2.className]: !!i2.className
+                    })}
+                  >
+                    {i2.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        }))}
+      </div>
     </div >
   )
 };
 
 PopulationInfo.propTypes = {
-  info: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    data: PropTypes.array
-  }).isRequired
+  data: PropTypes.array
+}
+
+PopulationInfo.defaultProps = {
+  data: []
 }
 
 export default PopulationInfo;

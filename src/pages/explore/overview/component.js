@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
-import MapContainer from 'components/map/map-container';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import DataResults from 'components/data-results';
-//import Spinner from 'components/spinner';
+import MapContainer from './map';
 
 import { fetchFamilies } from 'services/families';
 
@@ -23,13 +22,15 @@ const ExplorePage = () => {
     <div className="map-section">
       <MapContainer />
     </div>
-    <div className="results-section">
-      <Search  />
-      <DataControls />
-      {families && families.length > 0
-        ? families.map(family => <DataResults family={family} />)
-        : '...loading' // <Spinner />
-      }
+    <div className="wrapper">
+      <div className="results-section">
+        <Search  />
+        <DataControls />
+        {families && families.length > 0
+          ? families.map(family => <DataResults family={family} />)
+          : '...loading' // <Spinner />
+        }
+      </div>
     </div>
   </div>
  )

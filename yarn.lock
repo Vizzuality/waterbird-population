@@ -7468,10 +7468,10 @@ last-call-webpack-plugin@^3.0.0:
     lodash "^4.17.5"
     webpack-sources "^1.1.0"
 
-layer-manager@^3.0.0-beta.4:
-  version "3.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/layer-manager/-/layer-manager-3.0.0-beta.7.tgz#0ffcf9ae1ba36e457cc4ed5738bcaf0efa40edac"
-  integrity sha512-bMV8sEJs8CegRHxOU9K+TV3u3rZEnUpHh8Gqr6TLXG79637xC20Yxt5BzdUve9Aja8mZTPFmk5MKuol83MbQ1A==
+layer-manager@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/layer-manager/-/layer-manager-3.0.6.tgz#afe414f5620612c93f236a05649dc877825cb5e9"
+  integrity sha512-aT2eHVsSUtUHRW0hUJrZ8oJFVGbEIjVhgdJPKQtDwbSzSYSaVLbObHJPWvzYZWPked7/GSE4jKz7kz1JMafMwQ==
   dependencies:
     axios "^0.19.0"
     lodash "^4.17.15"
@@ -8170,6 +8170,11 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
+
+moment@^2.27.0:
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
+  integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
 
 morgan@^1.7.0:
   version "1.9.1"
@@ -10604,6 +10609,13 @@ redux-first-router-link@^2.1.1:
     rudy-history "^1.0.0"
     rudy-match-path "^0.3.0"
 
+redux-first-router-restore-scroll@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/redux-first-router-restore-scroll/-/redux-first-router-restore-scroll-1.2.2.tgz#301f206cf8c08005eaace4f3c9a1fb8fcd8e9347"
+  integrity sha512-b+FB/4zhQskIvIpJcvuBDnpDUBh2nQDOnOe5a4GS828Ak5z6ziuNA35NXUNmkr2H+0ZyHwoQmIahQ1i4KCLbCw==
+  dependencies:
+    scroll-behavior "^0.9.3"
+
 redux-first-router@^2.1.5:
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/redux-first-router/-/redux-first-router-2.1.5.tgz#3e250478ddef15656fddc4efd268e345b0b3aa98"
@@ -10826,6 +10838,11 @@ requires-port@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
   integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
+
+reselect@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
+  integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
 resolve-cwd@^2.0.0:
   version "2.0.0"
@@ -11214,6 +11231,14 @@ schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0, schema-utils@^2.2
   dependencies:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
+
+scroll-behavior@^0.9.3:
+  version "0.9.12"
+  resolved "https://registry.yarnpkg.com/scroll-behavior/-/scroll-behavior-0.9.12.tgz#1c22d273ec4ce6cd4714a443fead50227da9424c"
+  integrity sha512-18sirtyq1P/VsBX6O/vgw20Np+ngduFXEMO4/NDFXabdOKBL2kjPVUpz1y0+jm99EWwFJafxf5/tCyMeXt9Xyg==
+  dependencies:
+    dom-helpers "^3.4.0"
+    invariant "^2.2.4"
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"

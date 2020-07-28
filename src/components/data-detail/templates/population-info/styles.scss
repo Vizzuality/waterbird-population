@@ -3,87 +3,62 @@
 
 .c-population-info {
 
-  .results-title {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 0;
+  .population-info--summary {
+    width: auto;
 
-    h1 {
-      font-size: 24px;
-      line-height: 29px;
-    }
+    .population-info--summary-item {
+      display: flex;
+      padding: 15px 0;
 
-    h2 {
-      font-size: 18px;
-      line-height: 21px;
+      > * {
+        margin-left: 30px;
+        padding-left: 30px;
+        border-left: 1px solid $color-grey-3;
 
-      span {
-        &.name {
-          color: $color-2;
+        &:first-child {
+          margin-left: 0;
+          padding-left: 0;
+          border-left: none;
         }
       }
     }
 
-    span {
-      padding-right: 15px;
+    .population-info--summary-item-container {
+      display: flex;
+    }
 
-      &.name {
-        font-weight: bold;
-      }
+    .population-info--summary-item-head {
+      padding-right: 30px;
+      min-width: 160px;
+    }
 
-      &.tag {
-        border-radius: 4px;
-        padding: 5px 10px 5px 25px;
-        background-color: #40A30B;
-        color: $white;
-        font-size: 10px;
-        line-height: 11px;
+    .population-info--summary-item-value {
+      font-size: 14px;
+      font-weight: $font-weight-bold;
+
+      &.-tag {
         position: relative;
+        font-weight: $font-weight-regular;
+        text-transform: uppercase;
+        font-size: 10px;
+        padding: 0px 10px;
+        padding-left: 20px;
+        background: #40A30B;
+        color: white;
+        border-radius: 4px;
 
         &:before {
-          content: '';
-          position: absolute;
-          border-radius: 50%;
-          top: 50%;
-          left: 10px;
-          transform: translateY(-50%);
-          height: 6px;
+          content: "";
           width: 6px;
-          background-color: $white;
+          height: 6px;
+          background: #FFF;
+          position: absolute;
+          left: 0px;
+          top: 50%;
+          transform: translate(7px, -50%);
+          border-radius: 50%;
         }
       }
-    }
-
-    button {
-      box-sizing: border-box;
-      border: 2px solid rgba($color-grey-8, 0.2);
-      border-radius: 3px;
-      padding: 0px 20px;
-      line-height: 21px;
-    }
-  }
-
-
-  .results-description {
-    display: flex;
-    justify-content: flex-start;
-    font-size: 16px;
-    line-height: 26px;
-    padding-bottom: 40px;
-
-    * {
-      margin-right: 50px;
-    }
-
-    img {
-      height: 105px;
-      width: 105px;
-      border: 1px solid rgba($color-grey-4, 0.65);
-      border-radius: 10px;
-    }
-
-    p {
-      max-width: 700px;
     }
   }
 }

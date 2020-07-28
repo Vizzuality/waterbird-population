@@ -13,9 +13,9 @@ const PopulationsCard = ({ info , filters , specieId}) => {
 
   return (
     <section className="c-card-info">
-    <Link to={`/explore/${specieId}`} on>
-      card
-    </Link>
+      <Link to={`/explore/${specieId}`} on>
+        card
+      </Link>
     </section>
 
     // <section className="c-card-info">
