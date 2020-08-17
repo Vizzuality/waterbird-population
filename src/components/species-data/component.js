@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 // components
 import Button from 'components/button';
-import PopulationsCard from 'components/populations-card';
+import PopulationsCards from 'components/populations-card';
 
 // services
 import { fetchPopulations } from 'services/population';
@@ -25,8 +25,9 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
     specieid
   } = info;
   const [isCollapsed, toggleCollapse] = useState(true);
+  const populationId = 1319;
   const handleClick = () => {
-    fetchPopulations(specieid).then(data => setPopulations({ id: specieid, data}));
+    fetchPopulations(specieid).then(data => setPopulations({ id: specieid, data }));
     toggleCollapse(!isCollapsed)
   };
 
@@ -34,7 +35,6 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
     <section className="c-data-results">
       <div className="results-title">
         <h2>
-          {console.log(populations)}
           <span>Species:</span>
           <span className="name -cientific">{scientificname}</span>
           <span className="name -specific">({commonname})</span>
@@ -56,7 +56,11 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
         <img src={image} alt='Haematopodidae' />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
-      <PopulationsCard specieId={specieid} />
+      {console.log(populations, 'populations array')}
+      {populations
+        && Object.entries(populations).length > 0
+        && populations[specieid] !== undefined
+        && <PopulationsCards specieId={specieid} />}
 
     </section>
   );

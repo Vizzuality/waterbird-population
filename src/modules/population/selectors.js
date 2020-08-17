@@ -1,5 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
+import orderBy from 'lodash/orderBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
@@ -119,6 +120,79 @@ export const selectPopulationPercentData = createSelector(
 );
 
 
+export const filters = (state) => state.population.filters;
+
+export const selectLastPublications = createSelector(
+  [data],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const publicationIds = Object.values(_data)[0].map(
+      d => {
+        if (d.publications.length === 1) {
+          return {
+            publication_id: d.publications[0].id,
+            name: d.publications[0].name,
+            id: d.id
+          }
+        } else {
+          const dataOrdered = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
+          const publicationId = dataOrdered[0].publication_id;
+          return {
+            publication_id: publicationId,
+            name: d.publications.find(p => p.id === publicationId).name,
+            id: d.id
+          }
+        }
+      })
+    return publicationIds;
+  }
+)
+
+export const selectPopulationsData = createSelector(
+  [data, filters, selectLastPublications],
+  ( _data, _filters, _publication_id) => {
+    if (!_data || isEmpty(_data)) return [];
+    const lastPublicationData = Object.values(_data)[0].map(
+      d => {
+
+        const lastPublicationId = _publication_id.find(p => p.id === d.id)
+        const size = d.sizes.find(s => s.publication_id === lastPublicationId.publication_id)
+        const trend = d.trends.find(s => s.publication_id === lastPublicationId.publication_id)
+        const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === lastPublicationId.publication_id)
+
+        return {
+          populationId: d.id,
+          name: d.name,
+          size: `${size.maximun} - ${size.minimum}`,
+          'size_year': `${size.startyear} - ${size.endyear}`,
+          trend: trend.name,
+          'trend_year': `${trend.startyear} - ${trend.endyear}`,
+          'trend_quality': trend.quality,
+          'percent': percentLevel.onepercet,
+          'yearset': percentLevel.yearset,
+          publication: d.publications.name,
+          commonname: d.commonname,
+          redlistcategory: d.redlistcategory,
+          scientificname: d.scientificname,
+          'family_name': d.family.name,
+          'order_name': d.family.ordername,
+          'breedingrange': d.breedingrange,
+          'nonbreedingrange': d.nonbreedingrange
+        }
+      }
+    )
+
+return lastPublicationData
+
+    // _filters.reduce((acc, _filter) => {
+
+    // })
+  }
+);
+
+
+
 export const selectPopulationDetailProps = createStructuredSelector({
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
@@ -126,53 +200,3 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationTrendData: selectPopulationTrendData,
   populationPercentData: selectPopulationPercentData
 });
-
-const populations = state => state.population.populations;
-
-const filters = state => state.population.filters;
-
-export const getCardData = createSelector(
-  [populations],
-  (_populations) => {
-    console.log(_populations)
-
-
-
-// var populations = _populations[3288],
-  var  result = _populations[3288].reduce(function (r, a) {
-        r[a.populationname] = r[a.populationname] || [];
-        r[a.populationname].push(a);
-        return r;
-    }, Object.create(null));
-
-console.log(result);
-
-    const populationsData = _populations[3288].map(pop => {
-      return {
-        'info': {
-          'population_name': pop.populationname,
-          'breeding_range': pop.breedingrange,
-          'non-breeding_range': pop.nonbreedingrange,
-        },
-        'size': {
-          'start_year': pop.startyear || '',
-          'end_year': pop.endyear || '',
-          'minimum': pop.minimum || '',
-          'maximun': pop.maximum || '',
-          'notes': pop.notes || '',
-        },
-        'trends': {
-          'start_year': pop.startyear || '',
-          'end_year': pop.endyear || '',
-          'trend': pop.trendcode || '',
-          'trend_quality': pop.description || '',
-        },
-        'percent': {
-          'yearset': pop.yearset || '',
-          'percent': pop.onepercent || '',
-        }
-      }
-    })
-    return populationsData
-  }
-);
