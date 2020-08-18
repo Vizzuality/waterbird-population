@@ -6,6 +6,7 @@ import { handleModule } from 'vizzuality-redux-tools';
 
 import * as map from 'modules/map';
 import * as population from 'modules/population';
+import * as user from 'modules/user';
 
 
 const {
@@ -18,6 +19,7 @@ const {
 const reducers = combineReducers({
   router: routerReducer,
   map: handleModule(map),
+  user: handleModule(user),
   population: handleModule(population)
 });
 

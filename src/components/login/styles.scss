@@ -14,7 +14,6 @@
     align-items: center;
     max-width: 350px;
 
-
     h3 {
       width: 100%;
       color: #7B849C;
@@ -73,12 +72,17 @@
       }
     }
 
-    a {
+    .text {
       color: $color-2;
       font-family: Aller;
+      font-style: italic;
       font-size: 14px;
       letter-spacing: 0;
       line-height: 16px;
+
+      &.error {
+        color: red;
+      }
     }
   }
 
@@ -94,5 +98,42 @@
     p {
       font-size: 14px;
       line-height: 16px;
+    }
+  }
+
+  .c-login {
+
+    .dropdown {
+      padding: 5px 30px;
+      border-radius: 9px;
+      border: 2px solid $color-1;
+      color: $color-1;
+      line-height: 19px;
+      font-size: 16px;
+      font-family: $font-family-1;
+      text-align: center;
+      position: relative;
+      margin-right: 5px;
+
+      .dropdown-list {
+        background-color: $white;
+        display: none;
+      }
+
+      &:hover {
+        color: rgba($color-grey-8, 1);
+
+        .dropdown-list {
+          pointer-events: all;
+          box-sizing: border-box;
+          padding: 20px;
+          display: block;
+          flex-direction: column;
+          position: absolute;
+          left: 0;
+          top: 31px;
+          min-width: 100px;
+        }
+      }
     }
   }

@@ -6,7 +6,7 @@ import Login from 'components/login';
 
 import './styles.scss';
 
-const Header = () => (
+const Header = ({ user }) => (
   <div className="c-header">
     <div className="wrapper">
       <div className="row">
