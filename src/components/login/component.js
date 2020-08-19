@@ -22,7 +22,6 @@ const Login = ({ user, setUser, resetUser }) => {
   };
 
   const handleLogin = () => {
-    console.log('reset')
    resetUser();
   };
 
