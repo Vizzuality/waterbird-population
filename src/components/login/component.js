@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import Cookies from 'js-cookie';
 import Button from 'components/button';
 import Modal from 'components/modal';
 import { fetchUser } from 'services/users';
@@ -8,8 +9,7 @@ import './styles.scss';
 
 const Login = ({ user, setUser, resetUser }) => {
   const [isOpen, toggleModal] = useState(false);
-  const [emailMessage, setEmailMessage] = useState(false);
-  const [passwordMessage, setPasswordMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [form, changeState] = useState({
     email: '',
     password: ''
@@ -22,29 +22,29 @@ const Login = ({ user, setUser, resetUser }) => {
   };
 
   const handleLogin = () => {
-    console.log('hola')
-    resetUser();
+   resetUser();
   };
 
   const handleChange = (e) => {
-    setEmailMessage(false);
-    setPasswordMessage(false);
+    setErrorMessage(false);
     changeState({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = () => {
     const { email, password } = form;
     fetchUser(email, password).then((data) => {
-      if (data === undefined) {
-        setEmailMessage(true)
-      }
-      if (data && data.password !== password) {
-        setPasswordMessage(true)
-      }
-      if (data && data.password === password) {
+      if (data !== undefined) {
+        Cookies.set('user', {
+          email: data.email,
+          id: data.id,
+          name: data.name,
+          rol: data.rol
+        });
         setUser(data)
         toggleModal(false)
       }
+
+      !data && setErrorMessage(true)
     })
   }
 
@@ -70,12 +70,11 @@ const Login = ({ user, setUser, resetUser }) => {
               EMAIL
             </label>
             <input onChange={handleChange} name="email" type="email" id="email" placeholder="email" required />
-            {emailMessage && <div className="text error">The username is not registered</div>}
             <label htmlFor="password">
               PASSWORD
             </label>
             <input onChange={handleChange} name="password" type="password" id="password" placeholder="password" required />
-            {passwordMessage && <div className="text error">Incorrect password</div>}
+            {errorMessage && <div className="text error">Username or password incorrect</div>}
             <a
               href={`mailto:?to=post@wetlands.org&subject=Password reminder&body=I would like a reminder of my password, username: ${email}`}
               target="_blank"
