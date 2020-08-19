@@ -22,6 +22,7 @@ const Login = ({ user, setUser, resetUser }) => {
   };
 
   const handleLogin = () => {
+    console.log('reset')
    resetUser();
   };
 
@@ -52,11 +53,12 @@ const Login = ({ user, setUser, resetUser }) => {
     <div className="c-login">
       {user.name && (
         <div className="dropdown">{user.name}
-          <button
-            className="dropdown-list"
-            onClick={handleLogin}>
-              log out
-          </button>
+          <div className="dropdown-content">
+            <div>{user.name}</div>
+            <button onClick={handleLogin}>
+                log out
+            </button>
+          </div>
         </div>)}
       {!user.name && <Button onClick={handleClick} className="-background -primary">Login</Button>}
       <Modal
