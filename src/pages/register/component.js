@@ -5,6 +5,7 @@ import Modal from 'components/modal';
 
 import Image from './images/register.png';
 import './styles.scss';
+import { registerUser } from 'services/users';
 
 const Register = () => {
 
@@ -16,19 +17,17 @@ const Register = () => {
     comments: '',
   });
 
-  const {
-    name,
-    email,
-    phone,
-    company,
-    comments,
-  } = form;
+  const { name, email, password } = form;
 
   const [isOpen, toggleModal] = useState(true);
 
   const handleChange = (e) => {
     changeState({ ...form, [e.target.name]: e.target.value })
   };
+
+  const handleSubmit = (e) => {
+  registerUser({...form})
+  }
 
   return (
     <div className="l-register">
@@ -61,16 +60,15 @@ const Register = () => {
             </label>
               <input onChange={handleChange} name="comments" type="text" id="comments" placeholder="comments" required />
             </form>
-            <Button type="submit" className={classnames(
+            <Button
+              type="submit"
+              className={classnames(
               '-background -secondary -big', {
-              '-disable':
-                !name.length ||
-                !email.length  ||
-                !phone.length ||
-                !company.length ||
-                !comments.length
-              }
-            )}>
+              '-disable': !name.length || !email.length
+              })}
+              onClick={handleSubmit}
+              disabled={!email || !name}
+            >
               Send
           </Button>
           </div>
