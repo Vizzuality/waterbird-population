@@ -42,9 +42,4 @@ export const registerUser = (data) => {
     '${data.comments}'
   ) `
   return API.post(`sql?q=${q}&api_key=${api_key}`)
-  .then(() => console.log('Request sent'))
-  .catch((e) => {
-   // const { status, statusText } = response;
-    console.log(e)
-  });
 };
