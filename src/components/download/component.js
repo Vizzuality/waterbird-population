@@ -1,37 +1,32 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { CSVLink } from 'react-csv';
 
 import Icon from 'components/icon';
 import './styles.scss';
 
-class DownloadLink extends PureComponent {
-  static propTypes = {
-    data: PropTypes.arrayOf(PropTypes.shape({})),
-    filename: PropTypes.string,
-    headers: PropTypes.string,
-  }
+const DownloadLink = ({ data, filename, headers }) => (
+  <CSVLink
+    className="c-download"
+    data={'No data available' || data}
+    headers={headers}
+    filename={`${filename}-${Date.now()}.csv`}
+  >
+    <span>Download data</span>
+    <Icon name="download" />
+  </CSVLink >
+);
 
-  static defaultProps = {
-    data: null,
-    filename: null,
-    headers: ''
-  }
+DownloadLink.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({})),
+  filename: PropTypes.string,
+  headers: PropTypes.string,
+}
 
-  render() {
-    const { data, filename, headers } = this.props;
-    return (
-      <CSVLink
-        className="c-download"
-        data={data}
-        headers={headers}
-        filename={`${filename}-${Date.now()}.csv`}
-      >
-        <Icon name="download" />
-        Download data
-      </CSVLink>
-    );
-  }
+DownloadLink.defaultProps = {
+  data: null,
+  filename: null,
+  headers: ''
 }
 
 export default DownloadLink;
