@@ -96,6 +96,7 @@ const PopulationPercent = ({ data }) => {
                   </Button>
                 </Tooltip>
               </td> */}
+
             </tr>
           )}
         </tbody>

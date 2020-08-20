@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import { createComment } from 'services/comments';
+
 import Button from 'components/button';
 import commentInfo from './constants';
+
 import './styles.scss';
 
-const Comments = ({ toggleComment, isOpen }) => {
+const Comments = ({ toggleComment, isOpen, user }) => {
 
   const [isDisable, disableButton] = useState(true);
 
@@ -16,7 +19,18 @@ const Comments = ({ toggleComment, isOpen }) => {
 
   const handleClick = () => {
     toggleComment(!isOpen)
+  };
+
+  const sendComment = (e) => {
+    console.log(e, 'comentario')
+    createComment({
+      name: user.name,
+      user_id: user.id,
+      publication_id: '',
+      comment: ''
+    });
   }
+
 
   return (
     <div className="c-comments">
@@ -47,6 +61,7 @@ const Comments = ({ toggleComment, isOpen }) => {
 
         <Button
           type="submit"
+          onclick={sendComment}
           className={classnames('-background -secondary -big',
             { '-disable': isDisable })}
         >
