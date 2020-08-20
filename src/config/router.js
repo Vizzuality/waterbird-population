@@ -49,11 +49,7 @@ export const routes = {
   IMAGES: {
     page: 'images',
     path: '/images/:id'
-  },
-  REGISTER: {
-    page: 'register',
-    path: '/register'
-  },
+  }
 };
 
 const options = {

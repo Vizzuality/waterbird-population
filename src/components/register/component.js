@@ -9,33 +9,47 @@ import { registerUser } from 'services/users';
 
 const Register = () => {
 
-  const [form, changeState] = useState({
+  const defaultForm = {
     name: '',
     email: '',
     phone: '',
     company: '',
     comments: '',
-  });
+  };
+
+  const [form, changeState] = useState(defaultForm);
+  const [isOpen, toggleModal] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
 
   const { name, email, password } = form;
 
-  const [isOpen, toggleModal] = useState(true);
+  const handleClick = () => {
+    setConfirmation(false);
+    toggleModal(!isOpen);
+  };
 
   const handleChange = (e) => {
     changeState({ ...form, [e.target.name]: e.target.value })
   };
 
   const handleSubmit = (e) => {
-  registerUser({...form})
-  }
+    registerUser({...form});
+    changeState(defaultForm);
+    setConfirmation(true);
+  };
 
   return (
-    <div className="l-register">
+    <div className="c-register">
+      <Button onClick={handleClick} className="-background -primary">Join us</Button>
       <Modal
         isOpen={isOpen}
         onRequestClose={() => toggleModal(false)}
       >
-        <div className="modal-container">
+        {confirmation && <div className="login-modal-content">
+          <p className="separator">Registration completed succesfully.</p>
+          <p>Thank you for joining the team. You will receive an email with your credentials soon!</p></div>}
+
+        {!confirmation && (<div className="modal-container">
           <div className="login-modal-content">
             <h3>Get started:</h3>
             <form method="post">
@@ -73,7 +87,7 @@ const Register = () => {
           </Button>
           </div>
           <img src={Image} alt='bird' />
-        </div>
+        </div>)}
       </Modal>
     </div>
   );

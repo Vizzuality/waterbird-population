@@ -9,7 +9,7 @@ import './styles.scss';
 
 const Login = ({ user, setUser, resetUser }) => {
   const [isOpen, toggleModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [submissionError, setSubmission] = useState(false);
   const [form, changeState] = useState({
     email: '',
     password: ''
@@ -21,12 +21,13 @@ const Login = ({ user, setUser, resetUser }) => {
     toggleModal(!isOpen);
   };
 
-  const handleLogin = () => {
-   resetUser();
+  const handleLogout = () => {
+    Cookies.remove('user')
+    resetUser();
   };
 
   const handleChange = (e) => {
-    setErrorMessage(false);
+    setSubmission(false);
     changeState({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -43,8 +44,7 @@ const Login = ({ user, setUser, resetUser }) => {
         setUser(data)
         toggleModal(false)
       }
-
-      !data && setErrorMessage(true)
+      !data && setSubmission(true)
     })
   }
 
@@ -54,7 +54,7 @@ const Login = ({ user, setUser, resetUser }) => {
         <div className="dropdown">{user.name}
           <div className="dropdown-content">
             <div>{user.name}</div>
-            <button onClick={handleLogin}>
+            <button onClick={handleLogout}>
                 log out
             </button>
           </div>
@@ -75,7 +75,7 @@ const Login = ({ user, setUser, resetUser }) => {
               PASSWORD
             </label>
             <input onChange={handleChange} name="password" type="password" id="password" placeholder="password" required />
-            {errorMessage && <div className="text error">Username or password incorrect</div>}
+            {submissionError && <div className="text error">Username or password incorrect</div>}
             <a
               href={`mailto:?to=post@wetlands.org&subject=Password reminder&body=I would like a reminder of my password, username: ${email}`}
               target="_blank"
@@ -89,9 +89,10 @@ const Login = ({ user, setUser, resetUser }) => {
             type="submit"
             className={classnames(
               '-background -secondary -big', {
-              '-disable': !email.length || !password.length
+              '-disable': !email.length || !password.length || submissionError
             })}
             onClick={handleSubmit}
+            disabled={!email.length || !password.length || submissionError}
           >
             Sign in
           </Button>
