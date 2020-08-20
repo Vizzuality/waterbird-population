@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import DataResults from 'components/data-results';
+import Spinner from 'components/spinner';
 import MapContainer from './map';
 
 import { fetchFamilies } from 'services/families';
@@ -28,7 +29,7 @@ const ExplorePage = () => {
         <DataControls />
         {families && families.length > 0
           ? families.map(family => <DataResults key={family.id} family={family} />)
-          : '...loading' // <Spinner />
+          : <Spinner />
         }
       </div>
     </div>
