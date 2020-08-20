@@ -19,13 +19,12 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
   const {
     commonname,
     description,
-    familyenglish,
-    iucn,
     scientificname,
     specieid
   } = info;
+
   const [isCollapsed, toggleCollapse] = useState(true);
-  const populationId = 1319;
+
   const handleClick = () => {
     fetchPopulations(specieid).then(data => setPopulations({ id: specieid, data }));
     toggleCollapse(!isCollapsed)
@@ -57,6 +56,7 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
       {populations
+        && !isCollapsed
         && Object.entries(populations).length > 0
         && populations[specieid] !== undefined
         && <PopulationsCards specieId={specieid} />}

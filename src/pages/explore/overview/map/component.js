@@ -92,15 +92,7 @@ export const MapContainer = ({
 };
 
 MapContainer.propTypes = {
-  viewport: PropTypes.shape({}),
-  isCollapse: PropTypes.bool.isRequired,
-  mapboxApiAccessToken: PropTypes.string.isRequired,
-  mapStyle: PropTypes.shape({}).isRequired,
-  bounds: PropTypes.shape({}).isRequired,
-  goToCountry: PropTypes.func,
-  goToAOI: PropTypes.func,
-  setPopup: PropTypes.func,
-  removePopup: PropTypes.func
+  viewport: PropTypes.shape({})
 };
 
 MapContainer.defaultProps = {

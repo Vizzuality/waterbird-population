@@ -27,7 +27,7 @@ const ExplorePage = () => {
         <Search  />
         <DataControls />
         {families && families.length > 0
-          ? families.map(family => <DataResults family={family} />)
+          ? families.map(family => <DataResults key={family.id} family={family} />)
           : '...loading' // <Spinner />
         }
       </div>
