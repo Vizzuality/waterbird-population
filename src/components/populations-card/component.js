@@ -4,6 +4,9 @@ import Link from 'redux-first-router-link';
 
 // components
 import Icon from 'components/icon';
+import Tooltip from 'components/tooltip';
+import 'react-tippy/dist/tippy.css';
+
 
 import './styles.scss';
 
@@ -13,6 +16,7 @@ const PopulationsCards = ({ filters, specieId, data }) => {
   return (
     data.map(
       d => {
+        console.log(d)
         return (
           <section className="c-card-info">
             <Link to={`/explore/${specieId}/${d.id}`} on>
@@ -48,14 +52,14 @@ const PopulationsCards = ({ filters, specieId, data }) => {
                     </div>
                   </div>
                   {/* )} */}
-                  {/* {filters.size_quality && (
+                  {/* {filters.size_quality && ( */}
                   <div className="col-sm-2">
                     <div className="card-data">
                       <span>Size estimate quality</span>
-                      <span><strong>{`${start_year} - ${end_year}`}</strong></span>
+                      <span><strong>{d.size_estimates_quality}</strong></span>
                     </div>
                   </div>
-                )} */}
+                  {/* )} */}
                   {/* {filters.trend && ( */}
                   <div className="col-sm-2">
                     <div className="card-data">
@@ -79,6 +83,12 @@ const PopulationsCards = ({ filters, specieId, data }) => {
                       <span><strong>{d.percent}</strong></span>
                     </div>
                   </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Notes</span>
+                      <span><strong>{d.percent}</strong></span>
+                    </div>
+                  </div>
                   {/* )} */}
                   {/* {filters.size_year && ( */}
                   <div className="col-sm-2">
@@ -89,12 +99,21 @@ const PopulationsCards = ({ filters, specieId, data }) => {
                   </div>
                   {/* )} */}
                   {/* {filters.size_references && ( */}
-                  {/* <div className="col-sm-2">
+                  <div className="col-sm-2">
                     <div className="card-data">
                       <span>Size references</span>
-                      <span><strong>{`***${start_year} - ${end_year}***`}</strong></span>
+                      <div className="notes">
+                        <Tooltip
+                          arrow
+                          trigger="mouseenter"
+                          html=
+                          {d.population_size_reference_notes_info && d.population_size_reference_notes_info}
+                        >
+                          {d.size_reference_notes}
+                        </Tooltip>
+                      </div>
                     </div>
-                  </div> */}
+                  </div>
                   {/* )} */}
                   {/* {filters.trend_year && ( */}
                   <div className="col-sm-2">
@@ -104,14 +123,14 @@ const PopulationsCards = ({ filters, specieId, data }) => {
                     </div>
                   </div>
                   {/* )} */}
-                  {/* {filters.trend_references && (
+                  {/* {filters.trend_references && ( */}
                   <div className="col-sm-2">
                     <div className="card-data">
                       <span>Trend references</span>
-                      <span><strong>{`***${start_year} - ${end_year}***`}</strong></span>
+                      <span><strong>{d.trend_references}</strong></span>
                     </div>
                   </div>
-                )} */}
+                  {/* )} */}
                   {/* {filters.percent_yearset && ( */}
                   <div className="col-sm-2">
                     <div className="card-data">
