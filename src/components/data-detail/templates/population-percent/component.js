@@ -62,6 +62,7 @@ const PopulationPercent = ({ data }) => {
               <td>TO DO</td>
               {/* <td className="button">
                 <Tooltip
+                  className="-speech-ballon"
                   trigger="click"
                   useContext
                   html={

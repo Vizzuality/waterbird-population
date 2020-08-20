@@ -57,6 +57,15 @@ export const fetchPopulations = (specieid) => {
     s.maximum AS population_size_maximum,
     s.notes AS population_size_notes,
     s.population_id AS population_population_size_id,
+    s.estimatequality_id AS population_size_quality_id,
+
+    ps.reference_id AS population_size_reference_id,
+    ps.populationsize_id,
+
+    qc.description AS population_size_estimate_quality,
+
+    re.notes AS population_size_reference_notes,
+    re.body AS population_size_reference_notes_info,
 
     o.id as populationonepercentlevel_id,
     o.yearset as populationonepercentlevel_yearset,
@@ -75,6 +84,9 @@ export const fetchPopulations = (specieid) => {
     t.trendquality_id as population_trend_trendquality_id,
     t.startyear as population_trend_startyear,
     t.endyear as population_trend_endyear,
+    t.notes AS population_trend_notes,
+
+    pt.notes as population_trend_reference,
 
     q.description as qualitycodetrend_description,
 
@@ -87,8 +99,12 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN familyorder fo ON fo.id = f.grouping_id
   LEFT JOIN redlistcategory r ON sp.iucn_id = r.id
   LEFT JOIN populationsize s ON p.populationsize_id = s.id
+  LEFT JOIN populationsizereferencecode ps ON ps.populationsize_id = s.id
+  LEFT JOIN reference re ON re.id = ps.reference_id
+  LEFT JOIN qualitycodesize qc ON 'qc.id' = s.estimatequality_id
   LEFT JOIN populationonepercentlevel o ON p.onepercent_id = o.id
   LEFT JOIN populationtrend t ON p.populationtrend_id = t.id
+  LEFT JOIN populationtrendreferencecode pt ON t.id = pt.populationtrend_id
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id)
@@ -128,7 +144,12 @@ export const fetchPopulations = (specieid) => {
       'maximum',  population_size_maximum,
       'minimum',  population_size_minimum,
       'startyear', population_size_startyear,
-      'endyear', population_size_endyear
+      'endyear', population_size_endyear,
+      'quality', population_size_estimate_quality,
+      'notes', population_size_notes,
+      'reference_id', population_size_reference_id,
+      'reference_notes', population_size_reference_notes,
+      'reference_notes_info', population_size_reference_notes_info
     ))
     as sizes,
 
@@ -156,7 +177,10 @@ export const fetchPopulations = (specieid) => {
       'state', trend_sum,
       'quality', qualitycodetrend_description,
       'startyear', population_trend_startyear,
-      'endyear', population_trend_endyear
+      'endyear', population_trend_endyear,
+      'notes', population_trend_notes,
+      'reference', population_trend_reference
+
     ))
     as trends
 
@@ -185,7 +209,7 @@ export const fetchPopulations = (specieid) => {
   `;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => console.log(data.rows, 'servicio')|| data.rows)
+    .then(({ data }) => data.rows)
     .catch((e) => {
       console.log(e, 'error')
     });

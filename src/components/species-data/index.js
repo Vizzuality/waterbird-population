@@ -4,7 +4,7 @@ import { setPopulations } from 'modules/population/actions';
 import Component from './component';
 
 const mapStateToProps = state => ({
-  populations: state.population.populations
+  populations: state.population.data
 });
 
 const mapDispatchToProps = {

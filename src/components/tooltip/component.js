@@ -4,10 +4,11 @@ import { Tooltip } from 'react-tippy';
 import './styles.scss';
 
 const ReactTooltip = (props) => {
-  const { children, className, ...domProps } = props;
+  const { children, className, theme, ...domProps } = props;
 
   return (
     <Tooltip
+      className={className}
       interactive={true}
       placement='bottom'
       trigger='click'

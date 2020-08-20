@@ -103,41 +103,20 @@
   .card-data {
     display: flex;
     flex-direction: column;
+    font-weight: normal;
+    color: $color-grey-8;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 20px;
+
+    .notes {
+      display: inline-flex;
+      text-decoration: underline;
+      color: $color-2;
+      font-family: $font-family-2;
+      letter-spacing: 0;
+      line-height: 19px;
+      padding-right: 5px;
+    }
   }
-
-  // .card-data {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   grid-gap: 10px;
-  //   font-size: 14px;
-  //   letter-spacing: 0;
-
-  //   @media (min-width: map-get($breakpoints, sm)) {
-  //     grid-template-columns: repeat(3, 1fr);
-  //     grid-gap: 20px;
-  //   }
-
-  //   @media (min-width: map-get($breakpoints, md)) {
-  //     grid-template-columns: repeat(4, 1fr);
-  //     grid-gap: 15px;
-  //   }
-
-  //   @media (min-width: map-get($breakpoints, lg)) {
-  //     grid-template-columns: repeat(6, 1fr);
-  //     grid-gap: 15px;
-  //   }
-
-  //   .data-property {
-  //     line-height: 16px;
-  //     padding-bottom: 5px;
-  //   }
-  //   .data-value {
-  //       font-weight: bold;
-  //       line-height: 19px;
-
-  //     &.-number {
-  //       font-family: $font-family-2;
-  //     }
-  //   }
-  // }
 }

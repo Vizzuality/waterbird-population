@@ -24,7 +24,7 @@ const DataControls = ({ }) => {
 }
 
 DataControls.propTypes = {
-  info: PropTypes.shape({}).isRequired
+  info: PropTypes.shape({})
 }
 
 export default DataControls;

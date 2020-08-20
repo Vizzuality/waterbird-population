@@ -28,7 +28,7 @@ const DataResults = ({ family }) => {
       <div className="results-title">
         <h1>
           <span>Family:</span>
-          <span class="name">{family.name}</span>
+          <span className="name">{family.name}</span>
         </h1>
         <Button
           onClick={handleClick}
@@ -53,7 +53,7 @@ const DataResults = ({ family }) => {
 };
 
 DataResults.propTypes = {
-  family: PropTypes.string.isRequired
+  family: PropTypes.shape({}).isRequired
 }
 
 export default DataResults;
