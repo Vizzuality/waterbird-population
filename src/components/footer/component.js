@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'redux-first-router-link';
 
 import NavMenu from 'components/nav-menu';
+import Register from 'components/register';
 import Image from './images/logo_EAD.png';
 
 import './styles.scss';
@@ -20,7 +21,7 @@ const Footer = () =>
           >
             Contact us
           </a>
-          <Link className="c-button -background -medium -primary" to={{ type: "REGISTER", payload: { pathname: "register" } }}>Join us</Link>
+          <Register />
         </div>
       </section>
       <section className="footer-navigation">
