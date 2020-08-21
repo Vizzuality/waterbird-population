@@ -12,7 +12,6 @@ import './styles.scss';
 
 const PopulationsCards = ({ specieId, data }) => {
   const tag = true;
-
   return (
     data.map(
       d => {

@@ -5,28 +5,36 @@ import { CSVLink } from 'react-csv';
 import Icon from 'components/icon';
 import './styles.scss';
 
-const DownloadLink = ({ data, filename, headers }) => (
-  <CSVLink
-    className="c-download"
-    data={'No data available' || data}
-    headers={headers}
-    filename={`${filename}-${Date.now()}.csv`}
-  >
-    <span>Download data</span>
-    <Icon name="download" />
-  </CSVLink >
-);
+const Download = ({ data, filename, headers, text }) => {
 
-DownloadLink.propTypes = {
+  const handleClick = (e) => e.stopPropagation();
+
+  return (
+    <CSVLink
+      className="c-download"
+      data={'No data available' || data}
+      headers={headers}
+      onClick={handleClick}
+      filename={`${filename}-${Date.now()}.csv`}
+    >
+      <span>{text}</span>
+      <Icon name="download" />
+    </CSVLink>
+  )
+};
+
+Download.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})),
   filename: PropTypes.string,
   headers: PropTypes.string,
+  text: PropTypes.string,
 }
 
-DownloadLink.defaultProps = {
+Download.defaultProps = {
   data: null,
   filename: null,
-  headers: ''
+  headers: '',
+  text: 'Download'
 }
 
-export default DownloadLink;
+export default Download;
