@@ -7,11 +7,11 @@ import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
 import 'react-tippy/dist/tippy.css';
 
+import Download from 'components/download';
 import './styles.scss';
 
 const PopulationsCards = ({ specieId, data }) => {
   const tag = true;
-
   return (
     data.map(
       d => {
@@ -34,10 +34,10 @@ const PopulationsCards = ({ specieId, data }) => {
                     <p>More info</p>
                     <Icon name="info" />
                   </button>
-                  <button type="button">
-                    <p>Download data</p>
-                    <Icon name="download" />
-                  </button>
+                  <Download
+                    text={'Download data'}
+                    data={data}
+                  />
                 </div>
               </div>
               <div className="wrapper">

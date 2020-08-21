@@ -1,0 +1,11 @@
+@import 'styles/settings';
+
+.c-download {
+  color: $color-2;
+  font-size: 14px;
+  font-weight: bold;
+
+  span {
+    padding-right: 15px;
+  }
+}

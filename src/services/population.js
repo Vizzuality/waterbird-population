@@ -101,7 +101,7 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN populationsize s ON p.populationsize_id = s.id
   LEFT JOIN populationsizereferencecode ps ON ps.populationsize_id = s.id
   LEFT JOIN reference re ON re.id = ps.reference_id
-  LEFT JOIN qualitycodesize qc ON 'qc.id' = s.estimatequality_id
+  LEFT JOIN qualitycodesize qc ON qc.id = s.estimatequality_id
   LEFT JOIN populationonepercentlevel o ON p.onepercent_id = o.id
   LEFT JOIN populationtrend t ON p.populationtrend_id = t.id
   LEFT JOIN populationtrendreferencecode pt ON t.id = pt.populationtrend_id
