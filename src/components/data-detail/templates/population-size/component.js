@@ -114,8 +114,8 @@ const PopulationSize = ({ data }) => {
                   >
                     {isOpen ? 'Close' : 'Comments'}
                   </Button>
-                </Tooltip>
-              </td> */}
+                    </Tooltip>
+              </td>*/}
             </tr>
           )}
         </tbody>

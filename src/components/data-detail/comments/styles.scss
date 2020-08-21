@@ -26,22 +26,22 @@
       line-height: 23px;
       text-shadow: 0 1px 4px 0 rgba($black,0.5);
     }
+  }
 
-    textarea {
-      box-sizing: border-box;
-      height: 85px;
-      width: 100%;
-      border: 1px solid rgba($color-grey-4, 0.3);
-      border-radius: 5px;
-      padding: 5px 20px;
-      font-size: 14px;
-      line-height: 20px;
-      text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+  .textarea {
+    box-sizing: border-box;
+    height: 85px;
+    width: 100%;
+    border: 1px solid rgba($color-grey-4, 0.3);
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-size: 14px;
+    line-height: 20px;
+    text-shadow: 0 1px 4px 0 rgba($black, 0.5);
 
-      &::placeholder {
-        color: $color-grey-8;
-        font-style: italic;
-      }
+    &::placeholder {
+      color: $color-grey-8;
+      font-style: italic;
     }
   }
 

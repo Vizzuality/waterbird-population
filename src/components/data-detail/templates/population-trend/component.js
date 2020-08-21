@@ -113,7 +113,7 @@ const PopulationTrend = ({ data }) => {
                     {isOpen ? 'Close' : 'Comments'}
                   </Button>
                 </Tooltip>
-              </td> */}
+                    </td>*/}
             </tr>
           )}
         </tbody>

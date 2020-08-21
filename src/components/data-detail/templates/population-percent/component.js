@@ -79,7 +79,6 @@ const PopulationPercent = ({ data }) => {
                     <Comments
                       toggleComment
                       isOpen
-                    //   info TO-DO- add dinamycally
                     />
                   }
                 >
