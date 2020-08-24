@@ -9,14 +9,6 @@ import Comments from 'components/data-detail/comments';
 
 import './styles.scss';
 
-const PopulationTooltip = ({ children }) => {
-  return (
-    <div className="c-population-tooltip">
-      {children}
-    </div>
-  )
-}
-
 const PopulationTrend = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
