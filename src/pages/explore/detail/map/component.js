@@ -4,6 +4,7 @@ import isEmpty from 'lodash/isEmpty';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
+import { Popup } from 'react-map-gl'
 
 import { getParams } from 'utils/layers';
 
@@ -23,6 +24,8 @@ export const MapContainer = ({
   setRouter
 }) => {
   const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
+  const [hoverInteractions, setHoverInteractions] = useState({});
+  const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
   const parsedLayers = populationLayers.map(l => {
@@ -86,7 +89,7 @@ export const MapContainer = ({
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         interactiveLayerIds={interactiveLayerIds}
         onClick={(e) => {
-          if (e && e.features) {
+          if (e && e.features && e.features[0]) {
             const { id } = e.features[0];
 
             setRouter('EXPLORE_DETAIL', {
@@ -94,6 +97,21 @@ export const MapContainer = ({
               population_id: id
             })
           }
+        }}
+        onHover={(e) => {
+          if (e && e.features) {
+            e.features.forEach(f => (
+              setHoverInteractions({
+                [f.source]: f.properties
+              })
+            ));
+
+            setLngLat(e.lngLat);
+          }
+        }}
+        onMouseLeave={() => {
+          setHoverInteractions({});
+          setLngLat(null);
         }}
       >
 
@@ -115,6 +133,16 @@ export const MapContainer = ({
 
               })}
             </LayerManager>
+
+            {lngLat && hoverInteractions['populations-by-specie'] && (
+              <Popup
+                latitude={lngLat[1]}
+                longitude={lngLat[0]}
+                closeButton={false}
+              >
+                {hoverInteractions['populations-by-specie'].populationname}
+              </Popup>
+            )}
           </Fragment>
         }
       </Map>

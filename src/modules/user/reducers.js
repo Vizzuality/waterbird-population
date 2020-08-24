@@ -1,5 +1,5 @@
-import { setUser, resetUser } from './actions';
-import initialState from './initial-state';
+import { setUser, resetUser } from "./actions";
+import initialState from "./initial-state";
 
 export default {
   [setUser]: (state, { payload }) => ({
