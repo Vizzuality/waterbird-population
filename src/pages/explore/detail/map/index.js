@@ -9,7 +9,6 @@ import Component from './component';
 
 const mapStateToProps = state => ({
   router: state.router,
-  layers: activeLayers,
   ...selectPopulationDetailProps(state)
 })
 

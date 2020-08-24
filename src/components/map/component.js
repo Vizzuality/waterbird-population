@@ -21,6 +21,7 @@ const DEFAULT_VIEWPORT = {
 
 class Map extends Component {
   events = {};
+  HOVER = {};
 
   static propTypes = {
     /** A function that returns the map instance */
@@ -157,7 +158,37 @@ class Map extends Component {
 
   onHover = (e) => {
     const { onHover } = this.props;
-    if (onHover) onHover(e);
+
+    const { features } = e;
+    if (features && features.length) {
+      const { id, source, sourceLayer } = features[0];
+
+      if (this.HOVER.id) {
+        this.map.setFeatureState(
+          {
+            ...this.HOVER,
+          },
+          { hover: false }
+        );
+      }
+
+      if (id && source) {
+        this.HOVER = {
+          id,
+          source,
+          ...(sourceLayer && { sourceLayer }),
+        };
+
+        this.map.setFeatureState(
+          {
+            ...this.HOVER,
+          },
+          { hover: true }
+        );
+      }
+    }
+
+    if (!!onHover) onHover(e);
   };
 
   onClick = (e) => {
@@ -169,6 +200,23 @@ class Map extends Component {
     const { onMouseOut } = this.props;
     if (onMouseOut) onMouseOut(e);
   };
+
+  onMouseLeave = (e) => {
+    const { onMouseLeave } = this.props;
+
+    if (this.HOVER.id) {
+      this.map.setFeatureState(
+        {
+          ...this.HOVER,
+        },
+        { hover: false }
+      );
+    }
+
+    this.HOVER = {};
+
+    if (!!onMouseLeave) onMouseLeave(e);
+  }
 
   onViewportChange = (v, i) => {
     const { onViewportChange } = this.props;
@@ -298,6 +346,7 @@ class Map extends Component {
           onLoad={this.onLoad}
           onHover={this.onHover}
           onMouseOut={this.onMouseOut}
+          onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}
           getCursor={getCursor}
 

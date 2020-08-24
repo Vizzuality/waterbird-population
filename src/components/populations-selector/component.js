@@ -30,7 +30,6 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
             <h5>Selected population place:</h5>
             <div className="populations-selector--content-control">
               <h4>{current.label}</h4>
-              <Icon name="close" className="-small" />
               <select
                 value={current.value}
                 onChange={onSelectChange}

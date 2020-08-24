@@ -18,7 +18,7 @@ import PopulationsSelector from 'components/populations-selector';
 
 export const MapContainer = ({
   populationOptions,
-  layers,
+  populationLayers,
   scrollZoom = false,
   router,
   setRouter
@@ -26,7 +26,7 @@ export const MapContainer = ({
   const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
-  const parsedLayers = layers.map(l => {
+  const parsedLayers = populationLayers.map(l => {
     return {
       ...l,
       params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
@@ -86,6 +86,16 @@ export const MapContainer = ({
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         interactiveLayerIds={interactiveLayerIds}
+        onClick={(e) => {
+          if (e && e.features) {
+            const { id } = e.features[0];
+
+            setRouter('EXPLORE_DETAIL', {
+              specie_id: router.payload.specie_id,
+              population_id: id
+            })
+          }
+        }}
       >
 
         {(map) =>

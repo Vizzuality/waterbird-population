@@ -216,6 +216,90 @@ return lastPublicationData
   }
 );
 
+export const selectPopulationLayers = createSelector(
+  [specie_id, population_id],
+  (_specie_id, _population_id) => {
+    console.log(_specie_id, _population_id);
+    return [
+      // GEOJSON DATA LAYER
+      {
+        id: 'populations-by-specie',
+        type: 'geojson',
+        source: {
+          type: 'geojson',
+          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=2fbf264d4431656a7d979682d59b6f5c79c9e3b4&format=geojson`,
+          promoteId: 'wpepopid'
+        },
+        render: {
+          layers: [
+            {
+              filter: [
+                'all',
+                ['==', 'wpepopid', +_population_id]
+              ],
+              type: "fill",
+              //  "source-layer": "layer0",
+              paint: {
+                'fill-color': '#FFBB00',
+                'fill-opacity': 0.25
+              }
+            },
+            {
+              filter: [
+                'all',
+                ['==', 'wpepopid', +_population_id]
+              ],
+              type: "line",
+              //  "source-layer": "layer0",
+              paint: {
+                "line-color": "#000000",
+                "line-opacity": 0.5,
+                "line-dasharray": [1, 2]
+              }
+            },
+            {
+              filter: [
+                'all',
+                ['!=', 'wpepopid', +_population_id]
+              ],
+              type: "fill",
+              //  "source-layer": "layer0",
+              paint: {
+                'fill-color': [
+                  'case',
+                  ['boolean', ['feature-state', 'hover'], false],
+                  '#FFBB00',
+                  '#000'
+                ],
+                'fill-opacity': 0.05
+              }
+            },
+            {
+              filter: [
+                'all',
+                ['!=', 'wpepopid', +_population_id]
+              ],
+              type: "line",
+              //  "source-layer": "layer0",
+              paint: {
+                "line-color": "#000000",
+                "line-opacity": 0.5,
+                "line-dasharray": [1, 2]
+              }
+            }
+          ]
+        },
+        paramsConfig: [
+          { key: 'specieid', required: true }
+        ],
+        interactionConfig: {
+          enable: true
+        }
+      },
+    ]
+  }
+);
+
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
@@ -223,5 +307,6 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationInfoData: selectPopulationInfoData,
   populationSizeData: selectPopulationSizeData,
   populationTrendData: selectPopulationTrendData,
-  populationPercentData: selectPopulationPercentData
+  populationPercentData: selectPopulationPercentData,
+  populationLayers: selectPopulationLayers
 });
