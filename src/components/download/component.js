@@ -12,7 +12,7 @@ const Download = ({ data, filename, headers, text }) => {
   return (
     <CSVLink
       className="c-download"
-      data={'No data available' || data}
+      data={data || 'No data available'}
       headers={headers}
       onClick={handleClick}
       filename={`${filename}-${Date.now()}.csv`}
