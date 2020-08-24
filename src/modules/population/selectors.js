@@ -62,14 +62,23 @@ export const selectPopulationSizeData = createSelector(
     return population.publications.map(p => {
       const { id, name } = p;
       const size = population.sizes.find(s => s.publication_id === id);
-      const { startyear, endyear, maximum, minimum } = size;
+      const { startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
 
       return {
+        specie: _specie_id,
+        population: _population_id,
         publication: name,
         startyear,
         endyear,
         maximum,
-        minimum
+        minimum,
+        quality,
+        notes: trim(notes) ? [
+          { id: 1, info: trim(notes) }
+        ] : [],
+        references: (reference_id && reference_info) ? [
+          { id: reference_id, info: reference_info }
+        ] : []
       }
     })
   }
@@ -85,14 +94,22 @@ export const selectPopulationTrendData = createSelector(
     return population.publications.map(p => {
       const { id, name: publication } = p;
       const trend = population.trends.find(s => s.publication_id === id);
-      const { startyear, endyear, name, quality } = trend;
+      const { startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
 
       return {
+        specie: _specie_id,
+        population: _population_id,
         publication,
         startyear,
         endyear,
         name,
-        quality
+        quality,
+        notes: trim(notes) ? [
+          { id: 1, info: trim(notes) }
+        ] : [],
+        references: (reference_id && reference_info) ? [
+          { id: reference_id, info: reference_info }
+        ] : []
       }
     })
   }
@@ -108,12 +125,15 @@ export const selectPopulationPercentData = createSelector(
     return population.publications.map(p => {
       const { id, name: publication } = p;
       const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
-      const { yearset, onepercent } = percentlevel;
+      const { yearset, onepercent, note } = percentlevel;
 
       return {
         publication,
         yearset,
-        onepercent
+        onepercent,
+        notes: trim(note) ? [
+          { id: 1, info: trim(note) }
+        ] : [],
       }
     })
   }
@@ -168,7 +188,7 @@ export const selectPopulationsData = createSelector(
           'size_year': `${size.startyear} - ${size.endyear}`,
           trend: trend.name,
           'size_reference_notes': size.reference_notes,
-          'size_reference_notes_info': size.reference_notes_info,
+          'size_reference_info': size.reference_info,
           'trend_year': `${trend.startyear} - ${trend.endyear}`,
           'trend_quality': trend.quality,
           'trend_notes': trend.notes,

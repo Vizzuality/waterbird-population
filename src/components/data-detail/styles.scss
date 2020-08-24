@@ -36,6 +36,12 @@
           display: flex;
           justify-content: flex-end;
         }
+
+        .tooltipped {
+          font-weight: bold;
+          text-decoration: underline;
+          color: $color-2;
+        }
       }
     }
   }

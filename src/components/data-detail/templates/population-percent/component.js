@@ -58,8 +58,19 @@ const PopulationPercent = ({ data }) => {
               <td>{d.publication}</td>
               <td>{d.yearset}</td>
               <td>{d.onepercent}</td>
-              <td>TO DO</td>
-              <td>TO DO</td>
+              <td>
+                {!!d.notes && !!d.notes.length && d.notes.map(n => (
+                  <Tooltip
+                    key={`${d.specie}${d.population}${n.id}`}
+                    delay={0}
+                    arrow={false}
+                    duration={[0, 0]}
+                    content={<span>{n.info}</span>}
+                  >
+                    <span className="tooltipped">N{n.id}</span>
+                  </Tooltip>
+                ))}
+              </td>
               {/* <td className="button">
                 <Tooltip
                   className="-speech-ballon"
