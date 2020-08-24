@@ -1,6 +1,15 @@
 @import 'styles/settings';
 
 .c-comments {
+  padding: 75px 100px;
+  box-sizing: border-box;
+  background-color: $white;
+  box-shadow: 0 10px 10px 0 rgba($black, 0.09);
+  font-family: $font-family-1;
+  border-radius: 9px;
+  position: relative;
+  align-content: center;
+
   h3 {
     font-size: 14px;
     font-weight: bold;
@@ -38,6 +47,7 @@
     font-size: 14px;
     line-height: 20px;
     text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+    pointer-events: all;
 
     &::placeholder {
       color: $color-grey-8;
@@ -49,6 +59,7 @@
     display: flex;
     justify-content: center;
     padding: 20px 100px;
+    pointer-events: all;
 
     :first-child {
       margin-right: 30px;

@@ -24,7 +24,7 @@ const PopulationTrend = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-size',
+    <div className={classnames('c-population-trend',
       { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>Population trend</h2>
@@ -84,36 +84,31 @@ const PopulationTrend = ({ data }) => {
                     arrow={false}
                     duration={[0, 0]}
                     content={<span>{n.info}</span>}
+
                   >
                     <span className="tooltipped">R{n.id}</span>
                   </Tooltip>
                 ))}
               </td>
-              {/* <td className="button">
+              <td className="button">
                 <Tooltip
                   trigger="click"
-                  useContext
-                  html={
-                    <Comments
-                      toggleComment
-                      isOpen
-                    //   info TO-DO- add dinamycally
-                    />
-                  }
+                  render={() =>
+                  <Comments />}
                 >
-                  <Button
-                    onClick={handleClickComments}
-                    className={classnames('-border -small',
+                  <button
+                    className={classnames('comments-button',
                       {
                         '-secondary': isOpen,
                         '-primary': !isOpen
                       }
                     )}
-                  >
+                    onClick={handleClickComments}>
+
                     {isOpen ? 'Close' : 'Comments'}
-                  </Button>
+                  </button>
                 </Tooltip>
-                    </td>*/}
+              </td>
             </tr>
           )}
         </tbody>
