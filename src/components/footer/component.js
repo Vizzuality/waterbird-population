@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'redux-first-router-link';
 
 import NavMenu from 'components/nav-menu';
 import Register from 'components/register';

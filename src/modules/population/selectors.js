@@ -149,7 +149,7 @@ export const selectPopulationReferences = createSelector(
     const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
 
     const references = population.publications.map(p => {
-      const { id, name: publication } = p;
+      const { id } = p;
       const size = population.sizes.find(s => s.publication_id === id);
       const trend = population.trends.find(s => s.publication_id === id);
 

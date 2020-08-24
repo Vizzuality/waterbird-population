@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
 
-import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS, Popup } from 'react-map-gl';
+import ReactMapGL, { FlyToInterpolator, TRANSITION_EVENTS } from 'react-map-gl';
 import { fitBounds } from 'viewport-mercator-project';
 
 import { easeCubic } from 'd3-ease';

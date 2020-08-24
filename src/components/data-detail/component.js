@@ -17,12 +17,12 @@ const DataDetail = (props) =>  {
   return (
     <div className="c-data-detail">
       <PopulationInfo data={populationInfoData} />
-      <ConservationFramework />
+      {/* <ConservationFramework /> */}
       <PopulationSize data={populationSizeData} />
       <PopulationTrend data={populationTrendData} />
       <PopulationPercent data={populationPercentData}/>
       <References data={populationReferences} />
-      <Notes />
+      {/* <Notes /> */}
     </div>
   );
 }

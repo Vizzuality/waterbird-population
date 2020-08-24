@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 
 import Button from 'components/button';
 import Tooltip from 'components/tooltip';

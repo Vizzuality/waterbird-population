@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import PropTypes from 'prop-types';
 
 import Tooltip from '@tippyjs/react';
 
@@ -8,14 +7,6 @@ import Button from 'components/button';
 import Comments from 'components/data-detail/comments';
 
 import './styles.scss';
-
-const PopulationTooltip = ({ children }) => {
-  return (
-    <div className="c-population-tooltip">
-      {children}
-    </div>
-  )
-}
 
 const PopulationTrend = ({ data }) => {
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
-import { NavigationControl, FullscreenControl } from 'react-map-gl';
 
 // Components
 import Map from 'components/map';

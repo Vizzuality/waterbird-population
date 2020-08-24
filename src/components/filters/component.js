@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import Icon from 'components/icon';
 import Button from 'components/button';
 import Select from 'components/select';
 
