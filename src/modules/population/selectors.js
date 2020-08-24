@@ -1,6 +1,8 @@
 import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
 import orderBy from 'lodash/orderBy';
+import flatten from 'lodash/flatten';
+import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
@@ -139,6 +141,27 @@ export const selectPopulationPercentData = createSelector(
   }
 );
 
+export const selectPopulationReferences = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+
+    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+
+    const references = population.publications.map(p => {
+      const { id, name: publication } = p;
+      const size = population.sizes.find(s => s.publication_id === id);
+      const trend = population.trends.find(s => s.publication_id === id);
+
+      return [
+        ...size.reference_id && size.reference_info ? [{ id: size.reference_id, info: size.reference_info }] : [],
+        ...trend.reference_id && trend.reference_info ? [{ id: trend.reference_id, info: trend.reference_info }] : []
+      ];
+    });
+
+    return orderBy(uniqBy(flatten(references), 'id'), 'id');
+  }
+);
 
 export const filters = (state) => state.population.filters;
 
@@ -219,7 +242,6 @@ return lastPublicationData
 export const selectPopulationLayers = createSelector(
   [specie_id, population_id],
   (_specie_id, _population_id) => {
-    console.log(_specie_id, _population_id);
     return [
       // GEOJSON DATA LAYER
       {
@@ -308,5 +330,6 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationSizeData: selectPopulationSizeData,
   populationTrendData: selectPopulationTrendData,
   populationPercentData: selectPopulationPercentData,
+  populationReferences: selectPopulationReferences,
   populationLayers: selectPopulationLayers
 });
