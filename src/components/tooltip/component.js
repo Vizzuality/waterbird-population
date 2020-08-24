@@ -1,21 +1,18 @@
 import React from 'react';
-import { Tooltip } from 'react-tippy';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 import './styles.scss';
 
 const ReactTooltip = (props) => {
-  const { children, className, theme, ...domProps } = props;
+  const { children, ...rest } = props;
 
   return (
-    <Tooltip
-      className={className}
-      interactive={true}
-      placement='bottom'
-      trigger='click'
-      {...domProps}
+    <Tippy
+      {...rest}
     >
       {children}
-    </Tooltip>
+    </Tippy>
   )
 };
 

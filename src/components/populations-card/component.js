@@ -5,7 +5,6 @@ import Link from 'redux-first-router-link';
 // components
 import Icon from 'components/icon';
 import Tooltip from 'components/tooltip';
-import 'react-tippy/dist/tippy.css';
 
 import Download from 'components/download';
 import './styles.scss';
@@ -101,14 +100,13 @@ const PopulationsCards = ({ specieId, data }) => {
                     <div className="card-data">
                       <span>Size references</span>
                       <div className="notes">
-                        <Tooltip
-                          arrow
-                          trigger="mouseenter"
-                          html=
-                          {d.population_size_reference_notes_info && d.population_size_reference_notes_info}
-                        >
-                          {d.size_reference_notes || [1,2,3]}
-                        </Tooltip>
+                        {d.size_reference_notes && d.population_size_reference_notes_info && (
+                          <Tooltip
+                            content={<span>d.population_size_reference_notes_info</span>}
+                          >
+                            <span>{d.size_reference_notes}</span>
+                          </Tooltip>
+                        )}
                       </div>
                     </div>
                   </div>

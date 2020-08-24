@@ -59,17 +59,12 @@ export const fetchPopulations = (specieid) => {
     s.population_id AS population_population_size_id,
     s.estimatequality_id AS population_size_quality_id,
 
-    ps.reference_id AS population_size_reference_id,
-    ps.populationsize_id,
-
     qc.description AS population_size_estimate_quality,
-
-    re.notes AS population_size_reference_notes,
-    re.body AS population_size_reference_notes_info,
 
     o.id as populationonepercentlevel_id,
     o.yearset as populationonepercentlevel_yearset,
     o.onepercent as populationonepercentlevel_onepercent,
+    o.note as populationonepercentlevel_note,
     o.populationid as populationonepercentlevel_population_id,
 
     p.population_id,
@@ -86,12 +81,17 @@ export const fetchPopulations = (specieid) => {
     t.endyear as population_trend_endyear,
     t.notes AS population_trend_notes,
 
-    pt.notes as population_trend_reference,
+    ps.reference_id AS population_size_reference_id,
+    pt.reference_id AS population_trend_reference_id,
+
+    reps.body AS reference_ps_info,
+    rept.body AS reference_pt_info,
 
     q.description as qualitycodetrend_description,
 
     trend.trendcode as trend_code,
     trend.trendsum as trend_sum
+
   FROM populationname n
   LEFT JOIN populationpublication p ON p.population_id = n.id
   LEFT JOIN species_1 sp ON n.species_id = sp.id
@@ -100,11 +100,12 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN redlistcategory r ON sp.iucn_id = r.id
   LEFT JOIN populationsize s ON p.populationsize_id = s.id
   LEFT JOIN populationsizereferencecode ps ON ps.populationsize_id = s.id
-  LEFT JOIN reference re ON re.id = ps.reference_id
+  LEFT JOIN reference reps ON reps.id = ps.reference_id
   LEFT JOIN qualitycodesize qc ON qc.id = s.estimatequality_id
   LEFT JOIN populationonepercentlevel o ON p.onepercent_id = o.id
   LEFT JOIN populationtrend t ON p.populationtrend_id = t.id
   LEFT JOIN populationtrendreferencecode pt ON t.id = pt.populationtrend_id
+  LEFT JOIN reference rept ON rept.id = pt.reference_id
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id)
@@ -148,8 +149,7 @@ export const fetchPopulations = (specieid) => {
       'quality', population_size_estimate_quality,
       'notes', population_size_notes,
       'reference_id', population_size_reference_id,
-      'reference_notes', population_size_reference_notes,
-      'reference_notes_info', population_size_reference_notes_info
+      'reference_info', reference_ps_info
     ))
     as sizes,
 
@@ -157,6 +157,7 @@ export const fetchPopulations = (specieid) => {
       'id', populationonepercentlevel_id,
       'yearset', populationonepercentlevel_yearset,
       'onepercent', populationonepercentlevel_onepercent,
+      'note', populationonepercentlevel_note,
       'population_id', populationonepercentlevel_population_id,
       'publication_id', publication_id
     ))
@@ -179,8 +180,8 @@ export const fetchPopulations = (specieid) => {
       'startyear', population_trend_startyear,
       'endyear', population_trend_endyear,
       'notes', population_trend_notes,
-      'reference', population_trend_reference
-
+      'reference_id', population_trend_reference_id,
+      'reference_info', reference_pt_info
     ))
     as trends
 
