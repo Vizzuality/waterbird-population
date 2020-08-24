@@ -90,6 +90,9 @@ export const fetchPopulations = (specieid) => {
 
     q.description as qualitycodetrend_description,
 
+    pp.protection_id as protection_id,
+    prot.code as conservation_framework,
+
     trend.trendcode as trend_code,
     trend.trendsum as trend_sum
   FROM populationname n
@@ -107,7 +110,9 @@ export const fetchPopulations = (specieid) => {
   LEFT JOIN populationtrendreferencecode pt ON t.id = pt.populationtrend_id
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
-  LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id)
+  LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id
+  LEFT JOIN populationprotection pp ON pp.population_id = n.id
+  LEFT JOIN protection prot ON prot.id = pp.protection_id)
 
   select
     id,
@@ -182,7 +187,13 @@ export const fetchPopulations = (specieid) => {
       'reference', population_trend_reference
 
     ))
-    as trends
+    as trends,
+
+    jsonb_agg(distinct jsonb_build_object(
+      'id', protection_id,
+      'framework', conservation_framework
+    ))
+    as conservation
 
 
     from population_data where species_id=${specieid}
