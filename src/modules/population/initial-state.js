@@ -1,8 +1,10 @@
 export default {
   current: null,
-  data: {},
+  data: [],
+  loading: false,
+  error: false,
   // filters: {
-  //   size: true,
+  //   family: true,
   //   'size_quality': true,
   //   'size_year': true,
   //   'size_references': true,

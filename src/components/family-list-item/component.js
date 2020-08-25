@@ -4,21 +4,16 @@ import classnames from 'classnames';
 
 // components
 import Button from 'components/button';
-import SpeciesData from 'components/species-data';
-
-// services
-import { fetchSpecies } from 'services/species';
+import SpeciesList from 'components/species-list';
 
 import './styles.scss';
 
 
-const DataResults = ({ family }) => {
+const FamilyListItem = ({ family }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
-  const [species, setSpecies] = useState([]);
 
   const handleClick = () => {
-    fetchSpecies(family.id).then(({ data }) => setSpecies(data.rows))
     toggleCollapse(!isCollapsed)
   };
 
@@ -41,19 +36,19 @@ const DataResults = ({ family }) => {
         </Button>
 
       </div>
-      <div className={classnames('results-detail', {
-        '-hidden': isCollapsed
-      })}>
-        {species.map((specie) => (
-          <SpeciesData key={specie.specieid} info={specie} />
-        ))}
-      </div>
+
+      {!isCollapsed && (
+        <div className="results-detail">
+          <SpeciesList familyId={family.id} />
+        </div>
+      )}
+
     </section>
   );
 };
 
-DataResults.propTypes = {
+FamilyListItem.propTypes = {
   family: PropTypes.shape({}).isRequired
 }
 
-export default DataResults;
+export default FamilyListItem;

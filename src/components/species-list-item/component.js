@@ -4,29 +4,23 @@ import classnames from 'classnames';
 
 // components
 import Button from 'components/button';
-import PopulationsCards from 'components/populations-card';
-
-// services
-import { fetchPopulations } from 'services/population';
-
+import PopulationsList from 'components/populations-list';
 
 import image from 'images/ostralegus.jpg'
 
 import './styles.scss';
 
 
-const SpeciesData = ({ info, populations, setPopulations }) => {
+const SpeciesListItem = ({ specie }) => {
   const {
     commonname,
-    description,
+    redlistcategory,
     scientificname,
-    specieid
-  } = info;
+  } = specie;
 
   const [isCollapsed, toggleCollapse] = useState(true);
 
   const handleClick = () => {
-    fetchPopulations(specieid).then(data => setPopulations({ id: specieid, data }));
     toggleCollapse(!isCollapsed)
   };
 
@@ -37,7 +31,7 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
           <span>Species:</span>
           <span className="name -cientific">{scientificname}</span>
           <span className="name -specific">({commonname})</span>
-          <span className="tag">{description}</span>
+          <span className="tag">{redlistcategory}</span>
         </h2>
         <Button
           onClick={handleClick}
@@ -55,18 +49,16 @@ const SpeciesData = ({ info, populations, setPopulations }) => {
         <img src={image} alt='Haematopodidae' />
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
-      {populations
-        && !isCollapsed
-        && Object.entries(populations).length > 0
-        && populations[specieid] !== undefined
-        && <PopulationsCards specieId={specieid} />}
 
+      {!isCollapsed && (
+        <PopulationsList specieId={specie.id} />
+      )}
     </section>
   );
 };
 
-SpeciesData.propTypes = {
-  family: PropTypes.string.isRequired
+SpeciesListItem.propTypes = {
+  specie: PropTypes.shape({}).isRequired
 }
 
-export default SpeciesData;
+export default SpeciesListItem;

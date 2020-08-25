@@ -9,9 +9,20 @@ import { createSelector, createStructuredSelector } from 'reselect';
 export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
+export const filters = (state) => state.population.filters;
+
+export const familyId = (state, props) => props?.familyId;
+export const specieId = (state, props) => props?.specieId;
+
+export const selectPopulationFiltered = createSelector(
+  [data, filters],
+  (_data, _filters) => {
+    return _data;
+  }
+)
 
 export const selectPopulationFamilies = createSelector(
-  [data],
+  [selectPopulationFiltered],
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
@@ -22,6 +33,23 @@ export const selectPopulationFamilies = createSelector(
         ordername: trim(p.family.ordername)
       }
     }), 'id'), 'name')
+  }
+);
+
+export const selectPopulationSpecies = createSelector(
+  [selectPopulationFiltered, familyId],
+  (_data, _familyId) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const populationsByFamily = _data.filter(d => d.family.id === _familyId);
+
+    return orderBy(uniqBy(populationsByFamily.map(p => {
+      return {
+        ...p.specie,
+        scientificname: trim(p.specie.scientificname),
+        commonname: trim(p.specie.commonname),
+      }
+    }), 'id'), 'scientificname');
   }
 );
 
@@ -179,79 +207,48 @@ export const selectPopulationReferences = createSelector(
   }
 );
 
-export const filters = (state) => state.population.filters;
-
-export const selectLastPublications = createSelector(
-  [data],
-  (_data) => {
-    if (!_data || isEmpty(_data)) return [];
-
-    const publicationIds = Object.values(_data)[0].map(
-      d => {
-        if (d.publications.length === 1) {
-          return {
-            publication_id: d.publications[0].id,
-            name: d.publications[0].name,
-            id: d.id
-          }
-        } else {
-          const dataOrdered = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
-          const publicationId = dataOrdered[0].publication_id;
-          return {
-            publication_id: publicationId,
-            name: d.publications.find(p => p.id === publicationId).name,
-            id: d.id
-          }
-        }
-      })
-    return publicationIds;
-  }
-)
 
 export const selectPopulationsData = createSelector(
-  [data, filters, selectLastPublications],
-  ( _data, _filters, _publication_id) => {
+  [data, specieId],
+  (_data, _specieId) => {
     if (!_data || isEmpty(_data)) return [];
-    const lastPublicationData = Object.values(_data)[0].map(
-      d => {
 
-        const lastPublicationId = _publication_id.find(p => p.id === d.id)
-        const size = d.sizes.find(s => s.publication_id === lastPublicationId.publication_id)
-        const trend = d.trends.find(s => s.publication_id === lastPublicationId.publication_id)
-        const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === lastPublicationId.publication_id)
+    const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
 
-        return {
-          populationId: d.id,
-          name: d.name,
-          size: `${size.maximun} - ${size.minimum}`,
-          'size_year': `${size.startyear} - ${size.endyear}`,
-          trend: trend.name,
-          'size_reference_notes': size.reference_notes,
-          'size_reference_info': size.reference_info,
-          'trend_year': `${trend.startyear} - ${trend.endyear}`,
-          'trend_quality': trend.quality,
-          'trend_notes': trend.notes,
-          'trend_references': trend.reference,
-          'size_estimates_quality': size.quality,
-          'percent': percentLevel.onepercet,
-          'yearset': percentLevel.yearset,
-          publication: d.publications.name,
-          commonname: d.commonname,
-          redlistcategory: d.redlistcategory,
-          scientificname: d.scientificname,
-          'family_name': d.family.name,
-          'order_name': d.family.ordername,
-          'breedingrange': d.breedingrange,
-          'nonbreedingrange': d.nonbreedingrange
-        }
+    return populationsBySpecie.map(d => {
+      console.log(d);
+      const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
+      const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
+
+      const size = d.sizes.find(s => s.publication_id === publication.id);
+      const trend = d.trends.find(s => s.publication_id === publication.id);
+      const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+
+      return {
+        populationId: d.id,
+        name: d.name,
+        size: `${size.maximun} - ${size.minimum}`,
+        'size_year': `${size.startyear} - ${size.endyear}`,
+        trend: trend.name,
+        'size_reference_notes': size.reference_notes,
+        'size_reference_info': size.reference_info,
+        'trend_year': `${trend.startyear} - ${trend.endyear}`,
+        'trend_quality': trend.quality,
+        'trend_notes': trend.notes,
+        'trend_references': trend.reference,
+        'size_estimates_quality': size.quality,
+        'percent': percentLevel.onepercet,
+        'yearset': percentLevel.yearset,
+        publication: d.publications.name,
+        commonname: d.commonname,
+        redlistcategory: d.redlistcategory,
+        scientificname: d.scientificname,
+        'family_name': d.family.name,
+        'order_name': d.family.ordername,
+        'breedingrange': d.breedingrange,
+        'nonbreedingrange': d.nonbreedingrange
       }
-    )
-
-return lastPublicationData
-
-    // _filters.reduce((acc, _filter) => {
-
-    // })
+    })
   }
 );
 
@@ -341,7 +338,9 @@ export const selectPopulationLayers = createSelector(
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
+  populationData: selectPopulationsData,
   populationFamilies: selectPopulationFamilies,
+  populationSpecies: selectPopulationSpecies,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationSizeData: selectPopulationSizeData,
