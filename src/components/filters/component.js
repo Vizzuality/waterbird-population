@@ -5,6 +5,7 @@ import Link from 'redux-first-router-link';
 
 import Button from 'components/button';
 import Select from 'components/select';
+import Icon from 'components/icon';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';

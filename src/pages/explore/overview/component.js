@@ -6,17 +6,15 @@ import DataResults from 'components/data-results';
 import Spinner from 'components/spinner';
 import MapContainer from './map';
 
-import { fetchFamilies } from 'services/families';
+// services
+import { fetchPopulations } from 'services/population';
 
 import './styles.scss';
 
-const ExplorePage = () => {
-
-  const [families, setFamilies] = useState([])
-
+const ExplorePage = ({ setPopulations }) => {
   useEffect(() => {
-    fetchFamilies().then(data=>setFamilies(data));
-  }, []);
+    fetchPopulations().then(data => setPopulations(data));
+  }, [])
 
  return (
   <div className="l-explore">
@@ -27,10 +25,10 @@ const ExplorePage = () => {
       <div className="results-section">
         <Search  />
         <DataControls />
-        {families && families.length > 0
+        {/* {families && families.length > 0
           ? families.map(family => <DataResults key={family.id} family={family} />)
           : <Spinner />
-        }
+        } */}
       </div>
     </div>
   </div>

@@ -185,7 +185,9 @@ export const fetchPopulations = (specieid) => {
     ))
     as trends
 
-    from population_data where species_id=${specieid}
+    from population_data
+
+    ${specieid ? `where species_id=${specieid}` : ''}
 
     group by
     id,
