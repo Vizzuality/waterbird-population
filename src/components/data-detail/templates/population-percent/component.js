@@ -11,6 +11,7 @@ import './styles.scss';
 const PopulationPercent = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
+  const [visible, toggleVisibility] = useState(false);
   const [isOpen, toggleComment] = useState(false);
 
 
@@ -20,6 +21,7 @@ const PopulationPercent = ({ data }) => {
 
   const handleClickComments = () => {
     toggleComment(!isOpen)
+    toggleVisibility(!visible);
   };
 
 
@@ -80,8 +82,10 @@ const PopulationPercent = ({ data }) => {
               <td className="button">
                 <Tooltip
                   trigger="click"
+                  visible={visible}
                   render={() =>
                   <Comments
+                    visible={visible}
                     onClose={handleClickComments}/>}
                 >
                   <button

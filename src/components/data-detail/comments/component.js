@@ -8,7 +8,7 @@ import Button from 'components/button';
 
 import './styles.scss';
 
-const Comments = ({ onClose, user, publication_id }) => {
+const Comments = ({ onClose, visible, user, publication_id }) => {
 
   const [isDisable, disableButton] = useState(true);
   const [comment, setComment] = useState('');
@@ -38,6 +38,8 @@ const Comments = ({ onClose, user, publication_id }) => {
     });
     onClose();
   };
+
+  if (!visible) return null;
 
   return (
     <div className="c-comments">

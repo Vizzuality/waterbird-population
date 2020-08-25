@@ -12,6 +12,7 @@ import './styles.scss';
 const PopulationSize = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
+  const [visible, toggleVisibility] = useState(false);
   const [isOpen, toggleComment] = useState(false);
 
 
@@ -20,7 +21,8 @@ const PopulationSize = ({ data }) => {
   };
 
   const handleClickComments = () => {
-    toggleComment(!isOpen)
+    toggleComment(!isOpen);
+    toggleVisibility(!visible);
   };
 
 
@@ -109,6 +111,7 @@ const PopulationSize = ({ data }) => {
                   trigger="click"
                   render={() =>
                     <Comments
+                      visible={visible}
                       onClose={handleClickComments} />}
                 >
                   <button
