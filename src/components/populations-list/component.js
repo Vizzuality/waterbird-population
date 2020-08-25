@@ -9,10 +9,12 @@ import Tooltip from 'components/tooltip';
 import Download from 'components/download';
 import './styles.scss';
 
-const PopulationsCards = ({ specieId, data }) => {
+const PopulationsList = ({ specieId, populationData }) => {
+
   const tag = true;
+
   return (
-    data.map(
+    populationData.map(
       d => {
         return (
           <section className="c-card-info">
@@ -35,7 +37,7 @@ const PopulationsCards = ({ specieId, data }) => {
                   </button>
                   <Download
                     text={'Download data'}
-                    data={data}
+                    data={populationData}
                   />
                 </div>
               </div>
@@ -145,8 +147,8 @@ const PopulationsCards = ({ specieId, data }) => {
   )
 }
 
-PopulationsCards.propTypes = {
+PopulationsList.propTypes = {
   info: PropTypes.array.isRequired
 }
 
-export default PopulationsCards;
+export default PopulationsList;

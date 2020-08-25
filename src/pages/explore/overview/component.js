@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
-import DataResults from 'components/data-results';
-import Spinner from 'components/spinner';
+import FamilyList from 'components/family-list';
 import MapContainer from './map';
 
 // services
@@ -11,12 +10,10 @@ import { fetchPopulations } from 'services/population';
 
 import './styles.scss';
 
-const ExplorePage = ({ populationFamilies, setPopulations }) => {
+const ExplorePage = ({ setPopulations }) => {
   useEffect(() => {
     fetchPopulations().then(data => setPopulations(data));
   }, [])
-
-  console.log(populationFamilies);
 
  return (
   <div className="l-explore">
@@ -27,10 +24,8 @@ const ExplorePage = ({ populationFamilies, setPopulations }) => {
       <div className="results-section">
         <Search  />
         <DataControls />
-        {populationFamilies && populationFamilies.length > 0
-          ? populationFamilies.map(family => <DataResults key={family.id} family={family} />)
-          : <Spinner />
-        }
+
+        <FamilyList />
       </div>
     </div>
   </div>
