@@ -10,6 +10,22 @@ export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
 
+export const selectPopulationFamilies = createSelector(
+  [data],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    return orderBy(uniqBy(_data.map(p => {
+      return {
+        ...p.family,
+        name: trim(p.family.name),
+        ordername: trim(p.family.ordername)
+      }
+    }), 'id'), 'name')
+  }
+);
+
+
 export const selectPopulationOptions = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
@@ -325,6 +341,7 @@ export const selectPopulationLayers = createSelector(
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
+  populationFamilies: selectPopulationFamilies,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationSizeData: selectPopulationSizeData,

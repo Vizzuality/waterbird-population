@@ -11,10 +11,12 @@ import { fetchPopulations } from 'services/population';
 
 import './styles.scss';
 
-const ExplorePage = ({ setPopulations }) => {
+const ExplorePage = ({ populationFamilies, setPopulations }) => {
   useEffect(() => {
     fetchPopulations().then(data => setPopulations(data));
   }, [])
+
+  console.log(populationFamilies);
 
  return (
   <div className="l-explore">
@@ -25,10 +27,10 @@ const ExplorePage = ({ setPopulations }) => {
       <div className="results-section">
         <Search  />
         <DataControls />
-        {/* {families && families.length > 0
-          ? families.map(family => <DataResults key={family.id} family={family} />)
+        {populationFamilies && populationFamilies.length > 0
+          ? populationFamilies.map(family => <DataResults key={family.id} family={family} />)
           : <Spinner />
-        } */}
+        }
       </div>
     </div>
   </div>
