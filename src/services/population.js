@@ -216,20 +216,3 @@ export const fetchPopulations = (specieid) => {
       console.log(e, 'error')
     });
 };
-
-
-export const fetchPopulationSize = (populationId) => {
-  const q = `SELECT
-  startyear,
-  endyear,
-  minimum,
-  maximum,
-  notes
-  FROM populationsize WHERE population_id = '${populationId}'`;
-
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data }) => data.rows)
-  .catch((e) => {
-    console.log(e, 'error')
-  });
-};
