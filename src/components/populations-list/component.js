@@ -17,7 +17,7 @@ const PopulationsList = ({ specieId, populationData }) => {
     populationData.map(
       d => {
         return (
-          <section className="c-card-info">
+          <section key={d.id} className="c-card-info">
             <Link to={`/explore/${specieId}/${d.populationId}`} on>
               <div className="card-header">
                 <div className="card-title">
@@ -148,7 +148,8 @@ const PopulationsList = ({ specieId, populationData }) => {
 }
 
 PopulationsList.propTypes = {
-  info: PropTypes.array.isRequired
+  specieId: PropTypes.number.isRequired,
+  populationData: PropTypes.array.isRequired
 }
 
 export default PopulationsList;
