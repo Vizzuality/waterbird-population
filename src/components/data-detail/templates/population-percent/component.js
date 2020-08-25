@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import classnames from 'classnames';
 
 import Button from 'components/button';
-import Tooltip from 'components/tooltip';
+import Tooltip from '@tippyjs/react';
 import Comments from 'components/data-detail/comments';
+import Note from 'components/note';
 
 import './styles.scss';
 
 const PopulationPercent = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
+  const [visible, toggleVisibility] = useState(false);
   const [isOpen, toggleComment] = useState(false);
 
 
@@ -19,6 +21,7 @@ const PopulationPercent = ({ data }) => {
 
   const handleClickComments = () => {
     toggleComment(!isOpen)
+    toggleVisibility(!visible);
   };
 
 
@@ -64,38 +67,40 @@ const PopulationPercent = ({ data }) => {
                     delay={0}
                     arrow={false}
                     duration={[0, 0]}
-                    content={<span>{n.info}</span>}
+                    render={() => (
+                      <Note>
+                        <p className="title">
+                          Population trend note <span>#{n.id}</span>
+                        </p>
+                        <p>{n.info}</p>
+                      </Note>)}
                   >
                     <span className="tooltipped">N{n.id}</span>
                   </Tooltip>
                 ))}
               </td>
-              {/* <td className="button">
+              <td className="button">
                 <Tooltip
-                  className="-speech-ballon"
                   trigger="click"
-                  useContext
-                  html={
-                    <Comments
-                      toggleComment
-                      isOpen
-                    //   info TO-DO- add dinamycally
-                    />
-                  }
+                  visible={visible}
+                  render={() =>
+                  <Comments
+                    visible={visible}
+                    onClose={handleClickComments}/>}
                 >
-                  <Button
-                    onClick={handleClickComments}
-                    className={classnames('-border -small',
+                  <button
+                    className={classnames('comments-button',
                       {
                         '-secondary': isOpen,
                         '-primary': !isOpen
                       }
                     )}
-                  >
+                    onClick={handleClickComments}>
+
                     {isOpen ? 'Close' : 'Comments'}
-                  </Button>
+                  </button>
                 </Tooltip>
-              </td> */}
+              </td>
             </tr>
           )}
         </tbody>

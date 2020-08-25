@@ -1,0 +1,11 @@
+@import './settings.scss';
+
+div[data-tippy-root] {
+
+
+:global(.tippy-box) {
+  background-color: blue;
+
+}
+
+}

@@ -5,12 +5,14 @@ import Tooltip from '@tippyjs/react';
 
 import Button from 'components/button';
 import Comments from 'components/data-detail/comments';
+import Note from 'components/note';
 
 import './styles.scss';
 
 const PopulationSize = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
+  const [visible, toggleVisibility] = useState(false);
   const [isOpen, toggleComment] = useState(false);
 
 
@@ -19,7 +21,8 @@ const PopulationSize = ({ data }) => {
   };
 
   const handleClickComments = () => {
-    toggleComment(!isOpen)
+    toggleComment(!isOpen);
+    toggleVisibility(!visible);
   };
 
 
@@ -72,7 +75,13 @@ const PopulationSize = ({ data }) => {
                     delay={0}
                     arrow={false}
                     duration={[0, 0]}
-                    content={<span>{n.info}</span>}
+                    render={() =>
+                      <Note>
+                        <p className="title">
+                          Population size note <span>#{n.id}</span>
+                        </p>
+                        {/* <p>{n.info}</p> */}
+                      </Note>}
                   >
                     <span className="tooltipped">N{n.id}</span>
                   </Tooltip>
@@ -83,39 +92,41 @@ const PopulationSize = ({ data }) => {
                   <Tooltip
                     key={`${d.specie}${d.population}${n.id}`}
                     delay={0}
-                    arrow={false}
+                    arrow={true}
                     duration={[0, 0]}
-                    content={<span>{n.info}</span>}
+                    render={() => (
+                      <Note>
+                        <p className="title">
+                          Population size note <span>#{n.id}</span>
+                        </p>
+                        <p>{n.info}</p>
+                      </Note>)}
                   >
                     <span className="tooltipped">R{n.id}</span>
                   </Tooltip>
                 ))}
               </td>
-              {/* <td className="button">
+              <td className="button">
                 <Tooltip
                   trigger="click"
-                  useContext
-                  html={
+                  render={() =>
                     <Comments
-                      toggleComment
-                      isOpen
-                    //   info TO-DO- add dinamycally
-                    />
-                  }
+                      visible={visible}
+                      onClose={handleClickComments} />}
                 >
-                  <Button
-                    onClick={handleClickComments}
-                    className={classnames('-border -small',
+                  <button
+                    className={classnames('comments-button',
                       {
                         '-secondary': isOpen,
                         '-primary': !isOpen
                       }
                     )}
-                  >
+                    onClick={handleClickComments}>
+
                     {isOpen ? 'Close' : 'Comments'}
-                  </Button>
+                  </button>
                 </Tooltip>
-              </td> */}
+              </td>
             </tr>
           )}
         </tbody>
