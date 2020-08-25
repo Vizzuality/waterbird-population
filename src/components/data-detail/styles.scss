@@ -35,6 +35,31 @@
         &.button {
           display: flex;
           justify-content: flex-end;
+
+          .comments-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $font-family-1;
+            text-align: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+            color: $color-grey-8;
+            font-weight: bold;
+            line-height: 20px;
+            font-size: 14px;
+            border-radius: 3px;
+
+            &.-primary {
+              padding: 1px 5px;
+              border: 2px solid rgba($color-2, 0.5);
+            }
+
+            &.-secondary {
+              border: 2px solid rgba($color-grey-8, 0.5);
+              box-shadow: 0 4px 12px 0 rgba($color-3, .02);
+            }
+          }
         }
 
         .tooltipped {
@@ -45,39 +70,4 @@
       }
     }
   }
-
-
-
-
-
-
-  // span {
-  //   padding-right: 15px;
-
-  //   &.name {
-  //     font-weight: bold;
-  //   }
-
-  //   &.tag {
-  //     border-radius: 4px;
-  //     padding: 5px 10px 5px 25px;
-  //     background-color: #40A30B;
-  //     color: $white;
-  //     font-size: 10px;
-  //     line-height: 11px;
-  //     position: relative;
-
-  //     &:before {
-  //       content: '';
-  //       position: absolute;
-  //       border-radius: 50%;
-  //       top: 50%;
-  //       left: 10px;
-  //       transform: translateY(-50%);
-  //       height: 6px;
-  //       width: 6px;
-  //       background-color: $white;
-  //     }
-  //   }
-  // }
 }

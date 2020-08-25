@@ -20,29 +20,4 @@
     width: 100%;
     background-color: rgba($color-grey-8, 0.5);
   }
-
-  .comments-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: $font-family-1;
-    text-align: center;
-    white-space: nowrap;
-    box-sizing: border-box;
-    color: $color-grey-8;
-    font-weight: bold;
-    line-height: 20px;
-    font-size: 14px;
-    border-radius: 3px;
-
-    &.-primary {
-      padding: 1px 5px;
-      border: 2px solid rgba($color-2, 0.5);
-    }
-
-    &.-secondary {
-      border: 2px solid rgba($color-grey-8, 0.5);
-      box-shadow: 0 4px 12px 0 rgba($color-3, .02);
-    }
-  }
 };

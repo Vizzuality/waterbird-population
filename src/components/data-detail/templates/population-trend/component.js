@@ -5,6 +5,7 @@ import Tooltip from '@tippyjs/react';
 
 import Button from 'components/button';
 import Comments from 'components/data-detail/comments';
+import Note from 'components/note';
 
 import './styles.scss';
 
@@ -70,7 +71,13 @@ const PopulationTrend = ({ data }) => {
                     delay={0}
                     arrow={false}
                     duration={[0, 0]}
-                    content={<span>{n.info}</span>}
+                    render={() => (
+                      <Note>
+                        <p className="title">
+                          Population trend note <span>#{n.id}</span>
+                        </p>
+                        <p>{n.info}</p>
+                      </Note>)}
                   >
                     <span className="tooltipped">N{n.id}</span>
                   </Tooltip>
@@ -83,8 +90,13 @@ const PopulationTrend = ({ data }) => {
                     delay={0}
                     arrow={false}
                     duration={[0, 0]}
-                    content={<span>{n.info}</span>}
-
+                    render={() => (
+                      <Note>
+                        <p className="title">
+                          Population trend note <span>#{n.id}</span>
+                        </p>
+                        <p>{n.info}</p>
+                      </Note>)}
                   >
                     <span className="tooltipped">R{n.id}</span>
                   </Tooltip>
@@ -94,7 +106,8 @@ const PopulationTrend = ({ data }) => {
                 <Tooltip
                   trigger="click"
                   render={() =>
-                  <Comments />}
+                    <Comments
+                      onClose={handleClickComments} />}
                 >
                   <button
                     className={classnames('comments-button',
