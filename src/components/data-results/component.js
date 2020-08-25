@@ -45,7 +45,7 @@ const DataResults = ({ family }) => {
         '-hidden': isCollapsed
       })}>
         {species.map((specie) => (
-          <SpeciesData info={specie} />
+          <SpeciesData key={specie.specieid} info={specie} />
         ))}
       </div>
     </section>

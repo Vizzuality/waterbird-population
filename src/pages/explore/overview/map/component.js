@@ -26,7 +26,7 @@ export const MapContainer = ({
     // eslint-disable-next-line
   }, []);
 
-  const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
 
   const onViewportChange = (viewport) => {
     setViewport(viewport);

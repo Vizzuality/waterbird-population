@@ -23,7 +23,7 @@ export const MapContainer = ({
   router,
   setRouter
 }) => {
-  const [viewport, setViewport] = useState({ zoom: 3, latitude: 0, longitude: 0 });
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
@@ -74,7 +74,7 @@ export const MapContainer = ({
     <div className='c-map-container'>
       <PopulationsSelector
         data={populationOptions}
-        selected={router.payload.population_id}
+        selected={+router.payload.population_id}
         onChange={(value) => {
           setRouter('EXPLORE_DETAIL', {
             specie_id: router.payload.specie_id,
@@ -136,6 +136,7 @@ export const MapContainer = ({
 
             {lngLat && hoverInteractions['populations-by-specie'] && (
               <Popup
+                key={hoverInteractions['populations-by-specie'].wpepopid}
                 latitude={lngLat[1]}
                 longitude={lngLat[0]}
                 closeButton={false}
