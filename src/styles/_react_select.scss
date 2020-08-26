@@ -1,0 +1,19 @@
+@import 'styles/settings';
+
+.react-select__menu {
+  width: auto !important;
+
+}
+
+
+.react-select__placeholder {
+  font-size: 14px;
+  display: flex;
+  color: rgba($black, 0.85) !important;
+  font-family: $font-family-1;
+  font-style: italic;
+  letter-spacing: 0;
+  line-height: 20px;
+  text-shadow: 0 1px 4px 0 rgba($white, 0.5);
+  overflow: hidden;
+}
