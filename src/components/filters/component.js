@@ -15,13 +15,15 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
+const Filters = ({ filters, setFilters, resetFilters, onClick, onClose }) => {
 
   const [families, setFamilies] = useState([]);
   const [publications, setPublications] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
+  const [newFiltersValues, setNewFiltersValues] = useState(filters.filters);
+
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
     fetchPublications().then(data => setPublications(data));
@@ -32,7 +34,11 @@ const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
 
   const handleClick = () => {
     onClick();
-    resetFilters();
+  };
+
+  const handleFilters = () => {
+    setFilters(newFiltersValues)
+    onClick();
   };
 
   // filters values
@@ -137,7 +143,10 @@ const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
   ];
 
   const changeFilterValue = (type, { value }) => {
-    setFilters({ [`${type}_id`]: value });
+    setNewFiltersValues({
+      ...newFiltersValues,
+      [`${type}_id`]: value
+    });
   };
 
   return (
@@ -168,6 +177,7 @@ const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
           Cancel
         </Button>
         <Button
+          onClick={handleFilters}
           className={classnames('-background -secondary -big', {
             // '-disable': filters && activeFilters.length <= 0
           })}>
