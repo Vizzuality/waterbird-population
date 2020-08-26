@@ -15,7 +15,7 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, resetFilters, onClick, onClose }) => {
+const Filters = ({ filters, setFilters, onClick }) => {
 
   const [families, setFamilies] = useState([]);
   const [publications, setPublications] = useState([]);

@@ -134,11 +134,9 @@ export const fetchPopulations = (specieid) => {
       'id', specie_id,
       'commonname', specie_commonname,
       'scientificname', specie_scientificname,
-      'redlistcategory', redlistcategory_name,
-      'redlistcategory_id', redlistcategory_id
+      'redlistcategory', redlistcategory_name
     )
     as specie,
-
 
     jsonb_agg(distinct jsonb_build_object(
       'id', population_size_id,

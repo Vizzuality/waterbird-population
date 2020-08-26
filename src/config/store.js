@@ -7,7 +7,6 @@ import { handleModule } from 'vizzuality-redux-tools';
 import * as map from 'modules/map';
 import * as population from 'modules/population';
 import * as user from 'modules/user';
-import * as filters from 'modules/filters';
 
 
 const {
@@ -21,8 +20,7 @@ const reducers = combineReducers({
   router: routerReducer,
   map: handleModule(map),
   population: handleModule(population),
-  user: handleModule(user),
-  filters: handleModule(filters)
+  user: handleModule(user)
 });
 
 const middleware = applyMiddleware(routerMiddleware);

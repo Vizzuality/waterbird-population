@@ -9,7 +9,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
 export const population_id = (state) => state ?.router ?.payload ?.population_id;
 export const data = (state) => state ?.population ?.data;
-export const filters = (state) => state ?.filters.filters;
+export const filters = (state) => state ?.population.filters;
 
 export const familyId = (state, props) => props ?.familyId;
 export const specieId = (state, props) => props ?.specieId;
