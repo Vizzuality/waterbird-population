@@ -18,13 +18,15 @@ export const selectPopulationFiltered = createSelector(
   [data, filters],
   (_data, _filters) => {
     if (!_data || isEmpty(_data)) return [];
-
     return _data
-      .filter(d => (
-        (_filters.family_id !== '' ? (d.family.id === _filters.family_id) : d) &&
-        (_filters.publication_id !== '' ? (d.publications.find(f => f.id = _filters.publication_id)) : d) &&
-        (_filters.red_list_id !== '' ? d.specie.redlistcategory_id === _filters.red_list_id : d)
-      )
+      .filter(d => {;
+        const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
+        const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
+        const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
+        const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
+        const array = [isFamily, isPublication, isRamsarRegion, isRedList]
+        return array.every(d => d)
+      }
     )
   }
 )
@@ -34,7 +36,6 @@ export const selectPopulationFamilies = createSelector(
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
-    console.log(_data)
     return orderBy(uniqBy(_data.map(p => {
       return {
         ...p.family,

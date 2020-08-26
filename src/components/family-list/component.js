@@ -10,7 +10,6 @@ import './styles.scss';
 
 
 const FamilyList = ({ populationFamilies }) => {
-  console.log(populationFamilies)
   if (!populationFamilies || !populationFamilies.length) return <Spinner />
 
   return populationFamilies.map(family => {
