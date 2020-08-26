@@ -45,19 +45,19 @@ const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
 
   // Filters options
   const familyOptions = families.map(family => {
-    return { label: family.name, value: family.name }
+    return { label: family.name, value: family.id }
   });
 
   const publicationOptions = publications.map(publication => {
-    return { label: publication.description, value: publication.description }
+    return { label: publication.description, value: publication.id }
   });
 
   const conservationFrameworkOptions = conservationFrameworks.map(framework => {
-    return { label: framework.code, value: framework.code }
+    return { label: framework.code, value: framework.id }
   });
 
   const flywayOptions = flyways.map(flyway => {
-    return { label: flyway.flywayrange, value: flyway.flywayrange }
+    return { label: flyway.flywayrange, value: flyway.id }
   });
 
   const redListOptions = redList.map(d => {
@@ -137,7 +137,7 @@ const Filters = ({ filters, setFilters, resetFilters, onClick }) => {
   ];
 
   const changeFilterValue = (type, { value }) => {
-    setFilters({ id: type, value });
+    setFilters({ [`${type}_id`]: value });
   };
 
   return (

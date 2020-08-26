@@ -134,7 +134,8 @@ export const fetchPopulations = (specieid) => {
       'id', specie_id,
       'commonname', specie_commonname,
       'scientificname', specie_scientificname,
-      'redlistcategory', redlistcategory_name
+      'redlistcategory', redlistcategory_name,
+      'redlistcategory_id', redlistcategory_id
     )
     as specie,
 
@@ -207,7 +208,8 @@ export const fetchPopulations = (specieid) => {
     family_id,
     family_name,
     familyorder_name,
-    redlistcategory_name
+    redlistcategory_name,
+    redlistcategory_id
   `;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)

@@ -6,18 +6,26 @@ import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const population_id = (state) => state?.router?.payload?.population_id;
-export const data = (state) => state?.population?.data;
-export const filters = (state) => state.population.filters;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const population_id = (state) => state ?.router ?.payload ?.population_id;
+export const data = (state) => state ?.population ?.data;
+export const filters = (state) => state ?.filters.filters;
 
-export const familyId = (state, props) => props?.familyId;
-export const specieId = (state, props) => props?.specieId;
+export const familyId = (state, props) => props ?.familyId;
+export const specieId = (state, props) => props ?.specieId;
 
 export const selectPopulationFiltered = createSelector(
   [data, filters],
   (_data, _filters) => {
-    return _data;
+    if (!_data || isEmpty(_data)) return [];
+
+    return _data
+      .filter(d => (
+        (_filters.family_id !== '' ? (d.family.id === _filters.family_id) : d) &&
+        (_filters.publication_id !== '' ? (d.publications.find(f => f.id = _filters.publication_id)) : d) &&
+        (_filters.red_list_id !== '' ? d.specie.redlistcategory_id === _filters.red_list_id : d)
+      )
+    )
   }
 )
 
@@ -26,6 +34,7 @@ export const selectPopulationFamilies = createSelector(
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
+    console.log(_data)
     return orderBy(uniqBy(_data.map(p => {
       return {
         ...p.family,

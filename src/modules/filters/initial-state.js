@@ -2,12 +2,11 @@ export default {
   loading: false,
   error: false,
   filters: {
-    family: '',
-    publication: '',
-    framework: '',
-    flyway_region: '',
-    ramsar_region: '',
-    red_list: '',
+    family_id: '',
+    publication_id: '',
+    framework_id: '',
+    flyway_region_id: '',
+    ramsar_region_id: '',
+    red_list_id: ''
   }
-};
-
+}

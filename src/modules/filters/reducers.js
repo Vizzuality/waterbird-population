@@ -6,8 +6,7 @@ export default {
     ...state,
     filters: {
       ...state.filters,
-      [payload.id]: payload.value
-
+      ...payload
     }
   }),
   [resetFilters]: state => ({ ...state }, initialState),
