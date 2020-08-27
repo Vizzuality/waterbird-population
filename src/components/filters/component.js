@@ -41,14 +41,6 @@ const Filters = ({ filters, setFilters, onClick }) => {
     onClick();
   };
 
-  // filters values
-  const selectedFamily = filters.family;
-  const selectedPublication = filters.publication;
-  const selectedFramework = filters.framework;
-  const selectedFlywayRegion = filters.flyway_region;
-  const selectedRamsarRegion = filters.ramsar_region;
-  const selectedRedList = filters.red_list;
-
   // Filters options
   const familyOptions = families.map(family => {
     return { label: family.name, value: family.id }
@@ -66,28 +58,46 @@ const Filters = ({ filters, setFilters, onClick }) => {
     return { label: flyway.flywayrange, value: flyway.id }
   });
 
+  const ramsarRegionOptions = [
+    { value: 'africa', label: 'Africa' },
+    { value: 'asia', label: 'Asia' },
+    { value: 'europe', label: 'Europe' },
+    { value: 'neotropics', label: 'Neotropics' },
+    { value: 'northamerica', label: 'North America' },
+    { value: 'oceania', label: 'Oceania' }
+  ];
+
   const redListOptions = redList.map(d => {
     return { label: `${d.iucn} (${d.description})`, value: d.iucn }
   });
 
+
+  // filters values
+  const selectedFamily = familyOptions.find(f => filters.family_id);
+  const selectedPublication = publicationOptions.find(f => filters.publication_id);
+  const selectedFramework = conservationFrameworkOptions.find(f => filters.framework_id);
+  const selectedFlywayRegion = flywayOptions.find(f => filters.flyway_region_id);
+  const selectedRamsarRegion = ramsarRegionOptions.find(f => filters.ramsar_region_id);
+  const selectedRedList = redListOptions.find(f => filters.red_list_id);
+
   const filtersInfo = [
     {
       label: 'Taxonomic',
-      type: 'family',
+      type: 'family_id',
       options: familyOptions,
       value: selectedFamily,
       placeholder: 'All families'
     },
     {
       label: 'Publication',
-      type: 'publication',
+      type: 'publication_id',
       options: publicationOptions,
       value: selectedPublication,
       placeholder: 'All publications'
     },
     {
       label: 'Conservation Framework',
-      type: 'framework',
+      type: 'framework_id',
       options: conservationFrameworkOptions,
       value: selectedFramework,
       placeholder: 'All frameworks',
@@ -99,7 +109,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
     },
     {
       label: 'Biogeographic/ Flyway region',
-      type: 'flyway_region',
+      type: 'flyway_region_id',
       options: flywayOptions,
       value: selectedFlywayRegion,
       placeholder: 'All Biogeographic/ Flyway region',
@@ -111,15 +121,8 @@ const Filters = ({ filters, setFilters, onClick }) => {
     },
     {
       label: 'Ramsar region',
-      type: 'ramsar_region',
-      options: [
-        { value: 'africa', label: 'Africa' },
-        { value: 'asia', label: 'Asia' },
-        { value: 'europe', label: 'Europe' },
-        { value: 'neotropics', label: 'Neotropics' },
-        { value: 'northamerica', label: 'North America' },
-        { value: 'oceania', label: 'Oceania' }
-      ],
+      type: 'ramsar_region_id',
+      options: ramsarRegionOptions,
       value: selectedRamsarRegion,
       placeholder: 'All Regions',
       info: (
@@ -130,7 +133,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
     },
     {
       label: 'Red list',
-      type: 'red_list',
+      type: 'red_list_id',
       options: redListOptions,
       value: selectedRedList,
       placeholder: 'All',
@@ -145,7 +148,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
   const changeFilterValue = (type, { value }) => {
     setNewFiltersValues({
       ...newFiltersValues,
-      [`${type}_id`]: value
+      [`${type}`]: value
     });
   };
 
