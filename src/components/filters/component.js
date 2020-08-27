@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import Link from 'redux-first-router-link';
 
 import Button from 'components/button';
-import Select from 'components/select';
+import Select from 'react-select';
 import Icon from 'components/icon';
 
 import { fetchFamilies } from 'services/families';
@@ -15,13 +15,14 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ activeFilters, onClick }) => {
+const Filters = ({ filters, setFilters, onClick }) => {
 
   const [families, setFamilies] = useState([]);
   const [publications, setPublications] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
+  const [newFiltersValues, setNewFiltersValues] = useState(filters.filters);
 
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
@@ -29,49 +30,76 @@ const Filters = ({ activeFilters, onClick }) => {
     fetchConservationFrameworks().then(data => setFrameworks(data));
     fetchFlyways().then(data => setFlyways(data));
     fetchRedListCategories().then(data => setListCategories(data));
-  }, [families, publications, conservationFrameworks, flyways, redList]);
+  }, []);
 
   const handleClick = () => {
-    onClick(false);
-  }
+    onClick();
+  };
 
+  const handleFilters = () => {
+    setFilters(newFiltersValues)
+    onClick();
+  };
+
+  // Filters options
   const familyOptions = families.map(family => {
-    return { label: family.name, value: family.name }
+    return { label: family.name, value: family.id }
   });
 
   const publicationOptions = publications.map(publication => {
-    return { label: publication.description, value: publication.description }
+    return { label: publication.description, value: publication.id }
   });
 
   const conservationFrameworkOptions = conservationFrameworks.map(framework => {
-    return { label: framework.code, value: framework.code }
+    return { label: framework.code, value: framework.id }
   });
 
   const flywayOptions = flyways.map(flyway => {
-    return { label: flyway.flywayrange, value: flyway.flywayrange }
+    return { label: flyway.flywayrange, value: flyway.id }
   });
+
+  const ramsarRegionOptions = [
+    { value: 'africa', label: 'Africa' },
+    { value: 'asia', label: 'Asia' },
+    { value: 'europe', label: 'Europe' },
+    { value: 'neotropics', label: 'Neotropics' },
+    { value: 'northamerica', label: 'North America' },
+    { value: 'oceania', label: 'Oceania' }
+  ];
 
   const redListOptions = redList.map(d => {
     return { label: `${d.iucn} (${d.description})`, value: d.iucn }
   });
 
+
+  // filters values
+  const selectedFamily = familyOptions.find(f => filters.family_id);
+  const selectedPublication = publicationOptions.find(f => filters.publication_id);
+  const selectedFramework = conservationFrameworkOptions.find(f => filters.framework_id);
+  const selectedFlywayRegion = flywayOptions.find(f => filters.flyway_region_id);
+  const selectedRamsarRegion = ramsarRegionOptions.find(f => filters.ramsar_region_id);
+  const selectedRedList = redListOptions.find(f => filters.red_list_id);
+
   const filtersInfo = [
     {
       label: 'Taxonomic',
-      type: 'families',
+      type: 'family_id',
       options: familyOptions,
+      value: selectedFamily,
       placeholder: 'All families'
     },
     {
-      'label': 'Publication',
-      'type': 'publications',
-      'options': publicationOptions,
+      label: 'Publication',
+      type: 'publication_id',
+      options: publicationOptions,
+      value: selectedPublication,
       placeholder: 'All publications'
     },
     {
-      'label': 'Conservation Framework',
-      'type': 'Conservation Framework',
-      'options': conservationFrameworkOptions,
+      label: 'Conservation Framework',
+      type: 'framework_id',
+      options: conservationFrameworkOptions,
+      value: selectedFramework,
       placeholder: 'All frameworks',
       'info': (
         <Link to="/background/Glossary">
@@ -80,9 +108,10 @@ const Filters = ({ activeFilters, onClick }) => {
       )
     },
     {
-      'label': 'Biogeographic/ Flyway region',
-      'type': 'Biogeographic/ Flyway region',
-      'options': flywayOptions,
+      label: 'Biogeographic/ Flyway region',
+      type: 'flyway_region_id',
+      options: flywayOptions,
+      value: selectedFlywayRegion,
       placeholder: 'All Biogeographic/ Flyway region',
       info: (
         <Link target="_blank" rel="noopener noreferrer" to="/images/Biogeographic">
@@ -91,16 +120,10 @@ const Filters = ({ activeFilters, onClick }) => {
       )
     },
     {
-      'label': 'Ramsar region',
-      'type': 'Ramsar region',
-      'options': [
-        { value: 'africa', label: 'Africa' },
-        { value: 'asia', label: 'Asia' },
-        { value: 'europe', label: 'Europe' },
-        { value: 'neotropics', label: 'Neotropics' },
-        { value: 'northamerica', label: 'North America' },
-        { value: 'oceania', label: 'Oceania' }
-      ],
+      label: 'Ramsar region',
+      type: 'ramsar_region_id',
+      options: ramsarRegionOptions,
+      value: selectedRamsarRegion,
       placeholder: 'All Regions',
       info: (
         <Link target="_blank" rel="noopener noreferrer" to="/images/Ramsar">
@@ -109,26 +132,32 @@ const Filters = ({ activeFilters, onClick }) => {
       )
     },
     {
-      'label': 'Red list',
-      'type': 'Red list',
-      'options': redListOptions,
+      label: 'Red list',
+      type: 'red_list_id',
+      options: redListOptions,
+      value: selectedRedList,
+      placeholder: 'All',
       info: (
         <a target="_blank" rel="noopener noreferrer" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
           <Icon name="info" />
         </a>
       )
     }
-  ]
+  ];
 
+  const changeFilterValue = (type, { value }) => {
+    setNewFiltersValues({
+      ...newFiltersValues,
+      [`${type}`]: value
+    });
+  };
 
   return (
     <div className="c-filters">
       <h3>Filter options:</h3>
       <div className="filters-content">
-
-        {filtersInfo.map(({ label, placeholder, options, info }) =>
+        {filtersInfo.map(({ label, type, placeholder, options, value, info }) =>
           <div className="filters">
-{placeholder, 'placeholder'}
             <div className="filter-type">
               <label>{label}</label>
               {info ? info : null}
@@ -136,7 +165,9 @@ const Filters = ({ activeFilters, onClick }) => {
             <Select
               placeholder={placeholder}
               options={options}
+              value={value}
               classNamePrefix="react-select"
+              onChange={value => changeFilterValue(type, value)}
             />
           </div>
         )}
@@ -149,8 +180,9 @@ const Filters = ({ activeFilters, onClick }) => {
           Cancel
         </Button>
         <Button
+          onClick={handleFilters}
           className={classnames('-background -secondary -big', {
-            '-disable': activeFilters && activeFilters.length <= 0
+            // '-disable': filters && activeFilters.length <= 0
           })}>
           Apply filters
         </Button>

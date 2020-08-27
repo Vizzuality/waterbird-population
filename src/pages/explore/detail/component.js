@@ -15,7 +15,7 @@ const ExploreDetailPage = (props) => {
   const { specie_id } = payload;
 
   useEffect(() => {
-    fetchPopulations(+specie_id).then(data => setPopulations({ id: specie_id, data }));
+    fetchPopulations(+specie_id).then(data => setPopulations(data));
   }, [specie_id, setPopulations])
 
   return (

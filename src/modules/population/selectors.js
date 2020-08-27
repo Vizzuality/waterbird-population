@@ -6,16 +6,114 @@ import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const population_id = (state) => state?.router?.payload?.population_id;
-export const data = (state) => state?.population?.data;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const population_id = (state) => state ?.router ?.payload ?.population_id;
+export const data = (state) => state ?.population ?.data;
+export const filters = (state) => state ?.population.filters;
+
+export const familyId = (state, props) => props ?.familyId;
+export const specieId = (state, props) => props ?.specieId;
+
+export const selectPopulationFiltered = createSelector(
+  [data, filters],
+  (_data, _filters) => {
+    if (!_data || isEmpty(_data)) return [];
+    return _data
+      .filter(d => {;
+        const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
+        const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
+        const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
+        const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
+        const array = [isFamily, isPublication, isRamsarRegion, isRedList]
+        return array.every(d => d)
+      }
+    )
+  }
+)
+
+export const selectPopulationFamilies = createSelector(
+  [selectPopulationFiltered],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    return orderBy(uniqBy(_data.map(p => {
+      return {
+        ...p.family,
+        name: trim(p.family.name),
+        ordername: trim(p.family.ordername)
+      }
+    }), 'id'), 'name')
+  }
+);
+
+export const selectPopulationSpecies = createSelector(
+  [selectPopulationFiltered, familyId],
+  (_data, _familyId) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const populationsByFamily = _data.filter(d => d.family.id === _familyId);
+
+    return orderBy(uniqBy(populationsByFamily.map(p => {
+      return {
+        ...p.specie,
+        scientificname: trim(p.specie.scientificname),
+        commonname: trim(p.specie.commonname),
+      }
+    }), 'id'), 'scientificname');
+  }
+);
+
+export const selectPopulationsData = createSelector(
+  [data, specieId],
+  (_data, _specieId) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
+
+    return populationsBySpecie.map(d => {
+      const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
+      const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
+
+      const size = d.sizes.find(s => s.publication_id === publication.id);
+      const trend = d.trends.find(s => s.publication_id === publication.id);
+      const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+
+      return {
+        id : d.id,
+        populationId: d.id,
+        name: d.name,
+        size: `${size.maximun} - ${size.minimum}`,
+        'size_year': `${size.startyear} - ${size.endyear}`,
+        trend: trend.name,
+        'size_reference_notes': size.reference_notes,
+        'size_reference_info': size.reference_info,
+        'trend_year': `${trend.startyear} - ${trend.endyear}`,
+        'trend_quality': trend.quality,
+        'trend_notes': trend.notes,
+        'trend_references': trend.reference,
+        'size_estimates_quality': size.quality,
+        'percent': percentLevel.onepercet,
+        'yearset': percentLevel.yearset,
+        publication: d.publications.name,
+        commonname: d.commonname,
+        redlistcategory: d.redlistcategory,
+        scientificname: d.scientificname,
+        'family_name': d.family.name,
+        'order_name': d.family.ordername,
+        'breedingrange': d.breedingrange,
+        'nonbreedingrange': d.nonbreedingrange
+      }
+    })
+  }
+);
+
 
 export const selectPopulationOptions = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    return _data[_specie_id].map(p => {
+    return _data.map(p => {
       return {
         label: trim(p.name) || '-',
         value: p.id,
@@ -29,9 +127,9 @@ export const selectPopulationOptions = createSelector(
 export const selectPopulationInfoData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
     const regions = [
       { id: 'africa', name: 'Africa' },
       { id: 'asia', name: 'Asia' },
@@ -57,9 +155,9 @@ export const selectPopulationInfoData = createSelector(
 export const selectPopulationSizeData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
 
     return population.publications.map(p => {
       const { id, name } = p;
@@ -89,9 +187,9 @@ export const selectPopulationSizeData = createSelector(
 export const selectPopulationTrendData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
 
     return population.publications.map(p => {
       const { id, name: publication } = p;
@@ -120,9 +218,9 @@ export const selectPopulationTrendData = createSelector(
 export const selectPopulationPercentData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
 
     return population.publications.map(p => {
       const { id, name: publication } = p;
@@ -144,9 +242,9 @@ export const selectPopulationPercentData = createSelector(
 export const selectPopulationReferences = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
-    if (!_specie_id || !_data || isEmpty(_data) || isEmpty(_data[_specie_id])) return [];
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data[_specie_id].find(p => p.id === +_population_id) || _data[_specie_id][0];
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
 
     const references = population.publications.map(p => {
       const { id } = p;
@@ -160,82 +258,6 @@ export const selectPopulationReferences = createSelector(
     });
 
     return orderBy(uniqBy(flatten(references), 'id'), 'id');
-  }
-);
-
-export const filters = (state) => state.population.filters;
-
-export const selectLastPublications = createSelector(
-  [data],
-  (_data) => {
-    if (!_data || isEmpty(_data)) return [];
-
-    const publicationIds = Object.values(_data)[0].map(
-      d => {
-        if (d.publications.length === 1) {
-          return {
-            publication_id: d.publications[0].id,
-            name: d.publications[0].name,
-            id: d.id
-          }
-        } else {
-          const dataOrdered = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
-          const publicationId = dataOrdered[0].publication_id;
-          return {
-            publication_id: publicationId,
-            name: d.publications.find(p => p.id === publicationId).name,
-            id: d.id
-          }
-        }
-      })
-    return publicationIds;
-  }
-)
-
-export const selectPopulationsData = createSelector(
-  [data, filters, selectLastPublications],
-  ( _data, _filters, _publication_id) => {
-    if (!_data || isEmpty(_data)) return [];
-    const lastPublicationData = Object.values(_data)[0].map(
-      d => {
-
-        const lastPublicationId = _publication_id.find(p => p.id === d.id)
-        const size = d.sizes.find(s => s.publication_id === lastPublicationId.publication_id)
-        const trend = d.trends.find(s => s.publication_id === lastPublicationId.publication_id)
-        const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === lastPublicationId.publication_id)
-
-        return {
-          populationId: d.id,
-          name: d.name,
-          size: `${size.maximun} - ${size.minimum}`,
-          'size_year': `${size.startyear} - ${size.endyear}`,
-          trend: trend.name,
-          'size_reference_notes': size.reference_notes,
-          'size_reference_info': size.reference_info,
-          'trend_year': `${trend.startyear} - ${trend.endyear}`,
-          'trend_quality': trend.quality,
-          'trend_notes': trend.notes,
-          'trend_references': trend.reference,
-          'size_estimates_quality': size.quality,
-          'percent': percentLevel.onepercet,
-          'yearset': percentLevel.yearset,
-          publication: d.publications.name,
-          commonname: d.commonname,
-          redlistcategory: d.redlistcategory,
-          scientificname: d.scientificname,
-          'family_name': d.family.name,
-          'order_name': d.family.ordername,
-          'breedingrange': d.breedingrange,
-          'nonbreedingrange': d.nonbreedingrange
-        }
-      }
-    )
-
-return lastPublicationData
-
-    // _filters.reduce((acc, _filter) => {
-
-    // })
   }
 );
 
@@ -322,6 +344,12 @@ export const selectPopulationLayers = createSelector(
   }
 );
 
+
+export const selectPopulationProps = createStructuredSelector({
+  populationData: selectPopulationsData,
+  populationFamilies: selectPopulationFamilies,
+  populationSpecies: selectPopulationSpecies
+});
 
 
 export const selectPopulationDetailProps = createStructuredSelector({

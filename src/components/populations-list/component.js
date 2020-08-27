@@ -10,13 +10,15 @@ import Note from 'components/note';
 import Download from 'components/download';
 import './styles.scss';
 
-const PopulationsCards = ({ specieId, data }) => {
+const PopulationsList = ({ specieId, populationData }) => {
+
   const tag = true;
+
   return (
-    data.map(
+    populationData.map(
       d => {
         return (
-          <section className="c-card-info">
+          <section key={d.id} className="c-card-info">
             <Link to={`/explore/${specieId}/${d.populationId}`} on>
               <div className="card-header">
                 <div className="card-title">
@@ -36,7 +38,7 @@ const PopulationsCards = ({ specieId, data }) => {
                   </button>
                   <Download
                     text={'Download data'}
-                    data={data}
+                    data={populationData}
                   />
                 </div>
               </div>
@@ -146,8 +148,9 @@ const PopulationsCards = ({ specieId, data }) => {
   )
 }
 
-PopulationsCards.propTypes = {
-  info: PropTypes.array.isRequired
+PopulationsList.propTypes = {
+  specieId: PropTypes.number.isRequired,
+  populationData: PropTypes.array.isRequired
 }
 
-export default PopulationsCards;
+export default PopulationsList;

@@ -19,8 +19,8 @@ const {
 const reducers = combineReducers({
   router: routerReducer,
   map: handleModule(map),
-  user: handleModule(user),
-  population: handleModule(population)
+  population: handleModule(population),
+  user: handleModule(user)
 });
 
 const middleware = applyMiddleware(routerMiddleware);
