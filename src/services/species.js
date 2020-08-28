@@ -32,7 +32,7 @@ export const fetchSpecies = (familyId) => {
  `;
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
 
-  return API.get(`sql?q=${q}&api_key=${api_key}`)
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
   .then(data => data)
   .catch((e) => {
    // const { status, statusText } = response;

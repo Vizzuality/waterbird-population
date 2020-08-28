@@ -26,7 +26,7 @@ const PopulationPercent = ({ data }) => {
 
 
   return (
-    <div className={classnames('c-population-size',
+    <div className={classnames('c-population-percent',
       { '-collapse': isCollapsed })}>
       <div className="header">
         <h2>Population 1% level</h2>
@@ -82,9 +82,11 @@ const PopulationPercent = ({ data }) => {
               <td className="button">
                 <Tooltip
                   trigger="click"
-                  visible={visible}
                   render={() =>
                   <Comments
+                    populationId={d.population}
+                    publicationId={d.publication_id}
+                    onepercentId={d.onepercent_id}
                     visible={visible}
                     onClose={handleClickComments}/>}
                 >

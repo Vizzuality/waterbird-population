@@ -24,7 +24,7 @@ export const API = setup({
 
 export const fetchPublications = () => {
 
-  const q = `SELECT id,description FROM publication WHERE published =1`;
+  const q = `SELECT id,description FROM publication WHERE published = 1`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
   .then(({ data }) => data.rows)
@@ -33,4 +33,13 @@ export const fetchPublications = () => {
   });
 };
 
+export const fetchPublicationsDraft = () => {
 
+  const q = `SELECT id, description FROM publication WHERE published = 0`;
+
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+  .then(({ data }) => data.rows)
+  .catch((e) => {
+    console.log(e, 'error')
+  });
+};

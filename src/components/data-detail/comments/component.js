@@ -8,16 +8,23 @@ import Button from 'components/button';
 
 import './styles.scss';
 
-const Comments = ({ onClose, visible, user, publication_id }) => {
-
+const Comments = ({
+  onClose,
+  visible,
+  user,
+  populationId,
+  publicationId,
+  sizeId,
+  trendId,
+  onepercetId
+}) => {
   const [isDisable, disableButton] = useState(true);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState('');
 
   useEffect(() => {
-    publication_id = 5;
-    fetchComments(publication_id).then(data => setComments(data));
-  }, [publication_id]);
+    fetchComments(publicationId, populationId, sizeId, trendId, onepercetId).then(data => setComments(data));
+  }, [publicationId]);
 
   const handleChange = (e) => {
     e.target.value.length > 0 ? disableButton(false) : disableButton(true);
@@ -32,13 +39,16 @@ const Comments = ({ onClose, visible, user, publication_id }) => {
     createComment({
       name: user.name,
       user_id: user.id,
-      publication_id: 1,
+      publication_id: publicationId,
+      population_id: populationId,
+      size_id: sizeId,
+      trend_id: trendId,
+      onepercent_id: onepercetId,
       comment,
       date: new Date ()
     });
     onClose();
   };
-
   if (!visible) return null;
 
   return (

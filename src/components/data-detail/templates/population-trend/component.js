@@ -109,6 +109,9 @@ const PopulationTrend = ({ data }) => {
                   trigger="click"
                   render={() =>
                     <Comments
+                      populationId={d.population}
+                      publicationId={d.publication_id}
+                      trendId={d.trend_id}
                       visible={visible}
                       onClose={handleClickComments} />}
                 >

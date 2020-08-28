@@ -26,7 +26,7 @@ export const fetchFamilies = () => {
 
   const q = `SELECT id,name FROM family`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
   .then(({ data }) => data.rows)
   .catch((e) => {
     console.log(e, 'error')

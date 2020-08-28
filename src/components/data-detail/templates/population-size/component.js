@@ -15,7 +15,6 @@ const PopulationSize = ({ data }) => {
   const [visible, toggleVisibility] = useState(false);
   const [isOpen, toggleComment] = useState(false);
 
-
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
@@ -61,7 +60,7 @@ const PopulationSize = ({ data }) => {
 
         <tbody>
           {(data).map(d =>
-            <tr key={`${d.specie}${d.population}${d.publication}`}>
+            <tr key={`${d.specie}${d.population}${d.publication_id}`}>
               <td>{d.publication}</td>
               <td>{d.startyear}</td>
               <td>{d.endyear}</td>
@@ -80,7 +79,7 @@ const PopulationSize = ({ data }) => {
                         <p className="title">
                           Population size note <span>#{n.id}</span>
                         </p>
-                        {/* <p>{n.info}</p> */}
+                        <p>{n.info}</p>
                       </Note>}
                   >
                     <span className="tooltipped">N{n.id}</span>
@@ -111,8 +110,12 @@ const PopulationSize = ({ data }) => {
                   trigger="click"
                   render={() =>
                     <Comments
+                      populationId={d.population}
+                      publicationId={d.publication_id}
+                      sizeId={d.size_id}
                       visible={visible}
-                      onClose={handleClickComments} />}
+                      onClose={handleClickComments}
+                    />}
                 >
                   <button
                     className={classnames('comments-button',
