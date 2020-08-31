@@ -22,19 +22,21 @@ export const selectPopulationFiltered = createSelector(
   (_data, _filters, _search) => {
     if (!_data || isEmpty(_data)) return [];
 
-    const dataSearch = _search && _search.length && new Fuse(_data, {
+    const fuse = _search && _search.length && new Fuse(_data, {
         keys: [
           'family.name', 'family.ordername',
           'name',
-          'specie.commonname', 'specie.redlistcategory', 'specie.scientificname']
+          'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
+        ],
+        threshold: 0.1,
       });
 
-    const dataFiltered = dataSearch && dataSearch
+    const dataFiltered = fuse && fuse
       .search(_search)
       .map(d => d.item)
 
       return (
-      (dataFiltered && dataFiltered.length ? dataFiltered : _data)
+      (dataFiltered ? dataFiltered : _data)
         .filter(d => {
           const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
           const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
