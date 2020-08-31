@@ -1,14 +1,12 @@
 import { connect } from 'react-redux';
+import { selectLastPublicationData } from 'modules/population/selectors';
 
 import Component from './component';
 
 const mapStateToProps = state => ({
-  user: {
-    email: 'test@test.com',
-    id: 1,
-    name: 'test',
-    rol: 'admin'
-  }
+  user: { id: state.user.id, name: state.user.name }
 });
 
-export default connect(mapStateToProps)(Component);
+const mapDispatchToProps = { selectLastPublicationData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

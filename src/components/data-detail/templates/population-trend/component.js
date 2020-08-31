@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Tooltip from '@tippyjs/react';
 
@@ -9,20 +10,20 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationTrend = ({ data }) => {
+const PopulationTrend = ({ data, user }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
-  const [visible, toggleVisibility] = useState(false);
-  const [isOpen, toggleComment] = useState(false);
-
+  const [visible, toggleVisibility] = useState({});
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed);
   };
 
-  const handleClickComments = () => {
-    toggleComment(!isOpen);
-    toggleVisibility(!visible);
+  const handleClickComments = (id) => {
+    toggleVisibility({
+      ...visible,
+      [id]: !visible[id]
+    });
   };
 
 
@@ -60,72 +61,80 @@ const PopulationTrend = ({ data }) => {
 
         <tbody>
           {(data).map(d =>
-            <tr key={`${d.specie}${d.population}${d.publication}`}>
-              <td>{d.publication}</td>
-              <td>{d.startyear}</td>
-              <td>{d.endyear}</td>
-              <td>{d.name}</td>
-              <td>{d.quality}</td>
-              <td>
-                {!!d.notes && !!d.notes.length && d.notes.map(n => (
-                  <Tooltip
-                    key={`${d.specie}${d.population}${n.id}`}
-                    delay={0}
-                    arrow={false}
-                    duration={[0, 0]}
-                    render={() => (
-                      <Note>
-                        <p className="title">
-                          Population trend note <span>#{n.id}</span>
-                        </p>
-                        <p>{n.info}</p>
-                      </Note>)}
-                  >
-                    <span className="tooltipped">N{n.id}</span>
-                  </Tooltip>
-                ))}
-              </td>
-              <td>
-                {!!d.references && !!d.references.length && d.references.map(n => (
-                  <Tooltip
-                    key={`${d.specie}${d.population}${n.id}`}
-                    delay={0}
-                    arrow={false}
-                    duration={[0, 0]}
-                    render={() => (
-                      <Note>
-                        <p className="title">
-                          Population trend note <span>#{n.id}</span>
-                        </p>
-                        <p>{n.info}</p>
-                      </Note>)}
-                  >
-                    <span className="tooltipped">R{n.id}</span>
-                  </Tooltip>
-                ))}
-              </td>
-              <td className="button">
-                <Tooltip
-                  trigger="click"
-                  render={() =>
-                    <Comments
-                      visible={visible}
-                      onClose={handleClickComments} />}
-                >
-                  <button
-                    className={classnames('comments-button',
-                      {
-                        '-secondary': isOpen,
-                        '-primary': !isOpen
-                      }
-                    )}
-                    onClick={handleClickComments}>
+            <Tooltip
+              placement='top'
+              trigger="click"
+              visible={visible[`${d.trend_id} - ${d.publication_id}`]}
+              render={() =>
+                <Comments
+                  populationId={d.population}
+                  publicationId={d.publication_id}
+                  trendId={d.trend_id}
+                  visible={visible[`${d.trend_id} - ${d.publication_id}`]}
+                  onClose={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
+                />}
+            >
+              <tr key={`${d.specie}${d.population}${d.publication}`}>
+                <td>{d.publication}</td>
+                <td>{d.startyear}</td>
+                <td>{d.endyear}</td>
+                <td>{d.name}</td>
+                <td>{d.quality}</td>
+                <td>
+                  {!!d.notes && !!d.notes.length && d.notes.map(n => (
+                    <Tooltip
+                      key={`${d.specie}${d.population}${n.id}`}
+                      delay={0}
+                      arrow={false}
+                      duration={[0, 0]}
+                      render={() => (
+                        <Note>
+                          <p className="title">
+                            Population trend note <span>#{n.id}</span>
+                          </p>
+                          <p>{n.info}</p>
+                        </Note>)}
+                    >
+                      <span className="tooltipped">N{n.id}</span>
+                    </Tooltip>
+                  ))}
+                </td>
+                <td>
+                  {!!d.references && !!d.references.length && d.references.map(n => (
+                    <Tooltip
+                      key={`${d.specie}${d.population}${n.id}`}
+                      delay={0}
+                      arrow={false}
+                      duration={[0, 0]}
+                      render={() => (
+                        <Note>
+                          <p className="title">
+                            Population trend note <span>#{n.id}</span>
+                          </p>
+                          <p>{n.info}</p>
+                        </Note>)}
+                    >
+                      <span className="tooltipped">R{n.id}</span>
+                    </Tooltip>
+                  ))}
+                </td>
+                {user && (
+                  <td className="button">
+                    <button
+                      className={classnames('comments-button',
+                        {
+                          '-secondary': visible[`${d.trend_id} - ${d.publication_id}`],
+                          '-primary': !visible[`${d.trend_id} - ${d.publication_id}`]
+                        }
+                      )}
+                      onClick={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}>
 
-                    {isOpen ? 'Close' : 'Comments'}
-                  </button>
-                </Tooltip>
-              </td>
-            </tr>
+                      {visible[`${d.trend_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
+                    </button>
+                  </td>
+                )}
+              </tr>
+            </Tooltip>
           )}
         </tbody>
       </table>
@@ -134,6 +143,8 @@ const PopulationTrend = ({ data }) => {
 };
 
 PopulationTrend.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  user: PropTypes.number.isRequired
 }
 
 export default PopulationTrend;

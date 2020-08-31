@@ -6,10 +6,11 @@ import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const population_id = (state) => state?.router?.payload?.population_id;
-export const data = (state) => state?.population?.data;
-export const filters = (state) => state?.population.filters;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const population_id = (state) => state ?.router ?.payload ?.population_id;
+export const data = (state) => state ?.population ?.data;
+export const filters = (state) => state ?.population.filters;
+export const user = (state) => state ?.user;
 
 export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
@@ -64,14 +65,21 @@ export const selectPopulationSpecies = createSelector(
 );
 
 export const selectPopulationsData = createSelector(
-  [data, specieId],
-  (_data, _specieId) => {
+  [data, specieId, user],
+  (_data, _specieId, _user) => {
     if (!_data || isEmpty(_data)) return [];
 
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
 
     return populationsBySpecie.map(d => {
-      const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
+      const draftId = d.publications
+        .filter(p => p.published === 0)
+        .map(f => f.id);
+
+      const orderedPublicationsSizes = orderBy(
+        _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+      ['endyear', 'publication_id'], ['desc', 'desc']);
+
       const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
       const size = d.sizes.find(s => s.publication_id === publication.id);
       const trend = d.trends.find(s => s.publication_id === publication.id);
@@ -100,6 +108,39 @@ export const selectPopulationsData = createSelector(
         'order_name': d.family.ordername,
         'breedingrange': d.breedingrange,
         'nonbreedingrange': d.nonbreedingrange
+      }
+    })
+  }
+);
+
+export const selectLastPublicationData = createSelector(
+  [data, specieId, user],
+  (_data, _specieId, _user) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
+
+    return populationsBySpecie.map(d => {
+      const draftId = d.publications
+        .filter(p => p.published === 0)
+        .map(f => f.id);
+
+        const orderedPublicationsSizes = orderBy(
+          _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+        ['endyear', 'publication_id'], ['desc', 'desc']);
+
+      const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
+
+      const size = d.sizes.find(s => s.publication_id === publication.id);
+      const trend = d.trends.find(s => s.publication_id === publication.id);
+      const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+
+      return {
+        population_id: d.id,
+        publication_id: publication,
+        size_id: size.id,
+        trend_id: trend.id,
+        onepercent_id: percentLevel.id,
       }
     })
   }
@@ -160,12 +201,14 @@ export const selectPopulationSizeData = createSelector(
     return population.publications.map(p => {
       const { id, name } = p;
       const size = population.sizes.find(s => s.publication_id === id);
-      const { startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
+      const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
 
       return {
         specie: _specie_id,
-        population: _population_id,
+        size_id: size_id,
+        population: +_population_id,
         publication: name,
+        publication_id: id,
         startyear,
         endyear,
         maximum,
@@ -192,12 +235,14 @@ export const selectPopulationTrendData = createSelector(
     return population.publications.map(p => {
       const { id, name: publication } = p;
       const trend = population.trends.find(s => s.publication_id === id);
-      const { startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
+      const { id: trend_id, startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
 
       return {
         specie: _specie_id,
         population: _population_id,
+        trend_id,
         publication,
+        publication_id: id,
         startyear,
         endyear,
         name,
@@ -223,12 +268,16 @@ export const selectPopulationPercentData = createSelector(
     return population.publications.map(p => {
       const { id, name: publication } = p;
       const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
-      const { yearset, onepercent, note } = percentlevel;
+      const { id: onepercent_id, yearset, onepercent, note } = percentlevel;
 
       return {
+        specie: _specie_id,
+        population: _population_id,
         publication,
+        publication_id: id,
         yearset,
         onepercent,
+        onepercent_id,
         notes: trim(note) ? [
           { id: 1, info: trim(note) }
         ] : [],

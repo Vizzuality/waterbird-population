@@ -20,11 +20,16 @@ export const API = setup({
   }
 });
 
-export const fetchComments = (id) => {
+export const fetchComments = (publication_id, population_id, size_id, trend_id, onepercet_id) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-  const q = `SELECT * FROM comments WHERE publication_id = ${id}`
+  const q = `SELECT * FROM comments
+    WHERE publication_id = ${publication_id}
+    AND population_id = ${population_id}
+    ${size_id ? `AND size_id = ${size_id}` : ''}
+    ${trend_id ? `AND trend_id = ${trend_id}` : ''}
+    ${onepercet_id ? `AND onepercent_id = ${onepercet_id}` : ''}`
 
-  return API.post(`sql?q=${q}&api_key=${api_key}`)
+  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
     .then(({ data }) => data.rows)
     .catch((e) => {
       console.log(e)
@@ -35,25 +40,34 @@ export const createComment = ({
   name,
   user_id,
   publication_id,
+  population_id,
+  size_id,
+  trend_id,
+  onepercent_id,
   comment,
   date
 }) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-
+  const idType = (size_id && 'size_id') || (trend_id && 'trend_id') || (onepercent_id && 'onepercent_id');
+  const Id = size_id || trend_id || onepercent_id;
   const q = `INSERT INTO comments (
     name,
     user_id,
     publication_id,
+    population_id,
+    ${idType},
     comment,
     date
   ) VALUES (
     '${name}',
     '${user_id}',
     '${publication_id}',
+    '${population_id}',
+    '${Id}',
     '${comment}',
     '${date}'
   )`
-  return API.post(`sql?q=${q}&api_key=${api_key}`)
+  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
 };
 
 export const deleteComment = (params = {}, headers = {}) => {

@@ -14,8 +14,8 @@ export const API = setup({
 
 export const fetchUser = (email, password) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-
-  return API.get(`sql?q=SELECT * FROM users WHERE email='${email}' AND password='${password}'&api_key=${api_key}`)
+  const q = `SELECT * FROM users WHERE email='${email}' AND password='${password}'`
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
   .then(({ data }) => data.rows[0])
   .catch((e) => {
    // const { status, statusText } = response;

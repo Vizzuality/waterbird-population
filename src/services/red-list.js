@@ -26,7 +26,7 @@ export const fetchRedListCategories = () => {
 
   const q = `SELECT id,iucn,description FROM redlistcategory WHERE description != ' Not evaluated'`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
   .then(({ data }) =>  data.rows)
   .catch((e) => {
     console.log(e, 'error')

@@ -23,10 +23,10 @@ export const API = setup({
 });
 
 export const fetchPopulations = (specieid) => {
-  // FROM populationname n JOIN populationsize s ON n.id = s.population_id WHERE species_id = '${specieid}'`;
+
   const q = `SELECT * FROM populations_all_data  ${specieid ? `where species_id=${specieid}` : ''}`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
     .then(({ data }) => data.rows)
     .catch((e) => {
       console.log(e, 'error')

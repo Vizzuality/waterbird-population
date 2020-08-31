@@ -11,7 +11,7 @@ import MapContainer from './map';
 import './styles.scss';
 
 const ExploreDetailPage = (props) => {
-  const { router: { payload }, setPopulations } = props;
+  const { router: { payload }, setPopulations, user } = props;
   const { specie_id } = payload;
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ExploreDetailPage = (props) => {
       <div className="wrapper">
         <div className="results-section">
           <DataControls />
-          <DataDetail />
+          <DataDetail user={user} />
         </div>
       </div>
     </div>
