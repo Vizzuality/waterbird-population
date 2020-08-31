@@ -26,7 +26,7 @@ const ExploreDetailPage = (props) => {
       <div className="wrapper">
         <div className="results-section">
           <DataControls />
-          <DataDetail />
+          <DataDetail user={user} />
         </div>
       </div>
     </div>

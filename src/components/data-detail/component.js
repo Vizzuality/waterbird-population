@@ -18,9 +18,9 @@ const DataDetail = (props) =>  {
     <div className="c-data-detail">
       <PopulationInfo data={populationInfoData} />
       {/* <ConservationFramework /> */}
-      <PopulationSize data={populationSizeData} />
-      <PopulationTrend data={populationTrendData} />
-      <PopulationPercent data={populationPercentData}/>
+      <PopulationSize data={populationSizeData} user={user} user={user} />
+      <PopulationTrend data={populationTrendData} user={user} />
+      <PopulationPercent data={populationPercentData}user={user} />
       <References data={populationReferences}/>
       {/* <Notes /> */}
     </div>

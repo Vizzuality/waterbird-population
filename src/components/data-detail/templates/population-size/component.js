@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Tooltip from '@tippyjs/react';
 
@@ -9,11 +10,10 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationSize = ({ data }) => {
+const PopulationSize = ({ data, user }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [visible, toggleVisibility] = useState({});
-  const [isOpen, toggleComment] = useState(false);
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
@@ -21,7 +21,6 @@ const PopulationSize = ({ data }) => {
 
 
   const handleClickComments = (id) => {
-    toggleComment(!isOpen);
     toggleVisibility({
       ...visible,
       [id]: !visible[id]
@@ -67,15 +66,15 @@ const PopulationSize = ({ data }) => {
             <Tooltip
               placement='top'
               trigger="click"
-              visible={visible[d.size_id]}
+              visible={visible[`${d.size_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments
                   populationId={d.population}
                   publicationId={d.publication_id}
                   sizeId={d.size_id}
-                  visible={visible[d.size_id]}
-                  onClose={() => handleClickComments(d.size_id)}
-                 />}
+                  visible={visible[`${d.size_id} - ${d.publication_id}`]}
+                  onClose={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
+                />}
             >
               <tr key={`${d.specie}${d.population}${d.publication_id}`}>
                 <td>{d.publication}</td>
@@ -122,21 +121,21 @@ const PopulationSize = ({ data }) => {
                     </Tooltip>
                   ))}
                 </td>
-                <td className="button">
+                {user && (
+                  <td className="button">
+                    <button
+                      className={classnames('comments-button',
+                        {
+                          '-secondary': visible[`${d.size_id} - ${d.publication_id}`],
+                          '-primary': !visible[`${d.size_id} - ${d.publication_id}`]
+                        }
+                      )}
+                      onClick={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}>
 
-                  <button
-                    className={classnames('comments-button',
-                      {
-                        '-secondary': isOpen,
-                        '-primary': !isOpen
-                      }
-                    )}
-                    onClick={() => handleClickComments(d.size_id)}>
-
-                    {isOpen ? 'Close' : 'Comments'}
-                  </button>
-
-                </td>
+                      {visible[`${d.size_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
+                    </button>
+                  </td>
+                )}
               </tr>
             </Tooltip>
           )}
@@ -147,6 +146,8 @@ const PopulationSize = ({ data }) => {
 };
 
 PopulationSize.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  user: PropTypes.number.isRequired
 }
 
 export default PopulationSize;

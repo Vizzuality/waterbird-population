@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
 
 import Button from 'components/button';
 import Tooltip from '@tippyjs/react';
@@ -8,19 +9,17 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationPercent = ({ data }) => {
+const PopulationPercent = ({ data, user }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [visible, toggleVisibility] = useState({});
-  const [isOpen, toggleComment] = useState(false);
-
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
 
   const handleClickComments = (id) => {
-    toggleComment(!isOpen)
+
     toggleVisibility({
       ...visible,
       [id]: !visible[id]
@@ -69,8 +68,8 @@ const PopulationPercent = ({ data }) => {
                 populationId={d.population}
                 publicationId={d.publication_id}
                 onepercentId={d.onepercent_id}
-                visible={visible[`${d.onepercent_id}`]}
-                onClose={() => handleClickComments(`${d.onepercent_id}`)}
+                visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
+                onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               />}
             >
               <tr key={d.publication}>
@@ -97,21 +96,20 @@ const PopulationPercent = ({ data }) => {
                   ))}
                 </td>
                 <td className="button">
-
-
+                {user && (
                   <button
                     className={classnames('comments-button',
                       {
-                        '-secondary': isOpen,
-                        '-primary': !isOpen
+                        '-secondary': visible[d.onepercent_id],
+                        '-primary': !visible[d.onepercent_id]
                       }
                     )}
-                    onClick={() => handleClickComments(d.onepercent_id)}>
+                    onClick={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}>
 
-                    {isOpen ? 'Close' : 'Comments'}
+                    {visible[`${d.onepercent_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
                   </button>
+                  )}
                 </td>
-
               </tr>
             </Tooltip>
           )}
@@ -122,6 +120,8 @@ const PopulationPercent = ({ data }) => {
 };
 
 PopulationPercent.propTypes = {
+  data: PropTypes.shape({}).isRequired,
+  user: PropTypes.number.isRequired
 }
 
 export default PopulationPercent;
