@@ -6,16 +6,19 @@ import FamilyList from 'components/family-list';
 import MapContainer from './map';
 
 // services
-import { fetchPopulations } from 'services/population';
+import { fetchPopulations, fetchDataToDownload } from 'services/population';
 
 import './styles.scss';
 
-const ExplorePage = ({ setPopulations }) => {
+const ExplorePage = ({ setPopulations, data }) => {
+
+  const [downloadData, setDownload] = useState('');
   useEffect(() => {
     fetchPopulations().then(data => setPopulations(data));
+    fetchDataToDownload().then(data => setDownload(data));
   }, [])
 
- return (
+  return (
   <div className="l-explore">
     <div className="map-section">
       <MapContainer />
@@ -23,7 +26,7 @@ const ExplorePage = ({ setPopulations }) => {
     <div className="wrapper">
       <div className="results-section">
         <Search  />
-        <DataControls />
+        <DataControls data={downloadData} />
 
         <FamilyList />
       </div>

@@ -1,18 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Button from "components/button";
-import Icon from "components/icon";
+import Download from "components/download";
 
 import "./styles.scss";
 
-const DataControls = () => {
+const DataControls = ({ data }) => {
   return (
     <div className="c-data-controls">
       <div>
-        <Button className="-download">
-          <Icon name="download" />
-          Download results
-        </Button>
+        <Download
+          text={'Download results'}
+          data={data}
+          filename={'populations'}
+          className="-dashed"
+        />
       </div>
       <div className="data-filters">
         <p>Content configuration:</p>
