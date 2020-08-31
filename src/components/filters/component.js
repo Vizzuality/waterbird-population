@@ -73,12 +73,18 @@ const Filters = ({ filters, setFilters, onClick }) => {
 
 
   // filters values
-  const selectedFamily = familyOptions.find(f => filters.family_id);
-  const selectedPublication = publicationOptions.find(f => filters.publication_id);
-  const selectedFramework = conservationFrameworkOptions.find(f => filters.framework_id);
-  const selectedFlywayRegion = flywayOptions.find(f => filters.flyway_region_id);
-  const selectedRamsarRegion = ramsarRegionOptions.find(f => filters.ramsar_region_id);
-  const selectedRedList = redListOptions.find(f => filters.red_list_id);
+  const selectedFamily = familyOptions.find(f => newFiltersValues
+    && newFiltersValues.family_id && newFiltersValues.family_id === f.value);
+  const selectedPublication = publicationOptions.find(f => newFiltersValues
+    && newFiltersValues.publication_id && newFiltersValues.publication_id === f.value);
+  const selectedFramework = conservationFrameworkOptions.find(f => newFiltersValues
+    && newFiltersValues.framework_id && newFiltersValues.framework_id === f.value);
+  const selectedFlywayRegion = flywayOptions.find(f => newFiltersValues
+    && newFiltersValues.flyway_region_id && newFiltersValues.flyway_region_id === f.value);
+  const selectedRamsarRegion = ramsarRegionOptions.find(f => newFiltersValues
+    && newFiltersValues.ramsar_region_id && newFiltersValues.ramsar_region_id === f.value);
+  const selectedRedList = redListOptions.find(f => newFiltersValues
+    && newFiltersValues.red_list_id && newFiltersValues.red_list_id === f.value);
 
   const filtersInfo = [
     {

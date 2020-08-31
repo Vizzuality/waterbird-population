@@ -8,11 +8,11 @@ import Filters from 'components/filters';
 import './styles.scss';
 
 
-const Search = ({ activeFilters, families }) => {
+const Search = ({ activeFilters, families, setSearch }) => {
 
   const updateSearch = (e) => {
-
-  }
+    setSearch(e.currentTarget.value);
+  };
 
   activeFilters = []
   const [isOpen, toggleModal] = useState(false);
@@ -26,7 +26,7 @@ const Search = ({ activeFilters, families }) => {
         autoFocus
         type="search"
         className="search-input"
-        placeholder='Search family, species, region, conservation framework...'
+        placeholder='Search family, species, conservation framework...'
         onChange={updateSearch}
       />
       <Button className="-background -secondary -huge" onClick={handleClick}>
@@ -41,7 +41,8 @@ const Search = ({ activeFilters, families }) => {
       <Filters
         activeFilters={activeFilters}
         families={families}
-        onClick={toggleModal}/>
+        onClick={toggleModal}
+      />
       </Modal>
     </div>
   )

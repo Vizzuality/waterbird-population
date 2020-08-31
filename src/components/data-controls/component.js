@@ -16,10 +16,10 @@ const DataControls = ({ data }) => {
           className="-dashed"
         />
       </div>
-      <div className="data-filters">
+      {/* <div className="data-filters">
         <p>Content configuration:</p>
         <Button className="-collapse -small" />
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -10,7 +10,7 @@ import { fetchPopulations, fetchDataToDownload } from 'services/population';
 
 import './styles.scss';
 
-const ExplorePage = ({ setPopulations, data }) => {
+const ExplorePage = ({ setPopulations }) => {
 
   const [downloadData, setDownload] = useState('');
   useEffect(() => {

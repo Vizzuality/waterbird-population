@@ -16,7 +16,7 @@ const Links = [
     href: 'https://ec.europa.eu/environment/nature/legislation/birdsdirective/index_en.htm'
   },
   {
-    label: 'Conservation conventions',
+    label: 'Conservation framework',
     href: 'https://www.unep-aewa.org/en/document/7th-edition-conservation-status-report-csr7-including-annexes-1'
   },
   {

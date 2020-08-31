@@ -4,4 +4,4 @@ import { selectPopulationProps } from 'modules/population/selectors';
 
 import Component from './component';
 
-export default connect(selectPopulationProps, null)(Component);
+export default connect(selectPopulationProps)(Component);
