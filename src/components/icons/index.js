@@ -26,7 +26,7 @@ const Icons = () => (
       </symbol>
       <symbol id="icon-close" viewBox="0 0 32 32">
         <title>close</title>
-        <path fill="#fff" style={{ fill: 'var(--color1 #fff)' }, { stroke: 'var(--color1, #fff)' }} stroke="#fff" strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M30.4 16c0 7.953-6.447 14.4-14.4 14.4s-14.4-6.447-14.4-14.4c0-7.953 6.447-14.4 14.4-14.4s14.4 6.447 14.4 14.4z"></path>
+        <path fill="#fff" style={{ fill: 'var(--color1 #fff)', stroke: 'var(--color1, #fff)' }} strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M30.4 16c0 7.953-6.447 14.4-14.4 14.4s-14.4-6.447-14.4-14.4c0-7.953 6.447-14.4 14.4-14.4s14.4 6.447 14.4 14.4z"></path>
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M21.236 10.764l-10.473 10.473"></path>
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M21.236 21.236l-10.473-10.473"></path>
       </symbol>

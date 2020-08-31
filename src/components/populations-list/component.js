@@ -94,7 +94,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                   <div className="col-sm-2">
                     <div className="card-data">
                       <span>Size - Year</span>
-                      <span><strong>{d.size}</strong></span>
+                      <span><strong>{d.size_year}</strong></span>
                     </div>
                   </div>
                   {/* )} */}

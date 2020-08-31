@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CSVLink } from 'react-csv';
+import classnames from 'classnames';
 
 import Icon from 'components/icon';
 import './styles.scss';
 
-const Download = ({ data, filename, headers, text }) => {
+const Download = ({ data, filename, headers, text, className }) => {
 
   const handleClick = (e) => e.stopPropagation();
 
   return (
     <CSVLink
-      className="c-download"
+      className={classnames('c-download', className)}
       data={data || 'No data available'}
       headers={headers}
       onClick={handleClick}

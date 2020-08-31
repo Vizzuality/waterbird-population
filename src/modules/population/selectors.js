@@ -6,13 +6,13 @@ import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
-export const population_id = (state) => state ?.router ?.payload ?.population_id;
-export const data = (state) => state ?.population ?.data;
-export const filters = (state) => state ?.population.filters;
+export const specie_id = (state) => state?.router?.payload?.specie_id;
+export const population_id = (state) => state?.router?.payload?.population_id;
+export const data = (state) => state?.population?.data;
+export const filters = (state) => state?.population.filters;
 
-export const familyId = (state, props) => props ?.familyId;
-export const specieId = (state, props) => props ?.specieId;
+export const familyId = (state, props) => props?.familyId;
+export const specieId = (state, props) => props?.specieId;
 
 export const selectPopulationFiltered = createSelector(
   [data, filters],
@@ -73,16 +73,14 @@ export const selectPopulationsData = createSelector(
     return populationsBySpecie.map(d => {
       const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc'])
       const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
-
       const size = d.sizes.find(s => s.publication_id === publication.id);
       const trend = d.trends.find(s => s.publication_id === publication.id);
       const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
-
       return {
         id : d.id,
         populationId: d.id,
         name: d.name,
-        size: `${size.maximun} - ${size.minimum}`,
+        size: `${size.maximum} - ${size.minimum}`,
         'size_year': `${size.startyear} - ${size.endyear}`,
         trend: trend.name,
         'size_reference_notes': size.reference_notes,
@@ -92,12 +90,12 @@ export const selectPopulationsData = createSelector(
         'trend_notes': trend.notes,
         'trend_references': trend.reference,
         'size_estimates_quality': size.quality,
-        'percent': percentLevel.onepercet,
+        'percent': percentLevel.onepercent,
         'yearset': percentLevel.yearset,
         publication: d.publications.name,
-        commonname: d.commonname,
-        redlistcategory: d.redlistcategory,
-        scientificname: d.scientificname,
+        commonname: d.specie.commonname,
+        redlistcategory: d.specie.redlistcategory,
+        scientificname: d.specie.scientificname,
         'family_name': d.family.name,
         'order_name': d.family.ordername,
         'breedingrange': d.breedingrange,

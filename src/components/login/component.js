@@ -98,7 +98,15 @@ const Login = ({ user, setUser, resetUser }) => {
           </Button>
         </div>
         <div className="login-footer">
-          <p>Dont have an account?<a href=""> Contact us</a></p>
+          <p>Dont have an account?
+            <a
+              href={`mailto:?to=post@wetlands.org`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Contact us
+            </a>
+          </p>
         </div>
       </Modal>
     </div>
