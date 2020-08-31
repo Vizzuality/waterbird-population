@@ -3,6 +3,7 @@ import trim from 'lodash/trim';
 import orderBy from 'lodash/orderBy';
 import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy';
+import Fuse from 'fuse.js';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
@@ -11,39 +12,57 @@ export const population_id = (state) => state ?.router ?.payload ?.population_id
 export const data = (state) => state ?.population ?.data;
 export const filters = (state) => state ?.population.filters;
 export const user = (state) => state ?.user;
+export const search = (state) => state ?.population.search;
 
 export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
 
 export const selectPopulationFiltered = createSelector(
-  [data, filters],
-  (_data, _filters) => {
+  [data, filters, search],
+  (_data, _filters, _search) => {
     if (!_data || isEmpty(_data)) return [];
-    return _data
-      .filter(d => {;
-        const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
-        const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
-        const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
-        const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
-        const array = [isFamily, isPublication, isRamsarRegion, isRedList]
-        return array.every(d => d)
-      }
+
+    const fuse = _search && _search.length && new Fuse(_data, {
+        keys: [
+          'family.name', 'family.ordername',
+          'name',
+          'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
+        ],
+        threshold: 0.1,
+      });
+
+    const dataFiltered = fuse && fuse
+      .search(_search)
+      .map(d => d.item)
+
+      return (
+      (dataFiltered ? dataFiltered : _data)
+        .filter(d => {
+          const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
+          const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
+          const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
+          const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
+          const array = [isFamily, isPublication, isRamsarRegion, isRedList]
+          return array.every(d => d)
+        }
+      )
     )
   }
-)
+);
 
 export const selectPopulationFamilies = createSelector(
   [selectPopulationFiltered],
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
-    return orderBy(uniqBy(_data.map(p => {
-      return {
-        ...p.family,
-        name: trim(p.family.name),
-        ordername: trim(p.family.ordername)
-      }
-    }), 'id'), 'name')
+    return orderBy(uniqBy(_data
+      .map(p => {
+        return {
+          ...p.family,
+          name: trim(p.family.name),
+          ordername: trim(p.family.ordername)
+        }
+      }), 'id'), 'name')
   }
 );
 

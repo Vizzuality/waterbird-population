@@ -10,5 +10,6 @@ export default {
     flyway_region_id: '',
     ramsar_region_id: '',
     red_list_id: ''
-  }
+  },
+  search: ''
 }

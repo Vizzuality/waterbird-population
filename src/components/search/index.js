@@ -1,10 +1,7 @@
 import { connect } from 'react-redux';
+import { setSearch } from 'modules/population/actions';
 
 import Component from './component';
 
-const mapStateToProps = state => ({
-  // activeFilters: state.filters.active,
-});
 
-
-export default connect(mapStateToProps)(Component);
+export default connect(null, { setSearch })(Component);
