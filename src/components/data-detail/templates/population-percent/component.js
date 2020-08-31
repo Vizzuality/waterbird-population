@@ -11,7 +11,7 @@ import './styles.scss';
 const PopulationPercent = ({ data }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
-  const [visible, toggleVisibility] = useState(false);
+  const [visible, toggleVisibility] = useState({});
   const [isOpen, toggleComment] = useState(false);
 
 
@@ -19,9 +19,12 @@ const PopulationPercent = ({ data }) => {
     toggleCollapse(!isCollapsed)
   };
 
-  const handleClickComments = () => {
+  const handleClickComments = (id) => {
     toggleComment(!isOpen)
-    toggleVisibility(!visible);
+    toggleVisibility({
+      ...visible,
+      [id]: !visible[id]
+    });
   };
 
 
@@ -55,41 +58,47 @@ const PopulationPercent = ({ data }) => {
         </thead>
 
         <tbody>
+
           {(data).map(d =>
-            <tr key={d.publication}>
-              <td>{d.publication}</td>
-              <td>{d.yearset}</td>
-              <td>{d.onepercent}</td>
-              <td>
-                {!!d.notes && !!d.notes.length && d.notes.map(n => (
-                  <Tooltip
-                    key={`${d.specie}${d.population}${n.id}`}
-                    delay={0}
-                    arrow={false}
-                    duration={[0, 0]}
-                    render={() => (
-                      <Note>
-                        <p className="title">
-                          Population trend note <span>#{n.id}</span>
-                        </p>
-                        <p>{n.info}</p>
-                      </Note>)}
-                  >
-                    <span className="tooltipped">N{n.id}</span>
-                  </Tooltip>
-                ))}
-              </td>
-              <td className="button">
-                <Tooltip
-                  trigger="click"
-                  render={() =>
-                  <Comments
-                    populationId={d.population}
-                    publicationId={d.publication_id}
-                    onepercentId={d.onepercent_id}
-                    visible={visible}
-                    onClose={handleClickComments}/>}
-                >
+
+            <Tooltip
+              placement='top'
+              visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
+              render={() =>
+              <Comments
+                populationId={d.population}
+                publicationId={d.publication_id}
+                onepercentId={d.onepercent_id}
+                visible={visible[`${d.onepercent_id}`]}
+                onClose={() => handleClickComments(`${d.onepercent_id}`)}
+              />}
+            >
+              <tr key={d.publication}>
+                <td>{d.publication}</td>
+                <td>{d.yearset}</td>
+                <td>{d.onepercent}</td>
+                <td>
+                  {!!d.notes && !!d.notes.length && d.notes.map(n => (
+                    <Tooltip
+                      key={`${d.specie}${d.population}${n.id}`}
+                      delay={0}
+                      arrow={false}
+                      duration={[0, 0]}
+                      render={() => (
+                        <Note>
+                          <p className="title">
+                            Population trend note <span>#{n.id}</span>
+                          </p>
+                          <p>{n.info}</p>
+                        </Note>)}
+                    >
+                      <span className="tooltipped">N{n.id}</span>
+                    </Tooltip>
+                  ))}
+                </td>
+                <td className="button">
+
+
                   <button
                     className={classnames('comments-button',
                       {
@@ -97,13 +106,14 @@ const PopulationPercent = ({ data }) => {
                         '-primary': !isOpen
                       }
                     )}
-                    onClick={handleClickComments}>
+                    onClick={() => handleClickComments(d.onepercent_id)}>
 
                     {isOpen ? 'Close' : 'Comments'}
                   </button>
-                </Tooltip>
-              </td>
-            </tr>
+                </td>
+
+              </tr>
+            </Tooltip>
           )}
         </tbody>
       </table>

@@ -9,21 +9,21 @@ import Button from 'components/button';
 import './styles.scss';
 
 const Comments = ({
-  onClose,
-  visible,
   user,
   populationId,
   publicationId,
   sizeId,
   trendId,
-  onepercetId
+  onepercentId,
+  visible,
+  onClose
 }) => {
   const [isDisable, disableButton] = useState(true);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState('');
 
   useEffect(() => {
-    fetchComments(publicationId, populationId, sizeId, trendId, onepercetId).then(data => setComments(data));
+    fetchComments(publicationId, populationId, sizeId, trendId, onepercentId).then(data => setComments(data));
   }, [publicationId]);
 
   const handleChange = (e) => {
@@ -43,12 +43,13 @@ const Comments = ({
       population_id: populationId,
       size_id: sizeId,
       trend_id: trendId,
-      onepercent_id: onepercetId,
+      onepercent_id: onepercentId,
       comment,
       date: new Date ()
     });
     onClose();
   };
+
   if (!visible) return null;
 
   return (
