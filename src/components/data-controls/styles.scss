@@ -3,7 +3,16 @@
 .c-data-controls {
   display: flex;
   justify-content: space-between;
-  padding: 40px 0 100px 0;
+  padding-bottom: 25px;
+
+  :after {
+    content: '';
+    position: absolute;
+    top: 125px;
+    height: 2px;
+    width: 100vw;
+    background-color: $color-grey-3;
+  }
 
   .data-filters {
     display: flex;
