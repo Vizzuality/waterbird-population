@@ -19,8 +19,8 @@ const FamilyListItem = ({ family }) => {
 
 
   return (
-    <section onClick={handleClick} className="c-data-results">
-      <div className="results-title">
+    <section className="c-data-results">
+      <div onClick={handleClick} className="results-title">
         <h1>
           <span>Family:</span>
           <span className="name">{family.name}</span>
