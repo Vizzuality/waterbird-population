@@ -65,8 +65,10 @@ const PopulationPercent = ({ data, user }) => {
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
               render={() =>
               <Comments
+                title={'Population 1% level'}
                 populationId={d.population}
                 publicationId={d.publication_id}
+                publicationName={d.publication}
                 onepercentId={d.onepercent_id}
                 visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
                 onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}

@@ -9,9 +9,11 @@ import Button from 'components/button';
 import './styles.scss';
 
 const Comments = ({
+  title,
   user,
   populationId,
   publicationId,
+  publicationName,
   sizeId,
   trendId,
   onepercentId,
@@ -54,6 +56,9 @@ const Comments = ({
 
   return (
     <div className="c-comments">
+
+      <h2>{title} <span>- {publicationName}</span></h2>
+      {!comments || !comments.length && <p>No comments for this publication</p>}
       {comments && comments.length > 0 && comments.map(({ name, date, comment }) =>
         <div>
           <h3>{name}<span>{date}</span></h3>

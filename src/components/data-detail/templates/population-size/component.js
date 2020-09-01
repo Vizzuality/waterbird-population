@@ -27,7 +27,6 @@ const PopulationSize = ({ data, user }) => {
     });
   };
 
-
   return (
     <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
@@ -69,8 +68,10 @@ const PopulationSize = ({ data, user }) => {
               visible={visible[`${d.size_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments
+                  title={'Population size'}
                   populationId={d.population}
                   publicationId={d.publication_id}
+                  publicationName={d.publication}
                   sizeId={d.size_id}
                   visible={visible[`${d.size_id} - ${d.publication_id}`]}
                   onClose={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
