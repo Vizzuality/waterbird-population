@@ -217,7 +217,7 @@ export const selectPopulationSizeData = createSelector(
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
 
-    return population.publications.map(p => {
+    return orderBy(population.publications.map(p => {
       const { id, name } = p;
       const size = population.sizes.find(s => s.publication_id === id);
       const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
@@ -240,7 +240,7 @@ export const selectPopulationSizeData = createSelector(
           { id: reference_id, info: reference_info }
         ] : []
       }
-    })
+    }), 'publication_id', 'desc')
   }
 );
 
@@ -251,7 +251,7 @@ export const selectPopulationTrendData = createSelector(
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
 
-    return population.publications.map(p => {
+    return orderBy(population.publications.map(p => {
       const { id, name: publication } = p;
       const trend = population.trends.find(s => s.publication_id === id);
       const { id: trend_id, startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
@@ -273,7 +273,7 @@ export const selectPopulationTrendData = createSelector(
           { id: reference_id, info: reference_info }
         ] : []
       }
-    })
+    }), 'publication_id', 'desc')
   }
 );
 
@@ -284,7 +284,7 @@ export const selectPopulationPercentData = createSelector(
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
 
-    return population.publications.map(p => {
+    return orderBy(population.publications.map(p => {
       const { id, name: publication } = p;
       const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
       const { id: onepercent_id, yearset, onepercent, note } = percentlevel;
@@ -301,7 +301,7 @@ export const selectPopulationPercentData = createSelector(
           { id: 1, info: trim(note) }
         ] : [],
       }
-    })
+    }), 'publication_id', 'desc')
   }
 );
 
