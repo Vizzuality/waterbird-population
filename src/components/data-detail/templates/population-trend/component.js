@@ -63,12 +63,14 @@ const PopulationTrend = ({ data, user }) => {
           {(data).map(d =>
             <Tooltip
               placement='top'
-              trigger="click"
+              onClickOutside={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
               visible={visible[`${d.trend_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments
+                  title={'Population trend'}
                   populationId={d.population}
                   publicationId={d.publication_id}
+                  publicationName={d.publication}
                   trendId={d.trend_id}
                   visible={visible[`${d.trend_id} - ${d.publication_id}`]}
                   onClose={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
@@ -118,7 +120,7 @@ const PopulationTrend = ({ data, user }) => {
                     </Tooltip>
                   ))}
                 </td>
-                {user && (
+                {user && d.published === 0 && (
                   <td className="button">
                     <button
                       className={classnames('comments-button',

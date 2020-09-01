@@ -62,11 +62,14 @@ const PopulationPercent = ({ data, user }) => {
 
             <Tooltip
               placement='top'
+              onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
               render={() =>
               <Comments
+                title={'Population 1% level'}
                 populationId={d.population}
                 publicationId={d.publication_id}
+                publicationName={d.publication}
                 onepercentId={d.onepercent_id}
                 visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
                 onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
@@ -96,7 +99,7 @@ const PopulationPercent = ({ data, user }) => {
                   ))}
                 </td>
                 <td className="button">
-                {user && (
+                {user && d.published === 0 && (
                   <button
                     className={classnames('comments-button',
                       {
@@ -105,7 +108,6 @@ const PopulationPercent = ({ data, user }) => {
                       }
                     )}
                     onClick={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}>
-
                     {visible[`${d.onepercent_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
                   </button>
                   )}

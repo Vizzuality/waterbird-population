@@ -5,9 +5,13 @@
   font-family: $font-family-1;
 
   .results-section {
-    padding: 40px 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
+
+    &.-large {
+      padding: 40px 0;
+    }
 
     .results-buttons {
       display: flex;

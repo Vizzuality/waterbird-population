@@ -8,10 +8,10 @@ import DataDetail from 'components/data-detail';
 
 import MapContainer from './map';
 
-import './styles.scss';
+import '../styles.scss';
 
 const ExploreDetailPage = (props) => {
-  const { router: { payload }, setPopulations, user } = props;
+  const { router: { payload }, setPopulations, user, data } = props;
   const { specie_id } = payload;
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const ExploreDetailPage = (props) => {
       </div>
       <div className="wrapper">
         <div className="results-section">
-          <DataControls />
+          <DataControls data={data} />
           <DataDetail user={user} />
         </div>
       </div>

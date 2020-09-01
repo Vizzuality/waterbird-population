@@ -27,7 +27,6 @@ const PopulationSize = ({ data, user }) => {
     });
   };
 
-
   return (
     <div className={classnames('c-population-size',
       { '-collapse': isCollapsed })}>
@@ -66,11 +65,14 @@ const PopulationSize = ({ data, user }) => {
             <Tooltip
               placement='top'
               trigger="click"
+              onClickOutside={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
               visible={visible[`${d.size_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments
+                  title={'Population size'}
                   populationId={d.population}
                   publicationId={d.publication_id}
+                  publicationName={d.publication}
                   sizeId={d.size_id}
                   visible={visible[`${d.size_id} - ${d.publication_id}`]}
                   onClose={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
@@ -121,7 +123,7 @@ const PopulationSize = ({ data, user }) => {
                     </Tooltip>
                   ))}
                 </td>
-                {user && (
+                {user && d.published === 0 && (
                   <td className="button">
                     <button
                       className={classnames('comments-button',
