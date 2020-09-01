@@ -19,7 +19,7 @@ const FamilyListItem = ({ family }) => {
 
 
   return (
-    <section className="c-data-results">
+    <section onClick={handleClick} className="c-data-results">
       <div className="results-title">
         <h1>
           <span>Family:</span>

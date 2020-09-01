@@ -3,10 +3,7 @@ import { setPopulations } from 'modules/population/actions';
 
 import Component from './component';
 
-const mapStateToProps = state => ({
-  data: state.population.data
-});
 
-export default connect(mapStateToProps, {
+export default connect(null, {
   setPopulations
 })(Component);

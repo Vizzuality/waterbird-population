@@ -63,11 +63,7 @@ const PopulationTrend = ({ data, user }) => {
           {(data).map(d =>
             <Tooltip
               placement='top'
-              // interactive
-              // popperOptions={{
-              //   positionFixed: true
-              // }}
-              hideOnClick='toggle'
+              onClickOutside={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
               visible={visible[`${d.trend_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments

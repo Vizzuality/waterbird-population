@@ -65,6 +65,7 @@ const PopulationSize = ({ data, user }) => {
             <Tooltip
               placement='top'
               trigger="click"
+              onClickOutside={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
               visible={visible[`${d.size_id} - ${d.publication_id}`]}
               render={() =>
                 <Comments

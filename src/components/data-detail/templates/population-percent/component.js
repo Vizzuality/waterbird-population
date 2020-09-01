@@ -62,6 +62,7 @@ const PopulationPercent = ({ data, user }) => {
 
             <Tooltip
               placement='top'
+              onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
               render={() =>
               <Comments

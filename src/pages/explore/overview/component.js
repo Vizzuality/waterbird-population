@@ -8,7 +8,7 @@ import MapContainer from './map';
 // services
 import { fetchPopulations, fetchDataToDownload } from 'services/population';
 
-import './styles.scss';
+import '../styles.scss';
 
 const ExplorePage = ({ setPopulations }) => {
 
@@ -24,7 +24,7 @@ const ExplorePage = ({ setPopulations }) => {
       <MapContainer />
     </div>
     <div className="wrapper">
-      <div className="results-section">
+      <div className="results-section -large">
         <Search  />
         <DataControls data={downloadData} />
 

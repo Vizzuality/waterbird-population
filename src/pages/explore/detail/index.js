@@ -5,7 +5,7 @@ import Component from './component';
 
 const mapStateToProps = state => ({
   user: state.user.id,
-  data: state.population.data
+  data: state.population.data,
 });
 
 export default connect(mapStateToProps, {

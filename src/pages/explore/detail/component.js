@@ -8,7 +8,7 @@ import DataDetail from 'components/data-detail';
 
 import MapContainer from './map';
 
-import './styles.scss';
+import '../styles.scss';
 
 const ExploreDetailPage = (props) => {
   const { router: { payload }, setPopulations, user, data } = props;
