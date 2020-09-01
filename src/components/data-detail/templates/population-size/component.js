@@ -121,7 +121,7 @@ const PopulationSize = ({ data, user }) => {
                     </Tooltip>
                   ))}
                 </td>
-                {user && (
+                {user && d.published === 0 && (
                   <td className="button">
                     <button
                       className={classnames('comments-button',

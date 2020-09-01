@@ -96,7 +96,7 @@ const PopulationPercent = ({ data, user }) => {
                   ))}
                 </td>
                 <td className="button">
-                {user && (
+                {user && d.published === 0 && (
                   <button
                     className={classnames('comments-button',
                       {
@@ -105,7 +105,6 @@ const PopulationPercent = ({ data, user }) => {
                       }
                     )}
                     onClick={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}>
-
                     {visible[`${d.onepercent_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
                   </button>
                   )}
