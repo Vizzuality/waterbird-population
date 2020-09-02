@@ -16,10 +16,10 @@ const SpeciesListItem = ({ specie }) => {
     commonname,
     redlistcategory,
     scientificname,
+    color
   } = specie;
 
   const [isCollapsed, toggleCollapse] = useState(true);
-
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
@@ -31,7 +31,7 @@ const SpeciesListItem = ({ specie }) => {
           <span>Species:</span>
           <span className="name -cientific">{scientificname}</span>
           <span className="name -specific">({commonname})</span>
-          <span className="tag">{redlistcategory}</span>
+          <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
         </h2>
         <Button
           onClick={handleClick}

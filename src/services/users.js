@@ -27,19 +27,26 @@ export const fetchUser = (email, password) => {
 export const registerUser = (data) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
 
+  const date = new Date();
+
   const q = `INSERT INTO users (
     name,
     email,
     company,
     phone,
-    comments
+    comments,
+    request_date
   )
   VALUES (
     '${data.name}',
     '${data.email}',
     '${data.company}',
     '${data.phone}',
-    '${data.comments}'
+    '${data.comments}',
+    '${date}'
   ) `
   return API.post(`sql?q=${q}&api_key=${api_key}`)
 };
+
+
+

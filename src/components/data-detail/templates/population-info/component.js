@@ -13,12 +13,13 @@ const PopulationInfo = ({ data }) => {
 
       <div className="population-info--summary">
         {(data.map((i, ix) => {
+
           return (
             <div key={ix} className="population-info--summary-item">
               {i.map(i2 => (
                 <div key={i2.head} className="population-info--summary-item-container">
                   <div className="population-info--summary-item-head">{i2.head}</div>
-                  <div
+                  <div style={{ backgroundColor: i2.color }}
                     className={classnames({
                       "population-info--summary-item-value": true,
                       [i2.className]: !!i2.className
