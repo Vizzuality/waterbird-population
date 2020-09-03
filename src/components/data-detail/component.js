@@ -12,15 +12,23 @@ import './styles.scss';
 
 
 const DataDetail = (props) =>  {
-  const { populationInfoData, populationSizeData, populationTrendData, populationPercentData, populationReferences, user } = props;
+  const {
+    populationInfoData,
+    populationConservationFramework,
+    populationSizeData,
+    populationTrendData,
+    populationPercentData,
+    populationReferences,
+    user
+  } = props;
 
   return (
     <div className="c-data-detail">
       <PopulationInfo data={populationInfoData} />
-      {/* <ConservationFramework /> */}
+      <ConservationFramework data={populationConservationFramework} />
       <PopulationSize data={populationSizeData} user={user} user={user} />
       <PopulationTrend data={populationTrendData} user={user} />
-      <PopulationPercent data={populationPercentData}user={user} />
+      <PopulationPercent data={populationPercentData} user={user} />
       <References data={populationReferences}/>
       {/* <Notes /> */}
     </div>

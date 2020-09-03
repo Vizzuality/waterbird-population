@@ -71,6 +71,7 @@ const PopulationSize = ({ data, user }) => {
                 <Comments
                   title={'Population size'}
                   populationId={d.population}
+                  published={d.published}
                   publicationId={d.publication_id}
                   publicationName={d.publication}
                   sizeId={d.size_id}
@@ -123,7 +124,7 @@ const PopulationSize = ({ data, user }) => {
                     </Tooltip>
                   ))}
                 </td>
-                {user && d.published === 0 && (
+                {user && (
                   <td className="button">
                     <button
                       className={classnames('comments-button',

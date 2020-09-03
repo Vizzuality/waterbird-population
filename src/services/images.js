@@ -6,11 +6,11 @@ const store = localforage.createInstance({
     localforage.INDEXEDDB,
     localforage.LOCALSTORAGE
   ],
-  name: 'wpe-red-list'
+  name: 'wpe-flyways'
 });
 
 export const API = setup({
-  baseURL: process.env.REACT_APP_CARTO_BASE_URL,
+  baseURL: 'https://species.wikimedia.org/w/',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -22,15 +22,10 @@ export const API = setup({
   }
 });
 
-export const fetchRedListCategories = () => {
-
-  const q = `SELECT id,iucn,description FROM redlistcategory WHERE description != ' Not evaluated'`;
-
-  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data }) => data.rows)
+export const fetchImages = (name) => {
+  return API.get(`php?action=query&prop=pageimages&titles=${name}&pithumbsize=100&format=json`)
+  .then((data) => console.log(data))
   .catch((e) => {
     console.log(e, 'error')
   });
 };
-
-

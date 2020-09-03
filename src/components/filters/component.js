@@ -22,7 +22,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
-  const [newFiltersValues, setNewFiltersValues] = useState(filters.filters);
+  const [newFiltersValues, setNewFiltersValues] = useState(filters);
 
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));

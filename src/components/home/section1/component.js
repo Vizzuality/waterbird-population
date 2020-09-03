@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import Link from 'redux-first-router-link';
 import Image from '../images/section1.png';
 
-import Links from './constants';
+import { fetchConservationFrameworks } from 'services/conservation';
+
 import './styles.scss';
 
-const Section1 = () => {
+const Section1 = ({ setFilters, filters }) => {
+
+  const [filterIds, setLinks] = useState('');
+
+  useEffect(() => {
+    fetchConservationFrameworks().then(data => setLinks(data));
+  });
+
+  const handleClick = (value) => {
+    setFilters({
+      ...filters,
+      'framework_id': value
+    });
+  };
+
+  const label = (e) => {
+    const renamedLabels = [
+      { value: 'CAF Action Plan', label: 'CMS/CAF' },
+      { value: 'EAAFP Partnership', label: 'EAAFP' },
+      { value: 'EUBD', label: 'EU BIRDS DIRECTIVE' },
+    ];
+
+    return renamedLabels.reduce((acc, word) => {
+      return acc.includes(word.value) ? acc.replace(word.value, word.label) : acc;
+    }, e);
+  }
 
   return (
     <section className="c-section1">
@@ -32,18 +59,27 @@ const Section1 = () => {
           <div className="col-sm">
             <nav>
               <div className="row">
-                <ul>
-                  <div className="row start-lg center-xs equal-height ">
-                    {Links.map(({ label, href }) => (
-                      <div className="col-lg-3 col-md-4 col-sm-6 col-xsm-12 center-xs">
-                        <li key={label}>
-                          <a target="_blank" rel="noopener noreferrer" href={href}>
-                            {label}
-                          </a>
-                        </li>
+                <ul className="row start-lg center-xs equal-height" >
+                  {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
+                    <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key={code}>
+                      <div>
+                        <Link
+                          to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                          onClick={() => handleClick(id)}
+                        >{label(code)}
+                        </Link>
                       </div>
-                    ))}
-                  </div>
+                    </li>
+                  ))}
+                  <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key='ramsar'>
+                    <div>
+                      <Link
+                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                        onClick={() => handleClick([1, 2, 3, 4, 5])}
+                      >Ramsar
+                    </Link>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </nav>

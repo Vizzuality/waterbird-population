@@ -69,6 +69,7 @@ const PopulationTrend = ({ data, user }) => {
                 <Comments
                   title={'Population trend'}
                   populationId={d.population}
+                  published={d.published}
                   publicationId={d.publication_id}
                   publicationName={d.publication}
                   trendId={d.trend_id}
@@ -120,7 +121,7 @@ const PopulationTrend = ({ data, user }) => {
                     </Tooltip>
                   ))}
                 </td>
-                {user && d.published === 0 && (
+                {user && (
                   <td className="button">
                     <button
                       className={classnames('comments-button',

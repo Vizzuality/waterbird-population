@@ -68,6 +68,7 @@ const PopulationPercent = ({ data, user }) => {
               <Comments
                 title={'Population 1% level'}
                 populationId={d.population}
+                published={d.published}
                 publicationId={d.publication_id}
                 publicationName={d.publication}
                 onepercentId={d.onepercent_id}
@@ -99,7 +100,7 @@ const PopulationPercent = ({ data, user }) => {
                   ))}
                 </td>
                 <td className="button">
-                {user && d.published === 0 && (
+                {user && (
                   <button
                     className={classnames('comments-button',
                       {
