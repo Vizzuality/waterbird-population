@@ -126,7 +126,7 @@ export const fetchPopulations = (specieid) => {
 };
 
 export const fetchDataToDownload = (specieid) => {
-  const q = `SELECT * FROM populations_all_data p ${specieid ? `where species_id=${specieid}` : ''}`;
+  const q = `SELECT * FROM populations_all_data ${specieid ? `where species_id=${specieid}` : ''}`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=csv`)
     .then(({ data }) => data)
