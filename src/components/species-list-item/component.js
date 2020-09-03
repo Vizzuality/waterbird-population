@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -7,6 +7,7 @@ import Button from 'components/button';
 import PopulationsList from 'components/populations-list';
 
 import image from 'images/ostralegus.jpg'
+import { fetchImages } from 'services/species';
 
 import './styles.scss';
 
@@ -19,7 +20,14 @@ const SpeciesListItem = ({ specie }) => {
     color
   } = specie;
 
+  const [image, setImage] = useState('');
   const [isCollapsed, toggleCollapse] = useState(true);
+
+  useEffect(() => {
+    fetchImages(scientificname).then(data => setImage(data));
+  }, []);
+
+
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
@@ -45,7 +53,7 @@ const SpeciesListItem = ({ specie }) => {
       <div className={classnames('results-description', {
         '-hidden': isCollapsed
       })}>
-        <img src={image} alt='Haematopodidae' />
+        {image.thumbnail && <img src={image.thumbnail.source} alt={image.title} />}
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
       </div>
 
