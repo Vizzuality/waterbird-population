@@ -19,7 +19,6 @@ const PopulationSize = ({ data, user }) => {
     toggleCollapse(!isCollapsed)
   };
 
-
   const handleClickComments = (id) => {
     toggleVisibility({
       ...visible,
@@ -89,11 +88,10 @@ const PopulationSize = ({ data, user }) => {
                 <td>
                   {!!d.notes && !!d.notes.length && d.notes.map(n => (
                     <Tooltip
-                      key={`${d.specie}${d.population}${n.id}`}
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}
-                      render={() =>
+                      content={
                         <Note>
                           <p className="title">
                             Population size note <span>#{n.id}</span>

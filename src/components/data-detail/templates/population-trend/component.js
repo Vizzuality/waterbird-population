@@ -90,7 +90,7 @@ const PopulationTrend = ({ data, user }) => {
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}
-                      render={() => (
+                      content={(
                         <Note>
                           <p className="title">
                             Population trend note <span>#{n.id}</span>
