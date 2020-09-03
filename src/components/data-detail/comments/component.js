@@ -12,6 +12,7 @@ const Comments = ({
   title,
   user,
   populationId,
+  published,
   publicationId,
   publicationName,
   sizeId,
@@ -47,7 +48,7 @@ const Comments = ({
       trend_id: trendId,
       onepercent_id: onepercentId,
       comment,
-      date: new Date ()
+      date: new Date()
     });
     onClose();
   };
@@ -67,33 +68,35 @@ const Comments = ({
           </div>
         </div>
       )}
-      <form method="post">
-        <textarea
-          className="textarea"
-          name="Write your message"
-          placeholder="Write your message"
-          onChange={handleChange}
-          rows="4" />
-      </form>
+      {published === 0 && (
+        <section>
+          <form method="post">
+            <textarea
+              className="textarea"
+              name="Write your message"
+              placeholder="Write your message"
+              onChange={handleChange}
+              rows="4" />
+          </form>
+          <div className="tooltip-controls">
+            <Button
+              onClick={handleClick}
+              disable={isDisable}
+              className="-background -tertiary -big"
+            >
+              Cancel
+            </Button>
 
-      <div className="tooltip-controls">
-        <Button
-          onClick={handleClick}
-          disable={isDisable}
-          className="-background -tertiary -big"
-        >
-          Cancel
-        </Button>
-
-        <Button
-          type="submit"
-          onClick={sendComment}
-          className={classnames('-background -secondary -big',
-            { '-disable': isDisable })}
-        >
-          Add comment
-        </Button>
-      </div>
+            <Button
+              type="submit"
+              onClick={sendComment}
+              className={classnames('-background -secondary -big',
+                { '-disable': isDisable })}
+            >
+              Add comment
+            </Button>
+          </div>
+        </section>)}
     </div>
   )
 };

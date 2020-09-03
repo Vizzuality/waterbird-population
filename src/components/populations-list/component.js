@@ -12,8 +12,6 @@ import './styles.scss';
 
 const PopulationsList = ({ specieId, populationData }) => {
 
-  const tag = true;
-
   return (
     populationData.map(
       d => {
@@ -24,9 +22,8 @@ const PopulationsList = ({ specieId, populationData }) => {
                 <div className="card-title">
                   <div className="title">
                     <h4>
-                      Population:
+                      Population
                   </h4>
-                    {tag && <span>under review</span>}
                   </div>
                   <h4 className="subtitle">{d.name}</h4>
                 </div>

@@ -26,7 +26,7 @@ const SpeciesListItem = ({ specie }) => {
 
   return (
     <section className="c-data-results">
-      <div className="results-title">
+      <div onClick={handleClick} className="results-title">
         <h2>
           <span>Species:</span>
           <span className="name -cientific">{scientificname}</span>
@@ -34,7 +34,6 @@ const SpeciesListItem = ({ specie }) => {
           <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
         </h2>
         <Button
-          onClick={handleClick}
           className={classnames('-border -secondary',
             {
               '-collapse': !isCollapsed

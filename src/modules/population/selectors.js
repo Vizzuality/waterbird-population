@@ -45,7 +45,14 @@ export const selectPopulationFiltered = createSelector(
           const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
           const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
           const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
-          const isProtected = _filters.framework_id ? d.conservation.find(f => _filters.framework_id.includes(f.id)) : true;
+          const isProtected = _filters.framework_id
+            ? d.conservation.find(f =>
+              (
+              typeof(_filters.framework_id) === 'object'
+                ? _filters.framework_id.includes(trim(f.id))
+                : _filters.framework_id === trim(f.id))
+              )
+            : true;
 
           const array = [isFamily, isPublication, isRamsarRegion, isRedList, isProtected];
           return array.every(d => d)
@@ -80,7 +87,6 @@ export const selectPopulationSpecies = createSelector(
 
     return orderBy(uniqBy(populationsByFamily.map(p => {
       const tag = tags.find(t => t.description === trim(p.specie.redlistcategory));
-      debugger
       return {
         ...p.specie,
         scientificname: trim(p.specie.scientificname),
