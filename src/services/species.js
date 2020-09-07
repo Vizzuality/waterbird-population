@@ -22,6 +22,19 @@ export const API = setup({
   }
 });
 
+export const API_images = setup({
+  baseURL: 'https://species.wikimedia.org/w/',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  cache: {
+    // ignoreCache: process.env.NODE_ENV === 'development',
+    maxAge: 15 * 60 * 1000,
+    exclude: { query: false },
+    store
+  }
+});
+
 export const fetchSpecies = (familyId) => {
   const q = `
   SELECT s.id AS specieid,commonname,scientificname,familyenglish,iucn_id,r.description,r.iucn,r.id
@@ -37,5 +50,15 @@ export const fetchSpecies = (familyId) => {
   .catch((e) => {
    // const { status, statusText } = response;
     console.log(e)
+  });
+};
+
+
+export const fetchImages = (name) => {
+
+  return API_images.get(`api.php?action=query&origin=*&prop=description|pageimages&titles=${name}&pithumbsize=200&format=json`)
+  .then(({ data }) => Object.values(data.query.pages)[0])
+  .catch((e) => {
+    console.log(e, 'error')
   });
 };
