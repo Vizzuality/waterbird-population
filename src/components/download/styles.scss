@@ -10,6 +10,10 @@
     padding: 0 15px;
   }
 
+  &.-disabled {
+    opacity: 0.3;
+  }
+
   &.-dashed {
     display: flex;
     flex-direction: row-reverse;
