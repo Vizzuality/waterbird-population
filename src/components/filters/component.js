@@ -72,19 +72,14 @@ const Filters = ({ filters, setFilters, onClick, lastPublicationData, publicatio
   });
 
   // filters values
-  const selectedFamily = familyOptions.find(f => newFiltersValues
-    && newFiltersValues.family_id && newFiltersValues.family_id === f.value);
+  const selectedFamily = newFiltersValues.family_id;
   const selectedPublication = publicationOptions.find(f => newFiltersValues
     && newFiltersValues.publication_id
     && newFiltersValues.publication_id.value === f.value);
-  const selectedFramework = conservationFrameworkOptions.find(f => newFiltersValues
-    && newFiltersValues.framework_id && newFiltersValues.framework_id === f);
-  const selectedFlywayRegion = flywayOptions.find(f => newFiltersValues
-    && newFiltersValues.flyway_region_id && newFiltersValues.flyway_region_id === f.value);
-  const selectedRamsarRegion = ramsarRegionOptions.find(f => newFiltersValues
-    && newFiltersValues.ramsar_region_id && newFiltersValues.ramsar_region_id === f.value);
-  const selectedRedList = redListOptions.find(f => newFiltersValues
-    && newFiltersValues.red_list_id && newFiltersValues.red_list_id === f.value);
+  const selectedFramework = newFiltersValues.framework_id;
+  const selectedFlywayRegion = newFiltersValues.flyway_region_id;
+  const selectedRamsarRegion = newFiltersValues.ramsar_region_id;
+  const selectedRedList = newFiltersValues.red_list_id;
 
   const filtersInfo = [
     {
