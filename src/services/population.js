@@ -45,7 +45,8 @@ export const fetchPopulations = (specieid) => {
     'id', specie_id,
     'commonname', specie_commonname,
     'scientificname', specie_scientificname,
-    'redlistcategory', redlistcategory_name
+    'redlistcategory', redlistcategory_name,
+    'redlistcategory_id', redlistcategory_id
   )
   as specie,
   jsonb_agg(distinct jsonb_build_object(
@@ -95,7 +96,13 @@ export const fetchPopulations = (specieid) => {
     'conservation_framework', population_conservation_framework,
     'info', population_conservation_framework_info
   ))
-  as conservation
+  as conservation,
+  jsonb_agg(distinct jsonb_build_object(
+    'id', flyway_id,
+    'range', flyway_range,
+    'group', flyway_group
+  ))
+  as flyways
   from population_all_data ${specieid ? `where species_id=${specieid}` : ''}
   group by
   id,

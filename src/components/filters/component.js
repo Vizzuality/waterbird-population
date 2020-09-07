@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Link from 'redux-first-router-link';
+import orderBy from 'lodash/orderBy';
 
 import Button from 'components/button';
 import Select from 'react-select';
 import Icon from 'components/icon';
+import ActiveFilters from './active-filters';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -15,10 +17,8 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, onClick }) => {
-
+const Filters = ({ filters, setFilters, onClick, lastPublicationData, publications, setPublications }) => {
   const [families, setFamilies] = useState([]);
-  const [publications, setPublications] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
@@ -54,8 +54,8 @@ const Filters = ({ filters, setFilters, onClick }) => {
     return { label: framework.code, value: framework.id }
   });
 
-  const flywayOptions = flyways.map(flyway => {
-    return { label: flyway.flywayrange, value: flyway.id }
+  const flywayOptions = flyways.map(({ flywayrange, id }) => {
+    return { label: flywayrange, value: id }
   });
 
   const ramsarRegionOptions = [
@@ -68,17 +68,17 @@ const Filters = ({ filters, setFilters, onClick }) => {
   ];
 
   const redListOptions = redList.map(d => {
-    return { label: `${d.iucn} (${d.description})`, value: d.iucn }
+    return { label: `${d.iucn} (${d.description})`, value: d.id }
   });
-
 
   // filters values
   const selectedFamily = familyOptions.find(f => newFiltersValues
     && newFiltersValues.family_id && newFiltersValues.family_id === f.value);
   const selectedPublication = publicationOptions.find(f => newFiltersValues
-    && newFiltersValues.publication_id && newFiltersValues.publication_id === f.value);
+    && newFiltersValues.publication_id
+    && newFiltersValues.publication_id.value === f.value);
   const selectedFramework = conservationFrameworkOptions.find(f => newFiltersValues
-    && newFiltersValues.framework_id && newFiltersValues.framework_id === f.value);
+    && newFiltersValues.framework_id && newFiltersValues.framework_id === f);
   const selectedFlywayRegion = flywayOptions.find(f => newFiltersValues
     && newFiltersValues.flyway_region_id && newFiltersValues.flyway_region_id === f.value);
   const selectedRamsarRegion = ramsarRegionOptions.find(f => newFiltersValues
@@ -92,14 +92,17 @@ const Filters = ({ filters, setFilters, onClick }) => {
       type: 'family_id',
       options: familyOptions,
       value: selectedFamily,
-      placeholder: 'All families'
+      placeholder: 'All families',
+      isMulti: true
     },
     {
       label: 'Publication',
       type: 'publication_id',
       options: publicationOptions,
+      defaultValue: selectedPublication,
       value: selectedPublication,
-      placeholder: 'All publications'
+      placeholder: 'All publications',
+      isMulti: false
     },
     {
       label: 'Conservation Framework',
@@ -107,7 +110,8 @@ const Filters = ({ filters, setFilters, onClick }) => {
       options: conservationFrameworkOptions,
       value: selectedFramework,
       placeholder: 'All frameworks',
-      'info': (
+      isMulti: true,
+      info: (
         <Link to="/background/Glossary">
           <Icon name="info" />
         </Link>
@@ -119,6 +123,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
       options: flywayOptions,
       value: selectedFlywayRegion,
       placeholder: 'All Biogeographic/ Flyway region',
+      isMulti: true,
       info: (
         <Link target="_blank" rel="noopener noreferrer" to="/images/Biogeographic">
           <Icon name="info" />
@@ -131,6 +136,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
       options: ramsarRegionOptions,
       value: selectedRamsarRegion,
       placeholder: 'All Regions',
+      isMulti: true,
       info: (
         <Link target="_blank" rel="noopener noreferrer" to="/images/Ramsar">
           <Icon name="info" />
@@ -143,6 +149,7 @@ const Filters = ({ filters, setFilters, onClick }) => {
       options: redListOptions,
       value: selectedRedList,
       placeholder: 'All',
+      isMulti: true,
       info: (
         <a target="_blank" rel="noopener noreferrer" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
           <Icon name="info" />
@@ -151,18 +158,27 @@ const Filters = ({ filters, setFilters, onClick }) => {
     }
   ];
 
-  const changeFilterValue = (type, { value }) => {
+  const changeFilterValue = (isMulti, type, value ) => {
     setNewFiltersValues({
       ...newFiltersValues,
-      [`${type}`]: value
+      [`${type}`]: isMulti ? value.map(v => v) : value,
     });
+  };
+  const removeFilter = (type, value) => {
+    const filtersUpdate = {
+      ...newFiltersValues,
+      [type]: type === 'publication_id'
+        ? orderBy(publicationOptions, 'value', 'desc')[0]
+        : newFiltersValues[type].filter(f => f !== value)}
+    setNewFiltersValues(filtersUpdate);
+    setFilters(filtersUpdate)
   };
 
   return (
     <div className="c-filters">
       <h3>Filter options:</h3>
       <div className="filters-content">
-        {filtersInfo.map(({ label, type, placeholder, options, value, info }) =>
+        {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
           <div className="filters">
             <div className="filter-type">
               <label>{label}</label>
@@ -172,12 +188,14 @@ const Filters = ({ filters, setFilters, onClick }) => {
               placeholder={placeholder}
               options={options}
               value={value}
+              isMulti={isMulti}
               classNamePrefix="react-select"
-              onChange={value => changeFilterValue(type, value)}
+              onChange={value => changeFilterValue(isMulti, type, value)}
             />
           </div>
         )}
       </div>
+      <ActiveFilters filters={newFiltersValues} onClick={removeFilter} />
       <div className="filters-buttons">
         <Button
           className="-background -tertiary -big"

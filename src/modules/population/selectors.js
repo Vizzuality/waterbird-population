@@ -5,6 +5,8 @@ import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy';
 import Fuse from 'fuse.js';
 
+import { setFilters } from 'modules/population/actions';
+
 import { tags, regions } from './constants';
 
 import { createSelector, createStructuredSelector } from 'reselect';
@@ -13,6 +15,7 @@ export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
 export const filters = (state) => state?.population.filters;
+export const publications = (state) => state?.population.publications;
 export const user = (state) => state?.user;
 export const search = (state) => state?.population.search;
 
@@ -41,20 +44,47 @@ export const selectPopulationFiltered = createSelector(
       return (
       (dataFiltered ? dataFiltered : _data)
         .filter(d => {
-          const isFamily = _filters.family_id ? d.family.id === _filters.family_id : true;
-          const isPublication = _filters.publication_id ? d.publications.find(f => f.id = _filters.publication_id) : true;
-          const isRamsarRegion = _filters.ramsar_region_id ? d[_filters.ramsar_region_id] === 1 : true;
-          const isRedList = _filters.red_list_id ? d.specie.redlistcategory_id === _filters.red_list_id : true;
-          const isProtected = _filters.framework_id
-            ? d.conservation.find(f =>
-              (
-              typeof(_filters.framework_id) === 'object'
-                ? _filters.framework_id.includes(trim(f.id))
-                : _filters.framework_id === trim(f.id))
-              )
+          const familyIds = _filters.family_id
+            && _filters.family_id.length
+            && _filters.family_id.map(f => f.value);
+          const isFamily = familyIds
+            ? familyIds.includes(d.family.id) : true;
+
+          const publications = d.publications.map(p => p.value);
+          const publicationId = _filters.publication_id
+            && _filters.publication_id.length
+            && _filters.publication_id.map(p => p.id);
+          const isPublication = publicationId
+            ? publications.includes(publicationId)
             : true;
 
-          const array = [isFamily, isPublication, isRamsarRegion, isRedList, isProtected];
+          const conservationIds = _filters.framework_id
+            && _filters.framework_id.length
+            && _filters.framework_id.map(f => f.value);
+          const isProtected = conservationIds
+            ? conservationIds.includes(d.conservation[0].id)
+            : true;
+
+          const flywayIds = _filters.flyway_region_id
+            && _filters.flyway_region_id.length
+            && _filters.flyway_region_id.map(f => f.value);
+          const isFlyway = flywayIds
+            ?  flywayIds.includes(d.flyways[0].id)
+            : true;
+
+          const ramsarIds = _filters.ramsar_region_id
+            && _filters.ramsar_region_id.length
+            && _filters.ramsar_region_id.map(f => f.value);
+          const isRamsarRegion = ramsarIds
+            ? d[ramsarIds.map(d => d)] === 1 : true;
+
+          const redListIds = _filters.red_list_id
+            && _filters.red_list_id.length
+            && _filters.red_list_id.map(f => f.value);
+          const isRedList = redListIds
+            ? redListIds.includes(d.specie.redlistcategory_id) : true;
+
+          const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
           return array.every(d => d)
         }
       )
@@ -147,35 +177,51 @@ export const selectPopulationsData = createSelector(
 );
 
 export const selectLastPublicationData = createSelector(
-  [data, specieId, user],
-  (_data, _specieId, _user) => {
+  [data, specieId, user, filters, publications],
+  (_data, _specieId, _user, _filters, _publications) => {
     if (!_data || isEmpty(_data)) return [];
+
 
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
 
-    return populationsBySpecie.map(d => {
-      const draftId = d.publications
-        .filter(p => p.published === 0)
-        .map(f => f.id);
+    if (_specieId) {
+      return populationsBySpecie.map(d => {
+        const draftId = d.publications
+          .filter(p => p.published === 0)
+          .map(f => f.id);
 
-        const orderedPublicationsSizes = orderBy(
-          _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
-        ['endyear', 'publication_id'], ['desc', 'desc']);
+          const orderedPublicationsSizes = orderBy(
+            _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+          ['endyear', 'publication_id'], ['desc', 'desc']);
 
-      const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
+        const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
 
-      const size = d.sizes.find(s => s.publication_id === publication.id);
-      const trend = d.trends.find(s => s.publication_id === publication.id);
-      const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+        const size = d.sizes.find(s => s.publication_id === publication.id);
+        const trend = d.trends.find(s => s.publication_id === publication.id);
+        const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
 
-      return {
-        population_id: d.id,
-        publication_id: publication,
-        size_id: size.id,
-        trend_id: trend.id,
-        onepercent_id: percentLevel.id,
-      }
-    })
+        setFilters({
+          ..._filters,
+          'publication_id': { label: publication.name, value: publication.id }
+        });
+
+        return {
+          population_id: d.id,
+          publication_id: publication,
+          size_id: size.id,
+          trend_id: trend.id,
+          onepercent_id: percentLevel.id,
+        }
+      })
+    }
+    else {
+      return _publications.map(p => {
+        return {
+          label: p.description,
+          value: p.id
+        }
+      })
+    }
   }
 );
 

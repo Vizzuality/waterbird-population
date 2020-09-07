@@ -27,7 +27,6 @@ const ExplorePage = ({ setPopulations }) => {
       <div className="results-section -large">
         <Search  />
         <DataControls data={downloadData} />
-
         <FamilyList />
       </div>
     </div>
