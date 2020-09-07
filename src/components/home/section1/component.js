@@ -58,30 +58,28 @@ const Section1 = ({ setFilters, filters }) => {
         <div className="row">
           <div className="col-sm">
             <nav>
-              <div className="row">
-                <ul className="row start-lg center-xs equal-height" >
-                  {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
-                    <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key={code}>
-                      <div>
-                        <Link
-                          to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                          onClick={() => handleClick(id)}
-                        >{label(code)}
-                        </Link>
-                      </div>
-                    </li>
-                  ))}
-                  <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key='ramsar'>
+              <ul className="row start-lg center-xs equal-height" >
+                {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
+                  <li className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs" key={code}>
                     <div>
                       <Link
                         to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                        onClick={() => handleClick([1, 2, 3, 4, 5])}
-                      >Ramsar
-                    </Link>
+                        onClick={() => handleClick(id)}
+                      >{label(code)}
+                      </Link>
                     </div>
                   </li>
-                </ul>
-              </div>
+                ))}
+                <li className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs" key='ramsar'>
+                  <div>
+                    <Link
+                      to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                      onClick={() => handleClick([1, 2, 3, 4, 5])}
+                    >Ramsar
+                    </Link>
+                  </div>
+                </li>
+              </ul>
             </nav>
           </div>
         </div>
