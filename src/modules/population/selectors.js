@@ -64,7 +64,6 @@ export const selectPopulationFiltered = createSelector(
           const isProtected = conservationIds
             ? conservationIds.includes(d.conservation[0].id)
             : true;
-
           const flywayIds = _filters.flyway_region_id
             && _filters.flyway_region_id.length
             && _filters.flyway_region_id.map(f => f.value);
@@ -76,7 +75,7 @@ export const selectPopulationFiltered = createSelector(
             && _filters.ramsar_region_id.length
             && _filters.ramsar_region_id.map(f => f.value);
           const isRamsarRegion = ramsarIds
-            ? d[ramsarIds.map(d => d)] === 1 : true;
+            ? ramsarIds.some(r => d[r] === 1) : true;
 
           const redListIds = _filters.red_list_id
             && _filters.red_list_id.length

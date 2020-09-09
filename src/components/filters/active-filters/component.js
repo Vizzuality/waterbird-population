@@ -17,7 +17,8 @@ const ActiveFilters = ({ filters, onClick }) => {
 };
 
 ActiveFilters.propTypes = {
-  populationFamilies: PropTypes.array.isRequired
+  filters: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired
 }
 
 export default ActiveFilters;

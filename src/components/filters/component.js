@@ -17,7 +17,7 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, onClick, lastPublicationData, publications, setPublications }) => {
+const Filters = ({ filters, setFilters, onClick, publications, setPublications }) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
@@ -153,7 +153,7 @@ const Filters = ({ filters, setFilters, onClick, lastPublicationData, publicatio
     }
   ];
 
-  const changeFilterValue = (isMulti, type, value ) => {
+  const changeFilterValue = (isMulti, type, value) => {
     setNewFiltersValues({
       ...newFiltersValues,
       [`${type}`]: isMulti ? value.map(v => v) : value,
@@ -164,7 +164,8 @@ const Filters = ({ filters, setFilters, onClick, lastPublicationData, publicatio
       ...newFiltersValues,
       [type]: type === 'publication_id'
         ? orderBy(publicationOptions, 'value', 'desc')[0]
-        : newFiltersValues[type].filter(f => f !== value)}
+        : newFiltersValues[type].filter(f => f !== value)
+    }
     setNewFiltersValues(filtersUpdate);
     setFilters(filtersUpdate)
   };
@@ -186,6 +187,20 @@ const Filters = ({ filters, setFilters, onClick, lastPublicationData, publicatio
               isMulti={isMulti}
               classNamePrefix="react-select"
               onChange={value => changeFilterValue(isMulti, type, value)}
+              components={{
+                MultiValueLabel: ({ data, selectProps, innerProps }) => {
+                  const length = selectProps.value.length - 1;
+                  return data === selectProps.value[0]
+                    ? (<div {...innerProps}>
+                      <span>
+                         {data.label}
+                      </span>
+                      {length >= 1 && <span>{` + ${length}`}</span>}
+                    </div>)
+                    : null
+                },
+                MultiValueRemove: () => null
+              }}
             />
           </div>
         )}
@@ -201,7 +216,7 @@ const Filters = ({ filters, setFilters, onClick, lastPublicationData, publicatio
         <Button
           onClick={handleFilters}
           className={classnames('-background -secondary -big', {
-            // '-disable': filters && activeFilters.length <= 0
+            '-disable': !Object.values(newFiltersValues).find(f => f.length !== 0)
           })}>
           Apply filters
         </Button>
