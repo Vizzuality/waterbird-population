@@ -6,6 +6,9 @@ import BarChart from 'components/widget/widget-templates/populations';
 import StackedBarChart from 'components/widget/widget-templates/families';
 import EstimatesBarChart from 'components/widget/widget-templates/estimates';
 
+import { setPopulations } from 'modules/population/actions';
+import { setTrends } from 'modules/analysis/actions';
+
 const widgetTemplates = new Map([
   ['estimates', {
     component: EstimatesBarChart
@@ -23,4 +26,6 @@ const mapStateToProps = state => ({
   widgetTemplates
 });
 
-export default connect(mapStateToProps)(Component);
+const mapDispatchToProps = { setPopulations, setTrends };
+
+export default connect(mapStateToProps,mapDispatchToProps)(Component);

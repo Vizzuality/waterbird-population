@@ -56,8 +56,7 @@ export const fetchPopulations = (specieid) => {
     'startyear', population_size_startyear,
     'endyear', population_size_endyear,
     'quality', population_size_estimate_quality,
-    'notes', population_size_notes,
-    'references', population_size_reference
+    'notes', population_size_notes
   ))
   as sizes,
   jsonb_agg(distinct jsonb_build_object(
@@ -84,8 +83,7 @@ export const fetchPopulations = (specieid) => {
     'quality', qualitycodetrend_description,
     'startyear', population_trend_startyear,
     'endyear', population_trend_endyear,
-    'notes', population_trend_notes,
-    'references', reference
+    'notes', population_trend_notes
   ))
   as trends,
   jsonb_agg(distinct jsonb_build_object(

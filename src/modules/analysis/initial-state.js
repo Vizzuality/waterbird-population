@@ -3,4 +3,5 @@ export default {
     'populations', 'estimates', 'families'
   ],
   widgetData: 'light',
+  trends: ''
 };

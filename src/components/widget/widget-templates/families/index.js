@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
+import { selectWidgetsProps } from 'modules/analysis/selectors';
 
 import Component from './component';
 
-const mapStateToProps = state => ({
-
-});
-
-
-export default connect(mapStateToProps)(Component);
+export default connect(selectWidgetsProps)(Component);

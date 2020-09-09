@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'components/recharts';
 // import sortBy from 'lodash/sortBy';
@@ -6,23 +6,22 @@ import Chart from 'components/recharts';
 import config from './config';
 
 
-const Bars = ({
-  data,
-  key
-}) => {
-
+const Bars = (props) => {
   const { chartConfig, chartData } = config.parse();
-
+  const {
+    trendFamilies
+  } = props;
+console.log(trendFamilies,props, 'data widget')
   return (
     <div>
-      eso
-      {/* <div className="c-population-trends-widget"> */}
+      POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:
+      <div className="c-population-trends-widget">
         <Chart
           data={chartData}
           config={chartConfig}
         />
-        {/* <div id={`widget-legend-${id}`} />
-      </div> */}
+        {/* <div id={`widget-legend-${id}`} />*/}
+      </div>
     </div>
   );
 };
