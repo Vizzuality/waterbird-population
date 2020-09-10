@@ -7,7 +7,8 @@ export default {
   }),
   [setPopulations]: (state, { payload }) => ({
     ...state,
-    data: payload
+    data: payload.data,
+    loading: !payload.status === 200
   }),
   [setPublications]: (state, { payload }) => ({
     ...state,

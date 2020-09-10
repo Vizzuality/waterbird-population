@@ -1,7 +1,7 @@
 export default {
   current: null,
   data: [],
-  loading: false,
+  loading: true,
   error: false,
   filters: {
     family_id: [],

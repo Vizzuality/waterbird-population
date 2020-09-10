@@ -123,7 +123,7 @@ export const fetchPopulations = (specieid) => {
   redlistcategory_id`
 
   return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => data.rows)
+    .then(({ data, status }) => { return { data: data.rows, status }})
     .catch((e) => {
       console.log(e, 'error')
     });
