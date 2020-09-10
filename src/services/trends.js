@@ -142,10 +142,10 @@ export const fetchTrends = () => {
   });
 };
 
-export const fetchTrendsLabels = () => {
+export const fetchTrendCategories = () => {
   const q = `SELECT DISTINCT trendsum FROM trend`;
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data }) => data.rows)
+  .then(({ data }) => data.rows.map(d => d.trendsum.trim()))
   .catch((e) => {
     console.log(e, 'error')
   });

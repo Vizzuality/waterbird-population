@@ -1,4 +1,4 @@
-import { fetchData, setTrends } from './actions';
+import { fetchData, setTrends, setTrendCategories } from './actions';
 
 export default {
   [fetchData]: (state, { payload }) => ({
@@ -8,5 +8,9 @@ export default {
   [setTrends]: (state, { payload }) => ({
     ...state,
     trends: payload
+  }),
+  [setTrendCategories]: (state, { payload }) => ({
+    ...state,
+    trend_categories: payload
   })
 };

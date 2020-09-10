@@ -9,9 +9,9 @@ import config from './config';
 const Bars = (props) => {
   const { chartConfig, chartData } = config.parse();
   const {
-    trendFamilies
+    familyTrends
   } = props;
-console.log(trendFamilies,props, 'data widget')
+console.log(familyTrends, 'data widget')
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:

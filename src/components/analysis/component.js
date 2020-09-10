@@ -5,17 +5,19 @@ import classnames from 'classnames';
 // services
 import { fetchPopulations } from 'services/population';
 import { fetchTrends } from 'services/trends';
+import { fetchTrendCategories } from 'services/trends';
 
 import DataControls from 'components/data-controls';
 
 
 //import './styles.scss';
 
-const Analysis = ({ widgets, widgetTemplates, setPopulations, setTrends }) => {
+const Analysis = ({ widgets, widgetTemplates, setPopulations, setTrends, setTrendCategories }) => {
 
   useEffect(() => {
     fetchPopulations().then(data => setPopulations(data));
     fetchTrends().then(data => setTrends(data));
+    fetchTrendCategories().then(data => setTrendCategories(data));
 
   }, [])
 

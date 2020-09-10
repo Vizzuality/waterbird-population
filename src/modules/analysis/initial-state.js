@@ -3,5 +3,9 @@ export default {
     'populations', 'estimates', 'families'
   ],
   widgetData: 'light',
-  trends: ''
+  trends: '',
+  trend_categories: [],
+  populations_trends_widget: {
+    selectedPublication: '',
+  }
 };

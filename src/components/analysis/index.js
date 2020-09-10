@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 
 import Component from './component';
 
-import BarChart from 'components/widget/widget-templates/populations';
-import StackedBarChart from 'components/widget/widget-templates/families';
-import EstimatesBarChart from 'components/widget/widget-templates/estimates';
+import BarChart from 'components/analysis/widget-templates/populations';
+import StackedBarChart from 'components/analysis/widget-templates/families';
+import EstimatesBarChart from 'components/analysis/widget-templates/estimates';
 
 import { setPopulations } from 'modules/population/actions';
-import { setTrends } from 'modules/analysis/actions';
+import { setTrends, setTrendCategories } from 'modules/analysis/actions';
 
 const widgetTemplates = new Map([
   ['estimates', {
@@ -26,6 +26,10 @@ const mapStateToProps = state => ({
   widgetTemplates
 });
 
-const mapDispatchToProps = { setPopulations, setTrends };
+const mapDispatchToProps = {
+  setPopulations,
+  setTrends,
+  setTrendCategories
+};
 
 export default connect(mapStateToProps,mapDispatchToProps)(Component);
