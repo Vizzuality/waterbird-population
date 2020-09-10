@@ -18,6 +18,10 @@ export const routes = {
     page: 'explore/overview',
     path: '/explore'
   },
+  EXPLORE_DETAIL: {
+    page: 'explore/detail',
+    path: '/explore/:specie_id/:population_id?'
+  },
   ANALYZE: {
     page: 'analyze',
     path: '/analyze'

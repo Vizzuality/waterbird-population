@@ -7,7 +7,7 @@ import uniqBy from 'lodash/uniqBy';
 import { createSelector, createStructuredSelector } from 'reselect';
 
 // shared selectors with populations
-import { selectPopulationFiltered, selectLastPublicationData } from 'modules/population/selectors';
+import { selectPopulationFiltered } from 'modules/population/selectors';
 
 export const data = (state) => state?.population.data;
 export const trends = (state) => state?.analysis.trends;
@@ -31,13 +31,59 @@ export const selectFamilies = createSelector(
   }
 );
 
+export const selectLastPublication = createSelector(
+  [data, specieId, user, filters, publications],
+  (_data, _specieId, _user, _filters, _publications) => {
+    if (!_data || isEmpty(_data)) return [];
+
+
+    const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
+
+    if (_specieId) {
+      return populationsBySpecie.map(d => {
+        const draftId = d.publications
+          .filter(p => p.published === 0)
+          .map(f => f.id);
+
+          const orderedPublicationsSizes = orderBy(
+            _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+          ['endyear', 'publication_id'], ['desc', 'desc']);
+
+        const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
+
+        const size = d.sizes.find(s => s.publication_id === publication.id);
+        const trend = d.trends.find(s => s.publication_id === publication.id);
+        const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+
+        setFilters({
+          ..._filters,
+          'publication_id': { label: publication.name, value: publication.id }
+        });
+
+        return {
+          population_id: d.id,
+          publication_id: publication,
+          size_id: size.id,
+          trend_id: trend.id,
+          onepercent_id: percentLevel.id,
+        }
+      })
+    }
+    else {
+      return _publications.map(p => {
+        return {
+          label: p.description,
+          value: p.id
+        }
+      })
+    }
+  }
+);
+
+
 export const selectFamilyTrends = createSelector(
-  [selectFamilies, data, categories,
-    //selectLastPublicationData,
-    publicationSelected],
-  (_families, _data, _categories,
-    //_lastPublication,
-     _publicationSelected) => {
+  [selectFamilies, data, categories, selectLastPublication, publicationSelected],
+  (_families, _data, _categories, _lastPublication, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
     const _lastPublication = 9;
     const populationsByFamily = _families.map(f => _data.filter(d => trim(f.id) === trim(d.family.id)))
