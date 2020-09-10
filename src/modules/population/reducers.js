@@ -1,4 +1,4 @@
-import { setFilters, setPopulations, setCurrent, setSearch } from './actions';
+import { setFilters, setPopulations, setPublications, setCurrent, setSearch } from './actions';
 
 export default {
   [setFilters]: (state, { payload }) => ({
@@ -7,7 +7,12 @@ export default {
   }),
   [setPopulations]: (state, { payload }) => ({
     ...state,
-    data: payload
+    data: payload.data,
+    loading: !payload.status === 200
+  }),
+  [setPublications]: (state, { payload }) => ({
+    ...state,
+    publications: payload
   }),
   [setCurrent]: (state, { payload }) => ({
     ...state,

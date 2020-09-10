@@ -8,10 +8,13 @@ import Spinner from 'components/spinner';
 import './styles.scss';
 
 
-const FamilyList = ({ populationFamilies }) => {
-  if (!populationFamilies || !populationFamilies.length) return <Spinner />
+const FamilyList = ({ populationFamilies, loading }) => {
 
-  return populationFamilies.map(family => {
+  if (loading) return <Spinner />
+
+  return !populationFamilies || !populationFamilies.length
+    ? <div>Sorry, we couldn't find any results matching your search.</div>
+    : populationFamilies.map(family => {
     return <FamilyListItem key={family.id} family={family} />
   });
 };

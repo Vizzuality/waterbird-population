@@ -9,10 +9,12 @@ import './styles.scss';
 const Download = ({ data, filename, headers, text, className }) => {
 
   const handleClick = (e) => e.stopPropagation();
-
   return (
     <CSVLink
-      className={classnames('c-download', className)}
+      className={classnames(
+        'c-download',
+        className,
+        { '-disabled': !data } )}
       data={JSON.stringify(data) || 'No data available'}
       headers={headers}
       onClick={handleClick}

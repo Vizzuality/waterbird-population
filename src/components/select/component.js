@@ -19,6 +19,7 @@ const Select = ({ options, defaultOption = "All families" }) => {
       onChange={handleChange}
       value={selectedOption}
       dropdownSeparator={null}
+      isMulti
     />
   );
 }

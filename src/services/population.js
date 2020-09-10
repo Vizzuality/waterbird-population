@@ -49,7 +49,7 @@ export const fetchPopulations = (specieid) => {
   )
   as specie,
   jsonb_agg(distinct jsonb_build_object(
-    'id', population_size_id,
+    'id', populationsize_id,
     'publication_id', publication_id,
     'maximum',  population_size_maximum,
     'minimum',  population_size_minimum,
@@ -57,8 +57,7 @@ export const fetchPopulations = (specieid) => {
     'endyear', population_size_endyear,
     'quality', population_size_estimate_quality,
     'notes', population_size_notes,
-    'reference_id', population_size_reference_id,
-    'reference_info', reference_ps_info
+    'references', population_size_reference
   ))
   as sizes,
   jsonb_agg(distinct jsonb_build_object(
@@ -66,12 +65,12 @@ export const fetchPopulations = (specieid) => {
     'yearset', populationonepercentlevel_yearset,
     'onepercent', populationonepercentlevel_onepercent,
     'note', populationonepercentlevel_note,
-    'population_id', populationonepercentlevel_population_id,
+    'population_id', id,
     'publication_id', publication_id
   ))
   as populationonepercentlevel,
   jsonb_agg(distinct jsonb_build_object(
-    'id', pub_id,
+    'id', publication_id,
     'name', pub_description,
     'published', pub_published
   ))
@@ -86,8 +85,7 @@ export const fetchPopulations = (specieid) => {
     'startyear', population_trend_startyear,
     'endyear', population_trend_endyear,
     'notes', population_trend_notes,
-    'reference_id', population_trend_reference_id,
-    'reference_info', reference_pt_info
+    'references', reference
   ))
   as trends,
   jsonb_agg(distinct jsonb_build_object(
@@ -95,7 +93,13 @@ export const fetchPopulations = (specieid) => {
     'conservation_framework', population_conservation_framework,
     'info', population_conservation_framework_info
   ))
-  as conservation
+  as conservation,
+  jsonb_agg(distinct jsonb_build_object(
+    'id', flyway_id,
+    'range', flyway_range,
+    'flywaygroup', flyway_group
+  ))
+  as flyways
   from population_all_data ${specieid ? `where species_id=${specieid}` : ''}
   group by
   id,
@@ -119,7 +123,7 @@ export const fetchPopulations = (specieid) => {
   redlistcategory_id`
 
   return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => data.rows)
+    .then(({ data, status }) => { return { data: data.rows, status }})
     .catch((e) => {
       console.log(e, 'error')
     });

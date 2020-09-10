@@ -3,6 +3,7 @@
 .c-filters {
   position: relative;
   padding: $padding-modal;
+  max-width: 900px;
 
   h3 {
     color: $color-grey-6;
@@ -20,11 +21,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 45px;
-    padding: 40px 0;
+    padding: 40px 0 20px 0;
+    align-items: baseline;
 
     .filters {
-      padding-bottom: 30px;
-      max-width: 240px;
+      width: 240px;
 
       .filter-type {
         display: flex;

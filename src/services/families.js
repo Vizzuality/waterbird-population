@@ -24,7 +24,7 @@ export const API = setup({
 
 export const fetchFamilies = () => {
 
-  const q = `SELECT id,name FROM family`;
+  const q = `SELECT id,name FROM family where grouping_id is not null`;
 
   return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
   .then(({ data }) => data.rows)

@@ -58,10 +58,10 @@ const Section1 = ({ setFilters, filters }) => {
         <div className="row">
           <div className="col-sm">
             <nav>
-              <div className="row">
-                <ul className="row start-lg center-xs equal-height" >
-                  {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
-                    <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key={code}>
+              <ul className="row start-lg center-xs equal-height" >
+                {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
+                  <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
+                    <li key={code}>
                       <div>
                         <Link
                           to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
@@ -70,8 +70,10 @@ const Section1 = ({ setFilters, filters }) => {
                         </Link>
                       </div>
                     </li>
-                  ))}
-                  <li className="col-md-4 col-sm-6 col-xsm-12 center-xs" key='ramsar'>
+                  </div>
+                ))}
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
+                  <li key='ramsar'>
                     <div>
                       <Link
                         to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
@@ -80,8 +82,8 @@ const Section1 = ({ setFilters, filters }) => {
                     </Link>
                     </div>
                   </li>
-                </ul>
-              </div>
+                </div>
+              </ul>
             </nav>
           </div>
         </div>
