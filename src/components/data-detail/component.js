@@ -29,7 +29,7 @@ const DataDetail = (props) =>  {
       <PopulationTrend data={populationTrendData} user={user} />
       <PopulationPercent data={populationPercentData} user={user} />
       <References data={populationReferences}/>
-      {/* <Notes /> */}
+      <Notes />
     </div>
   );
 }
