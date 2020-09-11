@@ -36,9 +36,9 @@
       }
 
       &.tag {
+        display:inline-block;
         border-radius: 4px;
         padding: 5px 10px 5px 25px;
-        background-color: #40A30B;
         color: $white;
         font-size: 10px;
         line-height: 11px;

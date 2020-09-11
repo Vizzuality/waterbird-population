@@ -37,13 +37,13 @@
       font-weight: $font-weight-bold;
 
       &.-tag {
+        display: inline-block;
         position: relative;
         font-weight: $font-weight-regular;
         text-transform: uppercase;
         font-size: 10px;
         padding: 0px 10px;
         padding-left: 20px;
-        background: #40A30B;
         color: white;
         border-radius: 4px;
 

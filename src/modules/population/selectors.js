@@ -231,11 +231,17 @@ export const selectPopulationOptions = createSelector(
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     return _data.map(p => {
+      const tag = tags.find(t => console.log(p, '****') || t.description === trim(p.specie.redlistcategory));
+
       return {
         label: trim(p.name) || '-',
         value: p.id,
         family: p.family.name,
-        specie: p.specie.commonname
+        specie: p.specie.commonname,
+        scientificname: trim(p.specie.scientificname),
+        redlistcategory: p.specie.redlistcategory,
+        tag_color: tag.color,
+        tag_status: tag.abbreviation
       }
     });
   }
@@ -250,7 +256,7 @@ export const selectPopulationInfoData = createSelector(
 
     const ramsar = regions.filter(r => !!population[r.id]);
 
-    const tag_color = tags.find(t => t.description === trim(population.specie.redlistcategory)).color;
+    const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
 
     return [
       [{ head: 'Order name', value: trim(population.family.ordername) || '-' }],
@@ -258,7 +264,7 @@ export const selectPopulationInfoData = createSelector(
       [{ head: 'Common name', value: trim(population.specie.commonname) || '-' }, { head: 'Scientific name', value: trim(population.specie.scientificname) || '-' }],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [{ head: 'Breeding range', value: trim(population.breedingrange) || '-' }, { head: 'Non-breeding name', value: trim(population.nonbreedingrange) || '-' }],
-      [{ head: 'Red list', value: trim(population.specie.redlistcategory), className: "-tag", color: tag_color }],
+      [{ head: 'Red list', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
       [{ head: 'Ramsar regions', value: ramsar.map(r => r.name).join(',') }]
     ]
   }
