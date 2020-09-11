@@ -7,5 +7,6 @@ export default {
   trend_categories: [],
   populations_trends_widget: {
     selectedPublication: '',
-  }
+    filters: []
+  },
 };

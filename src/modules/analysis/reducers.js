@@ -1,4 +1,4 @@
-import { fetchData, setTrends, setTrendCategories } from './actions';
+import { fetchData, setTrends, setTrendCategories, setFilters } from './actions';
 
 export default {
   [fetchData]: (state, { payload }) => ({
@@ -12,5 +12,12 @@ export default {
   [setTrendCategories]: (state, { payload }) => ({
     ...state,
     trend_categories: payload
+  }),
+  [setFilters]: (state, { payload }) => ({
+    ...state,
+    populations_trends_widget: {
+      ...state.populations_trends_widget,
+      payload
+    }
   })
 };

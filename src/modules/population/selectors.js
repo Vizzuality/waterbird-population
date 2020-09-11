@@ -12,11 +12,8 @@ import { tags, regions } from './constants';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-<<<<<<< HEAD
-=======
 export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
->>>>>>> WIP: widgets data
 export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
@@ -27,12 +24,6 @@ export const search = (state) => state?.population.search;
 export const lonLat = (state) => state?.map.lonLat;
 export const populations_by_location = (state) => state?.population.populationsByLocation.data;
 
-<<<<<<< HEAD
-export const familyId = (state, props) => props?.familyId;
-export const specieId = (state, props) => props?.specieId;
-
-=======
->>>>>>> WIP: widgets data
 export const selectPopulationFiltered = createSelector(
   [data, filters, search, populations_by_location],
   (_data, _filters, _search, _populations_by_location) => {
