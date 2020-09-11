@@ -265,13 +265,14 @@ export const selectPopulationInfoData = createSelector(
 );
 
 export const selectPopulationSizeData = createSelector(
-  [specie_id, population_id, data],
-  (_specie_id, _population_id, _data) => {
+  [specie_id, population_id, data, user],
+  (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy(population.publications.map(p => {
+    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
       const { id, name, published } = p;
       const size = population.sizes.find(s => s.publication_id === id);
       const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
@@ -299,13 +300,14 @@ export const selectPopulationSizeData = createSelector(
 );
 
 export const selectPopulationTrendData = createSelector(
-  [specie_id, population_id, data],
-  (_specie_id, _population_id, _data) => {
+  [specie_id, population_id, data, user],
+  (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy(population.publications.map(p => {
+    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
       const { id, name: publication, published } = p;
       const trend = population.trends.find(s => s.publication_id === id);
       const { id: trend_id, startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
@@ -333,13 +335,14 @@ export const selectPopulationTrendData = createSelector(
 );
 
 export const selectPopulationPercentData = createSelector(
-  [specie_id, population_id, data],
-  (_specie_id, _population_id, _data) => {
+  [specie_id, population_id, data, user],
+  (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy(population.publications.map(p => {
+    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
       const { id, name: publication, published } = p;
       const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
       const { id: onepercent_id, yearset, onepercent, note } = percentlevel;
