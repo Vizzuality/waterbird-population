@@ -1,16 +1,16 @@
 
 export const tags = [
-  { id: 1, color: '#979797', description: 'Not evaluated' },
-  { id: 2, color: '#FF0000', description: 'Critically Endangered' },
-  { id: 3, color: '#393F44', description: 'Data Deficient' },
-  { id: 4, color: '#D1172E', description: 'Endangered' },
-  { id: 5, color: '#660033', description: 'Extinct in the Wild' },
-  { id: 6, color: '#AC411C', description: 'Extinct' },
-  { id: 7, color: '#40A30B', description: 'Least Concern' },
-  { id: 8, color: '#3F3C4D', description: 'Not recognised' },
-  { id: 9, color: '#FF9000', description: 'Near Threatened' },
-  { id: 10, color: '#1D1C2B', description: 'Under Review' },
-  { id: 11, color: '#FFC700', description: 'Vulnerable' }
+  { id: 1, color: '#FFFFFF', border: '#8A8A8A', description: 'Not evaluated', abbreviation: '' },
+  { id: 2, color: '#D61D07', description: 'Critically Endangered', abbreviation: 'CR' },
+  { id: 3, color: '#D1D1C7', description: 'Data Deficient', abbreviation: 'DD' },
+  { id: 4, color: '#FC7F3F', description: 'Endangered', abbreviation: 'EN' },
+  { id: 5, color: '#4C253B', description: 'Extinct in the Wild', abbreviation: 'EW' },
+  { id: 6, color: '#000000', description: 'Extinct', abbreviation: 'EX' },
+  { id: 7, color: '#60C659', description: 'Least Concern', abbreviation: 'LC' },
+  { id: 8, color: '#3F3C4D', description: 'Not recognised', abbreviation: 'NR' },
+  { id: 9, color: '#CCE227', description: 'Near Threatened', abbreviation: 'NT' },
+  { id: 10, color: '#1D1C2B', description: 'Under Review', abbreviation: 'UR' },
+  { id: 11, color: '#F9E814', description: 'Vulnerable', abbreviation: 'VU' }
 ];
 
 export const regions = [

@@ -65,9 +65,10 @@ const Section1 = ({ setFilters, filters }) => {
                       <div>
                         <Link
                           to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                          onClick={() => handleClick(id)}
+                          onClick={() => handleClick({ label: code, value: id })}
                         >{label(code)}
                         </Link>
+
                       </div>
                     </li>
                   </div>

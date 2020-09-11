@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import FamilyListItem from 'components/family-list-item';
 import Spinner from 'components/spinner';
 
-import './styles.scss';
-
 
 const FamilyList = ({ populationFamilies, loading }) => {
 

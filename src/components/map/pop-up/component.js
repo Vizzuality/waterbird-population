@@ -25,7 +25,7 @@ const PopUp = ({ popUpState, coordinates, setPopUp }) => {
     })}>
       <div className="pop-up-content">
         <div className="content-info">
-          <h5>Selected population place:</h5>
+          <h5>Population name:</h5>
           <div className="content-control">
             <h4>{info.place}</h4>
             <button type="button" className="modal-button" onClick={handleClick}>

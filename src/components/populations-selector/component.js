@@ -24,8 +24,8 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
     })}>
       <div className="wrapper">
         <div className="populations-selector--content">
-          <div className="populations-selector--content-info">
-            <h5>Selected population place:</h5>
+          <div className="populations-selector--content-info-wrapper">
+            <h5>Population name:</h5>
             <div className="populations-selector--content-control">
               <h4>{current.label}</h4>
               <select
@@ -39,14 +39,14 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
             </div>
           </div>
 
-          <div className="populations-selector--content-info">
-            <h5>Family:</h5>
-            <p>{current.family}</p>
-          </div>
-
-          <div className="populations-selector--content-info">
+          <div className="populations-selector--content-info-wrapper">
             <h5>Species:</h5>
-            <p>{current.specie}</p>
+            <div className="populations-selector--content-info">
+              <span style={{ backgroundColor: current.tag_color }}>{current.tag_status}</span>
+              <div>
+                <p>{current.specie}</p>
+                <p>{`(${current.scientificname})`}</p></div>
+            </div>
           </div>
         </div>
       </div>

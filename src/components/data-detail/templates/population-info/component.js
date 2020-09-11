@@ -19,7 +19,7 @@ const PopulationInfo = ({ data }) => {
               {i.map(i2 => (
                 <div key={i2.head} className="population-info--summary-item-container">
                   <div className="population-info--summary-item-head">{i2.head}</div>
-                  <div style={{ backgroundColor: i2.color }}
+                  <div style={{ backgroundColor: i2.color, border: `1px solid ${i2.border}` }}
                     className={classnames({
                       "population-info--summary-item-value": true,
                       [i2.className]: !!i2.className
