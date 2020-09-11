@@ -231,7 +231,7 @@ export const selectPopulationOptions = createSelector(
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     return _data.map(p => {
-      const tag = tags.find(t => console.log(p, '****') || t.description === trim(p.specie.redlistcategory));
+      const tag = tags.find(t => t.description === trim(p.specie.redlistcategory));
 
       return {
         label: trim(p.name) || '-',
