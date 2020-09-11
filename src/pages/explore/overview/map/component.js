@@ -85,7 +85,7 @@ export const MapContainer = ({
         />
       </MapControls>
 
-      <Legend />
+      {/* <Legend /> */}
     </div>
   );
 };
