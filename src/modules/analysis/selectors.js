@@ -11,13 +11,13 @@ import { selectPopulationFiltered } from 'modules/population/selectors';
 
 import { setFilters } from 'modules/analysis/actions';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const data = (state) => state?.population.data;
-export const trends = (state) => state?.analysis.trends;
-export const categories = (state) => state?.analysis.trend_categories;
-export const publications = (state) => state?.population.publications;
-export const publicationSelected = (state) => state?.analysis.populations_trends_widget.selectedPublication;
-export const filters = (state) => state?.analysis.filters;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const data = (state) => state ?.population.data;
+export const trends = (state) => state ?.analysis.trends;
+export const categories = (state) => state ?.analysis.trend_categories;
+export const publications = (state) => state ?.population.publications;
+export const publicationSelected = (state) => state ?.analysis.populations_trends_widget.selectedPublication;
+export const filters = (state) => state ?.analysis.filters;
 
 export const selectFamilies = createSelector(
   [selectPopulationFiltered],
@@ -62,8 +62,8 @@ export const selectPublicationData = createSelector(
       }
     });
 
-  return publishedData.map(d => {
-      const orderedPublicationsSizes = orderBy(d.sizes,['endyear', 'publication_id'], ['desc', 'desc']);
+    return publishedData.map(d => {
+      const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc']);
 
       const publication = d.publications.find(
         p => p.id === (orderedPublicationsSizes[0].publication_id));
@@ -92,73 +92,55 @@ export const selectFamilyTrends = createSelector(
 
       const populationsIds = p.map(d => d.id);
 
-
-
-
       const trends = p.map(d => d.trends
-        .filter(f => _publicationSelected
+        .find(f => _publicationSelected
           ? _publicationSelected === trim(f.publication_id)
-          : _lastPublication.last_publication_id === trim(f.publication_id))
+          : _lastPublication.filter(l => l.last_publication_id === f.publication_id))
       )
+        .flat();
 
-          console.log(trends)
-          debugger
-      //.filter((i, x) => p.map(d => d.trends).flat().indexOf(i) === x)
       const total_populations = populationsIds.length;
 
       const trendsCount = _categories.map(c => {
 
         return {
           [c]: trends.reduce(function (n, trend) {
-          return trim(trend.state) === c ? n + 1 : n;
-        }, 0)}
+            return trim(trend.state) === c ? n + 1 : n;
+          }, 0)
+        }
       })
 
-      const trendsperce = _categories.map(c => {
+      const colorSchema = [
+        '#BFD630',
+        '#5DBEE1',
+        '#0282B0',
+        '#EB6240',
+        'white'
+      ];
+
+      const trendsColors = _categories.map((c, i) => {
         return {
-          [c]: trends.reduce(function (n, trend) {
-          return (trim(trend.state) === c ? n + 1 : n) * 100 / total_populations;
-        }, 0)}
-      })
+          [c]: colorSchema[i]
+        }
+      });
 
-      //const trendPercentages = trendsCount.map
-console.log({
-  id: p[0].family.id,
-  name: p[0].family.name,
-  ordername: p[0].family.ordername,
-  populationsIds,
-  total_populations,
-  trendsCount,
-  trendsperce
-})
+      const totalTrends = trendsCount.reduce((a, b) => a + parseInt(Object.values(b)), 0);
+
+      const percentage = trendsCount.map(trend => {
+        return { [Object.keys(trend)]: Object.values(trend) * 100 / totalTrends }
+      })
+      console.log(percentage)
       return {
         id: p[0].family.id,
         name: p[0].family.name,
         ordername: p[0].family.ordername,
-        populationsIds,
         total_populations,
         trendsCount,
-        trendsperce
+        percentage,
+        colors: trendsColors
       }
     })
   });
-// export const selectTrendLabels = createSelector(
-//   [_trends],
-//   (_trends) => {
-
-//     const colorSchema = [
-//       '#BFD630',
-//       '#5DBEE1',
-//       '#0282B0',
-//       '#EB6240',
-//     ];
-
-//     console.log(trends)
-
-//     return null;
-//   }
-// )
-
 
 
 
