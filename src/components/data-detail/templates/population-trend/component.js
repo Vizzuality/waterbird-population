@@ -87,6 +87,8 @@ const PopulationTrend = ({ data, user }) => {
                   {!!d.notes && !!d.notes.length && d.notes.map(n => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
+                      interactive={true}
+                      trigger="click"
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}

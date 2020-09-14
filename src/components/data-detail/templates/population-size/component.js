@@ -89,6 +89,8 @@ const PopulationSize = ({ data, user }) => {
                   {!!d.notes && !!d.notes.length && d.notes.map(n => (
                     <Tooltip
                       delay={0}
+                      interactive={true}
+                      trigger="click"
                       arrow={false}
                       duration={[0, 0]}
                       content={
