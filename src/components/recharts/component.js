@@ -116,7 +116,7 @@ class Chart extends PureComponent {
         <ResponsiveContainer width="100%" height={height}>
           <RechartChart
             stackOffset={stackOffset}
-            // height={height}
+            height={height}
             // width={width}
             viewBox={viewBox}
             data={data}
@@ -212,7 +212,7 @@ class Chart extends PureComponent {
             ))}
 
             {bars && Object.keys(bars).map(key => (
-              <Bar key={key} dataKey={key} dot={false} {...bars[key]}>
+              <Bar key={key} dataKey={key} dot={false} {...bars[key]} minPointSize={60}>
                 {!!bars[key].label && <Label {...bars[key].label} />}
 
                 {bars[key].itemColor && data.map(item => (

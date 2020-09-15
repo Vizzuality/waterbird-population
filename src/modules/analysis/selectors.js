@@ -10,6 +10,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { selectPopulationFiltered } from 'modules/population/selectors';
 
 import { setFilters } from 'modules/analysis/actions';
+import { objectTypeSpreadProperty } from '@babel/types';
 
 export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
 export const data = (state) => state ?.population.data;
@@ -128,12 +129,11 @@ export const selectFamilyTrends = createSelector(
 
       const percentage = trendsCount.map(trend => {
         return { [Object.keys(trend)]: Object.values(trend) * 100 / totalTrends }
-      })
-      console.log(percentage)
+      });
+
       return {
         id: p[0].family.id,
-        name: p[0].family.name,
-        ordername: p[0].family.ordername,
+        name: `${trim(p[0].family.name)}, (${trim(p[0].family.ordername)})`,
         total_populations,
         trendsCount,
         percentage,

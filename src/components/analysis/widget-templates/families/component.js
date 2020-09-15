@@ -7,11 +7,12 @@ import config from './config';
 
 
 const Bars = (props) => {
-  const { chartConfig, chartData } = config.parse();
   const {
     familyTrends
   } = props;
-console.log(familyTrends, 'data widget')
+
+  const { chartConfig, chartData } = config.parse(familyTrends);
+
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:

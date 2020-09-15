@@ -1,57 +1,32 @@
-const fakeData = [
-  {
-    'fluctuating': 15,
-    'decreasing': 65,
-    'stable': 65,
-    'increasing': 65,
-    region: 'Africa',
-  },
-  {
-    'fluctuating': 67,
-    'decreasing': 65,
-    'stable': 21,
-    'increasing': 65,
-    region: 'Asia',
-  },
-  {
-    'fluctuating': 39,
-    'decreasing': 65,
-    'stable': 12,
-    'increasing': 15,
-    region: 'Europe',
-  },
-  {
-    'fluctuating': 220,
-    'decreasing': 570,
-    'stable': 210,
-    'increasing': 350,
-    region: 'Neotropics',
-  }
-];
 
-const getMetadata = (data) => data.map(d => d.region)
+import React from 'react';
+import groupBy from 'lodash/groupBy';
+import sortBy from 'lodash/sortBy';
+import WidgetLegend from 'components/analysis/widget-legend';
+import WidgetTooltip from 'components/analysis/widget-tooltip';
+
+const getMetadata = (data) => data.map(d => d.name)
 
 const getData = (data) => {
 
-  // gain: data.map(d => d.gain_m2 / 1000000).reduce((previous, current) => current + previous, 0),
-  // loss: -data.map(d => d.loss_m2 / 1000000).reduce((previous, current) => current + previous, 0),
-  // net_change: data.map(d => d.net_change_m2 / 1000000)
-  //   .reduce((previous, current) => current + previous, 0)
+  return data.map(d => {
+
+    return {
+      name: d.name,
+      increasing: d.percentage.find(s => s.increasing) ? d.percentage.find(s => s.increasing).increasing : 0,
+      unclear: d.percentage.find(s => s.unclear) ? d.percentage.find(s => s.unclear).unclear : 0,
+      unknown: d.percentage.find(s => s.unknown) ? d.percentage.find(s => s.unknown).unknown : 0,
+      declining: d.percentage.find(s => s.declining) ? d.percentage.find(s => s.declining).declining : 0,
+      'stable or fluctuating': d.percentage.find(s => s['stable or fluctuating']) ? d.percentage.find(s => s['stable or fluctuating'])['stable or fluctuating'] : 0,
+    }
+  })
 }
 const getBars = data => data.reduce((acc, d) => {
-
-  // console.log(d, {
-  //   ...acc,
-  //   [d.label]: {
-  //     stackId: 'bar',
-  //     fill: d.color,
-  //     stroke: d.color,
-  //     isAnimationActive: false
-  // }})
 
   return {
     ...acc,
     [d.label]: {
+      barSize: 20,
       stackId: 'bar',
       fill: d.color,
       stroke: d.color,
@@ -63,39 +38,52 @@ const getBars = data => data.reduce((acc, d) => {
 
 const dataBars = [
   {
-    label: 'fluctuating',
+    label: 'stable or fluctuating',
     color: '#BFD630',
     //$color-1 fluctuating
   },
   {
-    label: 'decreasing',
+    label: 'declining',
     color: '#5DBEE1',
     //decreasing
-  },
-  {
-    label: 'stable',
-    color: '#0282B0',
-    //$color-2 fluctuating
   },
   {
     label: 'increasing',
     color: '#EB6240',
     //increasing
   },
+  {
+    label: 'unclear',
+    color: '#0282B0',
+    //$color-2 fluctuating
+  },
+  {
+    label: 'unknown',
+    color: '#0282B0',
+    //increasing
+  },
 ];
 
 export const CONFIG = {
   parse: (data) => {
-    const chartData = fakeData;
+
+    const chartData = getData(data);
+    const height = chartData.length * 30;
+
     {
       return {
         chartData,
-        metadata: getMetadata(fakeData),
+        metadata: getMetadata(data),
         chartConfig: {
-          height: 360,
+          height,
           layout: 'vertical',
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
-          xKey: 'region',
+          cartesianGrid: {
+            vertical: true,
+            horizontal: false,
+            strokeDasharray: '5 20'
+          },
+          xKey: 'name',
           yKeys: {
             bars: getBars(dataBars)
           },
@@ -109,60 +97,54 @@ export const CONFIG = {
           }],
           xAxis: {
             type: 'number',
-            domain: [0, 400],
+            domain: [0, 100],
             tick: {
               fontSize: 12,
               fill: 'rgba(0, 0, 0, 0.54)'
             },
-            ticks: getMetadata(fakeData),
-            interval: 0
+           // ticks: getMetadata(fakeData),
+           tickCount: 6
           },
           yAxis: {
-            type: "category",
+            type: 'category',
+            dataKey: 'name',
             tick: {
-              fontSize: 12,
+              fontSize: 10,
               fill: 'rgba(0,0,0,0.54)'
             },
-            width: 40,
-            tickFormatter: value => Math.round(value),
-            domain: [0, 100],
+            width: 200,
+           // tickFormatter: value => Math.round(value),
             interval: 0,
-            orientation: 'right',
-            label: {
-              value: '%',
-              position: 'top',
-              offset: 25
-            },
           },
-          // legend: {
-          //   align: 'left',
-          //   verticalAlign: 'top',
-          //   layout: 'horizontal',
-          //   height: 80,
-          //   top: 0,
-          //   left: 0,
-          //   position: 'relative',
-          //   content: (properties) => {
-          //     const { payload } = properties;
-          //     const groups = groupBy(payload, p => p.payload);
-          //     return <WidgetLegend type="height" groups={groups} />;
-          //   }
-          // },
-          // tooltip: {
-          //   cursor: false,
-          //   content: (
-          //     <WidgetTooltip
-          //       type="column"
-          //       style={{
-          //         display: 'flex',
-          //         justifyContent: 'space-around',
-          //         flexDirection: 'column'
-          //       }}
-          //       settings={getSettingsTooltip(bars)}
-          //       label={{ key: 'name' }}
-          //     />
-          //   )
-          // }
+          legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            layout: 'horizontal',
+            height: 80,
+            top: 0,
+            left: 0,
+            position: 'relative',
+            content: (properties) => {
+              const { payload } = properties;
+              const groups = groupBy(payload, p => p.payload);
+              return <WidgetLegend groups={groups} />;
+            }
+          },
+          tooltip: {
+            cursor: false,
+            content: (
+              <WidgetTooltip
+                type="column"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  flexDirection: 'column'
+                }}
+                //settings={getSettingsTooltip(bars)}
+                label={{ key: 'name' }}
+              />
+            )
+          }
         },
       };
     }
