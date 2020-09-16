@@ -4,6 +4,8 @@ import Cookies from 'js-cookie';
 import Button from 'components/button';
 import Modal from 'components/modal';
 import { fetchUser } from 'services/users';
+import CryptoJS from 'crypto-js';
+
 
 import './styles.scss';
 
@@ -28,7 +30,7 @@ const Login = ({ user, setUser, resetUser }) => {
 
   const handleChange = (e) => {
     setSubmission(false);
-    changeState({ ...form, [e.target.name]: e.target.value });
+    changeState({ ...form, [e.target.name]: e.target.name === 'password' ? CryptoJS.SHA256(e.target.value) : e.target.value });
   };
 
   const handleSubmit = () => {
@@ -89,10 +91,10 @@ const Login = ({ user, setUser, resetUser }) => {
             type="submit"
             className={classnames(
               '-background -secondary -big', {
-              '-disable': !email.length || !password.length || submissionError
+              '-disable': !email.length && !password.length && submissionError
             })}
             onClick={handleSubmit}
-            disabled={!email.length || !password.length || submissionError}
+            disabled={!email.length && !password.length && submissionError}
           >
             Sign in
           </Button>

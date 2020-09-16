@@ -29,20 +29,39 @@ export const registerUser = (data) => {
 
   const date = new Date();
 
+  // const q = `INSERT INTO users (
+  //   name,
+  //   email,
+  //   password,
+  //   company,
+  //   phone,
+  //   request_date,
+  //   comments
+  // )
+  // VALUES (
+  //   '${data.name}',
+  //   '${data.email}',
+  //   '${data.password}',
+  //   '${data.company}',
+  //   '${data.phone}',
+  //   '${date}',
+  //   '${data.comments}'
+  // ) `
+
   const q = `INSERT INTO users (
     name,
     email,
+    password,
     company,
     phone,
-    comments,
     request_date
   )
   VALUES (
     '${data.name}',
     '${data.email}',
+    '${data.password}',
     '${data.company}',
     '${data.phone}',
-    '${data.comments}',
     '${date}'
   ) `
   return API.post(`sql?q=${q}&api_key=${api_key}`)

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames";
+import CryptoJS from 'crypto-js';
+
 import Button from "components/button";
 import Modal from "components/modal";
 
@@ -10,6 +12,7 @@ import { registerUser } from "services/users";
 const Register = () => {
   const defaultForm = {
     name: "",
+    password: "",
     email: "",
     phone: "",
     company: "",
@@ -30,10 +33,12 @@ const Register = () => {
   };
 
   const handleChange = e => {
-    changeState({ ...form, [e.target.name]: e.target.value });
+    setConfirmation(false)
+    changeState({ ...form, [e.target.name]:
+      e.target.name === 'password' ? CryptoJS.SHA256(e.target.value) : e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     registerUser({ ...form })
       .then(({ status }) => {
         if (status === 200) {
@@ -59,7 +64,7 @@ const Register = () => {
           </div>
         )}
 
-        {confirmation && error && (
+        {!confirmation && error && (
           <div className="login-modal-content">
             <p className="separator">Something went wrong.</p>
             <p>
@@ -75,7 +80,7 @@ const Register = () => {
           </div>
         )}
 
-        {!confirmation && (
+        {!confirmation && !error && (
           <div className="modal-container">
             <div className="login-modal-content">
               <h3>Get started:</h3>
@@ -87,6 +92,15 @@ const Register = () => {
                   type="text"
                   id="name"
                   placeholder="full name"
+                  required
+                />
+                <label htmlFor="name">PASSWORD</label>
+                <input
+                  onChange={handleChange}
+                  name="password"
+                  type="text"
+                  id="name"
+                  placeholder="password"
                   required
                 />
                 <label htmlFor="email">EMAIL</label>
@@ -113,14 +127,14 @@ const Register = () => {
                   id="company"
                   placeholder="company name"
                 />
-                <label htmlFor="email">COMMENTS</label>
+                {/* <label htmlFor="comments">COMMENTS</label>
                 <input
                   onChange={handleChange}
                   name="comments"
                   type="text"
                   id="comments"
                   placeholder="comments"
-                />
+                /> */}
               </form>
               <Button
                 type="submit"
