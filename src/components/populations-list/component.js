@@ -86,6 +86,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                 <div className="col-sm-2">
                   <div className="card-data">
                     <span>Notes</span>
+                    {console.log(d)}
                     <div className="notes">
                         {d.notes && d.notes.length && (
                           d.notes.map((n, i) =>

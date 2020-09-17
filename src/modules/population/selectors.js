@@ -499,6 +499,7 @@ export const selectPopulationProps = createStructuredSelector({
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
+  user,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationConservationFramework: selectPopulationConservationFramework,

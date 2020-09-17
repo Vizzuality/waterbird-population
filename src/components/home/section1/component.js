@@ -17,7 +17,7 @@ const Section1 = ({ setFilters, filters }) => {
   const handleClick = (value) => {
     setFilters({
       ...filters,
-      'framework_id': value
+      'framework_id': [value]
     });
   };
 

@@ -85,7 +85,6 @@ const PopulationPercent = ({ data, user }) => {
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       interactive={true}
-                      trigger="click"
                       arrow={false}
                       duration={[0, 0]}
                       content={(

@@ -90,7 +90,6 @@ const PopulationSize = ({ data, user }) => {
                     <Tooltip
                       delay={0}
                       interactive={true}
-                      trigger="click"
                       arrow={false}
                       duration={[0, 0]}
                       content={
@@ -113,13 +112,12 @@ const PopulationSize = ({ data, user }) => {
                       key={`${d.specie}${d.population}${n.id}`}
                       delay={0}
                       interactive={true}
-                      trigger="click"
                       arrow={true}
                       duration={[0, 0]}
                       content={
                         <Note>
                           <p className="title">
-                            Population size note <span>#{n.id}</span>
+                            Population size reference <span>#{n.id}</span>
                           </p>
                           <p>{n.info}</p>
                         </Note>}

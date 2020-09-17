@@ -92,7 +92,6 @@ const PopulationTrend = ({ data, user }) => {
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       interactive={true}
-                      trigger="click"
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}
@@ -115,7 +114,6 @@ const PopulationTrend = ({ data, user }) => {
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       interactive={true}
-                      trigger="click"
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}
