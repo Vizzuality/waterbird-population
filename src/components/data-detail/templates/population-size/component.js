@@ -100,7 +100,7 @@ const PopulationSize = ({ data, user }) => {
                           <p>{n.info}</p>
                         </Note>}
                     >
-                      {n.id && (<span className="tooltipped">
+                      {n.id && n.info && (<span className="tooltipped">
                         {i === d.notes.length - 1 ? `N${n.id}` : `N${n.id}, `}
                       </span>)}
                     </Tooltip>
@@ -122,7 +122,7 @@ const PopulationSize = ({ data, user }) => {
                           <p>{n.info}</p>
                         </Note>}
                     >
-                      {n.id && (<span className="tooltipped">
+                      {n.id && n.info && (<span className="tooltipped">
                         {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
                       </span>)}
                     </Tooltip>

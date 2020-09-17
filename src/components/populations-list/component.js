@@ -44,6 +44,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                 <Download
                   text={'Download data'}
                   data={populationData}
+                  imageSize="-small"
                 />
               </div>
             </div>
@@ -86,7 +87,6 @@ const PopulationsList = ({ specieId, populationData }) => {
                 <div className="col-sm-2">
                   <div className="card-data">
                     <span>Notes</span>
-                    {console.log(d)}
                     <div className="notes">
                         {d.notes && d.notes.length && (
                           d.notes.map((n, i) =>
@@ -100,11 +100,11 @@ const PopulationsList = ({ specieId, populationData }) => {
                                   <p className="title">
                                     Population {n.type} notes <span>#{n.id}</span>
                                   </p>
-                                  <p>{n.notes}</p>
+                                  <p>{n.note}</p>
                                 </Note>)}
                             >
                               {n.id && <span className="tooltipped">
-                                {i === d.notes.length - 1 ? `${n.reference}${n.id}` : `${n.reference}${n.id}, `}
+                                {i === d.notes.length - 1 ? ` ${n.reference}${n.id}` : ` ${n.reference}${n.id} `}
                               </span>}
                             </Tooltip>
                           )

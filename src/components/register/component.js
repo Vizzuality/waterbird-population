@@ -85,7 +85,7 @@ const Register = () => {
             <div className="login-modal-content">
               <h3>Get started:</h3>
               <form method="post">
-                <label htmlFor="name">NAME</label>
+                <label htmlFor="name">NAME<sup>*</sup></label>
                 <input
                   onChange={handleChange}
                   name="name"
@@ -94,7 +94,7 @@ const Register = () => {
                   placeholder="full name"
                   required
                 />
-                <label htmlFor="name">PASSWORD</label>
+                <label htmlFor="name">PASSWORD<sup>*</sup></label>
                 <input
                   onChange={handleChange}
                   name="password"
@@ -103,7 +103,7 @@ const Register = () => {
                   placeholder="password"
                   required
                 />
-                <label htmlFor="email">EMAIL</label>
+                <label htmlFor="email">EMAIL<sup>*</sup></label>
                 <input
                   onChange={handleChange}
                   name="email"
@@ -127,14 +127,14 @@ const Register = () => {
                   id="company"
                   placeholder="company name"
                 />
-                {/* <label htmlFor="comments">COMMENTS</label>
+                <label htmlFor="comments">COMMENTS</label>
                 <input
                   onChange={handleChange}
                   name="comments"
                   type="text"
                   id="comments"
                   placeholder="comments"
-                /> */}
+                />
               </form>
               <Button
                 type="submit"

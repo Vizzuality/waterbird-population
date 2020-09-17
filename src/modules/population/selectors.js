@@ -145,10 +145,13 @@ export const selectPopulationsData = createSelector(
       const size = d.sizes.find(s => s.publication_id === publication.id);
       const trend = d.trends.find(s => s.publication_id === publication.id);
       const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
-      const size_notes = size.references.filter(r => r.notes).map(n => { return { id: n.id, note: n.notes, type: 'size', reference: 'S' }});
-      const trend_notes = trend.references.filter(r => r.notes).map(n => { return { id: n.id, note: n.notes, type: 'trend', reference: 'T' }});
+      const size_notes = size.notes  && { id: size.id, note: size.notes, type: 'size', reference: 'S' };
+      const trend_notes = trend.notes  && { id: trend.id, note: trend.notes, type: 'trend', reference: 'T' };
+      const notes = (size_notes && trend.notes)
+        ? [size_notes].concat([trend_notes])
+        : size.notes ?
+            size_notes : trend_notes;
 
-      const notes = size_notes.concat(trend_notes);
 
       return {
         id : d.id,
@@ -285,6 +288,18 @@ export const selectPopulationSizeData = createSelector(
       const { id, name, published } = p;
       const size = population.sizes.find(s => s.publication_id === id);
       const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, references } = size;
+      const parsedReferences = (references && references.length)
+      ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
+      : [];
+
+      const filteredReferences = parsedReferences.reduce((acc, current) => {
+        const x = acc.find(item => item.id === current.id);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      }, []);
 
       return {
         specie: _specie_id,
@@ -301,9 +316,7 @@ export const selectPopulationSizeData = createSelector(
         notes: trim(notes) ? [
           { id: 1, info: trim(notes) }
         ] : [],
-        references: (references && references.length)
-          ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
-          : []
+        references: filteredReferences
       }
     }), 'publication_id', 'desc')
   }

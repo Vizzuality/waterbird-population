@@ -7,7 +7,7 @@ import Icon from 'components/icon';
 import Image from './download.svg';
 import './styles.scss';
 
-const Download = ({ data, filename, headers, text, className }) => {
+const Download = ({ data, filename, headers, text, className, imageSize }) => {
   const handleClick = (e) => e.stopPropagation();
 
   return (
@@ -22,7 +22,7 @@ const Download = ({ data, filename, headers, text, className }) => {
       filename={`${filename}-${Date.now()}.csv`}
     >
       <span>{text}</span>
-      <img src={Image} name="download" />
+      <img src={Image} className={classnames(imageSize)} name="download" />
     </CSVLink>
   )
 };

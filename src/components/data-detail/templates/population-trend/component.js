@@ -88,7 +88,7 @@ const PopulationTrend = ({ data, user }) => {
                 <td>{d.name}</td>
                 <td>{d.quality}</td>
                 <td>
-                  {!!d.notes && !!d.notes.length && d.notes.map((n, i) => console.log(d.notes.length > 1)||(
+                  {!!d.notes && !!d.notes.length && d.notes.map((n, i) => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       interactive={true}
@@ -125,9 +125,10 @@ const PopulationTrend = ({ data, user }) => {
                           <p>{n.info}</p>
                         </Note>)}
                     >
-                      <span className="tooltipped">
-                        {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
-                      </span>
+                      {n.info &&
+                        <span className="tooltipped">
+                          {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                        </span>}
                     </Tooltip>
                   ))}
                 </td>
