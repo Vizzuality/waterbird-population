@@ -86,9 +86,10 @@ const PopulationSize = ({ data, user }) => {
                 <td>{d.maximum}</td>
                 <td>{d.quality}</td>
                 <td>
-                  {!!d.notes && !!d.notes.length && d.notes.map(n => (
+                  {!!d.notes && !!d.notes.length && d.notes.map((n, i) => (
                     <Tooltip
                       delay={0}
+                      interactive={true}
                       arrow={false}
                       duration={[0, 0]}
                       content={
@@ -99,26 +100,31 @@ const PopulationSize = ({ data, user }) => {
                           <p>{n.info}</p>
                         </Note>}
                     >
-                      <span className="tooltipped">N{n.id}</span>
+                      {n.id && n.info && (<span className="tooltipped">
+                        {i === d.notes.length - 1 ? `N${n.id}` : `N${n.id}, `}
+                      </span>)}
                     </Tooltip>
                   ))}
                 </td>
                 <td>
-                  {!!d.references && !!d.references.length && d.references.map(n => (
+                  {!!d.references && !!d.references.length && d.references.map((n, i) => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       delay={0}
+                      interactive={true}
                       arrow={true}
                       duration={[0, 0]}
-                      render={() => (
+                      content={
                         <Note>
                           <p className="title">
-                            Population size note <span>#{n.id}</span>
+                            Population size reference <span>#{n.id}</span>
                           </p>
                           <p>{n.info}</p>
-                        </Note>)}
+                        </Note>}
                     >
-                      <span className="tooltipped">R{n.id}</span>
+                      {n.id && n.info && (<span className="tooltipped">
+                        {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                      </span>)}
                     </Tooltip>
                   ))}
                 </td>

@@ -12,6 +12,7 @@
     "axios-cache-adapter": "^2.5.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.6.1",
+    "crypto-js": "^4.0.0",
     "d3-ease": "^1.0.6",
     "deck.gl": "7.3.6",
     "fuse.js": "^6.4.1",

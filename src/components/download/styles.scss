@@ -10,6 +10,14 @@
     padding: 0 15px;
   }
 
+  img {
+    width: 20px;
+
+    &.-small {
+      width: 15px;
+    }
+  }
+
   &.-disabled {
     opacity: 0.3;
   }

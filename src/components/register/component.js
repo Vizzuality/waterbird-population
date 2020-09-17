@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames";
+import CryptoJS from 'crypto-js';
+
 import Button from "components/button";
 import Modal from "components/modal";
 
@@ -10,6 +12,7 @@ import { registerUser } from "services/users";
 const Register = () => {
   const defaultForm = {
     name: "",
+    password: "",
     email: "",
     phone: "",
     company: "",
@@ -30,10 +33,12 @@ const Register = () => {
   };
 
   const handleChange = e => {
-    changeState({ ...form, [e.target.name]: e.target.value });
+    setConfirmation(false)
+    changeState({ ...form, [e.target.name]:
+      e.target.name === 'password' ? CryptoJS.SHA256(e.target.value) : e.target.value });
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = () => {
     registerUser({ ...form })
       .then(({ status }) => {
         if (status === 200) {
@@ -59,7 +64,7 @@ const Register = () => {
           </div>
         )}
 
-        {confirmation && error && (
+        {!confirmation && error && (
           <div className="login-modal-content">
             <p className="separator">Something went wrong.</p>
             <p>
@@ -75,12 +80,12 @@ const Register = () => {
           </div>
         )}
 
-        {!confirmation && (
+        {!confirmation && !error && (
           <div className="modal-container">
             <div className="login-modal-content">
               <h3>Get started:</h3>
               <form method="post">
-                <label htmlFor="name">NAME</label>
+                <label htmlFor="name">NAME<sup>*</sup></label>
                 <input
                   onChange={handleChange}
                   name="name"
@@ -89,7 +94,16 @@ const Register = () => {
                   placeholder="full name"
                   required
                 />
-                <label htmlFor="email">EMAIL</label>
+                <label htmlFor="name">PASSWORD<sup>*</sup></label>
+                <input
+                  onChange={handleChange}
+                  name="password"
+                  type="password"
+                  id="name"
+                  placeholder="password"
+                  required
+                />
+                <label htmlFor="email">EMAIL<sup>*</sup></label>
                 <input
                   onChange={handleChange}
                   name="email"
@@ -113,7 +127,7 @@ const Register = () => {
                   id="company"
                   placeholder="company name"
                 />
-                <label htmlFor="email">COMMENTS</label>
+                <label htmlFor="comments">COMMENTS</label>
                 <input
                   onChange={handleChange}
                   name="comments"

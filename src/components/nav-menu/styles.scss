@@ -1,110 +1,194 @@
 @import 'styles/settings';
 @import 'styles/mixins';
 
-.c-nav-menu {
-  width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-family: $font-family-1;
-  line-height: 19px;
+.c-nav-menu-wrapper {
 
-  .nav-menu-item {
-    padding-right: 50px;
+  button {
+    pointer-events: all;
 
-    > a {
-      text-decoration: none;
-    }
-  }
+    &.header {
+      width: 40px;
+      height: 40px;
+      margin-right: 40px;
 
-  &.header {
-    color: rgba($color-grey-8, 0.5);
-
-    h3 {
-      box-sizing: border-box;
-      position: relative;
-      color: rgba($color-grey-8, 0.5);
-
-      &.-active {
-        color: $color-3;
-
-        &:before {
-          content: '';
-          position: absolute;
-          bottom: -10px;
-          width: 30px;
-          border-radius: 2.5px;
-          height: 5px;
-          background-color: $color-2;
-          margin: auto;
-          z-index: 2;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-      }
-    }
-
-    .dropdown {
-      position: relative;
-      margin-right: 5px;
-
-      .dropdown-list {
-        background-color: $white;
+      :hover {
         display: none;
       }
 
-      &:hover {
-        color: rgba($color-grey-8, 1);
-
-        .dropdown-list {
-          box-sizing: border-box;
-          padding: 20px;
-          display: block;
-          flex-direction: column;
-          position: absolute;
-          left: -20px;
-          min-width: 200px;
-          > li {
-            padding: 10px 0;
-          }
-        }
+      @media (min-width: map-get($breakpoints, xlg)) {
+        display: none;
       }
 
-      h3 {
-        &:after {
-          position: absolute;
-          top: 50%;
-          right: -20px;
-          @include arrow(9px,2px, $black, 'down');
-          transform: translateY(-50%) rotate(45deg);
-        }
+      @media (max-width: map-get($breakpoints, xlg)) {
+        display: block;
+        background-repeat: no-repeat;
+        background-position: center;
       }
     }
   }
 
-  &.footer {
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: $padding 0;
+  .nav-menu {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    font-family: $font-family-1;
+    line-height: 19px;
 
-    h3 {
-      color: $white;
-      font-weight: bold;
-      padding-bottom: 10px;
+    .nav-menu-item {
+      padding-right: 50px;
+
+      > a {
+        text-decoration: none;
+      }
+      @media (min-width: map-get($breakpoints, xlg)) {
+        width: 100%;
+      }
+
+      @media (max-width: map-get($breakpoints, xlg)) {
+        padding-top: 20px;
+      }
     }
 
-    a {
-      color: $white;
+    &.header {
+      color: rgba($color-grey-8, 0.5);
+
+      h3 {
+        box-sizing: border-box;
+        position: relative;
+        color: rgba($color-grey-8, 0.5);
+
+        &.-active {
+          color: $color-3;
+
+          @media (min-width: map-get($breakpoints, xlg)) {
+            &:before {
+              content: '';
+              position: absolute;
+              bottom: -10px;
+              width: 30px;
+              border-radius: 2.5px;
+              height: 5px;
+              background-color: $color-2;
+              margin: auto;
+              z-index: 2;
+              left: 50%;
+              transform: translateX(-50%);
+            }
+          }
+        }
+
+        &:hover {
+          color: $color-3;
+        }
+      }
+
+      .dropdown {
+        position: relative;
+        margin-right: 5px;
+
+        .dropdown-list {
+          background-color: $white;
+          display: none;
+
+          @media (max-width: map-get($breakpoints, xlg)) {
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px;
+
+            > li {
+              padding-top: 5px;
+              opacity: 0.5;
+
+              &:hover {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        @media (min-width: map-get($breakpoints, xlg)) {
+
+          &:hover {
+            color: rgba($color-grey-8, 1);
+
+            .dropdown-list {
+              box-sizing: border-box;
+              padding: 20px;
+              display: block;
+              flex-direction: column;
+              position: absolute;
+              top: 40px;
+              left: -20px;
+              min-width: 200px;
+
+              > li {
+                padding: 10px 0;
+              }
+            }
+          }
+        }
+
+        h3 {
+          &:after {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            @include arrow(9px,2px, $black, 'down');
+            transform: translateY(-50%) rotate(45deg);
+
+            @media (max-width: map-get($breakpoints, xlg)) {
+              display: none;
+            }
+          }
+        }
+
+        @media (max-width: map-get($breakpoints, xlg)) {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-right: 0;
+        }
+      }
+
+      @media (max-width: map-get($breakpoints, xlg)) {
+        display: none;
+        position: absolute;
+        right: -125px;
+        align-items: flex-start;
+        flex-direction: column;
+        background-color: white;
+        padding: 20px;
+        min-width: 300px;
+
+        &.-active {
+          display: block;
+        }
+      }
     }
 
-    .dropdown-list {
-      background-color: $color-grey-8;
-      line-height: 30px;
-    }
+    &.footer {
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: $padding 0;
 
-    @media (max-width: map-get($breakpoints, sm)) {
-      flex-direction: column;
+      h3 {
+        color: $white;
+        font-weight: bold;
+        padding-bottom: 10px;
+      }
+
+      a {
+        color: $white;
+      }
+
+      .dropdown-list {
+        background-color: $color-grey-8;
+        line-height: 30px;
+      }
+
+      @media (max-width: map-get($breakpoints, sm)) {
+        flex-direction: column;
+      }
     }
   }
 }

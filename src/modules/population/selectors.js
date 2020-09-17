@@ -145,6 +145,13 @@ export const selectPopulationsData = createSelector(
       const size = d.sizes.find(s => s.publication_id === publication.id);
       const trend = d.trends.find(s => s.publication_id === publication.id);
       const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+      const size_notes = size.notes  && { id: size.id, note: size.notes, type: 'size', reference: 'S' };
+      const trend_notes = trend.notes  && { id: trend.id, note: trend.notes, type: 'trend', reference: 'T' };
+      const notes = (size_notes && trend.notes)
+        ? [size_notes].concat([trend_notes])
+        : size.notes ?
+            size_notes : trend_notes;
+
 
       return {
         id : d.id,
@@ -153,12 +160,11 @@ export const selectPopulationsData = createSelector(
         size: `${size.maximum} - ${size.minimum}`,
         'size_year': `${size.startyear} - ${size.endyear}`,
         trend: trend.name,
-        'size_reference_notes': size.reference_notes,
-        'size_reference_info': size.reference_info,
+        'size_references': size.references,
         'trend_year': `${trend.startyear} - ${trend.endyear}`,
         'trend_quality': trend.quality,
-        'trend_notes': trend.notes,
-        'trend_references': trend.reference,
+        'notes': notes,
+        'trend_references': trend.references,
         'size_estimates_quality': size.quality,
         'percent': percentLevel.onepercent,
         'yearset': percentLevel.yearset,
@@ -169,7 +175,7 @@ export const selectPopulationsData = createSelector(
         'family_name': d.family.name,
         'order_name': d.family.ordername,
         'breedingrange': d.breedingrange,
-        'nonbreedingrange': d.nonbreedingrange
+        'nonbreedingrange': d.nonbreedingrange,
       }
     })
   }
@@ -281,7 +287,20 @@ export const selectPopulationSizeData = createSelector(
     return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
       const { id, name, published } = p;
       const size = population.sizes.find(s => s.publication_id === id);
-      const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, reference_id, reference_info } = size;
+      const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, references } = size;
+      const parsedReferences = (references && references.length)
+      ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
+      : [];
+
+      const filteredReferences = parsedReferences.reduce((acc, current) => {
+        const x = acc.find(item => item.id === current.id);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      }, []);
+
       return {
         specie: _specie_id,
         size_id: size_id,
@@ -297,9 +316,7 @@ export const selectPopulationSizeData = createSelector(
         notes: trim(notes) ? [
           { id: 1, info: trim(notes) }
         ] : [],
-        references: (reference_id && reference_info) ? [
-          { id: reference_id, info: reference_info }
-        ] : []
+        references: filteredReferences
       }
     }), 'publication_id', 'desc')
   }
@@ -316,7 +333,7 @@ export const selectPopulationTrendData = createSelector(
     return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
       const { id, name: publication, published } = p;
       const trend = population.trends.find(s => s.publication_id === id);
-      const { id: trend_id, startyear, endyear, name, quality, notes, reference_id, reference_info } = trend;
+      const { id: trend_id, startyear, endyear, name, quality, notes, references } = trend;
 
       return {
         specie: _specie_id,
@@ -332,9 +349,9 @@ export const selectPopulationTrendData = createSelector(
         notes: trim(notes) ? [
           { id: 1, info: trim(notes) }
         ] : [],
-        references: (reference_id && reference_info) ? [
-          { id: reference_id, info: reference_info }
-        ] : []
+        references: (references && references.length)
+        ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
+        : []
       }
     }), 'publication_id', 'desc')
   }
@@ -495,6 +512,7 @@ export const selectPopulationProps = createStructuredSelector({
 
 
 export const selectPopulationDetailProps = createStructuredSelector({
+  user,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationConservationFramework: selectPopulationConservationFramework,

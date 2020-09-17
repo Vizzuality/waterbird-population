@@ -33,11 +33,13 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
   }, []);
 
   const handleClick = () => {
+    //toggle modal
     onClick();
   };
 
   const handleFilters = () => {
     setFilters(newFiltersValues)
+    //toggle modal
     onClick();
   };
 

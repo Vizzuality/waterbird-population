@@ -7,9 +7,9 @@ export const tags = [
   { id: 5, color: '#4C253B', description: 'Extinct in the Wild', abbreviation: 'EW' },
   { id: 6, color: '#000000', description: 'Extinct', abbreviation: 'EX' },
   { id: 7, color: '#60C659', description: 'Least Concern', abbreviation: 'LC' },
-  { id: 8, color: '#3F3C4D', description: 'Not recognised', abbreviation: 'NR' },
+  { id: 8, color: '#FFFFFF', border: '#8A8A8A', description: 'Not recognised', abbreviation: 'NR' },
   { id: 9, color: '#CCE227', description: 'Near Threatened', abbreviation: 'NT' },
-  { id: 10, color: '#1D1C2B', description: 'Under Review', abbreviation: 'UR' },
+  { id: 10, color: '#FFFFFF', border: '#8A8A8A', description: 'Under Review', abbreviation: 'UR' },
   { id: 11, color: '#F9E814', description: 'Vulnerable', abbreviation: 'VU' }
 ];
 

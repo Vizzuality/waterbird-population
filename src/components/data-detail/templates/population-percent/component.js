@@ -84,7 +84,7 @@ const PopulationPercent = ({ data, user }) => {
                   {!!d.notes && !!d.notes.length && d.notes.map(n => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
-                      delay={0}
+                      interactive={true}
                       arrow={false}
                       duration={[0, 0]}
                       content={(
