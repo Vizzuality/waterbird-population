@@ -17,7 +17,7 @@
     }
 
     @media (min-width: map-get($breakpoints, xlg)) {
-      display: block;
+      display: none;
     }
   }
 
