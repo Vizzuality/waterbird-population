@@ -4,11 +4,12 @@ import { CSVLink } from 'react-csv';
 import classnames from 'classnames';
 
 import Icon from 'components/icon';
+import Image from './download.svg';
 import './styles.scss';
 
 const Download = ({ data, filename, headers, text, className }) => {
-
   const handleClick = (e) => e.stopPropagation();
+
   return (
     <CSVLink
       className={classnames(
@@ -21,7 +22,7 @@ const Download = ({ data, filename, headers, text, className }) => {
       filename={`${filename}-${Date.now()}.csv`}
     >
       <span>{text}</span>
-      <Icon name="download" />
+      <img src={Image} name="download" />
     </CSVLink>
   )
 };
