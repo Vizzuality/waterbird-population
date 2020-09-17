@@ -20,7 +20,7 @@
 
       .dropdown-content {
         box-sizing: border-box;
-        padding: 5px 20px;
+        padding: 20px;
         text-align: left;
         display: block;
         flex-direction: column;
@@ -30,6 +30,10 @@
         min-width: 100px;
         z-index: 1;
         line-height: 22px;
+
+        * {
+          padding: 10px 0;
+        }
 
         button {
           text-align: left;
