@@ -77,14 +77,18 @@ const PopulationTrend = ({ data, user }) => {
                   onClose={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
                 />}
             >
-              <tr key={`${d.specie}${d.population}${d.publication}`}>
+              <tr
+                key={`${d.specie}${d.population}${d.publication}`}
+                className={classnames({
+                  '-active': visible[`${d.trend_id} - ${d.publication_id}`]
+                })} >
                 <td>{d.publication}</td>
                 <td>{d.startyear}</td>
                 <td>{d.endyear}</td>
                 <td>{d.name}</td>
                 <td>{d.quality}</td>
                 <td>
-                  {!!d.notes && !!d.notes.length && d.notes.map(n => (
+                  {!!d.notes && !!d.notes.length && d.notes.map((n, i) => console.log(d.notes.length > 1)||(
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
                       interactive={true}
@@ -100,26 +104,32 @@ const PopulationTrend = ({ data, user }) => {
                           <p>{n.info}</p>
                         </Note>)}
                     >
-                      <span className="tooltipped">N{n.id}</span>
+                      <span className="tooltipped">
+                        {i === d.notes.length - 1 ? `N${n.id}` : `N${n.id}, `}
+                      </span>
                     </Tooltip>
                   ))}
                 </td>
                 <td>
-                  {!!d.references && !!d.references.length && d.references.map(n => (
+                  {!!d.references && !!d.references.length && d.references.map((n, i) => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
+                      interactive={true}
+                      trigger="click"
                       delay={0}
                       arrow={false}
                       duration={[0, 0]}
-                      render={() => (
+                      content={(
                         <Note>
                           <p className="title">
-                            Population trend note <span>#{n.id}</span>
+                            Population trend reference <span>#{n.id}</span>
                           </p>
                           <p>{n.info}</p>
                         </Note>)}
                     >
-                      <span className="tooltipped">R{n.id}</span>
+                      <span className="tooltipped">
+                        {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                      </span>
                     </Tooltip>
                   ))}
                 </td>

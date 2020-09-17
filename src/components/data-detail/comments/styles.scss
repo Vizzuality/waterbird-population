@@ -1,4 +1,5 @@
 @import 'styles/settings';
+@import 'styles/mixins';
 
 .c-comments {
   padding: 75px 100px;
@@ -12,6 +13,13 @@
   overflow-y: scroll;
   max-height: 50vh;
   pointer-events: all;
+
+  // &:before {
+  //   position: absolute;
+  //   top: 18px;
+  //   left: 18px;
+  //   @include arrow(9px,2px, $white, 'up');
+  // }
 
   > h2 {
     padding-bottom: 30px;
