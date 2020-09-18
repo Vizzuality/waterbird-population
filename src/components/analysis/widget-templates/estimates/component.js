@@ -15,12 +15,12 @@ const Bars = ({
 
   return (
     <div>
-      estimates
+      {/* estimates */}
       {/* <div className="c-population-trends-widget"> */}
-        <Chart
+        {/* <Chart
           data={chartData}
           config={chartConfig}
-        />
+        /> */}
         {/* <div id={`widget-legend-${id}`} />
       </div> */}
     </div>
