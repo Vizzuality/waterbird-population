@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { CSVLink } from 'react-csv';
 import classnames from 'classnames';
 
-import Icon from 'components/icon';
 import Image from './download.svg';
 import './styles.scss';
 
 const Download = ({ data, filename, headers, text, className, imageSize }) => {
   const handleClick = (e) => e.stopPropagation();
+
+  useEffect(() => {
+  }, [data]);
 
   return (
     <CSVLink
@@ -16,7 +18,7 @@ const Download = ({ data, filename, headers, text, className, imageSize }) => {
         'c-download',
         className,
         { '-disabled': !data } )}
-      data={JSON.stringify(data) || 'No data available'}
+      data={data || 'No data available'}
       headers={headers}
       onClick={handleClick}
       filename={`${filename}-${Date.now()}.csv`}
