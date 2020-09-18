@@ -106,7 +106,6 @@ export const MapContainer = ({
               })
             ));
 
-            setLngLat(e.lngLat);
           }
         }}
         onMouseLeave={() => {

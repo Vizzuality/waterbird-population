@@ -45,7 +45,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
               <span style={{ backgroundColor: current.tag_color }}>{current.tag_status}</span>
               <div>
                 <p>{current.specie}</p>
-                <p>{`(${current.scientificname})`}</p></div>
+                <p className="-italic">{`(${current.scientificname})`}</p></div>
             </div>
           </div>
         </div>
