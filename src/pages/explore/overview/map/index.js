@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setPopUp } from 'modules/map/actions';
+import { setPopUp, setLocation } from 'modules/map/actions';
 import { setRouter } from 'modules/router/actions';
 import { selectPopulationDetailProps } from 'modules/population/selectors';
 
@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   setPopUp,
-  setRouter
+  setRouter,
+  setLocation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

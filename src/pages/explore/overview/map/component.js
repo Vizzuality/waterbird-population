@@ -17,19 +17,20 @@ import Legend from 'components/map/legend';
 
 export const MapContainer = ({
   router,
+  coordinates,
   populationsLayersByLocation,
   setRouter,
+  setLocation,
   scrollZoom = false
 }) => {
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
-  const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
   const layers = populationsLayersByLocation.map(l => {
     return {
       ...l,
-      params: !!lngLat && !!l.paramsConfig && getParams(l.paramsConfig, { lng: lngLat[0], lat: lngLat[1] })
+      params: !!coordinates && !!l.paramsConfig && getParams(l.paramsConfig, { lng: coordinates[0], lat: coordinates[1] })
     }
   });
 
@@ -82,7 +83,7 @@ export const MapContainer = ({
               })
 
             ));
-            setLngLat(e.lngLat);
+            setLocation(e.lngLat);
           }
         }}
         onHover={(e) => {
@@ -92,13 +93,11 @@ export const MapContainer = ({
                 [f.source]: f.properties
               })
             ));
-
-            setLngLat(e.lngLat);
           }
        }}
         onMouseLeave={() => {
           setHoverInteractions({});
-          setLngLat(null);
+          setLocation(null);
         }}
       >
 
@@ -120,11 +119,11 @@ export const MapContainer = ({
 
               })}
             </LayerManager>
-            {lngLat && hoverInteractions['populations-by-location'] && (
+            {coordinates && hoverInteractions['populations-by-location'] && (
               <Popup
                 key={hoverInteractions['populations-by-location']}
-                latitude={lngLat[1]}
-                longitude={lngLat[0]}
+                latitude={coordinates[1]}
+                longitude={coordinates[0]}
                 closeButton={false}
               >
                 {hoverInteractions['populations-by-location'].populationname}

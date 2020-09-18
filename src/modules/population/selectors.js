@@ -562,7 +562,7 @@ export const selectPopulationsLayersByLocation = createSelector(
                 "properties": {},
                 "geometry": {
                   "type": "Point",
-                  "coordinates": [_lonLat]
+                  "coordinates": _lonLat
                 }
               }
             ]
@@ -577,10 +577,31 @@ export const selectPopulationsLayersByLocation = createSelector(
               type: "circle",
               //  "source-layer": "layer0",
               paint: {
-                "circle-radius": 10,
-                "circle-color": "#FF0000",
-                "circle-stroke-color": "#FF0000",
-                "circle-stroke-width": 10,
+                "circle-radius": [
+                  "interpolate",
+                  ["linear"],
+                  ["zoom"],
+                  7,
+                  ["interpolate", ["linear"], ["get", "count"], 1, 1, 6, 4],
+                  16,
+                  ["interpolate", ["linear"], ["get", "count"], 1, 5, 6, 50]
+                ],
+                "circle-color": [
+                    "interpolate",
+                    ["linear"],
+                    ["get", "count"],
+                    0,
+                    "rgba(255, 194, 0, 1)",
+                    0.33,
+                    "rgba(235, 68, 68, 1)",
+                    0.66,
+                    "rgba(199, 43, 214, 1)",
+                    1,
+                    "rgba(210, 50, 169, 1)"
+                ],
+                "circle-stroke-color": "#1C1B27",
+                "circle-stroke-opacity": .5,
+                "circle-stroke-width": 8,
               },
               metadata: {
                 position: 'top'
