@@ -5,22 +5,13 @@ import sortBy from 'lodash/sortBy';
 import WidgetLegend from 'components/analysis/widget-legend';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
 
+// Utils
+import { format } from 'd3-format';
+const numberFormat = format(',.3r');
+
+
 const getMetadata = (data) => data.map(d => d.name)
 
-const getData = (data) => {
-
-  return data.map(d => {
-
-    return {
-      name: d.name,
-      increasing: d.percentage.find(s => s.increasing) ? d.percentage.find(s => s.increasing).increasing : 0,
-      unclear: d.percentage.find(s => s.unclear) ? d.percentage.find(s => s.unclear).unclear : 0,
-      unknown: d.percentage.find(s => s.unknown) ? d.percentage.find(s => s.unknown).unknown : 0,
-      declining: d.percentage.find(s => s.declining) ? d.percentage.find(s => s.declining).declining : 0,
-      'stable or fluctuating': d.percentage.find(s => s['stable or fluctuating']) ? d.percentage.find(s => s['stable or fluctuating'])['stable or fluctuating'] : 0,
-    }
-  })
-}
 const getBars = data => data.reduce((acc, d) => {
 
   return {
@@ -35,47 +26,35 @@ const getBars = data => data.reduce((acc, d) => {
   };
 }, {});
 
-
 const dataBars = [
   {
     label: 'stable or fluctuating',
     color: '#BFD630',
-    //$color-1 fluctuating
   },
   {
     label: 'declining',
     color: '#5DBEE1',
-    //decreasing
   },
   {
     label: 'increasing',
     color: '#EB6240',
-    //increasing
-  },
-  {
-    label: 'unclear',
-    color: '#0282B0',
-    //$color-2 fluctuating
   },
   {
     label: 'unknown',
     color: '#0282B0',
-    //increasing
-  },
+  }
 ];
 
 export const CONFIG = {
   parse: (data) => {
-
-    const chartData = getData(data);
-    const height = chartData.length * 30;
-
+    const height = data.length * 30;
     {
       return {
-        chartData,
+        chartData: data,
         metadata: getMetadata(data),
         chartConfig: {
           height,
+          minHeight: 200,
           layout: 'vertical',
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
           cartesianGrid: {
@@ -102,8 +81,7 @@ export const CONFIG = {
               fontSize: 12,
               fill: 'rgba(0, 0, 0, 0.54)'
             },
-           // ticks: getMetadata(fakeData),
-           tickCount: 6
+            tickCount: 6
           },
           yAxis: {
             type: 'category',
@@ -113,7 +91,21 @@ export const CONFIG = {
               fill: 'rgba(0,0,0,0.54)'
             },
             width: 200,
-           // tickFormatter: value => Math.round(value),
+            label: ({ viewBox }) => {
+              const { y, height } = viewBox;
+
+              const cx = - height / 2;
+              const cy = 20;
+              const rot = `270 60 60`;
+              return (
+                <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
+                  FAMILIES
+                </text>
+              );
+            },
+            unit: '%',
+
+            // tickFormatter: value => Math.round(value),
             interval: 0,
           },
           legend: {
@@ -140,8 +132,13 @@ export const CONFIG = {
                   justifyContent: 'space-around',
                   flexDirection: 'column'
                 }}
-                //settings={getSettingsTooltip(bars)}
-                label={{ key: 'name' }}
+                settings={dataBars.map(bar => {
+                  return {
+                    label: bar.label, color: bar.color, key: bar.label, format: value => `${numberFormat(value)} %`
+                  }
+                })
+                }
+                title={{ key: 'name' }}
               />
             )
           }

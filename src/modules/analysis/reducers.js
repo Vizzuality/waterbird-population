@@ -15,9 +15,6 @@ export default {
   }),
   [setFilters]: (state, { payload }) => ({
     ...state,
-    populations_trends_widget: {
-      ...state.populations_trends_widget,
-      payload
-    }
+    filters: payload
   })
 };

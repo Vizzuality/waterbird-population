@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'components/recharts';
-// import sortBy from 'lodash/sortBy';
+
+import Filters from 'components/analysis/filters';
 
 import config from './config';
 
 
 const Bars = (props) => {
   const {
-    familyTrends
+    familyTrendsChart
   } = props;
 
-  const { chartConfig, chartData } = config.parse(familyTrends);
+  const { chartConfig, chartData } = config.parse(familyTrendsChart);
 
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:
+      <Filters />
       <div className="c-population-trends-widget">
         <Chart
           data={chartData}
           config={chartConfig}
         />
-        {/* <div id={`widget-legend-${id}`} />*/}
       </div>
     </div>
   );

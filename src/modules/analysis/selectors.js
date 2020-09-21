@@ -20,11 +20,62 @@ export const publications = (state) => state ?.population.publications;
 export const publicationSelected = (state) => state ?.analysis.populations_trends_widget.selectedPublication;
 export const filters = (state) => state ?.analysis.filters;
 
-export const selectFamilies = createSelector(
-  [selectPopulationFiltered],
-  (_data) => {
+export const selectFamilyTrendsFiltered = createSelector(
+  [data, filters],
+  (_data, _filters) => {
     if (!_data || isEmpty(_data)) return [];
 
+    return _data.filter(d => {
+      const familyIds = _filters.family_id
+        && _filters.family_id.length
+        && _filters.family_id.map(f => f.value);
+      const isFamily = familyIds
+        ? familyIds.includes(d.family.id) : true;
+
+      const publications = d.publications.map(p => p.value);
+      const publicationId = _filters.publication_id
+        && _filters.publication_id.length
+        && _filters.publication_id.map(p => p.id);
+      const isPublication = publicationId
+        ? publications.includes(publicationId)
+        : true;
+
+      const conservationIds = _filters.framework_id
+        && _filters.framework_id.length
+        && _filters.framework_id.map(f => f.value);
+      const isProtected = conservationIds
+        ? conservationIds.includes(d.conservation[0].id)
+        : true;
+      const flywayIds = _filters.flyway_region_id
+        && _filters.flyway_region_id.length
+        && _filters.flyway_region_id.map(f => f.value);
+      const isFlyway = flywayIds
+        ? flywayIds.includes(d.flyways[0].id)
+        : true;
+
+      const ramsarIds = _filters.ramsar_region_id
+        && _filters.ramsar_region_id.length
+        && _filters.ramsar_region_id.map(f => f.value);
+      const isRamsarRegion = ramsarIds
+        ? ramsarIds.some(r => d[r] === 1) : true;
+
+      const redListIds = _filters.red_list_id
+        && _filters.red_list_id.length
+        && _filters.red_list_id.map(f => f.value);
+      const isRedList = redListIds
+        ? redListIds.includes(d.specie.redlistcategory_id) : true;
+
+      const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
+      return array.every(d => d)
+    }
+  )}
+);
+
+export const selectFamilies = createSelector(
+  [selectFamilyTrendsFiltered],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+console.log(_data)
     return orderBy(uniqBy(_data
       .map(p => {
         return {
@@ -37,8 +88,8 @@ export const selectFamilies = createSelector(
 );
 
 export const selectPublicationData = createSelector(
-  [data, specie_id, filters, publications],
-  (_data, _specieId, _filters, _publications) => {
+  [selectFamilyTrendsFiltered, specie_id, publications],
+  (_data, _specieId, _publications) => {
     if (!_data || isEmpty(_data)) return [];
 
 
@@ -142,11 +193,28 @@ export const selectFamilyTrends = createSelector(
     })
   });
 
+export const selectFamilyTrendsChart = createSelector(
+  [selectFamilyTrends],
+  (_familyTrends) => {
+    return _familyTrends.map(d => {
 
+      return {
+        name: d.name,
+        'stable or fluctuating': d.percentage.find(s => s['stable or fluctuating']) ? d.percentage.find(s => s['stable or fluctuating'])['stable or fluctuating'] : 0,
+        increasing: d.percentage.find(s => s.increasing) ? d.percentage.find(s => s.increasing).increasing : 0,
+        declining: d.percentage.find(s => s.declining) ? d.percentage.find(s => s.declining).declining : 0,
+        unknown:
+          d.percentage.find(s => s.unclear) ? d.percentage.find(s => s.unclear).unclear : 0 +
+            d.percentage.find(s => s.unknown) ? d.percentage.find(s => s.unknown).unknown : 0,
+      }
+    })
+  }
+)
 
 export const selectWidgetsProps = createStructuredSelector({
   families: selectFamilies,
   familyTrends: selectFamilyTrends,
+  familyTrendsChart: selectFamilyTrendsChart,
   //trendLabels: selectTrendLabels
 
 });
