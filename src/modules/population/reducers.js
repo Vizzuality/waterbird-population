@@ -17,7 +17,7 @@ export default {
     data: payload.data,
     loading: !payload.status === 200
   }),
-  [setPopulationsByLocation]: (state, { payload }) => console.log(payload)||
+  [setPopulationsByLocation]: (state, { payload }) =>
   ({
     ...state,
     populationsByLocation: {

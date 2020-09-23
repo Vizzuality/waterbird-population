@@ -21,6 +21,7 @@ export const MapContainer = ({
   router,
   coordinates,
   populationsLayersByLocation,
+  populationsNumber,
   setPopulationsByLocation,
   setRouter,
   setLocation,
@@ -132,7 +133,9 @@ export const MapContainer = ({
                 longitude={coordinates[0]}
                 closeButton={false}
               >
-                {hoverInteractions['populations-by-location'].populationname}
+                {populationsNumber && populationsNumber.length === 1
+                  ? `${populationsNumber[0].populationname}`
+                  : `There are ${populationsNumber.length} populations flying through this point`}
               </Popup>
             )}
 

@@ -631,7 +631,8 @@ export const selectPopulationsLayersByLocation = createSelector(
 export const selectPopulationProps = createStructuredSelector({
   populationData: selectPopulationsData,
   populationFamilies: selectPopulationFamilies,
-  populationSpecies: selectPopulationSpecies
+  populationSpecies: selectPopulationSpecies,
+  populationsNumber: selectPopulationFiltered
 });
 
 
