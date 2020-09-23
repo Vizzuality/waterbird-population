@@ -1,4 +1,11 @@
-import { setFilters, setPopulations, setPublications, setCurrent, setSearch } from './actions';
+import {
+  setFilters,
+  setPopulations,
+  setPopulationsByLocation,
+  setPublications,
+  setCurrent,
+  setSearch
+} from './actions';
 
 export default {
   [setFilters]: (state, { payload }) => ({
@@ -9,6 +16,14 @@ export default {
     ...state,
     data: payload.data,
     loading: !payload.status === 200
+  }),
+  [setPopulationsByLocation]: (state, { payload }) => console.log(payload)||
+  ({
+    ...state,
+    populationsByLocation: {
+      data: payload.data,
+      loading: !payload.status === 200
+    }
   }),
   [setPublications]: (state, { payload }) => ({
     ...state,

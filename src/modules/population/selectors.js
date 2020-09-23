@@ -19,16 +19,21 @@ export const publications = (state) => state ?.population.publications;
 export const user = (state) => state ?.user;
 export const search = (state) => state ?.population.search;
 export const lonLat = (state) => state ?.map.lonLat;
+export const populations_by_location = (state) => state?.population.populationsByLocation.data;
 
 export const familyId = (state, props) => props ?.familyId;
 export const specieId = (state, props) => props ?.specieId;
 
 export const selectPopulationFiltered = createSelector(
-  [data, filters, search],
-  (_data, _filters, _search) => {
+  [data, filters, search, populations_by_location],
+  (_data, _filters, _search, _populations_by_location) => {
     if (!_data || isEmpty(_data)) return [];
 
-    const fuse = _search && _search.length && new Fuse(_data, {
+    const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
+    const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.id));
+    const populationsData = _populations_by_location.length ? populationsByLocation : _data;
+
+    const fuse = _search && _search.length && new Fuse(populationsData, {
       keys: [
         'family.name', 'family.ordername',
         'name',
@@ -38,12 +43,13 @@ export const selectPopulationFiltered = createSelector(
       threshold: 0.1,
     });
 
+
     const dataFiltered = fuse && fuse
       .search(_search)
       .map(d => d.item)
 
     return (
-      (dataFiltered ? dataFiltered : _data)
+      (dataFiltered ? dataFiltered : populationsData)
         .filter(d => {
           const familyIds = _filters.family_id
             && _filters.family_id.length

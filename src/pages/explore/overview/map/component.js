@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
 
@@ -7,6 +7,8 @@ import { PluginMapboxGl } from 'layer-manager';
 import { Popup } from 'react-map-gl'
 
 import { getParams } from 'utils/layers';
+
+import { fetchPopulationsByLocation } from 'services/population';
 
 // Components
 import Map from 'components/map';
@@ -19,6 +21,7 @@ export const MapContainer = ({
   router,
   coordinates,
   populationsLayersByLocation,
+  setPopulationsByLocation,
   setRouter,
   setLocation,
   scrollZoom = false
@@ -26,6 +29,10 @@ export const MapContainer = ({
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
+
+  useEffect(() => {
+    coordinates && fetchPopulationsByLocation(coordinates[0], coordinates[1]).then((data) => setPopulationsByLocation(data));
+  }, [coordinates])
 
   const layers = populationsLayersByLocation.map(l => {
     return {
@@ -95,9 +102,8 @@ export const MapContainer = ({
             ));
           }
        }}
-        onMouseLeave={() => {
+       onMouseLeave={() => {
           setHoverInteractions({});
-          setLocation(null);
         }}
       >
 

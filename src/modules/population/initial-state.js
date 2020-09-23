@@ -3,6 +3,10 @@ export default {
   data: [],
   loading: true,
   error: false,
+  populationsByLocation: {
+    data: [],
+    loading: true
+  },
   filters: {
     family_id: [],
     publication_id: [],

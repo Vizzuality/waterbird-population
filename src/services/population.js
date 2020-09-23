@@ -169,3 +169,18 @@ export const fetchDataToDownload = (specieid) => {
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=csv`)
     .then(({ data }) => data)
 };
+
+export const fetchPopulationsByLocation = (lng,lat) => {
+  const q = `SELECT commonname,
+    flywaygroup,
+    flywayrange,
+    populationname,
+    scientificname,
+    wpepopid FROM species_and_flywaygroups WHERE
+  ST_Intersects(
+             ST_SetSRID(
+                ST_MakePoint(${lng},${lat}),4326),the_geom)`;
+
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+    .then(({ data, status }) => { return { data: data.rows, status }})
+};
