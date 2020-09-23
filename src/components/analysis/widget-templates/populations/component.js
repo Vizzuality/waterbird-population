@@ -6,19 +6,23 @@ import Chart from 'components/recharts';
 import config from './config';
 import './styles.scss';
 
-const StackedBar = () => {
-  // const { chartConfig, chartData } = config.parse();
+const StackedBar = (props) => {
+  const {
+    familyPopulations
+  } = props;
+
+  const { chartConfig, chartData } = config.parse(familyPopulations);
+
   return (
-    <Fragment>
-      Stacked
-      {/* <div className={`c-widget${title}`}> */}
-        {/* <Chart
-          data={[chartData]}
+    <div>
+      NUMBER OF WATERBIRD POPULATIONS IN EACH FAMILY:
+      <div className="c-populations-widget">
+        <Chart
+          data={chartData}
           config={chartConfig}
-        /> */}
-        {/* <div id={`widget-legend-${id}`} />
-      </div> */}
-    </Fragment>
+        />
+      </div>
+    </div>
   );
 };
 

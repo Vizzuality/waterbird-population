@@ -1,168 +1,74 @@
-const fakeData = [
-  {
-    name: 'Ducks, Geese and Swans (Anatilidae)',
-    value: 120
-  },
-  {
-    name: 'Plovers (Charadriidae)',
-    value: 20
-  },
-  {
-    name: 'Sandpipers and allies (Scolopacidae)',
-    value: 290
-  },
-  {
-    name: 'Herons and Egrets (Ardeidae)',
-    value: 310
-  },
-  {
-    name: 'Gulls, Tems and Skimmers (Laridae)',
-    value: 240
-  },
-  {
-    name: 'Rails, Crakes and allies (Rallidae)',
-    value: 78
-  },
-  {
-    name: 'Crab Plover (Dromadidae),',
-    value: 58
-  },
-  {
-    name: 'Cormorants (Phalacrocoracidae)',
-    value: 345
-  },
-  {
-    name: 'Grebes (Podicipedidae)',
-    value: 412
-  },
-  {
-    name: 'Ibises and Spoonbills (Threskionithidae)',
-    value: 196
-  },
-  {
-    name: 'Cranes (Gruidae)',
-    value: 235
-  },
-  {
-    name: 'Coursers and Pratincoles (Glareolidae)',
-    value: 381
-  },
-  {
-    name: 'Storks (Ciconiidae)',
-    value: 219
-  },
-  {
-    name: 'Stilts and Acovets (Recurvirostridae)',
-    value: 29
-  },
-  {
-    name: 'Thick-knees (Burhinanidae)',
-    value: 96
-  },
-  {
-    name: 'Oystercatchers (Haematopodidae)',
-    value: 376
-  },
-  {
-    name: 'Pelicans (Pelecanidae)',
-    value: 432
-  },
-  {
-    name: 'Flamingos (Phoenicopteridae)',
-    value: 216
-  },
-  {
-    name: 'Jacanas (Jacanidae)',
-    value: 259
-  },
-  {
-    name: 'Loons or Divers (Gaviidae)',
-    value: 321
-  },
-  {
-    name: 'Seedsnipes (Thinocoridae)',
-    value: 228
-  },
-  {
-    name: 'Darters (Anhingidae)',
-    value: 123
-  },
-  {
-    name: 'Painted-snipes (Rostratulidae)',
-    value: 388
-  },
-  {
-    name: 'Finfoots (Heliornithidae)',
-    value: 242
-  },
-  {
-    name: 'Limpkin (Aramidae)',
-    value: 297
-  },
-  {
-    name: 'Ibisbill (Ibidorhynchidae)',
-    value: 201
-  },
-  {
-    name: 'Plains Wanderer (Anseranatidae)',
-    value: 347
-  },
-  {
-    name: 'Shoebill (Balaenicipitidae)',
-    value: 359
-  },
-  {
-    name: 'Hammerkop (Scopidae)',
-    value: 333
-  },
-  {
-    name: 'Screamers (Anhimidae)',
-    value: 217
-  },
-  {
-    name: 'Sunbittern (Eurypydae)',
-    value: 174
-  },
-]
+
+import React from 'react';
+import groupBy from 'lodash/groupBy';
+import sortBy from 'lodash/sortBy';
+import WidgetLegend from 'components/analysis/widget-legend';
+import WidgetTooltip from 'components/analysis/widget-tooltip';
+
+// Utils
+import { format } from 'd3-format';
+const numberFormat = format(',.3r');
 
 
 const getMetadata = (data) => data.map(d => d.name)
 
-const getBars = data => data.reduce((acc,d) => {
-  return [...acc, {
-      value: d.value,
-      fill: '#BFD630',
-      stroke: '#BFD630',
-      isAnimationActive: false
-  }];
-},[]);
+const getBars = data => data.reduce((acc, d) => {
 
+  const colorSchema = [
+    { 'stable or fluctuating': '#BFD630' },
+    { 'declining': '#5DBEE1' },
+    { 'increasing': '#EB6240' },
+    { 'unknown': '#0282B0' },
+  ];
+
+  return {
+    ...acc,
+    [Object.keys(d)]: {
+      barSize: 20,
+      stackId: 'bar',
+      fill: colorSchema[Object.values(d)],
+      stroke: colorSchema[Object.values(d)],
+      isAnimationActive: false
+    }
+  };
+}, {});
+
+const dataBars = [
+  {
+    label: 'stable or fluctuating',
+    color: '#BFD630',
+  },
+  {
+    label: 'declining',
+    color: '#5DBEE1',
+  },
+  {
+    label: 'increasing',
+    color: '#EB6240',
+  },
+  {
+    label: 'unknown',
+    color: '#0282B0',
+  }
+];
 
 export const CONFIG = {
   parse: (data) => {
     {
       return {
-        chartData: fakeData,
-        metadata: getMetadata(fakeData),
+        chartData: data,
+        metadata: getMetadata(data),
         chartConfig: {
-          layout: 'vertical',
-          height: 360,
-          cartesianGrid: {
-            horizontal: false,
-            strokeDasharray: "5 20",
-            vertical: true,
-          },
+          height: 500,
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
-          xKey: 'value',
+          cartesianGrid: {
+            vertical: true,
+            horizontal: false,
+            strokeDasharray: '5 20'
+          },
+          xKey: 'name',
           yKeys: {
-            bars: {
-              value: {
-                barSize: 'value',
-                fill: '#BFD630',
-                stroke: '#BFD630',
-                isAnimationActive: false
-              }
-            },
+            bars: getBars(data)
           },
           referenceLines: [{
             y: 0,
@@ -173,30 +79,38 @@ export const CONFIG = {
             label: null
           }],
           xAxis: {
-            domain: [1, 450],
+            type: 'category',
+            domain: [0, 100],
             tick: {
               fontSize: 12,
               fill: 'rgba(0, 0, 0, 0.54)'
             },
-           // ticks: getMetadata(fakeData),
-            interval: 0
+            tickCount: 6
           },
           yAxis: {
-            ticks: getMetadata(fakeData),
+            type: 'number',
+            dataKey: 'name',
             tick: {
-              fontSize: 12,
+              fontSize: 10,
               fill: 'rgba(0,0,0,0.54)'
             },
-            width: 40,
-            // ticks: getDomain(date),
+            width: 200,
+            label: ({ viewBox }) => {
+              const { y, height } = viewBox;
+
+              const cx = - height / 2;
+              const cy = 20;
+              const rot = `270 60 60`;
+              return (
+                <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
+                  FAMILIES
+                </text>
+              );
+            },
+            unit: '%',
+
+            // tickFormatter: value => Math.round(value),
             interval: 0,
-            orientation: 'left',
-            // label: {
-            //   value: 'name',
-            //   position: 'top',
-            //   offset: 25
-            // },
-            type: 'number'
           },
           // legend: {
           //   align: 'left',
@@ -209,24 +123,29 @@ export const CONFIG = {
           //   content: (properties) => {
           //     const { payload } = properties;
           //     const groups = groupBy(payload, p => p.payload);
-          //     return <WidgetLegend type="height" groups={groups} />;
+          //     return <WidgetLegend groups={groups} />;
           //   }
           // },
-          // tooltip: {
-          //   cursor: false,
-          //   content: (
-          //     <WidgetTooltip
-          //       type="column"
-          //       style={{
-          //         display: 'flex',
-          //         justifyContent: 'space-around',
-          //         flexDirection: 'column'
-          //       }}
-          //       settings={getSettingsTooltip(bars)}
-          //       label={{ key: 'name' }}
-          //     />
-          //   )
-          // }
+          tooltip: {
+            cursor: false,
+            content: (
+              <WidgetTooltip
+                type="column"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  flexDirection: 'column'
+                }}
+                settings={dataBars.map(bar => {
+                  return {
+                    label: bar.label, color: bar.color, key: bar.label, format: value => `${numberFormat(value)} %`
+                  }
+                })
+                }
+                title={{ key: 'name' }}
+              />
+            )
+          }
         },
       };
     }

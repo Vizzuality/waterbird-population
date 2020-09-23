@@ -3,14 +3,8 @@ import trim from 'lodash/trim';
 import orderBy from 'lodash/orderBy';
 import uniqBy from 'lodash/uniqBy';
 
-
 import { createSelector, createStructuredSelector } from 'reselect';
-
-// shared selectors with populations
-import { selectPopulationFiltered } from 'modules/population/selectors';
-
-import { setFilters } from 'modules/analysis/actions';
-import { objectTypeSpreadProperty } from '@babel/types';
+import { regions } from 'modules/population/constants';
 
 export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
 export const data = (state) => state ?.population.data;
@@ -20,7 +14,7 @@ export const publications = (state) => state ?.population.publications;
 export const publicationSelected = (state) => state ?.analysis.populations_trends_widget.selectedPublication;
 export const filters = (state) => state ?.analysis.filters;
 
-export const selectFamilyTrendsFiltered = createSelector(
+export const selectFilteredData = createSelector(
   [data, filters],
   (_data, _filters) => {
     if (!_data || isEmpty(_data)) return [];
@@ -68,14 +62,15 @@ export const selectFamilyTrendsFiltered = createSelector(
       const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
       return array.every(d => d)
     }
-  )}
+    )
+  }
 );
 
 export const selectFamilies = createSelector(
-  [selectFamilyTrendsFiltered],
+  [selectFilteredData],
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
-console.log(_data)
+
     return orderBy(uniqBy(_data
       .map(p => {
         return {
@@ -88,7 +83,7 @@ console.log(_data)
 );
 
 export const selectPublicationData = createSelector(
-  [selectFamilyTrendsFiltered, specie_id, publications],
+  [selectFilteredData, specie_id, publications],
   (_data, _specieId, _publications) => {
     if (!_data || isEmpty(_data)) return [];
 
@@ -193,6 +188,25 @@ export const selectFamilyTrends = createSelector(
     })
   });
 
+export const selectFamilyPopulations = createSelector(
+  [selectFamilies, data, categories, selectPublicationData, publicationSelected],
+  (_families, _data, _categories, _lastPublication, _publicationSelected) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    const populationsByFamily = _families.map(f => _data.filter(d => trim(f.id) === trim(d.family.id)))
+
+    return orderBy(populationsByFamily.map(p => {
+
+      const populationsIds = p.map(d => d.id);
+
+      return {
+        //  id: p[0].family.id,
+        name: `${trim(p[0].family.name)}, (${trim(p[0].family.ordername)})`,
+        total_populations: populationsIds.length
+      }
+    }), 'total_populations', 'desc')
+  });
+
 export const selectFamilyTrendsChart = createSelector(
   [selectFamilyTrends],
   (_familyTrends) => {
@@ -209,13 +223,69 @@ export const selectFamilyTrendsChart = createSelector(
       }
     })
   }
-)
+);
+
+
+export const selectRegionTrendsChart = createSelector(
+  [selectFilteredData, selectPublicationData, publicationSelected],
+  (_data, _lastPublication, _publicationSelected) => {
+
+    const populationsByRegion = regions.map(r => {
+
+      const publication_id = 9;
+
+      const totalTrendsByRegion = {
+        [r.id]: {
+          name: _data
+            .filter(d => d[r.id] === 1)
+            .map(t => t.trends
+              .filter(trend => trend.publication_id === publication_id).length
+                ? trim(t.name)
+                : null
+            ),
+          trend: _data
+            .filter(d => d[r.id] === 1)
+            .map(t => t.trends
+              .filter(trend => trend.publication_id === publication_id)
+            )
+        }
+      }
+      return totalTrendsByRegion;
+    });
+
+    return populationsByRegion.map(population => {
+
+      const filteredNames = Object.values(population)[0].name.filter(t => t);
+      const filteredTrends = Object.values(population)[0].trend.filter(t => t.length);
+
+      return {
+        [Object.keys(population)[0]]: {
+          name: filteredNames,
+          trend: {
+            'stable or fluctuating': filteredTrends.reduce((n, t) => {
+              return trim(t[0].state) === 'stable or fluctuating' ? n + 1 : n
+            }, 0),
+            increasing: filteredTrends.reduce((n, t) => {
+              return trim(t[0].state) === 'increasing' ? n + 1 : n
+            }, 0),
+            declining: filteredTrends.reduce((n, t) => {
+              return trim(t[0].state) === 'declining' ? n + 1 : n
+            }, 0),
+            unknown: filteredTrends.reduce((n, t) => {
+              return (trim(t[0].state) === 'unknown'
+                && trim(t[0].state) === 'unclear') ? n + 1 : n
+            }, 0),
+          }
+        }
+      }
+    })
+  })
 
 export const selectWidgetsProps = createStructuredSelector({
   families: selectFamilies,
   familyTrends: selectFamilyTrends,
+  familyPopulations: selectFamilyPopulations,
   familyTrendsChart: selectFamilyTrendsChart,
-  //trendLabels: selectTrendLabels
-
+  regionTrendsChart: selectRegionTrendsChart
 });
 

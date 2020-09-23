@@ -1,28 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'components/recharts';
-// import sortBy from 'lodash/sortBy';
+
+import Filters from 'components/analysis/filters';
 
 import config from './config';
 
 
-const Bars = ({
-  data,
-  key
-}) => {
+const Bars = (props) => {
+  const {
+    regionTrendsChart
+  } = props;
 
-  const { chartConfig, chartData } = config.parse();
+  const { chartConfig, chartData } = config.parse(regionTrendsChart);
 
   return (
     <div>
-      {/* estimates */}
-      {/* <div className="c-population-trends-widget"> */}
-        {/* <Chart
+      NUMBER OF WATERBIRD ESTIMATES UPDATED IN EACH RAMSAR REGION:
+      <div className="c-population-trends-widget">
+        <Chart
           data={chartData}
           config={chartConfig}
-        /> */}
-        {/* <div id={`widget-legend-${id}`} />
-      </div> */}
+        />
+      </div>
     </div>
   );
 };

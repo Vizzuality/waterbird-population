@@ -6,7 +6,6 @@ import './styles.scss';
 
 const ClearFilters = ({
   activeFilters, filtersInitialState, unsetteledFilters, resetFilters, handlePendingFilters }) => {
-    console.log(activeFilters.length && unsetteledFilters && !unsetteledFilters.length, 'que pasa',
     activeFilters.length, handlePendingFilters, !unsetteledFilters.length)
   if (!activeFilters.length && unsetteledFilters && !unsetteledFilters.length) return null;
 

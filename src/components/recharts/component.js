@@ -117,7 +117,7 @@ class Chart extends PureComponent {
           <RechartChart
             stackOffset={stackOffset}
             height={height}
-            // width={width}
+            width={width}
             viewBox={viewBox}
             data={data}
             layout={layout}
