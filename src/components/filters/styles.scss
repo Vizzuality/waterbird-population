@@ -41,6 +41,13 @@
     }
   }
 
+  .filters-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 40px;
+  }
+
   .filters-buttons {
     display: flex;
     justify-content: center;

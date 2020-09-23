@@ -503,6 +503,16 @@ export const selectPopulationLayers = createSelector(
   }
 );
 
+export const selectActiveFilters = createSelector(
+  [filters],
+  (_filters) => Object.entries(_filters).filter(f => f[1].length)
+);
+
+
+export const selectFiltersProps = createStructuredSelector({
+  activeFilters: selectActiveFilters
+});
+
 
 export const selectPopulationProps = createStructuredSelector({
   populationData: selectPopulationsData,

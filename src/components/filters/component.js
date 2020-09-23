@@ -8,6 +8,7 @@ import Button from 'components/button';
 import Select from 'react-select';
 import Icon from 'components/icon';
 import ActiveFilters from './active-filters';
+import ClearFilters from './clear-filters';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -17,7 +18,15 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, onClick, publications, setPublications }) => {
+const Filters = ({
+  filters,
+  setFilters,
+  resetFilters,
+  activeFilters,
+  onClick,
+  publications,
+  setPublications
+}) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
@@ -36,12 +45,17 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
     //toggle modal
     onClick();
   };
-
   const handleFilters = () => {
     setFilters(newFiltersValues)
     //toggle modal
     onClick();
   };
+
+  const handleClearFilters = () => {
+    resetFilters();
+    setNewFiltersValues(filters);
+  }
+
 
   // Filters options
   const familyOptions = families.map(family => {
@@ -195,7 +209,7 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
                   return data === selectProps.value[0]
                     ? (<div {...innerProps}>
                       <span>
-                         {data.label}
+                        {data.label}
                       </span>
                       {length >= 1 && <span>{` + ${length}`}</span>}
                     </div>)
@@ -207,7 +221,18 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
           </div>
         )}
       </div>
-      <ActiveFilters filters={newFiltersValues} onClick={removeFilter} />
+      <div className="filters-controls">
+        <ActiveFilters
+          filters={newFiltersValues}
+          onClick={removeFilter}
+          active={activeFilters}
+        />
+        <ClearFilters
+          handleUnsetteledFilters={setNewFiltersValues}
+          activeFilters={filters}
+          unsetteledFilters={newFiltersValues && Object.values(newFiltersValues).filter(filter => filter.length)}
+        />
+      </div>
       <div className="filters-buttons">
         <Button
           className="-background -tertiary -big"
