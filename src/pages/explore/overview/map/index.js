@@ -1,20 +1,26 @@
 import { connect } from 'react-redux';
 
-import { activeLayers } from './constants';
-import { setPopUp } from 'modules/map/actions';
-// import { getActiveLayers, getActiveBoundsLayer } from 'modules/layers/selectors';
+import { setPopUp, setLocation } from 'modules/map/actions';
+import { setRouter } from 'modules/router/actions';
+import { setPopulationsByLocation } from 'modules/population/actions';
+import { selectPopulationDetailProps, selectPopulationProps } from 'modules/population/selectors';
+
 
 import Component from './component';
 
 const mapStateToProps = state => ({
-  // bounds: getActiveBoundsLayer(state),
-  layers: activeLayers,
+  router: state.router,
   coordinates: state.map.lonLat,
-  isOpen: state.map.popUp
+  isOpen: state.map.popUp,
+   ...selectPopulationDetailProps(state),
+   ...selectPopulationProps(state)
 })
 
 const mapDispatchToProps = {
-  setPopUp
+  setPopUp,
+  setRouter,
+  setLocation,
+  setPopulationsByLocation
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

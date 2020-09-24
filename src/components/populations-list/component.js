@@ -9,16 +9,9 @@ import Note from 'components/note';
 
 import Download from 'components/download';
 
-import { fetchDataToDownload } from 'services/population';
 import './styles.scss';
 
 const PopulationsList = ({ specieId, populationData }) => {
-
-  const [dataToDownload, setDataToDownload] = useState([]);
-
-  useEffect(() => {
-    fetchDataToDownload().then(data => setDataToDownload(data));
-  }, []);
 
   return (
     populationData.map(

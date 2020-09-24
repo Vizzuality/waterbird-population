@@ -11,38 +11,45 @@ import { tags, regions } from './constants';
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const population_id = (state) => state?.router?.payload?.population_id;
-export const data = (state) => state?.population?.data;
-export const filters = (state) => state?.population.filters;
-export const publications = (state) => state?.population.publications;
-export const user = (state) => state?.user;
-export const search = (state) => state?.population.search;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const population_id = (state) => state ?.router ?.payload ?.population_id;
+export const data = (state) => state ?.population ?.data;
+export const filters = (state) => state ?.population.filters;
+export const publications = (state) => state ?.population.publications;
+export const user = (state) => state ?.user;
+export const search = (state) => state ?.population.search;
+export const lonLat = (state) => state ?.map.lonLat;
+export const populations_by_location = (state) => state?.population.populationsByLocation.data;
 
-export const familyId = (state, props) => props?.familyId;
-export const specieId = (state, props) => props?.specieId;
+export const familyId = (state, props) => props ?.familyId;
+export const specieId = (state, props) => props ?.specieId;
 
 export const selectPopulationFiltered = createSelector(
-  [data, filters, search],
-  (_data, _filters, _search) => {
+  [data, filters, search, populations_by_location],
+  (_data, _filters, _search, _populations_by_location) => {
     if (!_data || isEmpty(_data)) return [];
 
-    const fuse = _search && _search.length && new Fuse(_data, {
-        keys: [
-          'family.name', 'family.ordername',
-          'name',
-          'conservation.conservation_framework',
-          'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
-        ],
-        threshold: 0.1,
-      });
+    const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
+    const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.id));
+    const populationsData = _populations_by_location.length ? populationsByLocation : _data;
+
+    const fuse = _search && _search.length && new Fuse(populationsData, {
+      keys: [
+        'family.name', 'family.ordername',
+        'name',
+        'conservation.conservation_framework',
+        'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
+      ],
+      threshold: 0.1,
+    });
+
 
     const dataFiltered = fuse && fuse
       .search(_search)
       .map(d => d.item)
 
-      return (
-      (dataFiltered ? dataFiltered : _data)
+    return (
+      (dataFiltered ? dataFiltered : populationsData)
         .filter(d => {
           const familyIds = _filters.family_id
             && _filters.family_id.length
@@ -68,7 +75,7 @@ export const selectPopulationFiltered = createSelector(
             && _filters.flyway_region_id.length
             && _filters.flyway_region_id.map(f => f.value);
           const isFlyway = flywayIds
-            ?  flywayIds.includes(d.flyways[0].id)
+            ? flywayIds.includes(d.flyways[0].id)
             : true;
 
           const ramsarIds = _filters.ramsar_region_id
@@ -86,7 +93,7 @@ export const selectPopulationFiltered = createSelector(
           const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
           return array.every(d => d)
         }
-      )
+        )
     )
   }
 );
@@ -140,21 +147,21 @@ export const selectPopulationsData = createSelector(
 
       const orderedPublicationsSizes = orderBy(
         _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
-      ['endyear', 'publication_id'], ['desc', 'desc']);
+        ['endyear', 'publication_id'], ['desc', 'desc']);
       const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
       const size = d.sizes.find(s => s.publication_id === publication.id);
       const trend = d.trends.find(s => s.publication_id === publication.id);
       const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
-      const size_notes = size.notes  && { id: size.id, note: size.notes, type: 'size', reference: 'S' };
-      const trend_notes = trend.notes  && { id: trend.id, note: trend.notes, type: 'trend', reference: 'T' };
+      const size_notes = size.notes && { id: size.id, note: size.notes, type: 'size', reference: 'S' };
+      const trend_notes = trend.notes && { id: trend.id, note: trend.notes, type: 'trend', reference: 'T' };
       const notes = (size_notes && trend.notes)
         ? [size_notes].concat([trend_notes])
         : size.notes ?
-            size_notes : trend_notes;
+          size_notes : trend_notes;
 
 
       return {
-        id : d.id,
+        id: d.id,
         populationId: d.id,
         name: d.name,
         size: `${size.maximum} - ${size.minimum}`,
@@ -195,8 +202,8 @@ export const selectLastPublicationData = createSelector(
           .filter(p => p.published === 0)
           .map(f => f.id);
 
-          const orderedPublicationsSizes = orderBy(
-            _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+        const orderedPublicationsSizes = orderBy(
+          _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
           ['endyear', 'publication_id'], ['desc', 'desc']);
 
         const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
@@ -289,8 +296,8 @@ export const selectPopulationSizeData = createSelector(
       const size = population.sizes.find(s => s.publication_id === id);
       const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, references } = size;
       const parsedReferences = (references && references.length)
-      ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
-      : [];
+        ? references.map(({ reference_id, body }) => { return { id: reference_id, info: body } })
+        : [];
 
       const filteredReferences = parsedReferences.reduce((acc, current) => {
         const x = acc.find(item => item.id === current.id);
@@ -350,8 +357,8 @@ export const selectPopulationTrendData = createSelector(
           { id: 1, info: trim(notes) }
         ] : [],
         references: (references && references.length)
-        ? references.map(({ reference_id, body }) =>{ return { id: reference_id, info: body } })
-        : []
+          ? references.map(({ reference_id, body }) => { return { id: reference_id, info: body } })
+          : []
       }
     }), 'publication_id', 'desc')
   }
@@ -430,7 +437,8 @@ export const selectPopulationLayers = createSelector(
         type: 'geojson',
         source: {
           type: 'geojson',
-          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
+          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=
+          SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
           promoteId: 'wpepopid'
         },
         render: {
@@ -503,11 +511,102 @@ export const selectPopulationLayers = createSelector(
   }
 );
 
+export const selectPopulationsLayersByLocation = createSelector(
+  [specie_id, population_id, lonLat],
+  (_specie_id, _population_id, _lonLat) => {
+    return [
+      // GEOJSON DATA LAYER
+      {
+        id: 'populations-by-location',
+        type: 'geojson',
+        source: {
+          type: 'geojson',
+          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=SELECT * FROM species_and_flywaygroups WHERE
+          ST_Intersects(
+                     ST_SetSRID(
+                        ST_MakePoint({{lng}},{{lat}}),4326),the_geom) &api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
+        },
+        render: {
+          layers: [
+            {
+              type: "fill",
+              //  "source-layer": "layer0",
+              paint: {
+                'fill-color': '#FFBB00',
+                'fill-opacity': 0.25
+              }
+            },
+            {
+              type: "line",
+              //  "source-layer": "layer0",
+              paint: {
+                "line-color": "#000000",
+                "line-opacity": 0.5,
+                "line-dasharray": [1, 2]
+              }
+            }
+          ]
+        },
+        paramsConfig: [
+          { key: 'lng', required: true },
+          { key: 'lat', required: true }
+        ],
+        interactionConfig: {
+          enable: true
+        }
+      },
+      {
+        id: 'location',
+        type: 'geojson',
+        source: {
+          type: 'geojson',
+          data: {
+            "type": "FeatureCollection",
+            "features": [
+              {
+                "type": "Feature",
+                "properties": {},
+                "geometry": {
+                  "type": "Point",
+                  "coordinates": _lonLat
+                }
+              }
+            ]
+          }
+        },
+        render: {
+          layers: [
+            {
+              type: "circle",
+              //  "source-layer": "layer0",
+              paint: {
+                "circle-radius": 100,
+                "circle-color": "#1C1B27"
+              },
+              // metadata: {
+              //   position: 'top'
+              // }
+            },
+          ]
+        },
+        paramsConfig: [
+          { key: 'lng', required: true },
+          { key: 'lat', required: true }
+        ],
+        interactionConfig: {
+          enable: true
+        }
+      },
+    ]
+  }
+);
+
 
 export const selectPopulationProps = createStructuredSelector({
   populationData: selectPopulationsData,
   populationFamilies: selectPopulationFamilies,
-  populationSpecies: selectPopulationSpecies
+  populationSpecies: selectPopulationSpecies,
+  populationsNumber: selectPopulationFiltered
 });
 
 
@@ -520,5 +619,6 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationTrendData: selectPopulationTrendData,
   populationPercentData: selectPopulationPercentData,
   populationReferences: selectPopulationReferences,
-  populationLayers: selectPopulationLayers
+  populationLayers: selectPopulationLayers,
+  populationsLayersByLocation: selectPopulationsLayersByLocation
 });

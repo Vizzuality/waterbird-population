@@ -130,8 +130,57 @@ export const fetchPopulations = (specieid) => {
 };
 
 export const fetchDataToDownload = (specieid) => {
-  const q = `SELECT * FROM populations_all_data ${specieid ? `where species_id=${specieid}` : ''}`;
+  const q = `SELECT
+    populationname,
+    breedingrange,
+    nonbreedingrange,
+    n.id,
+    species_id,
+    s.id AS population_size_id,
+    s.startyear,
+    s.endyear,
+    s.minimum,
+    s.maximum,
+    s.notes,
+    s.population_id,
+    o.yearset,
+    o.onepercent,
+    o.populationid,
+    p.publication_id,
+    pub.description AS pub_description,
+    pub.published,
+    t.startyear AS trend_start_year,
+    t.endyear AS trend_end_year,
+    t.trend_id,
+    t.trendquality_id,
+    q.description,
+    trend.trendcode,
+    trend.trendsum
+  FROM populationname n
+  LEFT JOIN populationsize s ON n.id = s.population_id
+  LEFT JOIN populationonepercentlevel o ON n.id = o.populationid
+  LEFT JOIN populationtrend t ON n.id = t.population_id
+  LEFT JOIN populationpublication p ON p.population_id = s.population_id
+  LEFT JOIN publication pub ON pub.id = p.publication_id
+  LEFT JOIN trend trend ON trend.id = t.trend_id
+  LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
+   ${specieid ? `where species_id=${specieid}` : ''}`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=csv`)
     .then(({ data }) => data)
+};
+
+export const fetchPopulationsByLocation = (lng,lat) => {
+  const q = `SELECT commonname,
+    flywaygroup,
+    flywayrange,
+    populationname,
+    scientificname,
+    wpepopid FROM species_and_flywaygroups WHERE
+  ST_Intersects(
+             ST_SetSRID(
+                ST_MakePoint(${lng},${lat}),4326),the_geom)`;
+
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+    .then(({ data, status }) => { return { data: data.rows, status }})
 };

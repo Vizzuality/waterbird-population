@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 import './styles.scss';
 
@@ -19,9 +18,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
   }
 
   return (
-    <div className={classnames('c-populations-selector', {
-
-    })}>
+    <div className="c-populations-selector">
       <div className="wrapper">
         <div className="populations-selector--content">
           <div className="populations-selector--content-info-wrapper">
@@ -45,7 +42,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
               <span style={{ backgroundColor: current.tag_color }}>{current.tag_status}</span>
               <div>
                 <p>{current.specie}</p>
-                <p>{`(${current.scientificname})`}</p></div>
+                <p className="-italic">{`(${current.scientificname})`}</p></div>
             </div>
           </div>
         </div>

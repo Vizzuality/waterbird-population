@@ -1,36 +1,48 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import isEmpty from 'lodash/isEmpty';
+import { format } from 'd3-format';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
+import { Popup } from 'react-map-gl'
+
+import { getParams } from 'utils/layers';
+
+import { fetchPopulationsByLocation } from 'services/population';
 
 // Components
 import Map from 'components/map';
 import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
+import PopulationsSelector from './populations-selector';
 import Legend from 'components/map/legend';
 
 
 export const MapContainer = ({
-  layers,
+  router,
+  coordinates,
+  populationsLayersByLocation,
+  populationsNumber,
+  setPopulationsByLocation,
+  setRouter,
+  setLocation,
   scrollZoom = false
 }) => {
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
+  const [hoverInteractions, setHoverInteractions] = useState({});
+  const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
   useEffect(() => {
-    window.addEventListener('resize', resize);
-    resize();
+    coordinates && fetchPopulationsByLocation(coordinates[0], coordinates[1]).then((data) => setPopulationsByLocation(data));
+  }, [coordinates])
 
-    return function cleanup() {
-      window.removeEventListener('resize', resize);
-    };
-    // eslint-disable-next-line
-  }, []);
-
-  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
-
-  const onViewportChange = (viewport) => {
-    setViewport(viewport);
-  }
+  const layers = populationsLayersByLocation.map(l => {
+    return {
+      ...l,
+      params: !!coordinates && !!l.paramsConfig && getParams(l.paramsConfig, { lng: coordinates[0], lat: coordinates[1] })
+    }
+  });
 
   const onZoomChange = (zoom) => {
     setViewport({
@@ -38,24 +50,69 @@ export const MapContainer = ({
       transitionDuration: 250
     });
   };
-
-
-  const resize = () => {
-    setViewport({
-      ...viewport,
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
+  const onAfterAdd = layerModel => {
+    if (!isEmpty(layerModel.interactionConfig)) {
+      layerModel.mapLayer.layers.forEach(l => {
+        const { id } = l;
+        if (!interactiveLayerIds.includes(id)) {
+          setInteractiveLayerIds(prevInteractiveLayersIds => [...prevInteractiveLayersIds, id]);
+        }
+      });
+    }
   };
+
+  const onAfterRemove = layerModel => {
+    if (!isEmpty(layerModel.interactionConfig)) {
+      layerModel.mapLayer.layers.forEach(l => {
+        const { id } = l;
+
+        if (interactiveLayerIds.includes(id)) {
+          setInteractiveLayerIds(prevInteractiveLayersIds => {
+            const arr = prevInteractiveLayersIds.filter(e => e !== id);
+
+            return arr;
+          });
+        }
+      });
+    }
+  };
+
+  const numberFormat = format(',.2f');
+  const data = coordinates && `${numberFormat(coordinates[0])}, ${' '} ${numberFormat(coordinates[1])}`
 
   return (
     <div className='c-map-container'>
+      {coordinates && <PopulationsSelector
+        data={data}
+      />}
       <Map
         viewport={viewport}
         scrollZoom={scrollZoom}
         mapStyle='mapbox://styles/mapbox/light-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        onViewportChange={onViewportChange}
+        interactiveLayerIds={interactiveLayerIds}
+        onClick={(e) => {
+          if (e && e.features) {
+            e.features.forEach(f => (
+              setHoverInteractions({
+                [f.source]: f.properties
+              })
+            ));
+          }
+          setLocation(e.lngLat);
+        }}
+        onHover={(e) => {
+          if (e && e.features) {
+            e.features.forEach(f => (
+              setHoverInteractions({
+                [f.source]: f.properties
+              })
+            ));
+          }
+       }}
+       onMouseLeave={() => {
+          setHoverInteractions({});
+        }}
       >
 
         {(map) =>
@@ -69,11 +126,26 @@ export const MapContainer = ({
                   <Layer
                     key={l.id}
                     {...l}
+                    onAfterAdd={onAfterAdd}
+                    // onAfterRemove={onAfterRemove}
                   />
                 )
 
               })}
             </LayerManager>
+            {coordinates && hoverInteractions['populations-by-location'] && (
+              <Popup
+                key={hoverInteractions['populations-by-location']}
+                latitude={coordinates[1]}
+                longitude={coordinates[0]}
+                closeButton={false}
+              >
+                {populationsNumber && populationsNumber.length === 1
+                  ? `Population name: ${populationsNumber[0].name.toUpperCase()}`
+                  : `There are ${populationsNumber.length} populations flying through this point`}
+              </Popup>
+            )}
+
           </Fragment>
         }
       </Map>

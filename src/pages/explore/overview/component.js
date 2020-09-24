@@ -11,7 +11,6 @@ import { fetchPopulations, fetchDataToDownload } from 'services/population';
 import '../styles.scss';
 
 const ExplorePage = ({ setPopulations }) => {
-
   const [downloadData, setDownload] = useState('');
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
