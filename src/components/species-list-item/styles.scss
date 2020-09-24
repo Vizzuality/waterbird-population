@@ -20,20 +20,21 @@
       span {
         &.name {
           color: $color-2;
+
+          &.-scientific {
+            font-weight: bold;
+            font-style: italic;
+          }
+
+          &.-specific {
+            font-style: normal;
+          }
         }
       }
     }
 
     span {
       padding-right: 15px;
-
-      &.-cientific {
-        font-weight: bold;
-      }
-
-      &.-specific {
-        font-style: italic;
-      }
 
       &.tag {
         display:inline-block;

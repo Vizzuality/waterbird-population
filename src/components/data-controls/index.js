@@ -7,6 +7,7 @@ import Component from './component';
 
 const mapStateToProps = state => ({
   filters: state.population.filters,
+  publications: state.population.publications,
   ...selectFiltersProps(state)
 })
 

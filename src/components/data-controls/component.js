@@ -6,11 +6,13 @@ import ActiveFilters from 'components/filters/active-filters';
 
 import "./styles.scss";
 
-const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters }) => {
+const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, publications }) => {
   const handleClick = (type, value) => {
     const filtersUpdate = {
       ...filters,
-      [type]: filters[type].filter(f => f !== value)
+      [type]: type === 'publication_id'
+        ? { label: `${publications[0].description + '(default)'}`, value: publications[0].id }
+        : filters[type].filter(f => f !== value)
     }
     setFilters(filtersUpdate);
   };

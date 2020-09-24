@@ -10,10 +10,10 @@ const ActiveFilters = ({ filters, active, heading, onClick }) => (
     {!!active.length && <p>{heading}</p>}
     {Object.entries(filters).map(filter =>
       filter && Object.values(filter[1]).length && filter[1].label
-        ? <span
+        ? !filter[1].label.includes('default') && (<span
           className={classnames({ '-clickable': onClick })}
           onClick={() => onClick(filter[0], filter[1])}
-        >{filter[1].label}</span>
+        >{filter[1].label}</span>)
         : filter[1].map(f => <span className={classnames({ '-clickable': onClick })} onClick={() => onClick(filter[0], f)}>{f.label}</span>)
     )}
   </section>
