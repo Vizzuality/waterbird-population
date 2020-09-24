@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'components/recharts';
 
-import Filters from 'components/analysis/filters';
-
 import config from './config';
 
 

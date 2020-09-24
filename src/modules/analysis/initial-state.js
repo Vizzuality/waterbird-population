@@ -1,6 +1,6 @@
 export default {
   widgets: [
-    'populations', 'estimates', 'families'
+    'families', 'populations', 'estimates'
   ],
   widgetData: 'light',
   trends: '',

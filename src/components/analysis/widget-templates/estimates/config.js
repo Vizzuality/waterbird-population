@@ -12,51 +12,48 @@ const numberFormat = format(',.3r');
 
 const getMetadata = (data) => data.map(d => d.name)
 
-const getBars = data => data.reduce((acc, d) => {
-
-  const colorSchema = [
-    { 'stable or fluctuating': '#BFD630' },
-    { 'declining': '#5DBEE1' },
-    { 'increasing': '#EB6240' },
-    { 'unknown': '#0282B0' },
-  ];
-
-  return {
-    ...acc,
-    [Object.keys(d)]: {
-      barSize: 20,
-      stackId: 'bar',
-      fill: colorSchema[Object.values(d)],
-      stroke: colorSchema[Object.values(d)],
-      isAnimationActive: false
-    }
-  };
-}, {});
-
-const dataBars = [
-  {
-    label: 'stable or fluctuating',
-    color: '#BFD630',
+const Bars = {
+  'stable or fluctuating': {
+    barSize: 20,
+    stackId: 'bar',
+    fill: '#BFD630',
+    stroke: '#BFD630',
+    isAnimationActive: false
   },
-  {
-    label: 'declining',
-    color: '#5DBEE1',
+  'declining': {
+    barSize: 20,
+    stackId: 'bar',
+    fill: '#EB6240',
+    stroke: '#EB6240',
+    isAnimationActive: false
   },
-  {
-    label: 'increasing',
-    color: '#EB6240',
+  'increasing': {
+    barSize: 20,
+    stackId: 'bar',
+    fill: '#0282B0',
+    stroke: '#0282B0',
+    isAnimationActive: false
   },
-  {
-    label: 'unknown',
-    color: '#0282B0',
-  }
-];
+  'unknown': {
+    barSize: 20,
+    stackId: 'bar',
+    fill: '#BFD630',
+    stroke: '#BFD630',
+    isAnimationActive: false
+  },
+};
+
+const getData = (data) => {
+  if (!data) return null;
+  return data.map(d => Object.values(d)[0].trend)
+};
 
 export const CONFIG = {
+
   parse: (data) => {
     {
       return {
-        chartData: data,
+        chartData: getData(data),
         metadata: getMetadata(data),
         chartConfig: {
           height: 500,
@@ -66,9 +63,9 @@ export const CONFIG = {
             horizontal: false,
             strokeDasharray: '5 20'
           },
-          xKey: 'name',
+          xKey: 'region',
           yKeys: {
-            bars: getBars(data)
+            bars: Bars
           },
           referenceLines: [{
             y: 0,
@@ -80,6 +77,7 @@ export const CONFIG = {
           }],
           xAxis: {
             type: 'category',
+            dataKey: 'region',
             domain: [0, 100],
             tick: {
               fontSize: 12,
@@ -89,7 +87,6 @@ export const CONFIG = {
           },
           yAxis: {
             type: 'number',
-            dataKey: 'name',
             tick: {
               fontSize: 10,
               fill: 'rgba(0,0,0,0.54)'
@@ -136,13 +133,8 @@ export const CONFIG = {
                   justifyContent: 'space-around',
                   flexDirection: 'column'
                 }}
-                settings={dataBars.map(bar => {
-                  return {
-                    label: bar.label, color: bar.color, key: bar.label, format: value => `${numberFormat(value)} %`
-                  }
-                })
-                }
-                title={{ key: 'name' }}
+
+                title={{ key: 'region' }}
               />
             )
           }

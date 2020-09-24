@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from 'components/recharts';
 
-import Filters from 'components/analysis/filters';
-
 import config from './config';
 
 
@@ -17,7 +15,6 @@ const Bars = (props) => {
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:
-      <Filters />
       <div className="c-population-trends-widget">
         <Chart
           data={chartData}

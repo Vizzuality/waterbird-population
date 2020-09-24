@@ -262,6 +262,7 @@ export const selectRegionTrendsChart = createSelector(
         [Object.keys(population)[0]]: {
           name: filteredNames,
           trend: {
+            region: Object.keys(population)[0],
             'stable or fluctuating': filteredTrends.reduce((n, t) => {
               return trim(t[0].state) === 'stable or fluctuating' ? n + 1 : n
             }, 0),

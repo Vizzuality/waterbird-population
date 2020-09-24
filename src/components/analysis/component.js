@@ -8,6 +8,7 @@ import { fetchTrends } from 'services/trends';
 import { fetchTrendCategories } from 'services/trends';
 
 import DataControls from 'components/data-controls';
+import Filters from 'components/analysis/filters';
 
 
 //import './styles.scss';
@@ -24,6 +25,7 @@ const Analysis = ({ widgets, widgetTemplates, setPopulations, setTrends, setTren
 return (
   <div className="c-analisis">
     <DataControls />
+    <Filters />
     {!!widgets.length && widgets.map((widget) => {
       const Widget = widgetTemplates.get(widget).component;
 

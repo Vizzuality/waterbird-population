@@ -10,14 +10,14 @@ import { setPopulations } from 'modules/population/actions';
 import { setTrends, setTrendCategories } from 'modules/analysis/actions';
 
 const widgetTemplates = new Map([
-  ['estimates', {
-    component: EstimatesBarChart
+  ['families', {
+    component: StackedBarChart
   }],
   ['populations', {
     component: BarChart
   }],
-  ['families', {
-    component: StackedBarChart
+  ['estimates', {
+    component: EstimatesBarChart
   }]
 ]);
 
