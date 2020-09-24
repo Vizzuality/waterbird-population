@@ -235,7 +235,7 @@ export const selectRegionTrendsChart = createSelector(
       const publication_id = 9;
 
       const totalTrendsByRegion = {
-        [r.id]: {
+        [r.name]: {
           name: _data
             .filter(d => d[r.id] === 1)
             .map(t => t.trends

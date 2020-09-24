@@ -37,9 +37,9 @@
       margin-right: 20px;
       border-radius: 3px;
       display: block;
+      flex-shrink: 0;
     }
   }
-
 
   .widget_legend-number {
     font-weight: 600;
@@ -52,22 +52,6 @@
       width: 13px;
       height: 13px;
       border-radius: 10px;
-    }
-    .net {
-      width: 3px;
-      height: 13px;
-      border-radius: 0;
-    }
-  }
-
-  .itemWrapper {
-    display: flex;
-    flex-direction: column;
-    font-weight: bold;
-
-    .item {
-      font-weight: normal;
-      font-size: 14px;
     }
   }
 }

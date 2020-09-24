@@ -47,14 +47,16 @@ const dataBars = [
 
 export const CONFIG = {
   parse: (data) => {
-    const height = data.length * 30;
+    const height = (data.length * 25) + 140;
     {
       return {
         chartData: data,
         metadata: getMetadata(data),
         chartConfig: {
+          chartProps: {
+            barCategoryGap: 5
+          },
           height,
-          minHeight: 200,
           layout: 'vertical',
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
           cartesianGrid: {
@@ -67,7 +69,7 @@ export const CONFIG = {
             bars: getBars(dataBars)
           },
           referenceLines: [{
-            y: 0,
+            x: 0,
             stroke: 'black',
             strokeDasharray: 'solid',
             fill: 'black',
@@ -81,7 +83,8 @@ export const CONFIG = {
               fontSize: 12,
               fill: 'rgba(0, 0, 0, 0.54)'
             },
-            tickCount: 6
+            tickCount: 6,
+            unit: '%'
           },
           yAxis: {
             type: 'category',
@@ -103,9 +106,6 @@ export const CONFIG = {
                 </text>
               );
             },
-            unit: '%',
-
-            // tickFormatter: value => Math.round(value),
             interval: 0,
           },
           legend: {

@@ -25,11 +25,6 @@
   margin-right: 20px;
   font-size: bold;
 
-  &._column {
-    flex-direction: row;
-    padding: 5px;
-  }
-
   &:last-of-type {
     margin-right: 0;
   }
@@ -59,23 +54,14 @@
   }
 }
 
-.break_label {
-  font-style: italic;
-  flex-direction: row;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
 
 .data_color {
-  width: 9px;
-  height: 18px;
-  border-radius: 22px;
-  margin-right: 10px;
-
-  &.bar {
-    border-radius: 0;
-    width: 4px;
-  }
+  height: 10px;
+  width: 10px;
+  margin-right: 20px;
+  border-radius: 3px;
+  display: block;
+  flex-shrink: 0;
 }
 
 .data_value {

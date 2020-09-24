@@ -1,7 +1,5 @@
 
 import React from 'react';
-import groupBy from 'lodash/groupBy';
-import sortBy from 'lodash/sortBy';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
@@ -9,31 +7,14 @@ import { format } from 'd3-format';
 const numberFormat = format(',.3r');
 
 
-const getMetadata = (data) => data.map(d => d.name)
-
-const getBars = data => data.reduce((acc, d) => {
-
-  return {
-    ...acc,
-    [d.name]: {
-      barSize: 20,
-      dataKey: "total_populations",
-      fill: '#BFD630'
-    }
-  }
-}, {});
-
-
 export const CONFIG = {
   parse: (data) => {
-    const height = data.length * 30;
+    const height = (data.length * 25) + 160;
     {
       return {
         chartData: data,
-        metadata: getMetadata(data),
         chartConfig: {
           height,
-          minHeight: 200,
           layout: 'vertical',
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
           cartesianGrid: {
@@ -42,7 +23,12 @@ export const CONFIG = {
             strokeDasharray: '5 20'
           },
           yKeys: {
-            bars: getBars(data)
+            bars: {
+              "total_populations": {
+                barSize: 20,
+                fill: '#BFD630'
+              }
+            }
           },
           referenceLines: [{
             y: 0,
@@ -54,7 +40,6 @@ export const CONFIG = {
           }],
           xAxis: {
             type: 'number',
-            domain: [0, 600],
             tick: {
               fontSize: 12,
               fill: 'rgba(0, 0, 0, 0.54)'
@@ -85,7 +70,7 @@ export const CONFIG = {
           },
           tooltip: {
             cursor: false,
-            content: (
+            content: ({ payload }) =>
               <WidgetTooltip
                 type="column"
                 style={{
@@ -93,10 +78,8 @@ export const CONFIG = {
                   justifyContent: 'space-around',
                   flexDirection: 'column'
                 }}
-                payload
-                title={{ key: 'name' }}
-              />
-            )
+                settings={payload}
+                />
           }
         },
       };

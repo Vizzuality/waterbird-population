@@ -14,7 +14,7 @@ const Bars = (props) => {
 
   return (
     <div>
-      NUMBER OF WATERBIRD ESTIMATES UPDATED IN EACH RAMSAR REGION:
+      NUMBER OF WATERBIRD ESTIMATES UPDATED IN EACH RAMSAR REGION BY POPULATION:
       <div className="c-population-trends-widget">
         <Chart
           data={chartData}

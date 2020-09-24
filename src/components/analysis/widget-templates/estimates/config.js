@@ -14,28 +14,28 @@ const getMetadata = (data) => data.map(d => d.name)
 
 const Bars = {
   'stable or fluctuating': {
-    barSize: 20,
+    barSize: 55,
     stackId: 'bar',
     fill: '#BFD630',
     stroke: '#BFD630',
     isAnimationActive: false
   },
   'declining': {
-    barSize: 20,
+    barSize: 55,
     stackId: 'bar',
     fill: '#EB6240',
     stroke: '#EB6240',
     isAnimationActive: false
   },
   'increasing': {
-    barSize: 20,
+    barSize: 55,
     stackId: 'bar',
     fill: '#0282B0',
     stroke: '#0282B0',
     isAnimationActive: false
   },
   'unknown': {
-    barSize: 20,
+    barSize: 55,
     stackId: 'bar',
     fill: '#BFD630',
     stroke: '#BFD630',
@@ -91,52 +91,46 @@ export const CONFIG = {
               fontSize: 10,
               fill: 'rgba(0,0,0,0.54)'
             },
-            width: 200,
             label: ({ viewBox }) => {
-              const { y, height } = viewBox;
-
-              const cx = - height / 2;
-              const cy = 20;
-              const rot = `270 60 60`;
+              const { y } = viewBox;
               return (
-                <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
-                  FAMILIES
+                <text x={-250} y={y / 2} transform={`rotate(270)`} textAnchor="middle">
+                  NUMBER OF POPULATIONS
                 </text>
               );
             },
-            unit: '%',
-
-            // tickFormatter: value => Math.round(value),
+            tickFormatter: value => Math.round(value),
             interval: 0,
+            width: 100
           },
-          // legend: {
-          //   align: 'left',
-          //   verticalAlign: 'top',
-          //   layout: 'horizontal',
-          //   height: 80,
-          //   top: 0,
-          //   left: 0,
-          //   position: 'relative',
-          //   content: (properties) => {
-          //     const { payload } = properties;
-          //     const groups = groupBy(payload, p => p.payload);
-          //     return <WidgetLegend groups={groups} />;
-          //   }
-          // },
+          legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            layout: 'horizontal',
+            height: 80,
+            top: 0,
+            left: 0,
+            position: 'relative',
+            content: (properties) => {
+              const { payload } = properties;
+              const groups = groupBy(payload, p => p.payload);
+              return <WidgetLegend groups={groups} />;
+            }
+          },
           tooltip: {
             cursor: false,
-            content: (
+            content: (data) => {
+              return (
               <WidgetTooltip
-                type="column"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  flexDirection: 'column'
-                }}
-
-                title={{ key: 'region' }}
-              />
-            )
+              type="column"
+              style={{
+                display: 'flex',
+                justifyContent: 'space-around',
+                flexDirection: 'column'
+              }}
+              settings={data.payload}
+            />)
+            }
           }
         },
       };

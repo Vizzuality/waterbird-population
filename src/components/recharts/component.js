@@ -86,6 +86,7 @@ class Chart extends PureComponent {
       gradients,
       patterns,
       stackOffset,
+      chartProps,
       ...content
     } = config;
 
@@ -125,6 +126,7 @@ class Chart extends PureComponent {
             padding={padding}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
+            {...chartProps}
           >
             <defs>
               {gradients && Object.keys(gradients).map(key => (
@@ -212,7 +214,7 @@ class Chart extends PureComponent {
             ))}
 
             {bars && Object.keys(bars).map(key => (
-              <Bar key={key} dataKey={key} dot={false} {...bars[key]} minPointSize={60}>
+              <Bar key={key} dataKey={key} dot={false} {...bars[key]}>
                 {!!bars[key].label && <Label {...bars[key].label} />}
 
                 {bars[key].itemColor && data.map(item => (
@@ -264,9 +266,9 @@ class Chart extends PureComponent {
 
             {tooltip && (
               <Tooltip
-                wrapperStyle={{ position: 'absolute',
+                wrapperStyle={{
+                  position: 'absolute',
                   top: 0 }}
-
                 isAnimationActive={false}
                 {...tooltip}
               />
