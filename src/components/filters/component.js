@@ -35,7 +35,7 @@ const Filters = ({
 
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
-    fetchPublications().then(data => setPublications(data));
+    fetchPublications().then(data => setPublications(data.reverse()));
     fetchConservationFrameworks().then(data => setFrameworks(data));
     fetchFlyways().then(data => setFlyways(data));
     fetchRedListCategories().then(data => setListCategories(data));
@@ -63,7 +63,10 @@ const Filters = ({
   });
 
   const publicationOptions = publications.map(publication => {
-    return { label: publication.description, value: publication.id }
+    const label = (publications[0].description === publication.description)
+      ? publication.description + ' (default)'
+      : publication.description;
+    return { label: label, value: publication.id }
   });
 
   const conservationFrameworkOptions = conservationFrameworks.map(framework => {
@@ -200,6 +203,7 @@ const Filters = ({
               placeholder={placeholder}
               options={options}
               value={value}
+              defaultValue={type === 'publication_id' && filters.publication_id[0]}
               isMulti={isMulti}
               classNamePrefix="react-select"
               onChange={value => changeFilterValue(isMulti, type, value)}
