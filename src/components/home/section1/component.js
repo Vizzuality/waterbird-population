@@ -90,7 +90,7 @@ const Section1 = ({ setFilters, filters }) => {
         </div>
         <div className="row center-xs">
           <div className="col-md-10 col-sm-12">
-            <p className="center bottom-text">The Waterbird Population Estimates (WPE) online database provides current and historic estimates, trends and 1% thresholds for over 800 waterbird species and 2300 biogeographic populations worldwide. This project has been developed by Wetlands International with the support of Environment Canada and the Ramsar Convention on Wetlands.</p>
+            <p className="center bottom-text">The Waterbird Populations Portal (WPP) online database provides current and historic estimates, trends and 1% thresholds for over 800 waterbird species and 2300 biogeographic populations worldwide. This project has been developed by Wetlands International with the support of Environment Agency Abu Dhabi.</p>
           </div>
         </div>
       </div>
