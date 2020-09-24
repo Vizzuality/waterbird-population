@@ -1,6 +1,5 @@
 import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
-import { setPublications } from 'modules/population/actions';
 
 const store = localforage.createInstance({
   driver: [

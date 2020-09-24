@@ -8,6 +8,7 @@ import Button from 'components/button';
 import Select from 'react-select';
 import Icon from 'components/icon';
 import ActiveFilters from './active-filters';
+import ClearFilters from './clear-filters';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -17,7 +18,15 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, onClick, publications, setPublications }) => {
+const Filters = ({
+  filters,
+  setFilters,
+  resetFilters,
+  activeFilters,
+  onClick,
+  publications,
+  setPublications
+}) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
@@ -26,7 +35,7 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
 
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
-    fetchPublications().then(data => setPublications(data));
+    fetchPublications().then(data => setPublications(data.reverse()));
     fetchConservationFrameworks().then(data => setFrameworks(data));
     fetchFlyways().then(data => setFlyways(data));
     fetchRedListCategories().then(data => setListCategories(data));
@@ -36,12 +45,17 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
     //toggle modal
     onClick();
   };
-
   const handleFilters = () => {
     setFilters(newFiltersValues)
     //toggle modal
     onClick();
   };
+
+  const handleClearFilters = () => {
+    resetFilters();
+    setNewFiltersValues(filters);
+  }
+
 
   // Filters options
   const familyOptions = families.map(family => {
@@ -49,7 +63,10 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
   });
 
   const publicationOptions = publications.map(publication => {
-    return { label: publication.description, value: publication.id }
+    const label = (publications[0].description === publication.description)
+      ? publication.description + ' (default)'
+      : publication.description;
+    return { label: label, value: publication.id }
   });
 
   const conservationFrameworkOptions = conservationFrameworks.map(framework => {
@@ -186,6 +203,7 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
               placeholder={placeholder}
               options={options}
               value={value}
+              defaultValue={type === 'publication_id' && filters.publication_id[0]}
               isMulti={isMulti}
               classNamePrefix="react-select"
               onChange={value => changeFilterValue(isMulti, type, value)}
@@ -195,7 +213,7 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
                   return data === selectProps.value[0]
                     ? (<div {...innerProps}>
                       <span>
-                         {data.label}
+                        {data.label}
                       </span>
                       {length >= 1 && <span>{` + ${length}`}</span>}
                     </div>)
@@ -207,7 +225,18 @@ const Filters = ({ filters, setFilters, onClick, publications, setPublications }
           </div>
         )}
       </div>
-      <ActiveFilters filters={newFiltersValues} onClick={removeFilter} />
+      <div className="filters-controls">
+        <ActiveFilters
+          filters={newFiltersValues}
+          onClick={removeFilter}
+          active={activeFilters}
+        />
+        <ClearFilters
+          handleUnsetteledFilters={setNewFiltersValues}
+          activeFilters={filters}
+          unsetteledFilters={newFiltersValues && Object.values(newFiltersValues).filter(filter => filter.length)}
+        />
+      </div>
       <div className="filters-buttons">
         <Button
           className="-background -tertiary -big"

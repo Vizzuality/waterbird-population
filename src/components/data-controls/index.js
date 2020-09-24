@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
 
+import { selectFiltersProps } from 'modules/population/selectors';
+import { setFilters, resetFilters } from 'modules/population/actions';
+
 import Component from './component';
 
 const mapStateToProps = state => ({
-  filters: state.population.filters
+  filters: state.population.filters,
+  publications: state.population.publications,
+  ...selectFiltersProps(state)
 })
 
-export default connect(mapStateToProps)(Component);
+const mapDispatchToProps = { setFilters, resetFilters };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

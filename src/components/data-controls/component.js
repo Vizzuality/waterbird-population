@@ -1,20 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Download from "components/download";
+import ClearFilters from 'components/filters/clear-filters';
 import ActiveFilters from 'components/filters/active-filters';
-
-import { setFilters } from 'modules/population/actions';
 
 import "./styles.scss";
 
-const DataControls = ({ data, filters }) => {
+const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, publications }) => {
   const handleClick = (type, value) => {
     const filtersUpdate = {
       ...filters,
-      [type]: filters[type].filter(f => f !== value)
+      [type]: type === 'publication_id'
+        ? { label: `${publications[0].description + '(default)'}`, value: publications[0].id }
+        : filters[type].filter(f => f !== value)
     }
     setFilters(filtersUpdate);
-  }
+  };
+
+  const handleFilters = () => {
+    resetFilters();
+  };
+
   return (
     <div className="c-data-controls">
       <Download
@@ -23,7 +29,19 @@ const DataControls = ({ data, filters }) => {
         filename={'populations'}
         className="-dashed"
       />
-      <ActiveFilters filters={filters} onClick={handleClick} heading={'Filtered by:'} />
+      <div className="filters-controls">
+        <ActiveFilters
+          filters={filters}
+          onClick={handleClick}
+          heading={'Filtered by:'}
+          active={activeFilters}
+        />
+        <ClearFilters
+          handleFilters={handleFilters}
+          activeFilters={activeFilters}
+          unsetteledFilters={false}
+        />
+      </div>
     </div>
   );
 };
