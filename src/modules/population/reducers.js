@@ -2,10 +2,13 @@ import {
   setFilters,
   setPopulations,
   setPopulationsByLocation,
+  resetPopulationsByLocation,
   setPublications,
   setCurrent,
   setSearch
 } from './actions';
+
+import initialState from './initial-state';
 
 export default {
   [setFilters]: (state, { payload }) => ({
@@ -24,6 +27,11 @@ export default {
       data: payload.data,
       loading: !payload.status === 200
     }
+  }),
+  [resetPopulationsByLocation]: (state) =>
+  ({
+    ...state,
+    populationsByLocation: ({ ...state }, initialState.populationsByLocation)
   }),
   [setPublications]: (state, { payload }) => ({
     ...state,

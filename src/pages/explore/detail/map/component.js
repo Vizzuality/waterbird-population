@@ -13,7 +13,7 @@ import Map from 'components/map';
 import Legend from 'components/map/legend';
 import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
-import PopulationsSelector from 'components/populations-selector';
+import PopulationsSelector from 'pages/explore/detail/map/populations-selector
 
 
 export const MapContainer = ({

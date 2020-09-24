@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from 'lodash/isEmpty';
+import { format } from 'd3-format';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
@@ -14,6 +15,7 @@ import { fetchPopulationsByLocation } from 'services/population';
 import Map from 'components/map';
 import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
+import PopulationsSelector from './populations-selector';
 import Legend from 'components/map/legend';
 
 
@@ -75,8 +77,14 @@ export const MapContainer = ({
     }
   };
 
+  const numberFormat = format(',.2f');
+  const data = coordinates && `${numberFormat(coordinates[0])}, ${' '} ${numberFormat(coordinates[1])}`
+
   return (
     <div className='c-map-container'>
+      {coordinates && <PopulationsSelector
+        data={data}
+      />}
       <Map
         viewport={viewport}
         scrollZoom={scrollZoom}
