@@ -97,10 +97,9 @@ export const MapContainer = ({
               setHoverInteractions({
                 [f.source]: f.properties
               })
-
             ));
-            setLocation(e.lngLat);
           }
+          setLocation(e.lngLat);
         }}
         onHover={(e) => {
           if (e && e.features) {
@@ -142,7 +141,7 @@ export const MapContainer = ({
                 closeButton={false}
               >
                 {populationsNumber && populationsNumber.length === 1
-                  ? `${populationsNumber[0].populationname}`
+                  ? `Population name: ${populationsNumber[0].name.toUpperCase()}`
                   : `There are ${populationsNumber.length} populations flying through this point`}
               </Popup>
             )}
