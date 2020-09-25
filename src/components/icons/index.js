@@ -54,7 +54,7 @@ const Icons = () => (
       </symbol>
       <symbol id="icon-info" viewBox="0 0 32 32">
         <title>info</title>
-        <path fill="#0282b0" style={{ fill: 'var(--color2, #0282b0)' }, { stroke: 'var(--color2, #0282b0)' }} stroke="#0282b0" strokeLinejoin="miter" strokeLinecap="butt" strokeMiterlimit="4" strokeWidth="3.5556" d="M30.222 16c0 7.855-6.367 14.222-14.222 14.222s-14.222-6.367-14.222-14.222c0-7.855 6.367-14.222 14.222-14.222s14.222 6.367 14.222 14.222z"></path>
+        <path fill="#0282b0" style={{ fill: 'var(--color2, #0282b0)', stroke: 'var(--color2, #0282b0)' }} stroke="#0282b0" strokeLinejoin="miter" strokeLinecap="butt" strokeMiterlimit="4" strokeWidth="3.5556" d="M30.222 16c0 7.855-6.367 14.222-14.222 14.222s-14.222-6.367-14.222-14.222c0-7.855 6.367-14.222 14.222-14.222s14.222 6.367 14.222 14.222z"></path>
         <path fill="#fff" style={{ fill: 'var(--color1, #fff)' }} d="M13.926 13.926h4.148v10.37h-4.148v-10.37z"></path>
         <path fill="#fff" style={{ fill: 'var(--color1, #fff)' }} d="M18.074 9.778c0 1.145-0.929 2.074-2.074 2.074s-2.074-0.929-2.074-2.074c0-1.145 0.929-2.074 2.074-2.074s2.074 0.929 2.074 2.074z"></path>
       </symbol>

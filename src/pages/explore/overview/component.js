@@ -15,7 +15,7 @@ const ExplorePage = ({ setPopulations }) => {
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
     fetchDataToDownload().then(data => setDownload(data));
-  }, [])
+  }, [setPopulations])
 
   return (
   <div className="l-explore">
