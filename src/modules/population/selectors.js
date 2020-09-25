@@ -19,7 +19,7 @@ export const publications = (state) => state ?.population.publications;
 export const user = (state) => state ?.user;
 export const search = (state) => state ?.population.search;
 export const lonLat = (state) => state ?.map.lonLat;
-export const populations_by_location = (state) => state?.population.populationsByLocation.data;
+export const populations_by_location = (state) => state ?.population.populationsByLocation.data;
 
 export const familyId = (state, props) => props ?.familyId;
 export const specieId = (state, props) => props ?.specieId;
@@ -321,7 +321,7 @@ export const selectPopulationSizeData = createSelector(
         minimum,
         quality,
         notes: trim(notes) ? [
-          { id: 1, info: trim(notes) }
+          { id: size_id, info: trim(notes) }
         ] : [],
         references: filteredReferences
       }
@@ -344,7 +344,7 @@ export const selectPopulationTrendData = createSelector(
 
       return {
         specie: _specie_id,
-        population: _population_id,
+        population: +_population_id,
         trend_id,
         publication,
         published,
@@ -354,7 +354,7 @@ export const selectPopulationTrendData = createSelector(
         name,
         quality,
         notes: trim(notes) ? [
-          { id: 1, info: trim(notes) }
+          { id: trend_id, info: trim(notes) }
         ] : [],
         references: (references && references.length)
           ? references.map(({ reference_id, body }) => { return { id: reference_id, info: body } })
@@ -387,7 +387,7 @@ export const selectPopulationPercentData = createSelector(
         onepercent,
         onepercent_id,
         notes: trim(note) ? [
-          { id: 1, info: trim(note) }
+          { id: onepercent_id, info: trim(note) }
         ] : [],
       }
     }), 'publication_id', 'desc')
@@ -412,18 +412,50 @@ export const selectPopulationReferences = createSelector(
 
     const population = _data.find(p => p.id === +_population_id) || _data[0];
 
-    const references = population.publications.map(p => {
-      const { id } = p;
-      const size = population.sizes.find(s => s.publication_id === id);
-      const trend = population.trends.find(s => s.publication_id === id);
+    const references = {
+      size: orderBy(uniqBy(flatten(population.sizes.map(s => s.references)), 'id').filter(r => r.id), 'id', 'desc'),
+      trend: orderBy(uniqBy(flatten(population.trends.map(s => s.references)), 'id').filter(r => r.id), 'id', 'desc'),
+    };
 
-      return [
-        ...size.reference_id && size.reference_info ? [{ id: size.reference_id, info: size.reference_info }] : [],
-        ...trend.reference_id && trend.reference_info ? [{ id: trend.reference_id, info: trend.reference_info }] : []
-      ];
-    });
+    return [
+      ...references.size && references.size.length
+        ? references.size.map(s => {
+          return { id: s.id, info: s.body, type: 'S' }
+        })
+        : [],
+      ...references.trend && references.trend.length
+        ? references.trend.map(s => {
+          return { id: s.id, info: s.body, type: 'T' }
+        })
+        : []
+    ];
+  }
+);
 
-    return orderBy(uniqBy(flatten(references), 'id'), 'id');
+export const selectPopulationNotes = createSelector(
+  [specie_id, population_id, data],
+  (_specie_id, _population_id, _data) => {
+    if (!_specie_id || !_data || isEmpty(_data)) return [];
+
+    const population = _data.find(p => p.id === +_population_id) || _data[0];
+
+    return uniqBy(flatten([
+      orderBy(population.sizes.map(s => {
+        return {
+          id: s.id, info: trim(s.notes), type: 'S'
+        }
+      }).filter(n => n.info), 'id', 'desc'),
+      orderBy(population.trends.map(s => {
+        return {
+          id: s.id, info: trim(s.notes), type: 'T'
+        }
+      }).filter(n => n.info), 'id', 'desc'),
+      orderBy(population.populationonepercentlevel.map(s => {
+        return {
+          id: s.id, info: trim(s.note), type: '%'
+        }
+      }).filter(n => n.info), 'id', 'desc')
+    ]), 'id')
   }
 );
 
@@ -629,6 +661,7 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationTrendData: selectPopulationTrendData,
   populationPercentData: selectPopulationPercentData,
   populationReferences: selectPopulationReferences,
+  populationNotes: selectPopulationNotes,
   populationLayers: selectPopulationLayers,
   populationsLayersByLocation: selectPopulationsLayersByLocation
 });
