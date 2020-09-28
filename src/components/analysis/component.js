@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
 // services
 import { fetchPopulations } from 'services/population';
@@ -8,10 +7,6 @@ import { fetchTrends } from 'services/trends';
 import { fetchTrendCategories } from 'services/trends';
 
 import DataControls from 'components/data-controls';
-import Filters from 'components/analysis/filters';
-
-
-//import './styles.scss';
 
 const Analysis = ({ widgets, widgetTemplates, setPopulations, setTrends, setTrendCategories }) => {
 
@@ -25,7 +20,6 @@ const Analysis = ({ widgets, widgetTemplates, setPopulations, setTrends, setTren
 return (
   <div className="c-analisis">
     <DataControls />
-    <Filters />
     {!!widgets.length && widgets.map((widget) => {
       const Widget = widgetTemplates.get(widget).component;
 

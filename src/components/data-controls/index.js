@@ -6,6 +6,7 @@ import { setFilters, resetFilters } from 'modules/population/actions';
 import Component from './component';
 
 const mapStateToProps = state => ({
+  page: state.router.type,
   filters: state.population.filters,
   publications: state.population.publications,
   ...selectFiltersProps(state)

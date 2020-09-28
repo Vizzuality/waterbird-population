@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
+import classnames from 'classnames';
+
 import Download from "components/download";
 import ClearFilters from 'components/filters/clear-filters';
 import ActiveFilters from 'components/filters/active-filters';
+import Filters from 'components/analysis/filters';
 
 import "./styles.scss";
 
-const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, publications }) => {
+const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
+
+  const [filtersVisibility, toggleVisibility] = useState(false);
+
   const handleClick = (type, value) => {
     const filtersUpdate = {
       ...filters,
@@ -21,15 +27,19 @@ const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, 
     resetFilters();
   };
 
+  const toggleFilters = () => {
+    toggleVisibility(!filtersVisibility);
+  }
+
   return (
-    <div className="c-data-controls">
+    <div className={classnames('c-data-configuration', { '-filters': !filtersVisibility } )}>
+      <div className="data-configuration--buttons">
       <Download
         text={'Download results'}
         data={data}
         filename={'populations'}
         className="-dashed"
       />
-      <div className="filters-controls">
         <ActiveFilters
           filters={filters}
           onClick={handleClick}
@@ -41,7 +51,18 @@ const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, 
           activeFilters={activeFilters}
           unsetteledFilters={false}
         />
+      {page === 'ANALYZE' &&
+      <div className="data-filters">
+        <p>Filters configuration:</p>
+        <button
+          className={classnames({
+            '-open': filtersVisibility,
+            '-close': !filtersVisibility
+          })}
+          onClick={toggleFilters} />
+      </div>}
       </div>
+      {filtersVisibility && <div className="filters"><Filters /></div>}
     </div>
   );
 };

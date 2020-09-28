@@ -2,12 +2,9 @@ export default {
   widgets: [
     'families', 'populations', 'estimates'
   ],
-  widgetData: 'light',
+  widgetData: [],
   trends: '',
   trend_categories: [],
-  populations_trends_widget: {
-    selectedPublication: '',
-  },
   filters: {
     family_id: [],
     publication_id: [],

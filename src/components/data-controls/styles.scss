@@ -1,37 +1,68 @@
 @import 'styles/settings';
+@import 'styles/mixins';
 
-.c-data-controls {
+.c-data-configuration {
   display: flex;
-  justify-content: space-between;
-  padding: 25px 0 30px 0;
-  margin: 10px 0 25px 0;
-  position: relative;
-  align-items: center;
+  flex-direction: column;
 
-  .data-filters {
+  &.-filters {
+    margin-bottom: 40px;
+  }
+
+  .data-configuration--buttons {
     display: flex;
+    justify-content: space-between;
+    padding: 25px 0 30px 0;
+    margin: 10px 0 25px 0;
+    position: relative;
     align-items: center;
 
-    :first-child {
-      margin-right: 20px;
+    .data-filters {
+      display: flex;
+      align-items: center;
+
+      :first-child {
+        margin-right: 20px;
+      }
+
+      button {
+        height: 45px;
+        width: 45px;
+        border-radius: 10px;
+        background-color: $white;
+        box-shadow: 0 4px 12px 0 rgba(0,0,0,0.08);
+
+        &.-close {
+          &:after {
+            @include arrow(9px,2px, $color-grey-8, 'down');
+          }
+        }
+
+        &.-open {
+          &:after {
+            @include arrow(9px,2px, $color-grey-8, 'up');
+          }
+        }
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      margin: 0 auto;
+      background-color: $color-grey-3;
+    }
+
+    .filters-controls {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 40px;
+      flex: 1;
     }
   }
 
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 2px;
-    margin: 0 auto;
-    background-color: $color-grey-3;
-  }
-
-  .filters-controls {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 40px;
-    flex: 1;
-  }
 }

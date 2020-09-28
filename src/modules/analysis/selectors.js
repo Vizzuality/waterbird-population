@@ -11,7 +11,7 @@ export const data = (state) => state ?.population.data;
 export const trends = (state) => state ?.analysis.trends;
 export const categories = (state) => state ?.analysis.trend_categories;
 export const publications = (state) => state ?.population.publications;
-export const publicationSelected = (state) => state ?.analysis.populations_trends_widget.selectedPublication;
+export const publicationSelected = (state) => state ?.analysis.filters.publication_id;
 export const filters = (state) => state ?.analysis.filters;
 
 export const selectFilteredData = createSelector(
@@ -140,7 +140,7 @@ export const selectFamilyTrends = createSelector(
       const populationsIds = p.map(d => d.id);
 
       const trends = p.map(d => d.trends
-        .find(f => _publicationSelected
+        .find(f => _publicationSelected && _publicationSelected.length
           ? _publicationSelected === trim(f.publication_id)
           : _lastPublication.filter(l => l.last_publication_id === f.publication_id))
       )
