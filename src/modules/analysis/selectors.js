@@ -83,8 +83,8 @@ export const selectFamilies = createSelector(
 );
 
 export const selectPublicationData = createSelector(
-  [selectFilteredData, specie_id, publications],
-  (_data, _specieId, _publications) => {
+  [selectFilteredData, specie_id, publications, publicationSelected],
+  (_data, _specieId, _publications, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
 
 
@@ -113,11 +113,14 @@ export const selectPublicationData = createSelector(
       const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc']);
 
       const publication = d.publications.find(
-        p => p.id === (orderedPublicationsSizes[0].publication_id));
+        p => _publicationSelected && _publicationSelected.value
+          ? p.id === _publicationSelected.value
+          : p.id === (orderedPublicationsSizes[0].publication_id));
 
-      const trend = publication ? d.trends.filter(s => s.publication_id === publication.id) : d.trends;
+      const trend = publication ? d.trends.filter(s => s.publication_id === publication.id) : [];
 
       return {
+        ...d,
         population_id: d.id,
         publication_id: publication,
         trend,
@@ -129,26 +132,19 @@ export const selectPublicationData = createSelector(
 
 
 export const selectFamilyTrends = createSelector(
-  [selectFamilies, data, categories, selectPublicationData, publicationSelected],
+  [selectFamilies, selectPublicationData, categories, selectPublicationData, publicationSelected],
   (_families, _data, _categories, _lastPublication, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
 
-    const populationsByFamily = _families.map(f => _data.filter(d => trim(f.id) === trim(d.family.id)))
+    const populationsByFamily = _families
+      .map(f => _data.filter(d => trim(f.id) === trim(d.family.id)))
 
-    return populationsByFamily.map(p => {
-
-      const populationsIds = p.map(d => d.id);
-
-      const trends = p.map(d => d.trends
-        .find(f => _publicationSelected && _publicationSelected.length
-          ? _publicationSelected === trim(f.publication_id)
-          : _lastPublication.filter(l => l.last_publication_id === f.publication_id))
-      )
+    return populationsByFamily
+      .map(p => {
+      const trends = p.map(d => d.trend)
         .flat();
 
-      const total_populations = populationsIds.length;
-
-      const trendsCount = _categories.map(c => {
+      const trendsCount = _categories.sort().map(c => {
 
         return {
           [c]: trends.reduce(function (n, trend) {
@@ -157,40 +153,25 @@ export const selectFamilyTrends = createSelector(
         }
       })
 
-      const colorSchema = [
-        '#BFD630',
-        '#5DBEE1',
-        '#0282B0',
-        '#EB6240',
-        'white'
-      ];
-
-      const trendsColors = _categories.map((c, i) => {
-        return {
-          [c]: colorSchema[i]
-        }
-      });
-
       const totalTrends = trendsCount.reduce((a, b) => a + parseInt(Object.values(b)), 0);
-
       const percentage = trendsCount.map(trend => {
-        return { [Object.keys(trend)]: Object.values(trend) * 100 / totalTrends }
-      });
+        return { [Object.keys(trend)]: Object.values(trend)[0] !== 0
+          ? Object.values(trend) * 100 / totalTrends
+          : 0 }
+      })
 
       return {
         id: p[0].family.id,
         name: `${trim(p[0].family.name)}, (${trim(p[0].family.ordername)})`,
-        total_populations,
         trendsCount,
-        percentage,
-        colors: trendsColors
+        percentage
       }
     })
   });
 
 export const selectFamilyPopulations = createSelector(
-  [selectFamilies, data, categories, selectPublicationData, publicationSelected],
-  (_families, _data, _categories, _lastPublication, _publicationSelected) => {
+  [selectFamilies, selectPublicationData, categories],
+  (_families, _data, _categories,) => {
     if (!_data || isEmpty(_data)) return [];
 
     const populationsByFamily = _families.map(f => _data.filter(d => trim(f.id) === trim(d.family.id)))
@@ -227,26 +208,22 @@ export const selectFamilyTrendsChart = createSelector(
 
 
 export const selectRegionTrendsChart = createSelector(
-  [selectFilteredData, selectPublicationData, publicationSelected],
-  (_data, _lastPublication, _publicationSelected) => {
+  [selectPublicationData],
+  (_data) => {
 
     const populationsByRegion = regions.map(r => {
-
-      const publication_id = 9;
 
       const totalTrendsByRegion = {
         [r.name]: {
           name: _data
             .filter(d => d[r.id] === 1)
             .map(t => t.trends
-              .filter(trend => trend.publication_id === publication_id).length
                 ? trim(t.name)
                 : null
             ),
           trend: _data
             .filter(d => d[r.id] === 1)
             .map(t => t.trends
-              .filter(trend => trend.publication_id === publication_id)
             )
         }
       }
@@ -274,7 +251,7 @@ export const selectRegionTrendsChart = createSelector(
             }, 0),
             unknown: filteredTrends.reduce((n, t) => {
               return (trim(t[0].state) === 'unknown'
-                && trim(t[0].state) === 'unclear') ? n + 1 : n
+                || trim(t[0].state) === 'unclear') ? n + 1 : n
             }, 0),
           }
         }

@@ -20,6 +20,13 @@ const Bars = {
     stroke: '#BFD630',
     isAnimationActive: false
   },
+  'increasing': {
+    barSize: 55,
+    stackId: 'bar',
+    fill: '#5DBEE1',
+    stroke: '#5DBEE1',
+    isAnimationActive: false
+  },
   'declining': {
     barSize: 55,
     stackId: 'bar',
@@ -27,18 +34,11 @@ const Bars = {
     stroke: '#EB6240',
     isAnimationActive: false
   },
-  'increasing': {
+  'unknown': {
     barSize: 55,
     stackId: 'bar',
     fill: '#0282B0',
     stroke: '#0282B0',
-    isAnimationActive: false
-  },
-  'unknown': {
-    barSize: 55,
-    stackId: 'bar',
-    fill: '#BFD630',
-    stroke: '#BFD630',
     isAnimationActive: false
   },
 };

@@ -32,11 +32,11 @@ const dataBars = [
     color: '#BFD630',
   },
   {
-    label: 'declining',
+    label: 'increasing',
     color: '#5DBEE1',
   },
   {
-    label: 'increasing',
+    label: 'declining',
     color: '#EB6240',
   },
   {
