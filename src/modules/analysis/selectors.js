@@ -201,6 +201,7 @@ export const selectFamilyTrendsChart = createSelector(
         unknown:
           d.percentage.find(s => s.unclear) ? d.percentage.find(s => s.unclear).unclear : 0 +
             d.percentage.find(s => s.unknown) ? d.percentage.find(s => s.unknown).unknown : 0,
+        total: d.trendsCount.reduce((a, b) => a + parseInt(Object.values(b)), 0),
       }
     })
   }
@@ -253,6 +254,7 @@ export const selectRegionTrendsChart = createSelector(
               return (trim(t[0].state) === 'unknown'
                 || trim(t[0].state) === 'unclear') ? n + 1 : n
             }, 0),
+            total_populations: filteredTrends.length
           }
         }
       }

@@ -1,13 +1,11 @@
 
 import React from 'react';
-import groupBy from 'lodash/groupBy';
-import sortBy from 'lodash/sortBy';
-import WidgetLegend from 'components/analysis/widget-legend';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
-const numberFormat = format(',.3r');
+const numberFormat = format(',.0s');
+const percentageFormat = format(',.2f');
 
 
 const getMetadata = (data) => data.map(d => d.name)
@@ -47,15 +45,11 @@ const dataBars = [
 
 export const CONFIG = {
   parse: (data) => {
-    const height = (data.length * 25) + 140;
+    const height = (data.length * 25) + 160;
     {
       return {
         chartData: data,
-        metadata: getMetadata(data),
         chartConfig: {
-          chartProps: {
-            barCategoryGap: 5
-          },
           height,
           layout: 'vertical',
           margin: { top: 20, right: 0, left: 0, bottom: 20 },
@@ -84,19 +78,9 @@ export const CONFIG = {
               fill: 'rgba(0, 0, 0, 0.54)'
             },
             tickCount: 6,
-            unit: '%'
-          },
-          yAxis: {
-            type: 'category',
-            dataKey: 'name',
-            tick: {
-              fontSize: 10,
-              fill: 'rgba(0,0,0,0.54)'
-            },
-            width: 200,
+            unit: '%',
             label: ({ viewBox }) => {
               const { y, height } = viewBox;
-
               const cx = - height / 2;
               const cy = 20;
               const rot = `270 60 60`;
@@ -106,41 +90,51 @@ export const CONFIG = {
                 </text>
               );
             },
-            interval: 0,
           },
-          legend: {
-            align: 'left',
-            verticalAlign: 'top',
-            layout: 'horizontal',
-            height: 80,
-            top: 0,
-            left: 0,
-            position: 'relative',
-            content: (properties) => {
-              const { payload } = properties;
-              const groups = groupBy(payload, p => p.payload);
-              return <WidgetLegend groups={groups} />;
-            }
+          yAxis: {
+            type: 'category',
+            dataKey: 'name',
+            tick: {
+              fontSize: 10,
+              fill: 'rgba(0,0,0,0.54)'
+            },
+            width: 200,
+            // label: ({ viewBox }) => {
+            //   const { y, height } = viewBox;
+
+            //   const cx = - height +20;
+            //   const cy = 20;
+            //   const rot = `270 60 60`;
+            //   return (
+            //     <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
+            //       NUMBER OF POPULATIONS
+            //     </text>
+            //   );
+            // },
+            interval: 0,
           },
           tooltip: {
             cursor: false,
-            content: (
-              <WidgetTooltip
-                type="column"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  flexDirection: 'column'
-                }}
-                settings={dataBars.map(bar => {
-                  return {
-                    label: bar.label, color: bar.color, key: bar.label, format: value => `${numberFormat(value)} %`
-                  }
-                })
-                }
-                title={{ key: 'name' }}
-              />
-            )
+            content: ({ payload }) => {
+              return (
+                <WidgetTooltip
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    alignContent: 'center'
+                  }}
+                  payload={payload}
+                  title='Populations'
+                  settings={payload.map(bar => {
+                    return {
+                      color: bar.color, key: bar.name, format: value => ` ${numberFormat(bar.payload.total * value / 100)} - ${percentageFormat(value)} %`
+                    }
+                  })}
+                />
+              )
+            }
           }
         },
       };

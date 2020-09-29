@@ -72,14 +72,20 @@ export const CONFIG = {
             cursor: false,
             content: ({ payload }) =>
               <WidgetTooltip
-                type="column"
                 style={{
                   display: 'flex',
                   justifyContent: 'space-around',
                   flexDirection: 'column'
                 }}
-                settings={payload}
-                />
+                payload={payload}
+              title='Number of opulations'
+              settings={payload.map(bar => {
+                return {
+                  key: bar.dataKey, format: value => value
+                }
+              })
+              }
+            />
           }
         },
       };

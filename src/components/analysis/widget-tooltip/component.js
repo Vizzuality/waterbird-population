@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 
-import styles from './style.module.scss';
+import './styles.scss';
 
 function getValue(item, value) {
   const { format, suffix = '', preffix = '' } = item;
@@ -15,44 +14,44 @@ function getValue(item, value) {
   return `${preffix}${val}${suffix}`;
 }
 
-function Tooltip({ payload, settings, style, hideZeros, offset }) {
+function Tooltip({ payload, settings, style, hideZeros, title }) {
   const values = payload && payload.length > 0 && payload[0].payload;
 
   return (
     <div>
       {settings && settings.length && (
-        <div className={styles.chart_tooltip} style={style}>
+        <div className="chart_tooltip" style={style}>
+          {title && (<h3 className="data_title">{title}</h3>)}
           {settings.map(
             d => (hideZeros && values[d.key] ? null : (
               <div
                 key={d.key}
-                className={classnames(styles.data_line, styles[d.position], styles[d.type])}
+                className="data_line"
               >
+
                 {/* LABEL */}
-                {((d.label && d.labelKey) || d.key) && (
-                  <div className={classnames(styles.data_label, styles[d.position])}>
+                {(d.key) && (
+                  <div className="data_label">
                     {d.color && (
                       <div
-                        className={classnames(styles.data_color, styles[d.bulletType])}
+                        className="data_color"
                         style={{ backgroundColor: d.color }}
                       />
                     )}
                     {values && d.key && (
                       <>
                         {d.key === 'break'
-                          ? <span className={styles.break_label}>{d.label}</span>
+                          ? <span className="break_label">{d.label}</span>
                           : <span>{d.label || values[d.labelKey]}</span>}
                       </>
                     )}
-                  </div>
-                )}
-
-                {/* UNIT */}
-                {values && d.key && (
-                  <div
-                    className={styles.data_value}
-                  >
-                    {getValue(d, values[d.key])}
+                    {values && d.key && (
+                      <div
+                        className="data_value"
+                      >
+                        {getValue(d, values[d.key])}
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

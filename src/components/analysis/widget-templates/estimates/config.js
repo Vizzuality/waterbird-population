@@ -1,13 +1,13 @@
 
 import React from 'react';
 import groupBy from 'lodash/groupBy';
-import sortBy from 'lodash/sortBy';
 import WidgetLegend from 'components/analysis/widget-legend';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
-const numberFormat = format(',.3r');
+const percentageFormat = format(',.0%');
+const numberFormat = format(',.2s');
 
 
 const getMetadata = (data) => data.map(d => d.name)
@@ -119,17 +119,25 @@ export const CONFIG = {
           },
           tooltip: {
             cursor: false,
-            content: (data) => {
+            content: ({ payload }) => {
               return (
               <WidgetTooltip
-              type="column"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                flexDirection: 'column'
-              }}
-              settings={data.payload}
-            />)
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  alignContent: 'center'
+                }}
+                payload={payload}
+                title='Populations'
+                settings={payload.map(bar => {
+                  return {
+                    color: bar.color, key: bar.dataKey, format: value => `${numberFormat(value)} - (${percentageFormat(value / bar.payload.total_populations)})`
+                  }
+                })}
+              />
+              )
             }
           }
         },
