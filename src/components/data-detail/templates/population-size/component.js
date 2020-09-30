@@ -66,6 +66,8 @@ const PopulationSize = ({ data, user }) => {
               trigger="click"
               onClickOutside={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
               visible={visible[`${d.size_id} - ${d.publication_id}`]}
+              arrow={true}
+              interactive={true}
               render={() =>
                 <Comments
                   title={'Population size'}
@@ -78,7 +80,10 @@ const PopulationSize = ({ data, user }) => {
                   onClose={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
                 />}
             >
-              <tr key={`${d.specie}${d.population}${d.publication_id}`}>
+              <tr
+                key={`${d.specie}${d.population}${d.publication_id}`}
+                className={classnames({'-active': visible[`${d.size_id} - ${d.publication_id}`]})}
+              >
                 <td>{d.publication}</td>
                 <td>{d.startyear}</td>
                 <td>{d.endyear}</td>

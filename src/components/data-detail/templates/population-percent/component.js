@@ -64,6 +64,7 @@ const PopulationPercent = ({ data, user }) => {
               placement='top'
               onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
+              interactive={true}
               render={() =>
               <Comments
                 title={'Population 1% level'}
@@ -76,7 +77,10 @@ const PopulationPercent = ({ data, user }) => {
                 onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               />}
             >
-              <tr key={d.publication}>
+              <tr
+                key={d.publication}
+                className={classnames({'-active': visible[`${d.onepercent_id} - ${d.publication_id}`]})}
+              >
                 <td>{d.publication}</td>
                 <td>{d.yearset}</td>
                 <td>{d.onepercent}</td>

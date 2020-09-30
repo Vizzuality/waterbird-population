@@ -65,6 +65,7 @@ const PopulationTrend = ({ data, user }) => {
               placement='top'
               onClickOutside={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
               visible={visible[`${d.trend_id} - ${d.publication_id}`]}
+              interactive={true}
               render={() =>
                 <Comments
                   title={'Population trend'}
