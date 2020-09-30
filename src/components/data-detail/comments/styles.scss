@@ -10,16 +10,9 @@
   border-radius: 9px;
   position: relative;
   align-content: center;
-  overflow-y: scroll;
+  overflow-y: auto;
   max-height: 50vh;
   pointer-events: all;
-
-  // &:before {
-  //   position: absolute;
-  //   top: 18px;
-  //   left: 18px;
-  //   @include arrow(9px,2px, $white, 'up');
-  // }
 
   > h2 {
     padding-bottom: 30px;
@@ -49,18 +42,18 @@
   }
 
   p {
-    padding: 40px 0;
+    padding-bottom: 80px;
+    font-size: 14px;
+    line-height: 23px;
+    text-shadow: 0 1px 4px 0 rgba($black,0.5);
+
+    &.-published {
+      padding-bottom: 0;
+    }
   }
 
   .comments-content {
     padding: 0 30px;
-
-    p {
-      padding-bottom: 80px;
-      font-size: 14px;
-      line-height: 23px;
-      text-shadow: 0 1px 4px 0 rgba($black,0.5);
-    }
   }
 
   .textarea {

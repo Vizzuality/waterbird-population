@@ -4,7 +4,7 @@ import { setPopulations } from 'modules/population/actions';
 import Component from './component';
 
 const mapStateToProps = state => ({
-  user: state.user.id,
+  user: state.user.cartodb_id,
   data: state.population.data,
 });
 

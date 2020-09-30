@@ -1,4 +1,5 @@
 @import 'styles/settings';
+@import 'styles/mixins';
 
 .c-populations-selector {
   position: absolute;
@@ -43,13 +44,26 @@
 
       .populations-selector--content-control {
         max-width: 400px;
+
+        h4 {
+          &:after {
+            position: absolute;
+            border: 2px solid $white;
+            top: 50%;
+            right: 25px;
+            @include arrow(10px,3px, $white, 'down');
+            transform: translateY(-50%) rotate(45deg);
+          }
+        }
+
+
       }
 
       h4 {
         font-size: 24px;
         letter-spacing: 0;
         line-height: 26px;
-        padding-right: 10px;
+        padding-right: 50px;
       }
 
       h5 {

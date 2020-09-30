@@ -146,7 +146,7 @@ export const selectPopulationsData = createSelector(
         .map(f => f.id);
 
       const orderedPublicationsSizes = orderBy(
-        _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+        _user.name ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
       const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
       const size = d.sizes.find(s => s.publication_id === publication.id);
@@ -203,7 +203,7 @@ export const selectLastPublicationData = createSelector(
           .map(f => f.id);
 
         const orderedPublicationsSizes = orderBy(
-          _user.id ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+          _user.name ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
           ['endyear', 'publication_id'], ['desc', 'desc']);
 
         const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
@@ -291,7 +291,7 @@ export const selectPopulationSizeData = createSelector(
     const population = _data.find(p => p.id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
+    return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
       const { id, name, published } = p;
       const size = population.sizes.find(s => s.publication_id === id);
       const { id: size_id, startyear, endyear, maximum, minimum, quality, notes, references } = size;
@@ -337,7 +337,7 @@ export const selectPopulationTrendData = createSelector(
     const population = _data.find(p => p.id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
+    return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
       const { id, name: publication, published } = p;
       const trend = population.trends.find(s => s.publication_id === id);
       const { id: trend_id, startyear, endyear, name, quality, notes, references } = trend;
@@ -372,7 +372,7 @@ export const selectPopulationPercentData = createSelector(
     const population = _data.find(p => p.id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
-    return orderBy((_user.id ? population.publications : publishedPopulations).map(p => {
+    return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
       const { id, name: publication, published } = p;
       const percentlevel = population.populationonepercentlevel.find(s => s.publication_id === id);
       const { id: onepercent_id, yearset, onepercent, note } = percentlevel;

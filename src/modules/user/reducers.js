@@ -6,7 +6,7 @@ export default {
     name: payload.name,
     email: payload.email,
     password: payload.password,
-    id: payload.id,
+    id: payload.cartodb_id,
     rol: payload.rol
   }),
   [resetUser]: state => ({ ...state, initialState})
