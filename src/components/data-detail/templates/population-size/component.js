@@ -82,15 +82,15 @@ const PopulationSize = ({ data, user }) => {
             >
               <tr
                 key={`${d.specie}${d.population}${d.publication_id}`}
-                className={classnames({'-active': visible[`${d.size_id} - ${d.publication_id}`]})}
+                className={classnames({ '-active': visible[`${d.size_id} - ${d.publication_id}`] })}
               >
-                <td>{d.publication}</td>
-                <td>{d.startyear}</td>
-                <td>{d.endyear}</td>
-                <td>{d.minimum}</td>
-                <td>{d.maximum}</td>
-                <td>{d.quality}</td>
-                <td>
+                <td><span className="cell-content">{d.publication}</span></td>
+                <td><span className="cell-content">{d.startyear}</span></td>
+                <td><span className="cell-content">{d.endyear}</span></td>
+                <td><span className="cell-content">{d.minimum}</span></td>
+                <td><span className="cell-content">{d.maximum}</span></td>
+                <td><span className="cell-content">{d.quality}</span></td>
+                <td><span className="cell-content">
                   {!!d.notes && !!d.notes.length && d.notes.map((n, i) => (
                     <Tooltip
                       delay={0}
@@ -110,42 +110,45 @@ const PopulationSize = ({ data, user }) => {
                       </span>)}
                     </Tooltip>
                   ))}
-                </td>
+                </span></td>
                 <td>
-                  {!!d.references && !!d.references.length && d.references.map((n, i) => (
-                    <Tooltip
-                      key={`${d.specie}${d.population}${n.id}`}
-                      delay={0}
-                      interactive={true}
-                      arrow={true}
-                      duration={[0, 0]}
-                      content={
-                        <Note>
-                          <p className="title">
-                            Population size reference <span>#{n.id}</span>
-                          </p>
-                          <p>{n.info}</p>
-                        </Note>}
-                    >
-                      {n.id && n.info && (<span className="tooltipped">
-                        {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
-                      </span>)}
-                    </Tooltip>
-                  ))}
-                </td>
+                  <span className="cell-content">
+                    {!!d.references && !!d.references.length && d.references.map((n, i) => (
+                      <Tooltip
+                        key={`${d.specie}${d.population}${n.id}`}
+                        delay={0}
+                        interactive={true}
+                        arrow={true}
+                        duration={[0, 0]}
+                        content={
+                          <Note>
+                            <p className="title">
+                              Population size reference <span>#{n.id}</span>
+                            </p>
+                            <p>{n.info}</p>
+                          </Note>}
+                      >
+                        {n.id && n.info && (<span className="tooltipped">
+                          {i === d.references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                        </span>)}
+                      </Tooltip>
+                    ))}
+                  </span></td>
                 {user && (
                   <td className="button">
-                    <button
-                      className={classnames('comments-button',
-                        {
-                          '-secondary': visible[`${d.size_id} - ${d.publication_id}`],
-                          '-primary': !visible[`${d.size_id} - ${d.publication_id}`]
-                        }
-                      )}
-                      onClick={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}>
+                    <span className="cell-content">
+                      <button
+                        className={classnames('comments-button',
+                          {
+                            '-secondary': visible[`${d.size_id} - ${d.publication_id}`],
+                            '-primary': !visible[`${d.size_id} - ${d.publication_id}`]
+                          }
+                        )}
+                        onClick={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}>
 
-                      {visible[`${d.size_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
-                    </button>
+                        {visible[`${d.size_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
+                      </button>
+                    </span>
                   </td>
                 )}
               </tr>
