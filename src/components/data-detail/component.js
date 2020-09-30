@@ -19,6 +19,7 @@ const DataDetail = (props) =>  {
     populationTrendData,
     populationPercentData,
     populationReferences,
+    populationNotes,
     user
   } = props;
   return (
@@ -28,8 +29,8 @@ const DataDetail = (props) =>  {
       <PopulationSize data={populationSizeData} user={user} />
       <PopulationTrend data={populationTrendData} user={user} />
       <PopulationPercent data={populationPercentData} user={user} />
-      <References data={populationReferences}/>
-      <Notes />
+      <References data={populationReferences} />
+      <Notes data={populationNotes} />
     </div>
   );
 }

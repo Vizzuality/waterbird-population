@@ -24,7 +24,7 @@ export const API = setup({
 
 export const fetchImages = (name) => {
   return API.get(`php?action=query&prop=pageimages&titles=${name}&pithumbsize=100&format=json`)
-  .then((data) => console.log(data))
+  .then((data) => data)
   .catch((e) => {
     console.log(e, 'error')
   });

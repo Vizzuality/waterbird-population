@@ -24,7 +24,7 @@ const Download = ({ data, filename, headers, text, className, imageSize }) => {
       filename={`${filename}-${Date.now()}.csv`}
     >
       <span>{text}</span>
-      <img src={Image} className={classnames(imageSize)} name="download" />
+      <img src={Image} alt="download" className={classnames(imageSize)} name="download" />
     </CSVLink>
   )
 };

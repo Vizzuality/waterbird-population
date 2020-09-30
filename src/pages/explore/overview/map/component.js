@@ -20,7 +20,6 @@ import Legend from 'components/map/legend';
 
 
 export const MapContainer = ({
-  router,
   coordinates,
   populationsLayersByLocation,
   populationsNumber,
@@ -35,7 +34,7 @@ export const MapContainer = ({
 
   useEffect(() => {
     coordinates && fetchPopulationsByLocation(coordinates[0], coordinates[1]).then((data) => setPopulationsByLocation(data));
-  }, [coordinates])
+  }, [coordinates, setPopulationsByLocation])
 
   const layers = populationsLayersByLocation.map(l => {
     return {
@@ -56,22 +55,6 @@ export const MapContainer = ({
         const { id } = l;
         if (!interactiveLayerIds.includes(id)) {
           setInteractiveLayerIds(prevInteractiveLayersIds => [...prevInteractiveLayersIds, id]);
-        }
-      });
-    }
-  };
-
-  const onAfterRemove = layerModel => {
-    if (!isEmpty(layerModel.interactionConfig)) {
-      layerModel.mapLayer.layers.forEach(l => {
-        const { id } = l;
-
-        if (interactiveLayerIds.includes(id)) {
-          setInteractiveLayerIds(prevInteractiveLayersIds => {
-            const arr = prevInteractiveLayersIds.filter(e => e !== id);
-
-            return arr;
-          });
         }
       });
     }
@@ -127,7 +110,6 @@ export const MapContainer = ({
                     key={l.id}
                     {...l}
                     onAfterAdd={onAfterAdd}
-                    // onAfterRemove={onAfterRemove}
                   />
                 )
 

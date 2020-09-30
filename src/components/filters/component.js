@@ -39,7 +39,7 @@ const Filters = ({
     fetchConservationFrameworks().then(data => setFrameworks(data));
     fetchFlyways().then(data => setFlyways(data));
     fetchRedListCategories().then(data => setListCategories(data));
-  }, []);
+  }, [setPublications]);
 
   const handleClick = () => {
     //toggle modal
@@ -50,12 +50,6 @@ const Filters = ({
     //toggle modal
     onClick();
   };
-
-  const handleClearFilters = () => {
-    resetFilters();
-    setNewFiltersValues(filters);
-  }
-
 
   // Filters options
   const familyOptions = families.map(family => {

@@ -12,9 +12,9 @@ const References = ({ data }) => {
       <h2>References</h2>
     </div>
     <ul>
-      {data.map(({ id, info }) =>
+      {data.map(({ id, info, type }) =>
         <li key={id}>
-          R{id} - {info}
+          R{type}{id} - {info}
         </li>)}
     </ul>
   </div>
