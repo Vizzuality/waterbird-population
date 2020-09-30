@@ -26,6 +26,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
             <div className="populations-selector--content-control">
               <h4>{current.label}</h4>
               <select
+                className="populations-selector--content-dropdown"
                 value={current.value}
                 onChange={onSelectChange}
               >
