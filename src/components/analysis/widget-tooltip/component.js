@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 import './styles.scss';
 
@@ -14,7 +15,7 @@ function getValue(item, value) {
   return `${preffix}${val}${suffix}`;
 }
 
-function Tooltip({ payload, settings, style, hideZeros, title }) {
+function Tooltip({ payload, settings, style, hideZeros, title, type }) {
   const values = payload && payload.length > 0 && payload[0].payload;
 
   return (
@@ -26,7 +27,9 @@ function Tooltip({ payload, settings, style, hideZeros, title }) {
             d => (hideZeros && values[d.key] ? null : (
               <div
                 key={d.key}
-                className="data_line"
+                className={classNames('data_line', {
+                  '-column': type === 'column'
+                })}
               >
 
                 {/* LABEL */}

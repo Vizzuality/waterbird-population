@@ -65,7 +65,6 @@ export const CONFIG = {
                 </text>
               );
             },
-            // tickFormatter: value => Math.round(value),
             interval: 0,
           },
           tooltip: {
@@ -77,15 +76,16 @@ export const CONFIG = {
                   justifyContent: 'space-around',
                   flexDirection: 'column'
                 }}
+                type="column"
                 payload={payload}
-              title='Number of opulations'
-              settings={payload.map(bar => {
-                return {
-                  key: bar.dataKey, format: value => value
+                title='Number of opulations'
+                settings={payload.map(bar => {
+                  return {
+                    key: bar.dataKey, format: value => value
+                  }
+                })
                 }
-              })
-              }
-            />
+              />
           }
         },
       };

@@ -1,14 +1,13 @@
 
 import React from 'react';
+import groupBy from 'lodash/groupBy';
+import WidgetLegend from 'components/analysis/widget-legend';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
 const numberFormat = format(',.0s');
 const percentageFormat = format(',.2f');
-
-
-const getMetadata = (data) => data.map(d => d.name)
 
 const getBars = data => data.reduce((acc, d) => {
 
@@ -80,7 +79,7 @@ export const CONFIG = {
             tickCount: 6,
             unit: '%',
             label: ({ viewBox }) => {
-              const { y, height } = viewBox;
+              const { y } = viewBox;
               const cx = - height / 2;
               const cy = 20;
               const rot = `270 60 60`;
@@ -112,6 +111,20 @@ export const CONFIG = {
             //   );
             // },
             interval: 0,
+          },
+          legend: {
+            align: 'left',
+            verticalAlign: 'top',
+            layout: 'horizontal',
+            height: 80,
+            top: 0,
+            left: 0,
+            position: 'relative',
+            content: (properties) => {
+              const { payload } = properties;
+              const groups = groupBy(payload, p => p.payload);
+              return <WidgetLegend groups={groups} />;
+            }
           },
           tooltip: {
             cursor: false,
