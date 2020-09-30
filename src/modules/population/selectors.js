@@ -10,8 +10,6 @@ import { setFilters } from 'modules/population/actions';
 
 import { tags, regions } from './constants';
 
-import { createSelector, createStructuredSelector } from 'reselect';
-
 export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
 export const specie_id = (state) => state?.router?.payload?.specie_id;
