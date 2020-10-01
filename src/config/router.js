@@ -22,6 +22,10 @@ export const routes = {
     page: 'explore/detail',
     path: '/explore/:specie_id/:population_id?'
   },
+  ANALYZE: {
+    page: 'analyze',
+    path: '/analyze'
+  },
   BACKGROUND: {
     page: 'background',
     path: '/background/:id'

@@ -1,0 +1,11 @@
+@import 'styles/settings';
+
+.c-clear-filters {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  text-decoration: underline;
+  color: $color-2;
+  pointer-events: all;
+}
+

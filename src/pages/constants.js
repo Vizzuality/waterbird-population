@@ -2,6 +2,7 @@ import React from 'react';
 
 import TabInfo from 'pages/static-tabs';
 
+import Analysis from "components/analysis";
 import SpeciesPopulationInfo from 'pages/data/s&p/constants';
 import PopulationEstimatesInfo from 'pages/data/pe/constants';
 import ThresholdInfo from 'pages/data/threshold/constants';
@@ -15,6 +16,12 @@ import ECInfo from 'pages/credits/ec.js';
 import FaqInfo from 'pages/faq/constants';
 
 const PagesInfo = {
+  ANALYZE: {
+    title: 'Analyze',
+    tabs: false,
+    tabsInfo: false,
+    content: <Analysis />
+  },
   BACKGROUND: {
     title: 'Background',
     tabs: [
