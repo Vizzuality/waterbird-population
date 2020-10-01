@@ -4,7 +4,7 @@ import { selectLastPublicationData } from 'modules/population/selectors';
 import Component from './component';
 
 const mapStateToProps = state => ({
-  user: { id: state.user.cartodb_id, name: state.user.name }
+  user: { id: state.user.id, name: state.user.name }
 });
 
 const mapDispatchToProps = { selectLastPublicationData };

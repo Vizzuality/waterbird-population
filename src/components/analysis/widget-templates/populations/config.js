@@ -4,8 +4,7 @@ import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
-const numberFormat = format(',.3r');
-
+const numberFormat = format(',.0f');
 
 export const CONFIG = {
   parse: (data) => {
@@ -73,7 +72,7 @@ export const CONFIG = {
               <WidgetTooltip
                 style={{
                   display: 'flex',
-                  justifyContent: 'space-around',
+                  justifyContent: 'space-between',
                   flexDirection: 'column'
                 }}
                 type="column"
@@ -81,7 +80,7 @@ export const CONFIG = {
                 title='Number of opulations'
                 settings={payload.map(bar => {
                   return {
-                    key: bar.dataKey, format: value => value
+                    key: bar.dataKey, format: value => numberFormat(value)
                   }
                 })
                 }

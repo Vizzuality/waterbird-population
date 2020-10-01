@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import './styles.scss';
 
@@ -27,35 +27,35 @@ function Tooltip({ payload, settings, style, hideZeros, title, type }) {
             d => (hideZeros && values[d.key] ? null : (
               <div
                 key={d.key}
-                className={classNames('data_line', {
+                className={classnames('data_line', {
                   '-column': type === 'column'
                 })}
               >
 
                 {/* LABEL */}
                 {(d.key) && (
-                  <div className="data_label">
-                    {d.color && (
-                      <div
-                        className="data_color"
-                        style={{ backgroundColor: d.color }}
-                      />
-                    )}
-                    {values && d.key && (
-                      <>
-                        {d.key === 'break'
-                          ? <span className="break_label">{d.label}</span>
-                          : <span>{d.label || values[d.labelKey]}</span>}
-                      </>
-                    )}
-                    {values && d.key && (
-                      <div
-                        className="data_value"
-                      >
-                        {getValue(d, values[d.key])}
-                      </div>
-                    )}
-                  </div>
+                  <>
+                    <div className="data_label">
+                      {d.color && (
+                        <div
+                          className="data_color"
+                          style={{ backgroundColor: d.color }}
+                        />
+                      )}
+                      {values && d.key && (
+                        <>
+                          {d.key === 'break'
+                            ? <span className="break_label">{d.label}</span>
+                            : <span>{d.label || values[d.labelKey]}</span>}
+                        </>
+                      )}
+                    </div>
+                    <div className={classnames('data_value', {
+                      '-column': type === 'column'
+                    })}>
+                      {values && d.key && getValue(d, values[d.key])}
+                    </div>
+                  </>
                 )}
               </div>
             ))

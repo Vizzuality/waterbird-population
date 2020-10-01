@@ -6,7 +6,7 @@ import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
-const numberFormat = format(',.0s');
+const numberFormat = format(',.0f');
 const percentageFormat = format(',.2f');
 
 const getBars = data => data.reduce((acc, d) => {
@@ -79,7 +79,6 @@ export const CONFIG = {
             tickCount: 6,
             unit: '%',
             label: ({ viewBox }) => {
-              const { y } = viewBox;
               const cx = - height / 2;
               const cy = 20;
               const rot = `270 60 60`;
@@ -139,10 +138,10 @@ export const CONFIG = {
                     alignContent: 'center'
                   }}
                   payload={payload}
-                  title='Populations'
+                  title='Populations by trend'
                   settings={payload.map(bar => {
                     return {
-                      color: bar.color, key: bar.name, format: value => ` ${numberFormat(bar.payload.total * value / 100)} - ${percentageFormat(value)} %`
+                      label: bar.name, color: bar.color, key: bar.name, format: value => `Total: ${numberFormat(bar.payload.total * value / 100)} (${percentageFormat(value)} %)`
                     }
                   })}
                 />

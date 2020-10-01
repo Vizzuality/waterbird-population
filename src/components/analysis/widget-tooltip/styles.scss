@@ -12,6 +12,7 @@
   font-weight: 500;
   z-index: 10000;
   font-weight: bold;
+  display: flex;
 }
 
 .data_title {
@@ -20,8 +21,6 @@
 }
 
 .data_line {
-  display: flex;
-  justify-content: flex-start;
   align-items: center;
   width: 100%;
   margin: 0 20px;
@@ -37,8 +36,20 @@
 .data_label {
   display: flex;
   font-weight: bold;
+  align-items: center;
 }
 
+.data_value {
+  justify-content: center;
+  text-align: flex-start;
+  padding: 5px 0;
+  margin-left: 30px;
+
+  &.-column {
+    text-align: center;
+    margin-left: 0;
+  }
+}
 
 .data_color {
   height: 10px;

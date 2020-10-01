@@ -50,6 +50,7 @@ export const createComment = ({
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
   const idType = (size_id && 'size_id') || (trend_id && 'trend_id') || (onepercent_id && 'onepercent_id');
   const Id = size_id || trend_id || onepercent_id;
+
   const q = `INSERT INTO comments (
     name,
     user_id,

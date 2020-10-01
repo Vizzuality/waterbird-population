@@ -7,9 +7,9 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { regions } from 'modules/population/constants';
 
 export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const data = (state) => state?.population.data;
-export const trends = (state) => state?.analysis.trends;
-export const categories = (state) => state?.analysis.trend_categories;
+export const data = (state) => state?.analysis.populations.data;
+export const trends = (state) => state?.analysis.trends.data;
+export const categories = (state) => state?.analysis.trend_categories.data;
 export const publications = (state) => state?.population.publications;
 export const publicationSelected = (state) => state?.analysis.filters.publication_id;
 export const filters = (state) => state?.analysis.filters;
@@ -142,6 +142,7 @@ export const selectFamilyTrends = createSelector(
             }, 0)
           }
         })
+
         const totalTrends = trendsCount.reduce((a, b) => a + parseInt(Object.values(b)), 0);
         const percentage = trendsCount.map(trend => {
           return {

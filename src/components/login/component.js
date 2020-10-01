@@ -39,7 +39,7 @@ const Login = ({ user, setUser, resetUser }) => {
       if (data !== undefined) {
         Cookies.set('user', {
           email: data.email,
-          id: data.id,
+          id: data.cartodb_id,
           name: data.name,
           rol: data.rol
         });

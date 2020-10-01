@@ -3,8 +3,18 @@ export default {
     'families', 'populations', 'estimates'
   ],
   widgetData: [],
-  trends: '',
-  trend_categories: [],
+  populations: {
+    data: [],
+    loading: true
+  },
+  trends: {
+    data: [],
+    loading: true
+  },
+  trend_categories: {
+    data: [],
+    loading: true
+  },
   filters: {
     family_id: [],
     publication_id: [],
