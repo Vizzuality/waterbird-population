@@ -66,25 +66,25 @@ const PopulationPercent = ({ data, user }) => {
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
               interactive={true}
               render={() =>
-              <Comments
-                title={'Population 1% level'}
-                populationId={d.population}
-                published={d.published}
-                publicationId={d.publication_id}
-                publicationName={d.publication}
-                onepercentId={d.onepercent_id}
-                visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
-                onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
-              />}
+                <Comments
+                  title={'Population 1% level'}
+                  populationId={d.population}
+                  published={d.published}
+                  publicationId={d.publication_id}
+                  publicationName={d.publication}
+                  onepercentId={d.onepercent_id}
+                  visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
+                  onClose={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
+                />}
             >
               <tr
                 key={d.publication}
-                className={classnames({'-active': visible[`${d.onepercent_id} - ${d.publication_id}`]})}
+                className={classnames({ '-active': visible[`${d.onepercent_id} - ${d.publication_id}`] })}
               >
-                <td>{d.publication}</td>
-                <td>{d.yearset}</td>
-                <td>{d.onepercent}</td>
-                <td>
+                <td><span className="cell-content">{d.publication}</span></td>
+                <td><span className="cell-content">{d.yearset}</span></td>
+                <td><span className="cell-content">{d.onepercent}</span></td>
+                <td><span className="cell-content">
                   {!!d.notes && !!d.notes.length && d.notes.map(n => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
@@ -102,20 +102,23 @@ const PopulationPercent = ({ data, user }) => {
                       <span className="tooltipped">N{n.id}</span>
                     </Tooltip>
                   ))}
+                </span>
                 </td>
                 <td className="button">
-                {user && (
-                  <button
-                    className={classnames('comments-button',
-                      {
-                        '-secondary': visible[d.onepercent_id],
-                        '-primary': !visible[d.onepercent_id]
-                      }
+                  <span className="cell-content">
+                    {user && (
+                      <button
+                        className={classnames('comments-button',
+                          {
+                            '-secondary': visible[d.onepercent_id],
+                            '-primary': !visible[d.onepercent_id]
+                          }
+                        )}
+                        onClick={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}>
+                        {visible[`${d.onepercent_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
+                      </button>
                     )}
-                    onClick={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}>
-                    {visible[`${d.onepercent_id} - ${d.publication_id}`] ? 'Close' : 'Comments'}
-                  </button>
-                  )}
+                  </span>
                 </td>
               </tr>
             </Tooltip>

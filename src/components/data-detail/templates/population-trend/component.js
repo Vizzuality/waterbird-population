@@ -83,12 +83,12 @@ const PopulationTrend = ({ data, user }) => {
                 className={classnames({
                   '-active': visible[`${d.trend_id} - ${d.publication_id}`]
                 })} >
-                <td>{d.publication}</td>
-                <td>{d.startyear}</td>
-                <td>{d.endyear}</td>
-                <td>{d.name}</td>
-                <td>{d.quality}</td>
-                <td>
+                <td><span className="cell-content">{d.publication}</span></td>
+                <td><span className="cell-content">{d.startyear}</span></td>
+                <td><span className="cell-content">{d.endyear}</span></td>
+                <td><span className="cell-content">{d.name}</span></td>
+                <td><span className="cell-content">{d.quality}</span></td>
+                <td><span className="cell-content">
                   {!!d.notes && !!d.notes.length && d.notes.map((n, i) => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
@@ -109,8 +109,9 @@ const PopulationTrend = ({ data, user }) => {
                       </span>
                     </Tooltip>
                   ))}
+                </span>
                 </td>
-                <td>
+                <td><span className="cell-content">
                   {!!d.references && !!d.references.length && d.references.map((n, i) => (
                     <Tooltip
                       key={`${d.specie}${d.population}${n.id}`}
@@ -132,6 +133,7 @@ const PopulationTrend = ({ data, user }) => {
                         </span>}
                     </Tooltip>
                   ))}
+                </span>
                 </td>
                 {user && (
                   <td className="button">

@@ -19,7 +19,7 @@ const ConservationFramework = ({ data }) => {
         <tbody>
           {data.map(d =>
             <tr key={d.id}>
-              <td>{d.conservation_framework}</td>
+              <td><span className="cell-content">{d.conservation_framework}</span></td>
             </tr>
           )}
         </tbody>
