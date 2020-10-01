@@ -9,6 +9,8 @@ import { fetchTrendCategories } from 'services/trends';
 
 import DataControls from 'components/data-controls';
 
+import './styles.scss';
+
 const Analysis = ({
   widgets,
   widgetTemplates,

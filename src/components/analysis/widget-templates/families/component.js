@@ -15,11 +15,15 @@ const Bars = (props) => {
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:
-      <div className="c-population-trends-widget">
-        <Chart
-          data={chartData}
-          config={chartConfig}
-        />
+      <div className="c-widget">
+        {familyTrendsChart.length
+          ?
+          <Chart
+            data={chartData}
+            config={chartConfig}
+          />
+          : <div>No data found matching filter criteria</div>
+        }
       </div>
     </div>
   );

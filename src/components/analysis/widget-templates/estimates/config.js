@@ -3,7 +3,6 @@ import React from 'react';
 import groupBy from 'lodash/groupBy';
 import WidgetLegend from 'components/analysis/widget-legend';
 import WidgetTooltip from 'components/analysis/widget-tooltip';
-import classnames from 'classnames';
 
 // Utils
 import { format } from 'd3-format';
@@ -49,13 +48,17 @@ const getData = (data) => {
   return data.map(d => Object.values(d)[0].trend)
 };
 
+const getZeros = (data) => data.filter(d => Object.values(d)[0].name.length);
+
 export const CONFIG = {
 
   parse: (data) => {
+    const zeros = getZeros(data)
     {
       return {
         chartData: getData(data),
         metadata: getMetadata(data),
+        zeros,
         chartConfig: {
           height: 500,
           margin: { top: 20, right: 0, left: 0, bottom: 20 },

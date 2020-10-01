@@ -53,9 +53,8 @@ export const CONFIG = {
             },
             width: 200,
             label: ({ viewBox }) => {
-              const { y, height } = viewBox;
-
-              const cx = - height / 2;
+              const { height } = viewBox;
+              const cx = - height / 2 + 50;
               const cy = 20;
               const rot = `270 60 60`;
               return (

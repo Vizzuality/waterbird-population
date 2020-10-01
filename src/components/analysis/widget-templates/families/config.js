@@ -79,7 +79,8 @@ export const CONFIG = {
             tickCount: 6,
             unit: '%',
             label: ({ viewBox }) => {
-              const cx = - height / 2;
+              const { y } = viewBox;
+              const cx = - y / 2 + 50;
               const cy = 20;
               const rot = `270 60 60`;
               return (

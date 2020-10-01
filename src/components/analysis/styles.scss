@@ -1,0 +1,10 @@
+@import 'styles/settings';
+
+.c-widget {
+  margin-bottom: 60px;
+
+  .widget-text {
+    font-style: italic;
+    color: $color-grey-6
+  }
+}

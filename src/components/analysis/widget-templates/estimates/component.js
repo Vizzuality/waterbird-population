@@ -10,16 +10,20 @@ const Bars = (props) => {
     regionTrendsChart
   } = props;
 
-  const { chartConfig, chartData } = config.parse(regionTrendsChart);
+  const { chartConfig, chartData, zeros } = config.parse(regionTrendsChart);
 
   return (
     <div>
       NUMBER OF WATERBIRD ESTIMATES UPDATED IN EACH RAMSAR REGION BY POPULATION:
-      <div className="c-population-trends-widget">
-        <Chart
-          data={chartData}
-          config={chartConfig}
-        />
+      <div className="c-widget">
+        {zeros.length
+          ?
+          <Chart
+            data={chartData}
+            config={chartConfig}
+          />
+          : <div className="widget-text">No data found matching filter criteria</div>
+        }
       </div>
     </div>
   );
