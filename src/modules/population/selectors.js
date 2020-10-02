@@ -93,8 +93,25 @@ export const selectPopulationFiltered = createSelector(
           const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
           return array.every(d => d)
         }
-        )
+      )
     )
+  }
+);
+
+export const selectPopulationDownload = createSelector(
+  [selectPopulationFiltered],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+
+    return orderBy(uniqBy(_data
+      .map(p => {
+        return {
+          ...p.family,
+          name: trim(p.family.name),
+          ordername: trim(p.family.ordername),
+          ...p
+        }
+      }), 'id'), 'name')
   }
 );
 
@@ -654,6 +671,8 @@ export const selectPopulationProps = createStructuredSelector({
 
 export const selectPopulationDetailProps = createStructuredSelector({
   user,
+  pop: selectPopulationDownload,
+  populationsFiltered: selectPopulationFiltered,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationConservationFramework: selectPopulationConservationFramework,

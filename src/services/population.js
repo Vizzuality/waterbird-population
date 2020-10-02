@@ -166,8 +166,8 @@ export const fetchDataToDownload = (specieid) => {
   LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
    ${specieid ? `where species_id=${specieid}` : ''}`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=csv`)
-    .then(({ data }) => data)
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
+    .then(({ data }) => data.rows )
 };
 
 export const fetchPopulationsByLocation = (lng,lat) => {

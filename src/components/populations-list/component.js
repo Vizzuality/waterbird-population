@@ -12,7 +12,6 @@ import Download from 'components/download';
 import './styles.scss';
 
 const PopulationsList = ({ specieId, populationData }) => {
-
   return (
     populationData.map(
       d => {

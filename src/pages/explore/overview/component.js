@@ -10,12 +10,12 @@ import { fetchPopulations, fetchDataToDownload } from 'services/population';
 
 import '../styles.scss';
 
-const ExplorePage = ({ setPopulations }) => {
+const ExplorePage = ({ setPopulations, pop }) => {
   const [downloadData, setDownload] = useState('');
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
     fetchDataToDownload().then(data => setDownload(data));
-  }, [setPopulations])
+  },[])
 
   return (
   <div className="l-explore">
