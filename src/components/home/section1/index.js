@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setFilters } from 'modules/population/actions';
+import { setFilters } from 'modules/explore/actions';
 
 import Component from './component';
 

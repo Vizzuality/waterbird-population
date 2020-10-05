@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectLastPublicationData } from 'modules/population/selectors';
+import { selectLastPublicationData } from 'modules/explore/selectors';
 
 import Component from './component';
 

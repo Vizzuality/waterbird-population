@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setSearch } from 'modules/population/actions';
+import { setSearch } from 'modules/explore/actions';
 
 import Component from './component';
 

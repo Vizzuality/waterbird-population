@@ -5,7 +5,7 @@ import router from './router';
 import { handleModule } from 'vizzuality-redux-tools';
 
 import * as map from 'modules/map';
-import * as population from 'modules/population';
+import * as population from 'modules/explore';
 import * as user from 'modules/user';
 import * as analysis from 'modules/analysis';
 

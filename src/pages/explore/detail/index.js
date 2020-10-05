@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setPopulations } from 'modules/population/actions';
+import { setPopulations } from 'modules/explore/actions';
 
 import Component from './component';
 

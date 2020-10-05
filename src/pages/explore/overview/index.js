@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import { selectPopulationDetailProps } from 'modules/population/selectors';
-import { setPopulations } from 'modules/population/actions';
+import { selectPopulationDetailProps } from 'modules/explore/selectors';
+import { setPopulations } from 'modules/explore/actions';
 
 import Component from './component';
 
