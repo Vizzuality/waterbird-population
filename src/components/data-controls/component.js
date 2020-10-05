@@ -9,7 +9,7 @@ import Filters from 'components/analysis/filters';
 
 import "./styles.scss";
 
-const DataControls = ({ data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
+const DataControls = ({ populationsFiltered, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
 
   const [filtersVisibility, toggleVisibility] = useState(false);
 

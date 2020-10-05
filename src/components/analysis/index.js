@@ -6,6 +6,8 @@ import BarChart from 'components/analysis/widget-templates/populations';
 import StackedBarChart from 'components/analysis/widget-templates/families';
 import EstimatesBarChart from 'components/analysis/widget-templates/estimates';
 
+import { selectWidgetsProps } from 'modules/analysis/selectors';
+
 import { setPopulations, setTrends, setTrendCategories } from 'modules/analysis/actions';
 
 const widgetTemplates = new Map([
@@ -25,7 +27,8 @@ const mapStateToProps = state => ({
   trendsLoaded: state.analysis.trends.loading,
   trend_categoriesLoaded: state.analysis.trend_categories.loading,
   widgets: state.analysis.widgets,
-  widgetTemplates
+  widgetTemplates,
+  ...selectWidgetsProps(state)
 });
 
 const mapDispatchToProps = {

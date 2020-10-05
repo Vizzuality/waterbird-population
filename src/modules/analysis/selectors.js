@@ -6,13 +6,13 @@ import uniqBy from 'lodash/uniqBy';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { regions } from 'modules/population/constants';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const data = (state) => state?.analysis.populations.data;
-export const trends = (state) => state?.analysis.trends.data;
-export const categories = (state) => state?.analysis.trend_categories.data;
-export const publications = (state) => state?.population.publications;
-export const publicationSelected = (state) => state?.analysis.filters.publication_id;
-export const filters = (state) => state?.analysis.filters;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const data = (state) => state ?.analysis.populations.data;
+export const trends = (state) => state ?.analysis.trends.data;
+export const categories = (state) => state ?.analysis.trend_categories.data;
+export const publications = (state) => state ?.population.publications;
+export const publicationSelected = (state) => state ?.analysis.filters.publication_id;
+export const filters = (state) => state ?.analysis.filters;
 
 export const selectFilteredData = createSelector(
   [data, filters, publicationSelected],
@@ -262,10 +262,116 @@ export const selectRegionTrendsChart = createSelector(
     })
   })
 
+export const selectGeneralData = createSelector(
+  [selectFamilyTrends, selectFamilyPopulations, selectRegionTrendsChart],
+  (_familyTrends, _familyPopulations, _regionTrendsChart) => {
+
+
+    return _familyTrends.map(f => {
+
+      const total_populations = _familyPopulations.find(p => p.id === f.id).total_populations;
+
+      const declining_percentage = f.percentage.filter(p => Object.keys(p)[0] === 'declining')[0];
+      const increasing_percentage = f.percentage.filter(p => Object.keys(p)[0] === 'increasing')[0];
+      const stable_or_fluctuating_percentage = f.percentage.filter(p => Object.keys(p)[0] === 'stable or fluctuating')[0];
+      const unclear_percentage = f.percentage.filter(p => Object.keys(p)[0] === 'unclear')[0];
+      const unknown_percentage = f.percentage.filter(p => Object.keys(p)[0] === 'unknown')[0];
+      const unknown_total_percentage = Object.values(unclear_percentage)[0] + Object.values(unknown_percentage)[0];
+
+      const pop_num_declining_trend = f.trendsCount.filter(p => Object.keys(p)[0] === 'declining')[0];
+      const pop_num_increasing_trend = f.trendsCount.filter(p => Object.keys(p)[0] === 'increasing')[0];
+      const pop_num_stable_or_fluctuating_trend = f.trendsCount.filter(p => Object.keys(p)[0] === 'stable or fluctuating')[0];
+      const pop_num_unclear_trend = f.trendsCount.filter(p => Object.keys(p)[0] === 'unclear')[0];
+      const pop_num_unknown_trend = f.trendsCount.filter(p => Object.keys(p)[0] === 'unknown')[0];
+      const pop_num_unknown_total_trend = Object.values(pop_num_unclear_trend)[0] + Object.values(pop_num_unknown_trend)[0];
+
+      const regions_africa = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'Africa')[0]
+      const africa_trends = Object.values(regions_africa)[0].trend
+      const africa_declining = africa_trends['declining'];
+      const africa_increasing = africa_trends['increasing'];
+      const africa_stable_or_fluctuating = africa_trends['stable_or_fluctuating'];
+      const africa_unknown = africa_trends['unknown'];
+
+      const regions_asia = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'Asia')[0]
+      const asia_trends = Object.values(regions_asia)[0].trend
+      const asia_declining = asia_trends['declining'];
+      const asia_increasing = asia_trends['increasing'];
+      const asia_stable_or_fluctuating = asia_trends['stable_or_fluctuating'];
+      const asia_unknown = asia_trends['unknown'];
+
+      const regions_europe = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'Europe')[0]
+      const europe_trends = Object.values(regions_europe)[0].trend
+      const europe_declining = europe_trends['declining'];
+      const europe_increasing = europe_trends['increasing'];
+      const europe_stable_or_fluctuating = europe_trends['stable_or_fluctuating'];
+      const europe_unknown = europe_trends['unknown'];
+
+      const regions_neotropics = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'Neotropics')[0]
+      const neotropics_trends = Object.values(regions_neotropics)[0].trend
+      const neotropics_declining = neotropics_trends['declining'];
+      const neotropics_increasing = neotropics_trends['increasing'];
+      const neotropics_stable_or_fluctuating = neotropics_trends['stable_or_fluctuating'];
+      const neotropics_unknown = neotropics_trends['unknown'];
+
+      const regions_north_america = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'North America')[0]
+      const north_america_trends = Object.values(regions_north_america)[0].trend
+      const north_america_declining = north_america_trends['declining'];
+      const north_america_increasing = north_america_trends['increasing'];
+      const north_america_stable_or_fluctuating = north_america_trends['stable_or_fluctuating'];
+      const north_america_unknown = north_america_trends['unknown'];
+
+      const regions_oceania = _regionTrendsChart.filter(r => Object.keys(r)[0] === 'Oceania')[0]
+      const oceania_trends = Object.values(regions_oceania)[0].trend
+      const oceania_declining = oceania_trends['declining'];
+      const oceania_increasing = oceania_trends['increasing'];
+      const oceania_stable_or_fluctuating = oceania_trends['stable_or_fluctuating'];
+      const oceania_unknown = oceania_trends['unknown'];
+
+      return {
+        population_id: f.id,
+        name: f.name,
+        declining_percentage: Object.values(declining_percentage)[0],
+        increasing_percentage: Object.values(increasing_percentage)[0],
+        stable_or_fluctuating_percentage: Object.values(stable_or_fluctuating_percentage)[0],
+        unknown_percentage: unknown_total_percentage,
+        pop_num_declining_trend: Object.values(pop_num_declining_trend)[0],
+        pop_num_increasing_trend: Object.values(pop_num_increasing_trend)[0],
+        pop_num_stable_or_fluctuating_trend: Object.values(pop_num_stable_or_fluctuating_trend)[0],
+        pop_num_unknown_trend: pop_num_unknown_total_trend,
+        tot_populations: total_populations,
+        africa_declining,
+        africa_increasing,
+        africa_stable_or_fluctuating,
+        africa_unknown,
+        asia_declining,
+        asia_increasing,
+        asia_stable_or_fluctuating,
+        asia_unknown,
+        europe_declining,
+        europe_increasing,
+        europe_stable_or_fluctuating,
+        europe_unknown,
+        neotropics_declining,
+        neotropics_increasing,
+        neotropics_stable_or_fluctuating,
+        neotropics_unknown,
+        north_america_declining,
+        north_america_increasing,
+        north_america_stable_or_fluctuating,
+        north_america_unknown,
+        oceania_declining,
+        oceania_increasing,
+        oceania_stable_or_fluctuating,
+        oceania_unknown
+      }
+    })
+  })
+
 export const selectWidgetsProps = createStructuredSelector({
   families: selectFamilies,
   familyTrends: selectFamilyTrends,
   familyPopulations: selectFamilyPopulations,
   familyTrendsChart: selectFamilyTrendsChart,
-  regionTrendsChart: selectRegionTrendsChart
+  regionTrendsChart: selectRegionTrendsChart,
+  generalData: selectGeneralData
 });

@@ -19,7 +19,8 @@ const Analysis = ({
   setTrendCategories,
   populationsLoaded,
   trendsLoaded,
-  trend_categoriesLoaded
+  trend_categoriesLoaded,
+  generalData
 }) => {
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Analysis = ({
 
   return (
     <div className="c-analisis">
-      <DataControls />
+      <DataControls  data={generalData}/>
       {(populationsLoaded || trendsLoaded || trend_categoriesLoaded)
       ? <Spinner />
       : !!widgets.length && widgets.map((widget) => {
