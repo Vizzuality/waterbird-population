@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 
 import Modal from 'components/modal';
 import Button from 'components/button';
+import Icon from 'components/icon';
 
 const ShareControl = () => {
   const inputElUrl = useRef();
@@ -37,7 +38,8 @@ const ShareControl = () => {
 
   return (
     <div className="mapboxgl-ctrl mapboxgl-ctrl-group  map-share">
-      <button className="mapboxgl-ctrl-icon" onClick={toggleModal}>
+      <button type="button" className="mapboxgl-ctrl-icon" onClick={toggleModal}>
+      <Icon name="share" />
         <Modal
           title="Share"
           isOpen={isOpen}

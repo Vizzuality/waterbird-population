@@ -5,7 +5,7 @@ import flatten from 'lodash/flatten';
 import uniqBy from 'lodash/uniqBy';
 import Fuse from 'fuse.js';
 
-import { setFilters } from 'modules/population/actions';
+import { setFilters } from 'modules/explore/actions';
 
 import { tags, regions } from './constants';
 

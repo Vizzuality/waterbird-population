@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { setFilters } from 'modules/analysis/actions';
-import { selectLastPublicationData } from 'modules/population/selectors';
-import { setPublications } from 'modules/population/actions';
+import { selectLastPublicationData } from 'modules/explore/selectors';
+import { setPublications } from 'modules/explore/actions';
 
 import Component from './component';
 

@@ -4,7 +4,7 @@ import orderBy from 'lodash/orderBy';
 import uniqBy from 'lodash/uniqBy';
 
 import { createSelector, createStructuredSelector } from 'reselect';
-import { regions } from 'modules/population/constants';
+import { regions } from 'modules/explore/constants';
 
 export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
 export const data = (state) => state ?.analysis.populations.data;

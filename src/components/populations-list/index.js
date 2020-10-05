@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectPopulationProps } from 'modules/population/selectors';
+import { selectPopulationProps } from 'modules/explore/selectors';
 
 import Component from './component';
 

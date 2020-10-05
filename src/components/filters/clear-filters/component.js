@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import initialState from 'modules/population/initial-state';
+import initialState from 'modules/explore/initial-state';
 
 import './styles.scss';
 

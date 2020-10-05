@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 
-import { selectFiltersProps } from 'modules/population/selectors';
-import { resetFilters } from 'modules/population/actions';
-import initialState from 'modules/population/initial-state';
+import { selectFiltersProps } from 'modules/explore/selectors';
+import { resetFilters } from 'modules/explore/actions';
+import initialState from 'modules/explore/initial-state';
 
 import Component from './component';
 

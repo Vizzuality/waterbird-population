@@ -21,7 +21,8 @@ export const MapContainer = ({
   populationLayers,
   scrollZoom = false,
   router,
-  setRouter
+  setRouter,
+  basemap
 }) => {
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
@@ -85,7 +86,7 @@ export const MapContainer = ({
       <Map
         viewport={viewport}
         scrollZoom={scrollZoom}
-        mapStyle='mapbox://styles/mapbox/light-v9'
+        mapStyle={basemap}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         interactiveLayerIds={interactiveLayerIds}
         onClick={(e) => {
@@ -153,8 +154,7 @@ export const MapContainer = ({
           onClick={onZoomChange}
         />
       </MapControls>
-
-      {/* <Legend /> */}
+      <Legend />
     </div>
   );
 };

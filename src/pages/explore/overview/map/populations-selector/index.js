@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { setLocation } from 'modules/map/actions';
-import { resetPopulationsByLocation } from 'modules/population/actions';
+import { resetPopulationsByLocation } from 'modules/explore/actions';
 
 import Component from './component';
 

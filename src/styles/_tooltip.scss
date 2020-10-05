@@ -2,10 +2,7 @@
 
 div[data-tippy-root] {
 
-
-:global(.tippy-box) {
-  background-color: blue;
-
-}
-
+  :global(.tippy-box) {
+    background-color: blue;
+  }
 }

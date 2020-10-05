@@ -6,7 +6,7 @@ import Component from './component';
 const mapStateToProps = state => ({
   current: state.map.selectedBasemap,
   basemaps: state.map.basemaps
-})
+});
 
 const mapDispatchToProps = {
   setBasemap
