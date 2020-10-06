@@ -5,8 +5,11 @@ import TabsMenu from 'components/tabs-menu';
 
 import './styles.scss';
 
-const Card = ({ info, tabs, page }) => (
-  <div className="c-card">
+const Card = ({ info, tabs, page, tab }) => {
+
+  const cardInfo = info.tabs ? info.info.find(i => i.id === tab.id) : info;
+
+  return (<div className="c-card">
     {tabs && (
       <div className="card-navigation">
       <TabsMenu tabs={tabs} page={page}/>
@@ -14,12 +17,12 @@ const Card = ({ info, tabs, page }) => (
     )}
 
     <div className={classnames('card-content',
-      { [info.id]: info.id })}>
-      {info.intro || null}
-      {info.content || null}
+      { [tab.id]: tab.id })}>
+      {cardInfo.intro || null}
+      {cardInfo.content || null}
     </div>
   </div>
-);
+  )};
 
 
 Card.propTypes = {

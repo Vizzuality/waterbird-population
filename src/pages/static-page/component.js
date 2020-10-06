@@ -22,7 +22,8 @@ const StaticPage = ({ currentTab, currentPage }) => {
       <Card
         info={info}
         tabs={page.tabs || null}
-        page={currentPage} />
+        page={currentPage}
+        tab={currentTab} />
     </div>
   );
 }
