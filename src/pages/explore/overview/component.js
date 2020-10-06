@@ -14,7 +14,7 @@ const ExplorePage = ({ setPopulations, pop }) => {
   const [downloadData, setDownload] = useState('');
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
-    fetchDataToDownload().then(data => setDownload(data));
+    //fetchDataToDownload().then(data => setDownload(data));
   },[])
 
   return (

@@ -16,7 +16,7 @@ const ExploreDetailPage = (props) => {
 
   useEffect(() => {
     fetchPopulations(+specie_id).then((data)=> setPopulations(data));
-  }, [specie_id, setPopulations])
+  }, [specie_id])
 
   return (
     <div className="l-explore">

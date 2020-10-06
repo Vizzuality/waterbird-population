@@ -33,8 +33,7 @@ const Analysis = ({
     fetchTrendCategories().then(data => {
       setTrendCategories(data)
     });
-
-  }, [setPopulations, setTrendCategories, setTrends])
+  }, [])
 
   return (
     <div className="c-analisis">

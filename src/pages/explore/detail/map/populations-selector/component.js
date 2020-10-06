@@ -8,7 +8,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
 
   useEffect(() => {
     setCurrent(data.find(p => p.value === +selected) || data[0] || {});
-  }, [data, selected])
+  }, [selected])
 
   const onSelectChange = (e) => {
     const { value } = e.currentTarget;

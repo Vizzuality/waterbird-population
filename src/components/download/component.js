@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { CSVLink } from 'react-csv';
 import classnames from 'classnames';
@@ -8,9 +8,6 @@ import './styles.scss';
 
 const Download = ({ data, filename, headers, text, className, imageSize }) => {
   const handleClick = (e) => e.stopPropagation();
-
-  useEffect(() => {
-  }, [data]);
 
   return (
     <CSVLink
