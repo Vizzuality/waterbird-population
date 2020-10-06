@@ -12,7 +12,7 @@ const Section1 = ({ setFilters, filters }) => {
 
   useEffect(() => {
     fetchConservationFrameworks().then(data => setLinks(data));
-  });
+  }, []);
 
   const handleClick = (value) => {
     setFilters({

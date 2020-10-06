@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
 // Components
 import DataControls from 'components/data-controls';
 import Select from 'components/select';
-import Spinner from 'components/spinner';
 
 // styles
 import './styles.scss';
 
 const WidgetWrapper = ({ key, title, url, body, children, info, id, fetchWidget, ...props }) => {
-  const [widgetData,] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  // useEffect(() => {
-  //   //fetchWidget().then(data => data)
-  // }), [url, body];
 
   return <div className="c-widget-element">
     <DataControls />
@@ -37,7 +30,6 @@ const WidgetWrapper = ({ key, title, url, body, children, info, id, fetchWidget,
     </div>
 
     <div className="widget-content">
-      {/* {loading && <Spinner position="relative" />} */}
       {children}
     </div>
   </div>
