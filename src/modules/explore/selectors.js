@@ -629,8 +629,10 @@ export const selectPopulationsLayersByLocation = createSelector(
               type: "circle",
               //  "source-layer": "layer0",
               paint: {
-                "circle-radius": 100,
-                "circle-color": "#1C1B27"
+                "circle-radius": 10,
+                "circle-color": "#1C1B27",
+                "circle-stroke-width": 5,
+                "circle-stroke-opacity": 0.2
               },
               // metadata: {
               //   position: 'top'

@@ -39,7 +39,7 @@ const Filters = ({
     fetchConservationFrameworks().then(data => setFrameworks(data));
     fetchFlyways().then(data => setFlyways(data));
     fetchRedListCategories().then(data => setListCategories(data));
-  }, [setPublications]);
+  }, []);
 
   const handleClick = () => {
     //toggle modal

@@ -29,7 +29,7 @@ const Comments = ({
 
   useEffect(() => {
     fetchComments(publicationId, populationId, sizeId, trendId, onepercentId).then(data => setComments(data));
-  }, [publicationId, populationId, sizeId, trendId, onepercentId]);
+  }, [publicationId]);
 
   const handleChange = (e) => {
     e.target.value.length > 0 ? disableButton(false) : disableButton(true);
