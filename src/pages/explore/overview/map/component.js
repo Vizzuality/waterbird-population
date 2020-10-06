@@ -104,6 +104,7 @@ export const MapContainer = ({
               map={map}
               plugin={PluginMapboxGl}
             >
+              {console.log(map.getStyle())}
               {!!layers && layers.map((l, i) => {
                 return (
                   <Layer

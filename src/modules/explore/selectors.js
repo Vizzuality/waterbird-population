@@ -481,81 +481,81 @@ export const selectPopulationLayers = createSelector(
   (_specie_id, _population_id) => {
     return [
       // GEOJSON DATA LAYER
-      {
-        id: 'populations-by-specie',
-        type: 'geojson',
-        source: {
-          type: 'geojson',
-          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=
-          SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
-          promoteId: 'wpepopid'
-        },
-        render: {
-          layers: [
-            {
-              filter: [
-                'all',
-                ['==', 'wpepopid', +_population_id]
-              ],
-              type: "fill",
-              //  "source-layer": "layer0",
-              paint: {
-                'fill-color': '#FFBB00',
-                'fill-opacity': 0.25
-              }
-            },
-            {
-              filter: [
-                'all',
-                ['==', 'wpepopid', +_population_id]
-              ],
-              type: "line",
-              //  "source-layer": "layer0",
-              paint: {
-                "line-color": "#000000",
-                "line-opacity": 0.5,
-                "line-dasharray": [1, 2]
-              }
-            },
-            {
-              filter: [
-                'all',
-                ['!=', 'wpepopid', +_population_id]
-              ],
-              type: "fill",
-              //  "source-layer": "layer0",
-              paint: {
-                'fill-color': [
-                  'case',
-                  ['boolean', ['feature-state', 'hover'], false],
-                  '#FFBB00',
-                  '#000'
-                ],
-                'fill-opacity': 0.05
-              }
-            },
-            {
-              filter: [
-                'all',
-                ['!=', 'wpepopid', +_population_id]
-              ],
-              type: "line",
-              //  "source-layer": "layer0",
-              paint: {
-                "line-color": "#000000",
-                "line-opacity": 0.5,
-                "line-dasharray": [1, 2]
-              }
-            }
-          ]
-        },
-        paramsConfig: [
-          { key: 'specieid', required: true }
-        ],
-        interactionConfig: {
-          enable: true
-        }
-      },
+      // {
+      //   id: 'populations-by-specie',
+      //   type: 'geojson',
+      //   source: {
+      //     type: 'geojson',
+      //     data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=
+      //     SELECT * from species_and_flywaygroups where wpesppid = {{specieid}}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
+      //     promoteId: 'wpepopid'
+      //   },
+      //   render: {
+      //     layers: [
+      //       {
+      //         filter: [
+      //           'all',
+      //           ['==', 'wpepopid', +_population_id]
+      //         ],
+      //         type: "fill",
+      //         //  "source-layer": "layer0",
+      //         paint: {
+      //           'fill-color': '#FFBB00',
+      //           'fill-opacity': 0.25
+      //         }
+      //       },
+      //       {
+      //         filter: [
+      //           'all',
+      //           ['==', 'wpepopid', +_population_id]
+      //         ],
+      //         type: "line",
+      //         //  "source-layer": "layer0",
+      //         paint: {
+      //           "line-color": "#000000",
+      //           "line-opacity": 0.5,
+      //           "line-dasharray": [1, 2]
+      //         }
+      //       },
+      //       {
+      //         filter: [
+      //           'all',
+      //           ['!=', 'wpepopid', +_population_id]
+      //         ],
+      //         type: "fill",
+      //         //  "source-layer": "layer0",
+      //         paint: {
+      //           'fill-color': [
+      //             'case',
+      //             ['boolean', ['feature-state', 'hover'], false],
+      //             '#FFBB00',
+      //             '#000'
+      //           ],
+      //           'fill-opacity': 0.05
+      //         }
+      //       },
+      //       {
+      //         filter: [
+      //           'all',
+      //           ['!=', 'wpepopid', +_population_id]
+      //         ],
+      //         type: "line",
+      //         //  "source-layer": "layer0",
+      //         paint: {
+      //           "line-color": "#000000",
+      //           "line-opacity": 0.5,
+      //           "line-dasharray": [1, 2]
+      //         }
+      //       }
+      //     ]
+      //   },
+      //   paramsConfig: [
+      //     { key: 'specieid', required: true }
+      //   ],
+      //   interactionConfig: {
+      //     enable: true
+      //   }
+      // },
     ]
   }
 );
