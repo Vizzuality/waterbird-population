@@ -34,7 +34,7 @@ const Analysis = ({
       setTrendCategories(data)
     });
 
-  }, [])
+  }, [setPopulations, setTrendCategories, setTrends])
 
   return (
     <div className="c-analisis">
