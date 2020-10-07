@@ -37,7 +37,7 @@ const Analysis = ({
 
   return (
     <div className="c-analisis">
-      <DataControls  data={generalData}/>
+      <DataControls data={generalData}/>
       {(populationsLoaded || trendsLoaded || trend_categoriesLoaded)
       ? <Spinner />
       : !!widgets.length && widgets.map((widget) => {

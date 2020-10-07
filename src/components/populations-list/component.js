@@ -35,7 +35,11 @@ const PopulationsList = ({ specieId, populationData }) => {
                 </button>
                 <Download
                   text={'Download data'}
-                  data={populationData}
+                  type="populations-card"
+                  dataSpecs={{
+                    populationId: d.populationId,
+                    publicationId: d.publication_id
+                  }}
                   imageSize="-small"
                 />
               </div>

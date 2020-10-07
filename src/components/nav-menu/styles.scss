@@ -47,6 +47,10 @@
       @media (max-width: map-get($breakpoints, xlg)) {
         padding-top: 20px;
       }
+
+      @media (max-width: map-get($breakpoints, md)) {
+        padding-right: 20px;
+      }
     }
 
     &.header {
