@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
   page: state.router.type,
   filters: state.population.filters,
   publications: state.population.publications,
+  dataSpecs: state.router.payload,
   ...selectFiltersProps(state),
   ...selectPopulationDetailProps(state)
 })

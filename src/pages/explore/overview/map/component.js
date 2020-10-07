@@ -34,7 +34,7 @@ export const MapContainer = ({
 
   useEffect(() => {
     coordinates && fetchPopulationsByLocation(coordinates[0], coordinates[1]).then((data) => setPopulationsByLocation(data));
-  }, [coordinates, setPopulationsByLocation])
+  }, [coordinates])
 
   const layers = populationsLayersByLocation.map(l => {
     return {

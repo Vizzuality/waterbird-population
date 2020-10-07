@@ -9,7 +9,7 @@ import Filters from 'components/analysis/filters';
 
 import "./styles.scss";
 
-const DataControls = ({ populationsFiltered, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
+const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
 
   const [filtersVisibility, toggleVisibility] = useState(false);
 
@@ -36,6 +36,8 @@ const DataControls = ({ populationsFiltered, data, filters, setFilters, resetFil
       <div className="data-configuration--buttons">
       <Download
         text={'Download results'}
+        type="explore-detail"
+        dataSpecs={dataSpecs}
         data={data}
         filename={'populations'}
         className="-dashed"

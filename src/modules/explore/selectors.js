@@ -163,7 +163,7 @@ export const selectPopulationsData = createSelector(
         .map(f => f.id);
 
       const orderedPublicationsSizes = orderBy(
-        _user.name ? d.sizes : d.sizes.filter(s => s.publication_id !== draftId[0]),
+        d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
       const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
       const size = d.sizes.find(s => s.publication_id === publication.id);
@@ -176,7 +176,6 @@ export const selectPopulationsData = createSelector(
         : size.notes ?
           size_notes : trend_notes;
 
-
       return {
         id: d.id,
         populationId: d.id,
@@ -184,14 +183,15 @@ export const selectPopulationsData = createSelector(
         size: `${size.maximum} - ${size.minimum}`,
         'size_year': `${size.startyear} - ${size.endyear}`,
         trend: trend.name,
-        'size_references': size.references,
+        'size_references': uniqBy(size.references, 'id'),
         'trend_year': `${trend.startyear} - ${trend.endyear}`,
         'trend_quality': trend.quality,
         'notes': notes,
-        'trend_references': trend.references,
+        'trend_references': uniqBy(trend.references, 'id'),
         'size_estimates_quality': size.quality,
         'percent': percentLevel.onepercent,
         'yearset': percentLevel.yearset,
+        publication_id: publication.id,
         publication: publication.name,
         commonname: d.specie.commonname,
         redlistcategory: d.specie.redlistcategory,
