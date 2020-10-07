@@ -1,7 +1,7 @@
 import React from 'react';
-import Flyway1Image from './images/map_01.png';
-import Flyway2Image from './images/map_02.png';
-import Flyway3Image from './images/map_03.png';
+import Flyway1Image from '../images/map_01.png';
+import Flyway2Image from '../images/map_02.png';
+import Flyway3Image from '../images/map_03.png';
 
 const WAFInfo = [
   {

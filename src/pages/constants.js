@@ -3,16 +3,16 @@ import React from 'react';
 import TabInfo from 'pages/static-tabs';
 
 import Analysis from "components/analysis";
-import SpeciesPopulationInfo from 'pages/data/s&p/constants';
-import PopulationEstimatesInfo from 'pages/data/pe/constants';
-import ThresholdInfo from 'pages/data/threshold/constants';
-import PopulationTrendsInfo from 'pages/data/trends/constants/';
-import WAWInfo from 'pages/background/waw/constants';
-import WIWPInfo from 'pages/background/wiwp/constants';
-import WAFInfo from 'pages/background/waf/constants';
-import glossaryInfo from 'pages/background/glossary/constants';
-import FSInfo from 'pages/credits/fs.js';
-import ECInfo from 'pages/credits/ec.js';
+import SpeciesPopulationInfo from 'pages/data/constants/s&p.js';
+import PopulationEstimatesInfo from 'pages/data/constants/pe.js';
+import ThresholdInfo from 'pages/data/constants/threshold.js';
+import PopulationTrendsInfo from 'pages/data/constants/trends.js';
+import WAWInfo from 'pages/background/constants/waw.js';
+import WIWPInfo from 'pages/background/constants/wiwp.js';
+import WAFInfo from 'pages/background/constants/waf.js';
+import glossaryInfo from 'pages/background/constants/glossary.js';
+import FSInfo from 'pages/credits/constants/fs.js';
+import ECInfo from 'pages/credits/constants/ec.js';
 import FaqInfo from 'pages/faq/constants';
 
 const PagesInfo = {
