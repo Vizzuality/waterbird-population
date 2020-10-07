@@ -80,7 +80,7 @@ const PagesInfo = {
   },
   CREDITS: {
     title: 'Credits',
-    tabs:[
+    tabs: [
       { name: 'Funders & Supporters', id: 'fs' },
       { name: 'Editors & Contributors', id: 'ec' }
     ],
@@ -98,11 +98,8 @@ const PagesInfo = {
   FAQ: {
     title: 'Frequently Asked Questions',
     tabs: false,
-    info:
-    {
-      id: 'faq',
-      content: <TabInfo info={FaqInfo} />
-    }
+    tabsInfo: false,
+    content: <TabInfo info={FaqInfo} />
   }
 }
 
