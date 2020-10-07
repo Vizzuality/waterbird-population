@@ -10,6 +10,16 @@
   margin-bottom: 20px;
   @include card-background;
 
+  &:hover {
+    box-shadow: 0 10px 10px 0 rgba($black, .09);
+  }
+
+  &.-empty {
+    * {
+      pointer-events: none;
+    }
+  }
+
   .card-header {
     display: flex;
 
@@ -116,6 +126,11 @@
       line-height: 22px;
       font-family: $font-family-2;
       max-width: 160px;
+    }
+
+    &.-empty {
+      font-weight: 300;
+      font-style: italic;
     }
 
     .notes {
