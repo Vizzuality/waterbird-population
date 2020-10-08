@@ -16,6 +16,7 @@ export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
 export const filters = (state) => state?.population.filters;
 export const publications = (state) => state?.population.publications;
+export const publicationSelected = (state) => state ?.population.filters.publication_id;
 export const user = (state) => state?.user;
 export const search = (state) => state?.population.search;
 export const lonLat = (state) => state?.map.lonLat;
@@ -152,10 +153,9 @@ export const selectPopulationSpecies = createSelector(
 );
 
 export const selectPopulationsData = createSelector(
-  [data, specieId, user],
-  (_data, _specieId, _user) => {
+  [data, specieId, user, publicationSelected],
+  (_data, _specieId, _user, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
-
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
     return populationsBySpecie.map(d => {
       const draftId = d.publications
@@ -165,10 +165,10 @@ export const selectPopulationsData = createSelector(
       const orderedPublicationsSizes = orderBy(
         d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
-      const publication = d.publications.find(p => p.id === orderedPublicationsSizes[0].publication_id);
-      const size = d.sizes.find(s => s.publication_id === publication.id);
-      const trend = d.trends.find(s => s.publication_id === publication.id);
-      const percentLevel = d.populationonepercentlevel.find(s => s.publication_id === publication.id);
+      const publication = d.publications.find(p => _publicationSelected.value ? p.id === _publicationSelected.value : p.id === orderedPublicationsSizes[0].publication_id);
+      const size = publication ? d.sizes.find(s => s.publication_id === publication.id) : [];
+      const trend = publication ? d.trends.find(s => s.publication_id === publication.id) : [];
+      const percentLevel = publication ? d.populationonepercentlevel.find(s => s.publication_id === publication.id) : [];
       const size_notes = size.notes && { id: size.id, note: size.notes, type: 'size', reference: 'S' };
       const trend_notes = trend.notes && { id: trend.id, note: trend.notes, type: 'trend', reference: 'T' };
       const notes = (size_notes && trend.notes)
@@ -191,8 +191,8 @@ export const selectPopulationsData = createSelector(
         'size_estimates_quality': size.quality,
         'percent': percentLevel.onepercent,
         'yearset': percentLevel.yearset,
-        publication_id: publication.id,
-        publication: publication.name,
+        publication_id: publication ? publication.id : '',
+        publication: publication ? publication.name : '',
         commonname: d.specie.commonname,
         redlistcategory: d.specie.redlistcategory,
         scientificname: d.specie.scientificname,

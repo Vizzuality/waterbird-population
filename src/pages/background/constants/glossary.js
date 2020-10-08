@@ -1,9 +1,9 @@
 import React from 'react';
-import AEWAImage from './images/AEWA.png';
-import CMSImage from './images/CMS.png';
-import EAAFImage from './images/EAAF.png';
-import EUBDImage from './images/EUBD.png';
-import WHSRNImage from './images/WHSRN.png';
+import AEWAImage from '../images/AEWA.png';
+import CMSImage from '../images/CMS.png';
+import EAAFImage from '../images/EAAF.png';
+import EUBDImage from '../images/EUBD.png';
+import WHSRNImage from '../images/WHSRN.png';
 
 const glossaryInfo = [
   {
