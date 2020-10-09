@@ -108,10 +108,6 @@ class Chart extends PureComponent {
 
     const RechartChart = rechartCharts.get(type);
 
-    Object.entries(content).forEach((entry) => {
-      const [key, definition] = entry;
-    });
-
     return (
       <div ref={(r) => { this.chart = r; }} className="chart" style={{ height }}>
         <ResponsiveContainer width="100%" height={height}>

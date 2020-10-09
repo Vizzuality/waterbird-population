@@ -24,7 +24,7 @@ const SpeciesListItem = ({ specie }) => {
 
   useEffect(() => {
     fetchImages(scientificname).then(data => setImage(data));
-  }, []);
+  }, [scientificname]);
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed)

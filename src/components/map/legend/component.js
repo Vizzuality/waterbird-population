@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 import BasemapSelector from 'components/map/basemap-selector';
 
-import activeFlyways from './constants';
 import './styles.scss';
 
 const Legend = () => {

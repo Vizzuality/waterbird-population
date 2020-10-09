@@ -11,7 +11,7 @@ import MapContainer from './map';
 import '../styles.scss';
 
 const ExploreDetailPage = (props) => {
-  const { router: { payload }, setPopulations, user, data } = props;
+  const { router: { payload }, setPopulations, user } = props;
   const { specie_id } = payload;
 
   useEffect(() => {
