@@ -21,7 +21,7 @@ const PopulationsList = ({ specieId, populationData }) => {
           { '-empty': !d.publication_id })}>
             <Link
               to={`/explore/${specieId}/${d.populationId}`}
-              onClick={e => e.preventDefault()}
+              onClick={!d.publication_id ? e => e.preventDefault() : false}
               on
             >
               <div className="card-header">
