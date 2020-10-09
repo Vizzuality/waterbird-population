@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
@@ -11,7 +11,6 @@ import { fetchPopulations } from 'services/population';
 import '../styles.scss';
 
 const ExplorePage = ({ setPopulations }) => {
-  const [downloadData, setDownload] = useState('');
 
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));

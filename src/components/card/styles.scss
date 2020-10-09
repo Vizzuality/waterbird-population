@@ -194,6 +194,10 @@
 
     &.ec {
 
+      ul {
+        margin: 20px 0;
+      }
+
       li {
 
         padding-bottom: 0;
@@ -207,6 +211,13 @@
       p {
         margin-top: 0;
         line-height: 32px;
+      }
+    }
+
+    &.fs {
+
+      ul {
+        margin: 20px 0;
       }
     }
   }

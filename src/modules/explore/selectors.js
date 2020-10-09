@@ -16,7 +16,7 @@ export const population_id = (state) => state?.router?.payload?.population_id;
 export const data = (state) => state?.population?.data;
 export const filters = (state) => state?.population.filters;
 export const publications = (state) => state?.population.publications;
-export const publicationSelected = (state) => state ?.population.filters.publication_id;
+export const publicationSelected = (state) => state?.population.filters.publication_id;
 export const user = (state) => state?.user;
 export const search = (state) => state?.population.search;
 export const lonLat = (state) => state?.map.lonLat;

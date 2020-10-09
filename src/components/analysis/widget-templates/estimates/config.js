@@ -54,78 +54,77 @@ export const CONFIG = {
 
   parse: (data) => {
     const zeros = getZeros(data)
-    {
-      return {
-        chartData: getData(data),
-        metadata: getMetadata(data),
-        zeros,
-        chartConfig: {
-          height: 500,
-          margin: { top: 20, right: 0, left: 0, bottom: 20 },
-          cartesianGrid: {
-            vertical: true,
-            horizontal: false,
-            strokeDasharray: '5 20'
+    return {
+      chartData: getData(data),
+      metadata: getMetadata(data),
+      zeros,
+      chartConfig: {
+        height: 500,
+        margin: { top: 20, right: 0, left: 0, bottom: 20 },
+        cartesianGrid: {
+          vertical: true,
+          horizontal: false,
+          strokeDasharray: '5 20'
+        },
+        xKey: 'region',
+        yKeys: {
+          bars: Bars
+        },
+        referenceLines: [{
+          y: 0,
+          stroke: 'black',
+          strokeDasharray: 'solid',
+          fill: 'black',
+          opacity: '1',
+          label: null
+        }],
+        xAxis: {
+          type: 'category',
+          dataKey: 'region',
+          domain: [0, 100],
+          tick: {
+            fontSize: 12,
+            fill: 'rgba(0, 0, 0, 0.54)'
           },
-          xKey: 'region',
-          yKeys: {
-            bars: Bars
+          tickCount: 6
+        },
+        yAxis: {
+          type: 'number',
+          tick: {
+            fontSize: 10,
+            fill: 'rgba(0,0,0,0.54)'
           },
-          referenceLines: [{
-            y: 0,
-            stroke: 'black',
-            strokeDasharray: 'solid',
-            fill: 'black',
-            opacity: '1',
-            label: null
-          }],
-          xAxis: {
-            type: 'category',
-            dataKey: 'region',
-            domain: [0, 100],
-            tick: {
-              fontSize: 12,
-              fill: 'rgba(0, 0, 0, 0.54)'
-            },
-            tickCount: 6
-          },
-          yAxis: {
-            type: 'number',
-            tick: {
-              fontSize: 10,
-              fill: 'rgba(0,0,0,0.54)'
-            },
-            label: ({ viewBox }) => {
-              const { y } = viewBox;
-              return (
-                <text x={-250} y={y / 2} transform={`rotate(270)`} textAnchor="middle">
-                  NUMBER OF POPULATIONS
+          label: ({ viewBox }) => {
+            const { y } = viewBox;
+            return (
+              <text x={-250} y={y / 2} transform={`rotate(270)`} textAnchor="middle">
+                NUMBER OF POPULATIONS
                 </text>
-              );
-            },
-            tickFormatter: value => Math.round(value),
-            interval: 0,
-            width: 100
+            );
           },
-          legend: {
-            align: 'left',
-            verticalAlign: 'top',
-            layout: 'horizontal',
-            height: 80,
-            top: 0,
-            left: 0,
-            position: 'relative',
-            content: (properties) => {
-              const { payload } = properties;
-              const groups = groupBy(payload, p => p.payload);
-              return <WidgetLegend groups={groups} />;
-            }
-          },
-          tooltip: {
-            cursor: false,
-            content: ({ payload }) => {
-              const region = payload.length && payload[0].payload && payload[0].payload.region;
-              return (
+          tickFormatter: value => Math.round(value),
+          interval: 0,
+          width: 100
+        },
+        legend: {
+          align: 'left',
+          verticalAlign: 'top',
+          layout: 'horizontal',
+          height: 80,
+          top: 0,
+          left: 0,
+          position: 'relative',
+          content: (properties) => {
+            const { payload } = properties;
+            const groups = groupBy(payload, p => p.payload);
+            return <WidgetLegend groups={groups} />;
+          }
+        },
+        tooltip: {
+          cursor: false,
+          content: ({ payload }) => {
+            const region = payload.length && payload[0].payload && payload[0].payload.region;
+            return (
               <WidgetTooltip
                 style={{
                   display: 'flex',
@@ -146,12 +145,11 @@ export const CONFIG = {
                   }
                 })}
               />
-              )
-            }
+            )
           }
-        },
-      };
-    }
+        }
+      },
+    };
   }
 };
 
