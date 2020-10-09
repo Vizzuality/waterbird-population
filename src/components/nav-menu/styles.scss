@@ -2,6 +2,8 @@
 @import 'styles/mixins';
 
 .c-nav-menu-wrapper {
+  position: relative;
+  z-index: 10;
 
   button {
     pointer-events: all;
@@ -121,7 +123,7 @@
               display: block;
               flex-direction: column;
               position: absolute;
-              top: 40px;
+              top: 100%;
               left: -20px;
               min-width: 200px;
 
