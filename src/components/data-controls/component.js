@@ -42,7 +42,7 @@ const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilter
         filename={'populations'}
         className="-dashed"
       />
-        <ActiveFilters
+        {page !== 'ANALYZE' && <><ActiveFilters
           filters={filters}
           onClick={handleClick}
           heading={'Filtered by:'}
@@ -52,7 +52,7 @@ const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilter
           handleFilters={handleFilters}
           activeFilters={activeFilters}
           unsetteledFilters={false}
-        />
+        /></>}
       {page === 'ANALYZE' &&
       <div className="data-filters">
         <p>Filters configuration:</p>

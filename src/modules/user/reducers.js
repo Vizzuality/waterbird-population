@@ -9,5 +9,5 @@ export default {
     id: payload.id,
     rol: payload.rol
   }),
-  [resetUser]: state => ({ ...state, initialState})
+  [resetUser]: () => ({ ...initialState})
 };

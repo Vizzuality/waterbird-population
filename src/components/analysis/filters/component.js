@@ -6,6 +6,7 @@ import orderBy from 'lodash/orderBy';
 import Select from 'react-select';
 import Icon from 'components/icon';
 import ActiveFilters from './active-filters';
+import ClearFilters from './clear-filters';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -15,12 +16,12 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import './styles.scss';
 
-const Filters = ({ filters, setFilters, publications, setPublications }) => {
+
+const Filters = ({ activeFilters, filters, setFilters, publications, setPublications, resetFilters }) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
-
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
     fetchPublications().then(data => setPublications(data));
@@ -157,6 +158,10 @@ const Filters = ({ filters, setFilters, publications, setPublications }) => {
     setFilters(filtersUpdate)
   };
 
+  const clearFilters = () => {
+    resetFilters();
+  };
+
   return (
     <div className="c-filters">
       <div className="filters-content">
@@ -187,7 +192,15 @@ const Filters = ({ filters, setFilters, publications, setPublications }) => {
           </div>
         )}
       </div>
-      <ActiveFilters filters={filters} onClick={removeFilter} />
+      <ActiveFilters
+        activeFilters={activeFilters}
+        filters={filters}
+        onClick={removeFilter} />
+      <ClearFilters
+        handleFilters={clearFilters}
+        activeFilters={activeFilters}
+        unsetteledFilters={false}
+      />
     </div>
   )
 }

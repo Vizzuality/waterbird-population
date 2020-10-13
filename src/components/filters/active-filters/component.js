@@ -5,9 +5,9 @@ import classnames from 'classnames';
 import './styles.scss';
 
 
-const ActiveFilters = ({ filters, active, heading, onClick }) => (
+const ActiveFilters = ({ filters, active, onClick }) => (
   <section className="c-active-filters">
-    {!!active.length && <p>{heading}</p>}
+    {!!active.length && <p>Filtered by:</p>}
     {Object.entries(filters).map(filter =>
       filter && Object.values(filter[1]).length && filter[1].label
         ? !filter[1].label.includes('default') && (<span
@@ -22,13 +22,11 @@ const ActiveFilters = ({ filters, active, heading, onClick }) => (
 ActiveFilters.propTypes = {
   filters: PropTypes.array.isRequired,
   active: PropTypes.array,
-  heading: PropTypes.string,
   onClick: PropTypes.func.isRequired
 };
 
 ActiveFilters.defaultProps = {
-  active: [],
-  heading: ''
+  active: []
 };
 
 export default ActiveFilters;

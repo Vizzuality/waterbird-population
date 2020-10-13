@@ -4,13 +4,17 @@
 .c-map-legend {
   position: absolute;
   bottom: 50px;
-  left: 100px;
   z-index: $z-index-1;
   border-radius: $border-radius;
   background-color: $white;
   box-shadow: 0 4px 12px 0 rgba($black, 0.08);
   max-width: 250px;
   overflow: hidden;
+  left: $flexboxgrid-outer-margin/2;
+
+  @media screen and (min-width: map-get($flexboxgrid-breakpoints, md)) {
+    left: $flexboxgrid-outer-margin;
+  }
 
   .legend-header {
     padding: 20px;
