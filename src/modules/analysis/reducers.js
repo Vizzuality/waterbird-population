@@ -1,4 +1,11 @@
-import { fetchData, setPopulations, setTrends, setTrendCategories, setFilters } from './actions';
+import { fetchData,
+  setPopulations,
+  setTrends,
+  setTrendCategories,
+  setFilters,
+  resetFilters
+} from './actions';
+import initialState from './initial-state';
 
 export default {
   [fetchData]: (state, { payload }) => ({
@@ -29,5 +36,9 @@ export default {
   [setFilters]: (state, { payload }) => ({
     ...state,
     filters: payload
-  })
+  }),
+  [resetFilters]: (state) => ({
+    ...state,
+    filters: initialState.filters
+  }),
 };

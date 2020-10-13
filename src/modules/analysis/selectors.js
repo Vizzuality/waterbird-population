@@ -365,7 +365,16 @@ export const selectGeneralData = createSelector(
         oceania_unknown
       }
     })
-  })
+  });
+
+export const selectActiveFilters = createSelector(
+  [filters],
+  (_filters) => Object.entries(_filters).filter(f => f[1].length || f[1].label)
+);
+
+export const selectFiltersProps = createStructuredSelector({
+  activeFilters: selectActiveFilters
+});
 
 export const selectWidgetsProps = createStructuredSelector({
   families: selectFamilies,

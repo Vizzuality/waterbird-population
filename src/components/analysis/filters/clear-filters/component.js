@@ -5,18 +5,14 @@ import './styles.scss';
 
 
 const ClearFilters = ({
-  activeFilters, filtersInitialState, unsetteledFilters, resetFilters, handlePendingFilters }) => {
-    activeFilters.length, handlePendingFilters, !unsetteledFilters.length)
-  if (!activeFilters.length && unsetteledFilters && !unsetteledFilters.length) return null;
+  activeFilters, resetFilters }) => {
+  if (!activeFilters.length) return null;
 
   const handleFilters = () => {
-
-      handlePendingFilters(filtersInitialState);
-
     resetFilters();
   };
 
-  return <button className="c-clear-filters" onClick={handleFilters}>Clear filters</button>
+  return <button className="c-clear-filters-analysis" onClick={handleFilters}>Clear filters</button>
 };
 
 ClearFilters.propTypes = {

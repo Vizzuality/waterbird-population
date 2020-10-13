@@ -654,7 +654,7 @@ export const selectPopulationsLayersByLocation = createSelector(
 
 export const selectActiveFilters = createSelector(
   [filters],
-  (_filters) => Object.entries(_filters).filter(f => f[1].length)
+  (_filters) => Object.entries(_filters).filter(f => f[1].length || f[1].label)
 );
 
 

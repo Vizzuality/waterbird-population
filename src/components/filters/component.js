@@ -227,7 +227,7 @@ const Filters = ({
         />
         <ClearFilters
           handleUnsetteledFilters={setNewFiltersValues}
-          activeFilters={filters}
+          activeFilters={activeFilters}
           unsetteledFilters={newFiltersValues && Object.values(newFiltersValues).filter(filter => filter.length)}
         />
       </div>
