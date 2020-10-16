@@ -6,7 +6,7 @@ import uniqBy from 'lodash/uniqBy';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { regions } from 'modules/explore/constants';
 
-export const specie_id = (state) => state?.router ?.payload ?.specie_id;
+export const specie_id = (state) => state?.router?.payload?.specie_id;
 export const data = (state) => state?.analysis.populations.data;
 export const trends = (state) => state?.analysis.trends.data;
 export const categories = (state) => state?.analysis.trend_categories.data;

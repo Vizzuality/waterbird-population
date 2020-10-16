@@ -14,21 +14,22 @@ const Legend = () => {
   }
 
   return (
-    <div className={classnames('c-map-legend',
+    <div className="c-map-legend">
+      <div className={classnames('map-legend-wrapper',
       { '-collapse': isCollapse })}>
-      <div className="legend-header">
-        <div className="legend-controls">
-          <h4>Map settings</h4>
-          <button
-            type="button"
-            onClick={handleClick}
-            className={classnames(
-              { '-collapse': isCollapse },
-              { '-expand': !isCollapse })} />
+        <div className="legend-header">
+          <div className="legend-controls">
+            <h4>Map settings</h4>
+            <button
+              type="button"
+              onClick={handleClick}
+              className={classnames(
+                { '-collapse': isCollapse },
+                { '-expand': !isCollapse })} />
+          </div>
+          <BasemapSelector />
         </div>
-        <BasemapSelector />
-      </div>
-      {/* <ul>
+        {/* <ul>
         {activeFlyways.map(flyway=>
           <li key={flyway.id}>
             <span style={{ backgroundColor: flyway.color }} />
@@ -36,6 +37,7 @@ const Legend = () => {
           </li>
         )}
       </ul> */}
+      </div>
     </div>
   )
 };
