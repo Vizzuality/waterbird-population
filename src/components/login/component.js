@@ -87,7 +87,7 @@ const Login = ({ user, setUser, resetUser }) => {
             <input onChange={handleChange} name="password" type="password" id="password" placeholder="password" required />
             {submissionError && <div className="text error">Username or password incorrect</div>}
             <a
-              href={`mailto:?to=post@wetlands.org&subject=Password reminder&body=I would like a reminder of my password, username: ${email}`}
+              href={`mailto:?to=wpe@wetlands.org&subject=Password reminder&body=I would like a reminder of my password, username: ${email}`}
               target="_blank"
               className="text"
               rel="noopener noreferrer"

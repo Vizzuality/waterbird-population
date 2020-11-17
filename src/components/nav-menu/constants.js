@@ -53,10 +53,17 @@ export const menuItems = [
     type: 'CREDITS',
   },
   {
-    name: 'FAQ',
-    dropdown: false,
+    name: 'About',
+    dropdown: {
+      options: [
+        { name: 'Info', id: 'info' },
+        { name: 'Contact', id: 'contact' },
+        { name: 'Terms of use', id: 'terms' },
+        { name: 'Frequently Asked Questions', id: 'faqs' }
+      ],
+    },
     component: false,
-    path: '/faq',
-    type: 'FAQ',
+    path: '/about',
+    type: 'ABOUT',
   }
 ];

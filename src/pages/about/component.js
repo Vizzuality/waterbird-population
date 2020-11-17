@@ -3,6 +3,6 @@ import StaticPage from 'pages/static-page';
 
 import './styles.scss';
 
-const FaqPage = () => <StaticPage />;
+const AboutPage = () => <StaticPage />;
 
-export default FaqPage;
+export default AboutPage;

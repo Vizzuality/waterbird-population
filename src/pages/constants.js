@@ -2,7 +2,7 @@ import React from 'react';
 
 import TabInfo from 'pages/static-tabs';
 
-import Analysis from "components/analysis";
+import Analysis from 'components/analysis';
 import SpeciesPopulationInfo from 'pages/data/constants/s&p.js';
 import PopulationEstimatesInfo from 'pages/data/constants/pe.js';
 import ThresholdInfo from 'pages/data/constants/threshold.js';
@@ -13,7 +13,10 @@ import WAFInfo from 'pages/background/constants/waf.js';
 import glossaryInfo from 'pages/background/constants/glossary.js';
 import FSInfo from 'pages/credits/constants/fs.js';
 import ECInfo from 'pages/credits/constants/ec.js';
-import FaqInfo from 'pages/faq/constants';
+import AboutInfo from 'pages/about/constants/info.js';
+import ContactInfo from 'pages/about/constants/contact.js';
+import TermsInfo from 'pages/about/constants/terms.js';
+import FAQInfo from 'pages/about/constants/faqs.js';
 
 const PagesInfo = {
   ANALYZE: {
@@ -95,11 +98,32 @@ const PagesInfo = {
       }
     ]
   },
-  FAQ: {
-    title: 'Frequently Asked Questions',
-    tabs: false,
-    tabsInfo: false,
-    content: <TabInfo info={FaqInfo} />
+  ABOUT: {
+    title: 'About',
+    tabs: [
+      { name: 'Info', id: 'info' },
+      { name: 'Contact', id: 'contact' },
+      { name: 'Terms of use', id: 'terms' },
+      { name: 'Frequently Asked Questions', id: 'faqs' }
+    ],
+    info: [
+      {
+        id: 'info',
+        content: <TabInfo info={AboutInfo} />
+      },
+      {
+        id: 'contact',
+        content: <TabInfo info={ContactInfo} />
+      },
+      {
+        id: 'terms',
+        content: <TabInfo info={TermsInfo} />
+      },
+      {
+        id: 'faqs',
+        content: <TabInfo info={FAQInfo} />
+      }
+    ]
   }
 }
 
