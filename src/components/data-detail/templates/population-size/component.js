@@ -32,6 +32,7 @@ const PopulationSize = ({ data, user }) => {
       <div className="header">
         <h2>Population size</h2>
         <Button
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           onClick={handleClick}
           className={classnames('-secondary -medium',
             {
@@ -138,6 +139,7 @@ const PopulationSize = ({ data, user }) => {
                   <td className="button">
                     <span className="cell-content">
                       <button
+                        aria-label="show-comments"
                         className={classnames('comments-button',
                           {
                             '-secondary': visible[`${d.size_id} - ${d.publication_id}`],

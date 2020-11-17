@@ -33,6 +33,7 @@ const PopulationPercent = ({ data, user }) => {
       <div className="header">
         <h2>Population 1% level</h2>
         <Button
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           onClick={handleClick}
           className={classnames('-secondary -medium',
             {
@@ -108,6 +109,7 @@ const PopulationPercent = ({ data, user }) => {
                   <span className="cell-content">
                     {user && (
                       <button
+                        aria-label="show-references"
                         className={classnames('comments-button',
                           {
                             '-secondary': visible[d.onepercent_id],

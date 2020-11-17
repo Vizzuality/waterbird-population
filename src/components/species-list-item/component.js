@@ -40,11 +40,11 @@ const SpeciesListItem = ({ specie }) => {
           <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
         </h2>
         <Button
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           className={classnames('-border -secondary',
-            {
-              '-collapse': !isCollapsed
-            }
-          )}>
+            { '-collapse': !isCollapsed }
+          )}
+        >
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
       </div>

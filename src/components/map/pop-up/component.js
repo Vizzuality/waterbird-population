@@ -28,7 +28,12 @@ const PopUp = ({ popUpState, coordinates, setPopUp }) => {
           <h5>Population name:</h5>
           <div className="content-control">
             <h4>{info.place}</h4>
-            <button type="button" className="modal-button" onClick={handleClick}>
+            <button
+              aria-label="close-modal"
+              type="button"
+              className="modal-button"
+              onClick={handleClick}
+            >
               <Icon name="close" className="-small" />
             </button>
           </div>

@@ -19,6 +19,7 @@ const NavMenu = ({ className, current }) => {
   return (
     <div className="c-nav-menu-wrapper">
       <button
+        aria-label={className}
         className={classnames(
           {
             'header': className === 'header',

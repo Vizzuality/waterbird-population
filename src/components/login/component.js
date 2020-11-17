@@ -56,12 +56,20 @@ const Login = ({ user, setUser, resetUser }) => {
         <div className="dropdown">{user.name}
           <div className="dropdown-content">
             <div>{user.name}</div>
-            <button onClick={handleLogout}>
+            <button aria-label="log-out" onClick={handleLogout}>
                 log out
             </button>
           </div>
         </div>)}
-      {!user.name && <Button onClick={handleClick} className="-background -primary">Login</Button>}
+      {!user.name && (
+      <Button
+        aria-label="log-in"
+        onClick={handleClick}
+        className="-background -primary"
+      >
+        Login
+      </Button>
+      )}
       <Modal
         isOpen={isOpen}
         onRequestClose={() => toggleModal(false)}
@@ -88,6 +96,7 @@ const Login = ({ user, setUser, resetUser }) => {
             </a>
           </form>
           <Button
+            aria-label="sign-in"
             type="submit"
             className={classnames(
               '-background -secondary -big', {

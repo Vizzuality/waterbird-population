@@ -62,26 +62,23 @@ const Section1 = ({ setFilters, filters }) => {
                 {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
                   <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
                     <li key={code}>
-                      <div>
-                        <Link
-                          to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                          onClick={() => handleClick({ label: code, value: id })}
-                        >{label(code)}
-                        </Link>
-
-                      </div>
+                      <Link
+                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                        onClick={() => handleClick({ label: code, value: id })}
+                      >
+                        {label(code)}
+                      </Link>
                     </li>
                   </div>
                 ))}
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
                   <li key='ramsar'>
-                    <div>
-                      <Link
-                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                        onClick={() => handleClick([1, 2, 3, 4, 5])}
-                      >Ramsar
+                    <Link
+                      to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                      onClick={() => handleClick([1, 2, 3, 4, 5])}
+                    >
+                      Ramsar
                     </Link>
-                    </div>
                   </li>
                 </div>
               </ul>

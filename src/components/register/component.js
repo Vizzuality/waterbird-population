@@ -50,7 +50,11 @@ const Register = () => {
 
   return (
     <div className="c-register">
-      <Button onClick={handleClick} className="-background -primary">
+      <Button
+        aria-label="join-us"
+        onClick={handleClick}
+        className="-background -primary"
+      >
         Join us
       </Button>
       <Modal isOpen={isOpen} onRequestClose={() => toggleModal(false)}>
@@ -137,6 +141,7 @@ const Register = () => {
                 />
               </form>
               <Button
+                aria-label="send"
                 type="submit"
                 className={classnames("-background -secondary -big", {
                   "-disable": !name.length || !email.length

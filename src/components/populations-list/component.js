@@ -36,7 +36,7 @@ const PopulationsList = ({ specieId, populationData }) => {
 
                 {d.publication_id && (
                   <div className="card-buttons">
-                    <button type="button">
+                    <button aria-label="more-info" type="button">
                       <p>More info</p>
                       <Icon name="info" />
                     </button>

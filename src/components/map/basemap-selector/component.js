@@ -25,6 +25,7 @@ const BasemapSelector = ({ current, basemaps, setBasemap }) => {
       <div className='options'>
         {basemaps.map(b => (
           <button
+            aria-label="select-basemap"
             key={b.id}
             type="button"
             data-basemap={b.id}

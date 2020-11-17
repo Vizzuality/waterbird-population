@@ -20,7 +20,15 @@ const ClearFilters = ({
     resetFilters();
   };
 
-  return <button className="c-clear-filters" onClick={handleFilters}>Clear filters</button>
+  return (
+    <button
+      aria-label="clear-filters"
+      className="c-clear-filters"
+      onClick={handleFilters}
+    >
+      Clear filters
+    </button>
+  )
 };
 
 ClearFilters.propTypes = {
