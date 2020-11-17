@@ -79,7 +79,7 @@ const Section1 = ({ setFilters, filters }) => {
                       to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
                       onClick={() => handleClick([1, 2, 3, 4, 5])}
                     >
-                      RAMSAR: Ramsar Convention on Wetlands
+                      Ramsar
                     </Link>
                   </li>
                 </div>
