@@ -6,9 +6,6 @@ import SpeciesListItem from 'components/species-list-item';
 import Spinner from 'components/spinner';
 
 
-import './styles.scss';
-
-
 const SpeciesList = ({ populationSpecies }) => {
 
   if (!populationSpecies || !populationSpecies.length) return <Spinner />

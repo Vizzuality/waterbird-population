@@ -61,6 +61,20 @@
     right: 0;
     background: $white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    img {
+      height: auto;
+      min-width: 200px;
+      padding: 5px;
+    }
+
+    p {
+      color: $color-3;
+      padding-top: 20px;
+    }
   }
 }

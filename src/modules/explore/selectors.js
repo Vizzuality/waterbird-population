@@ -148,7 +148,7 @@ export const selectPopulationSpecies = createSelector(
         redlistcategory: p.specie.redlistcategory,
         color: tag.color
       }
-    }), 'id'), 'scientificname');
+    }), 'id'), 'taxonomicorder');
   }
 );
 
@@ -157,7 +157,7 @@ export const selectPopulationsData = createSelector(
   (_data, _specieId, _user, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
-    return populationsBySpecie.map(d => {
+    return orderBy(populationsBySpecie.map(d => {
       const draftId = d.publications
         .filter(p => p.published === 0)
         .map(f => f.id);
@@ -177,10 +177,11 @@ export const selectPopulationsData = createSelector(
           size_notes : trend_notes;
 
       return {
-        id: d.id,
-        populationId: d.id,
+        id: d.population_id,
+        active: d.active,
+        populationId: d.population_id,
         name: d.name,
-        size: `${size.maximum} - ${size.minimum}`,
+        size: `${size.minimum} - ${size.maximum}`,
         'size_year': `${size.startyear} - ${size.endyear}`,
         trend: trend.name,
         'size_references': uniqBy(size.references, 'id'),
@@ -201,7 +202,7 @@ export const selectPopulationsData = createSelector(
         'breedingrange': d.breedingrange,
         'nonbreedingrange': d.nonbreedingrange,
       }
-    })
+    }), ['active'], ['desc'])
   }
 );
 
@@ -287,15 +288,16 @@ export const selectPopulationInfoData = createSelector(
     const ramsar = regions.filter(r => !!population[r.id]);
 
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
-
     return [
       [{ head: 'Order name', value: trim(population.family.ordername) || '-' }],
       [{ head: 'Order family', value: trim(population.family.name) || '-' }],
       [{ head: 'Common name', value: trim(population.specie.commonname) || '-' }, { head: 'Scientific name', value: trim(population.specie.scientificname) || '-' }],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [{ head: 'Breeding range', value: trim(population.breedingrange) || '-' }, { head: 'Non-breeding name', value: trim(population.nonbreedingrange) || '-' }],
-      [{ head: 'Red list', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
-      [{ head: 'Ramsar regions', value: ramsar.map(r => r.name).join(',') }]
+      [{ head: 'Global Red List', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
+      [{ head: 'Ramsar regions', value: ramsar.map(r => r.name).join(',') }],
+      [{ head: 'Notes', value: trim(population.note) || '-' }],
+      [{ head: 'Active', value: population.active === 0 ? 'No' : 'Yes' }]
     ]
   }
 );

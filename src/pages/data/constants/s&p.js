@@ -5,7 +5,7 @@ const speciesPopulationInfo = [
     title: 'Taxonomy & Nomenclature.',
     description: (
       <div>
-        <p>The taxonomy and nomenclature applied in the Waterbird Population Estimates online application follows the one adopted by BirdLife International, the IUCN Red List authority on birds. This decision is driven by practical conservation and data management considerations. These include making it possible to use the data from the Waterbird Population Estimates in the Red List assessments and also to apply both sources consistently in conservation decision-making including the identification and designation of key sites for waterbirds. The BirdLife Checklist (http://www.birdlife.org/datazone/info/taxonomy) provides detailed taxonomic notes and cross references to other taxonomic sources. Therefore, these are not repeated in this database.</p>
+        <p>The taxonomy and nomenclature applied in the Waterbird Population Estimates online application follows the one adopted by BirdLife International, the IUCN Global Red List authority on birds. This decision is driven by practical conservation and data management considerations. These include making it possible to use the data from the Waterbird Population Estimates in the Global Red List assessments and also to apply both sources consistently in conservation decision-making including the identification and designation of key sites for waterbirds. The BirdLife Checklist (http://www.birdlife.org/datazone/info/taxonomy) provides detailed taxonomic notes and cross references to other taxonomic sources. Therefore, these are not repeated in this database.</p>
       </div>
     )
   },

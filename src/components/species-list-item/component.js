@@ -16,7 +16,7 @@ const SpeciesListItem = ({ specie }) => {
     commonname,
     redlistcategory,
     scientificname,
-    color
+    color,
   } = specie;
 
   const [image, setImage] = useState('');

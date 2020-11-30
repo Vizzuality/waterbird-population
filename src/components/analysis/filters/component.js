@@ -128,7 +128,7 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
       )
     },
     {
-      label: 'Red list',
+      label: 'Global Red List',
       type: 'red_list_id',
       options: redListOptions,
       value: selectedRedList,

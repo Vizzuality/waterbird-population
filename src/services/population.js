@@ -24,17 +24,19 @@ export const API = setup({
 
 export const fetchPopulations = (specieid) => {
   const q = `select
-  id,
+  population_id,
   name,
   breedingrange,
   nonbreedingrange,
   species_id,
+  active,
   asia,
   africa,
   europe,
   neotropics,
   northamerica,
   oceania,
+  note,
   jsonb_build_object(
     'id', family_id,
     'name', family_name,
@@ -45,7 +47,8 @@ export const fetchPopulations = (specieid) => {
     'id', specie_id,
     'commonname', specie_commonname,
     'scientificname', specie_scientificname,
-    'redlistcategory', redlistcategory_name
+    'redlistcategory', redlistcategory_name,
+    'taxonomicorder', specie_taxonomic_order
   )
   as specie,
   jsonb_agg(distinct jsonb_build_object(
@@ -65,7 +68,7 @@ export const fetchPopulations = (specieid) => {
     'yearset', populationonepercentlevel_yearset,
     'onepercent', populationonepercentlevel_onepercent,
     'note', populationonepercentlevel_note,
-    'population_id', id,
+    'population_id', population_id,
     'publication_id', publication_id
   ))
   as populationonepercentlevel,
@@ -102,7 +105,7 @@ export const fetchPopulations = (specieid) => {
   as flyways
   from population_all_data ${specieid ? `where species_id=${specieid}` : ''}
   group by
-  id,
+  population_id,
   name,
   breedingrange,
   nonbreedingrange,
@@ -112,10 +115,13 @@ export const fetchPopulations = (specieid) => {
   neotropics,
   northamerica,
   oceania,
+  note,
   species_id,
   specie_id,
+  active,
   specie_commonname,
   specie_scientificname,
+  specie_taxonomic_order,
   family_id,
   family_name,
   familyorder_name,

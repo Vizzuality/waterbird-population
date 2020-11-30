@@ -36,6 +36,7 @@ $flexbox-grid-half-gutter-width: $flexboxgrid-gutter-width * .5;
     display: flex;
     flex-direction: column;
     margin-top: $flexboxgrid-gutter-width;
+    width: 100%;
   }
 }
 

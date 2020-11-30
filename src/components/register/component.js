@@ -87,7 +87,7 @@ const Register = () => {
         {!confirmation && !error && (
           <div className="modal-container">
             <div className="login-modal-content">
-              <h3>Get started:</h3>
+              <h3>Register here:</h3>
               <form method="post">
                 <label htmlFor="name">NAME<sup>*</sup></label>
                 <input
@@ -123,7 +123,7 @@ const Register = () => {
                   id="phone"
                   placeholder="phone number"
                 />
-                <label htmlFor="company">COMPANY</label>
+                <label htmlFor="company">ORGANISATION/AFFILIATION</label>
                 <input
                   onChange={handleChange}
                   name="company"

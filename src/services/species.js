@@ -35,25 +35,6 @@ export const API_images = setup({
   }
 });
 
-export const fetchSpecies = (familyId) => {
-  const q = `
-  SELECT s.id AS specieid,commonname,scientificname,familyenglish,iucn_id,r.description,r.iucn,r.id
-  FROM species_1 s
-  LEFT JOIN redlistcategory r
-  ON s.iucn_id = r.id
-  WHERE familyname_id = '${familyId}'
- `;
-  const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-
-  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
-  .then(data => data)
-  .catch((e) => {
-   // const { status, statusText } = response;
-    console.log(e)
-  });
-};
-
-
 export const fetchImages = (name) => {
 
   return API_images.get(`api.php?action=query&origin=*&prop=description|pageimages&titles=${name}&pithumbsize=200&format=json`)

@@ -35,6 +35,7 @@ const Footer = () =>
       >
         <img src={Image} alt='Environment Agency – Abu Dhabi (EAD)' />
       </a>
+      <p>Citation: Wetlands International (2020) “Waterbird Populations Portal”. Retrieved from wpp.wetlands.org on Friday 30 October 2020.</p>
     </aside>
   </footer>
 

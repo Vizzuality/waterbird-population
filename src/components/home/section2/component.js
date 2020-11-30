@@ -12,7 +12,10 @@ const Section2 = () => {
       <div className="wrapper">
         <div className="row">
           <div className="col-md-5 col-sm-12">
-            <img src={Image} alt="Wetlands International" />
+            <figure>
+              <img src={Image} alt="Wetlands International" />
+              <figcaption>by Tommy P. Pedersen</figcaption>
+            </figure>
           </div>
           <div className="col-md-7 col-sm-12">
             <div className="wrapper">

@@ -27,7 +27,6 @@ const NavMenu = ({ className, current }) => {
           })}
         onClick={handleClick}
         style={{ backgroundImage: `url(${Menu})` }} />
-      <div className="wrapper">
       <div className={classnames("nav-menu",
         {
           'header': className === 'header',
@@ -78,7 +77,6 @@ const NavMenu = ({ className, current }) => {
             )
             ))
         }
-      </div>
       </div>
     </div>
   )

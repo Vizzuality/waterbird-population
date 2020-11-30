@@ -18,7 +18,8 @@ const PopulationsList = ({ specieId, populationData }) => {
       d => {
         return (
           <section key={d.id} className={classnames('c-card-info',
-          { '-empty': !d.publication_id })}>
+          { '-empty': !d.publication_id,
+            '-disabled': d.active === 0  })}>
             <Link
               to={`/explore/${specieId}/${d.populationId}`}
               onClick={!d.publication_id ? e => e.preventDefault() : false}
@@ -28,7 +29,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                 <div className="card-title">
                   <div className="title">
                     <h4>
-                      Population
+                      Population {d.active === 0 && (<span>(INACTIVE)</span>)}
                   </h4>
                   </div>
                   <h4 className="subtitle">{d.name}</h4>
