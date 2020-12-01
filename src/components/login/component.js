@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import Cookies from 'js-cookie';
 import Button from 'components/button';
 import Modal from 'components/modal';
+import Register from 'components/register';
 import { fetchUser } from 'services/users';
 import CryptoJS from 'crypto-js';
 
@@ -95,21 +96,28 @@ const Login = ({ user, setUser, resetUser }) => {
               Recover password
             </a>
           </form>
-          <Button
-            aria-label="sign-in"
-            type="submit"
-            className={classnames(
-              '-background -secondary -big', {
-              '-disable': !email.length && !password.length && submissionError
-            })}
-            onClick={handleSubmit}
-            disabled={!email.length && !password.length && submissionError}
-          >
-            Sign in
-          </Button>
+          <div style={{
+            display: 'flex',
+            justifyContent: "space-between",
+            width: '100%'
+          }}>
+            <Button
+              aria-label="sign-in"
+              type="submit"
+              className={classnames(
+                '-background -secondary', {
+                '-disable': !email.length && !password.length && submissionError
+              })}
+              onClick={handleSubmit}
+              disabled={!email.length && !password.length && submissionError}
+            >
+              Sign in
+            </Button>
+            <Register />
+          </div>
         </div>
         <div className="login-footer">
-          <p>Dont have an account?
+          <p>Don&apos;t have an account?
             <a
               href={`mailto:?to=post@wetlands.org`}
               target="_blank"

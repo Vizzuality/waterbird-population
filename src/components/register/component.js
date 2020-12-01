@@ -60,7 +60,7 @@ const Register = () => {
       <Modal isOpen={isOpen} onRequestClose={() => toggleModal(false)}>
         {confirmation && !error && (
           <div className="login-modal-content">
-            <p className="separator">Registration completed succesfully.</p>
+            <p className="separator">Registration completed successfully.</p>
             <p>
               Thank you for joining the team. You will receive an email with
               your credentials soon!
