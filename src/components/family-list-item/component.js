@@ -26,6 +26,7 @@ const FamilyListItem = ({ family }) => {
           <span className="name">{family.name}</span>
         </h1>
         <Button
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           onClick={handleClick}
           className={classnames('-border -secondary',
             {

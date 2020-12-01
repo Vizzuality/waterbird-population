@@ -17,7 +17,12 @@ export default (props) => {
       {...domProps}
     >
       <div className="modal-content">
-        <button type="button" className="modal-button" onClick={onRequestClose}>
+        <button
+          aria-label="close-modal"
+          type="button"
+          className="modal-button"
+          onClick={onRequestClose}
+        >
           <Icon name="close" className="-huge" />
         </button>
         {children}

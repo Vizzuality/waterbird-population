@@ -23,9 +23,11 @@ const Section1 = ({ setFilters, filters }) => {
 
   const label = (e) => {
     const renamedLabels = [
-      { value: 'CAF Action Plan', label: 'CMS/CAF' },
-      { value: 'EAAFP Partnership', label: 'EAAFP' },
-      { value: 'EUBD', label: 'EU BIRDS DIRECTIVE' },
+      { value: 'CAF Action Plan', label: 'CMS/CAF: CMS Central Asian Flyway' },
+      { value: 'EAAFP Partnership', label: 'EAAF Partnership: East Asian-Australasian Flyway Partnership' },
+      { value: 'EUBD', label: 'EU BIRDS DIRECTIVE: EU Birds Directive' },
+      { value: 'AEWA', label: 'AEWA: African-Eurasian Migratory Waterbird Agreement' },
+      { value: 'WHSRN', label: 'WHSRN: Western Hemisphere Shorebird Reserve Network' },
     ];
 
     return renamedLabels.reduce((acc, word) => {
@@ -60,28 +62,25 @@ const Section1 = ({ setFilters, filters }) => {
             <nav>
               <ul className="row start-lg center-xs equal-height" >
                 {filterIds && filterIds.length && filterIds.map(({ id, code }) => (
-                  <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
+                  <div className="col-lg-4 col-md-6 col-xsm-12 center-xs">
                     <li key={code}>
-                      <div>
-                        <Link
-                          to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                          onClick={() => handleClick({ label: code, value: id })}
-                        >{label(code)}
-                        </Link>
-
-                      </div>
+                      <Link
+                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                        onClick={() => handleClick({ label: code, value: id })}
+                      >
+                        {label(code)}
+                      </Link>
                     </li>
                   </div>
                 ))}
-                <div className="col-lg-4 col-md-4 col-sm-6 col-xsm-12 center-xs">
+                <div className="col-lg-4 col-md-6 col-xsm-12 center-xs">
                   <li key='ramsar'>
-                    <div>
-                      <Link
-                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                        onClick={() => handleClick([1, 2, 3, 4, 5])}
-                      >Ramsar
+                    <Link
+                      to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                      onClick={() => handleClick([1, 2, 3, 4, 5])}
+                    >
+                      RAMSAR: Ramsar Convention on Wetlands
                     </Link>
-                    </div>
                   </li>
                 </div>
               </ul>

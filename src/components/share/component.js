@@ -46,8 +46,12 @@ const ShareControl = () => {
           onRequestClose={() => toggleModal(false)}
           actionsComponent={() => (
             <div className="c-filters-action-buttons">
-              <Button className="-border-color-1" onClick={toggleModal}>
-                Close
+              <Button
+                aria-label="close"
+                className="-border-color-1"
+                onClick={toggleModal}
+              >
+                 Close
               </Button>
             </div>
           )}
@@ -90,7 +94,11 @@ const ShareControl = () => {
                     {'Linkedyn'}
                   </a>
 
-                  <Button className="-background -primary -medium" onClick={() => handleClick('Url')}>
+                  <Button
+                    aria-label="copy"
+                    className="-background -primary -medium"
+                    onClick={() => handleClick('Url')}
+                  >
                     {isCopied ? 'Copied' : 'Copy'}
                   </Button>
                 </div>
@@ -105,7 +113,11 @@ const ShareControl = () => {
                   readOnly
                 />
                 <div className="share-controls">
-                  <Button className="-background -primary -medium" onClick={() => handleClick('Embed')}>
+                  <Button
+                    aria-label="copy"
+                    className="-background -primary -medium"
+                    onClick={() => handleClick('Embed')}
+                  >
                     {isCopied ? 'Copied' : 'Copy'}
                   </Button>
                 </div>

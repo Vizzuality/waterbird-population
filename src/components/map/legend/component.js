@@ -21,6 +21,7 @@ const Legend = () => {
           <div className="legend-controls">
             <h4>Map settings</h4>
             <button
+              aria-label="show-settings"
               type="button"
               onClick={handleClick}
               className={classnames(

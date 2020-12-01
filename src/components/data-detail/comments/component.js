@@ -85,6 +85,7 @@ const Comments = ({
           </form>
           <div className="tooltip-controls">
             <Button
+              aria-label="cancel"
               onClick={handleClick}
               disable={isDisable}
               className="-background -tertiary -big"
@@ -93,6 +94,7 @@ const Comments = ({
             </Button>
 
             <Button
+              aria-label="submit"
               type="submit"
               onClick={sendComment}
               className={classnames('-background -secondary -big',

@@ -19,6 +19,7 @@ const NavMenu = ({ className, current }) => {
   return (
     <div className="c-nav-menu-wrapper">
       <button
+        aria-label={className}
         className={classnames(
           {
             'header': className === 'header',
@@ -26,7 +27,6 @@ const NavMenu = ({ className, current }) => {
           })}
         onClick={handleClick}
         style={{ backgroundImage: `url(${Menu})` }} />
-      <div className="wrapper">
       <div className={classnames("nav-menu",
         {
           'header': className === 'header',
@@ -77,7 +77,6 @@ const NavMenu = ({ className, current }) => {
             )
             ))
         }
-      </div>
       </div>
     </div>
   )

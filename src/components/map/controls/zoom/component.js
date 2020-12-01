@@ -48,6 +48,7 @@ class ZoomControl extends PureComponent {
     return (
       <div className={classNames}>
         <button
+          aria-label="zoom in"
           className={zoomInClass}
           type="button"
           disabled={zoom === maxZoom}
@@ -56,6 +57,7 @@ class ZoomControl extends PureComponent {
           <Icon name="zoomin" className="-small" />
         </button>
         <button
+          aria-label="zoom out"
           className={zoomOutClass}
           type="button"
           disabled={zoom === minZoom}

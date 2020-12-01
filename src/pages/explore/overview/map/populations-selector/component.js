@@ -20,7 +20,12 @@ const PopulationsSelector = ({ data, setLocation, resetPopulationsByLocation }) 
             <h5>Selected population place coordinates:</h5>
             <div className="populations-selector--content-control">
               <h4>{data}</h4>
-              <button type="button" className="modal-button" onClick={handleClick}>
+              <button
+                aria-label="close-modal"
+                type="button"
+                className="modal-button"
+                onClick={handleClick}
+              >
                 <Icon name="close" />
               </button>
             </div>

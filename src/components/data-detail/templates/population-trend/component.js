@@ -33,6 +33,7 @@ const PopulationTrend = ({ data, user }) => {
       <div className="header">
         <h2>Population trend</h2>
         <Button
+          aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           onClick={handleClick}
           className={classnames('-secondary -medium',
             {
@@ -138,6 +139,7 @@ const PopulationTrend = ({ data, user }) => {
                 {user && (
                   <td className="button">
                     <button
+                      aria-label="show-comments"
                       className={classnames('comments-button',
                         {
                           '-secondary': visible[`${d.trend_id} - ${d.publication_id}`],

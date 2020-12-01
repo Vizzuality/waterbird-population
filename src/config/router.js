@@ -38,17 +38,13 @@ export const routes = {
     page: 'credits',
     path: '/credits/:id'
   },
-  FAQ: {
-    page: 'faq',
-    path: '/faq'
+  ABOUT: {
+    page: 'about',
+    path: '/about/:id'
   },
   MAP: {
     page: 'map',
     path: '/map'
-  },
-  OTHER: {
-    page: 'otra',
-    path: '/otra'
   },
   IMAGES: {
     page: 'images',

@@ -29,7 +29,11 @@ const Search = ({ activeFilters, families, setSearch }) => {
         placeholder='Search family, species, conservation framework...'
         onChange={updateSearch}
       />
-      <Button className="-background -secondary -huge" onClick={handleClick}>
+      <Button
+        aria-label="show-advanced-filters"
+        className="-background -secondary -huge"
+        onClick={handleClick}
+      >
         <Icon name="filter" className="-big"/>
         Advanced filters
       </Button>

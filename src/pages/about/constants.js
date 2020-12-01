@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FaqInfo = [
+const AboutInfo = [
   {
     title: 'Do I need to register to use the website?',
     description: (
@@ -88,4 +88,4 @@ const FaqInfo = [
   }
 ];
 
-export default FaqInfo;
+export default AboutInfo;

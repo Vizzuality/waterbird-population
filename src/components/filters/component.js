@@ -152,7 +152,7 @@ const Filters = ({
       )
     },
     {
-      label: 'Red list',
+      label: 'Global Red List',
       type: 'red_list_id',
       options: redListOptions,
       value: selectedRedList,
@@ -233,12 +233,14 @@ const Filters = ({
       </div>
       <div className="filters-buttons">
         <Button
+          aria-label="cancel-selected-filters"
           className="-background -tertiary -big"
           onClick={handleClick}
         >
           Cancel
         </Button>
         <Button
+          aria-label="apply-filters"
           onClick={handleFilters}
           className={classnames('-background -secondary -big', {
             '-disable': !Object.values(newFiltersValues).find(f => f.length !== 0)

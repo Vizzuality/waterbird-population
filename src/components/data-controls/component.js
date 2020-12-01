@@ -57,6 +57,7 @@ const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilter
       <div className="data-filters">
         <p>Filters configuration:</p>
         <button
+          aria-label="filters-dropdown"
           className={classnames({
             '-open': filtersVisibility,
             '-close': !filtersVisibility
