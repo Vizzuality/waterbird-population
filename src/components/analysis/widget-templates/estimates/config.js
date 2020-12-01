@@ -6,8 +6,8 @@ import WidgetTooltip from 'components/analysis/widget-tooltip';
 
 // Utils
 import { format } from 'd3-format';
-const percentageFormat = format(',.0%');
 const numberFormat = format(',.0f');
+const percentageFormat = (value) => format('~')(format(',.1f')(value));
 
 
 const getMetadata = (data) => data.map(d => d.name)
@@ -136,7 +136,7 @@ export const CONFIG = {
                 payload={payload}
                 title={`Populations in ${region}`}
                 settings={payload.map(bar => {
-                  const percentage = bar.payload.total_populations === 0 ? '' : `  (${percentageFormat(bar.value / bar.payload.total_populations)})`;
+                  const percentage = bar.payload.total_populations === 0 ? '' : `  (${percentageFormat((bar.value / bar.payload.total_populations) * 100)}%)`;
                   return {
                     label: bar.dataKey,
                     color: bar.color,

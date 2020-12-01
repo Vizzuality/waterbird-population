@@ -75,7 +75,7 @@ export const CONFIG = {
               }}
               type="column"
               payload={payload}
-              title='Number of opulations'
+              title='Number of populations'
               settings={payload.map(bar => {
                 return {
                   key: bar.dataKey, format: value => numberFormat(value)

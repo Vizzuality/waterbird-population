@@ -7,7 +7,7 @@ import WidgetTooltip from 'components/analysis/widget-tooltip';
 // Utils
 import { format } from 'd3-format';
 const numberFormat = format(',.0f');
-const percentageFormat = format(',.2f');
+const percentageFormat = (value) => format('~')(format(',.1f')(value));
 
 const getBars = data => data.reduce((acc, d) => {
 
