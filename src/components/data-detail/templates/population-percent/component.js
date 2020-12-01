@@ -59,7 +59,7 @@ const PopulationPercent = ({ data, user }) => {
 
         <tbody>
 
-          {(data).map(d =>
+          {user && (data).map(d =>
 
             <Tooltip
               placement='top'
@@ -107,7 +107,7 @@ const PopulationPercent = ({ data, user }) => {
                 </td>
                 <td className="button">
                   <span className="cell-content">
-                    {user && (
+                    {user.id && (
                       <button
                         aria-label="show-references"
                         className={classnames('comments-button',
@@ -133,7 +133,11 @@ const PopulationPercent = ({ data, user }) => {
 
 PopulationPercent.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  user: PropTypes.number.isRequired
-}
+  user: PropTypes.number
+};
+
+PopulationPercent.defaultProps = {
+  user: null
+};
 
 export default PopulationPercent;

@@ -1,5 +1,5 @@
 export default {
-  id: '',
+  id: null,
   email: '',
   password: '',
   rol: '',

@@ -61,7 +61,7 @@ const PopulationTrend = ({ data, user }) => {
         </thead>
 
         <tbody>
-          {(data).map(d =>
+          {user.id && (data).map(d =>
             <Tooltip
               placement='top'
               onClickOutside={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}
@@ -136,7 +136,7 @@ const PopulationTrend = ({ data, user }) => {
                   ))}
                 </span>
                 </td>
-                {user && (
+                {user.id && (
                   <td className="button">
                     <button
                       aria-label="show-comments"
@@ -163,7 +163,12 @@ const PopulationTrend = ({ data, user }) => {
 
 PopulationTrend.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  user: PropTypes.number.isRequired
-}
+  user: PropTypes.number
+};
+
+PopulationTrend.defaultProps = {
+  user: null
+};
+
 
 export default PopulationTrend;

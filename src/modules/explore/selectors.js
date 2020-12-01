@@ -31,7 +31,8 @@ export const selectPopulationFiltered = createSelector(
     if (!_data || isEmpty(_data)) return [];
 
     const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
-    const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.id));
+
+    const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.population_id));
     const populationsData = _populations_by_location.length ? populationsByLocation : _data;
 
     const fuse = _search && _search.length && new Fuse(populationsData, {
