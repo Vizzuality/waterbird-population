@@ -177,6 +177,7 @@ export const selectPopulationsData = createSelector(
         : size.notes ?
           size_notes : trend_notes;
 
+
       return {
         id: d.population_id,
         active: d.active,
@@ -203,7 +204,7 @@ export const selectPopulationsData = createSelector(
         'breedingrange': d.breedingrange,
         'nonbreedingrange': d.nonbreedingrange,
       }
-    }), ['active'], ['desc'])
+    }).filter(p => p.publication_id), ['active'], ['desc'])
   }
 );
 
@@ -362,6 +363,19 @@ export const selectPopulationTrendData = createSelector(
       const trend = population.trends.find(s => s.publication_id === id);
       const { id: trend_id, startyear, endyear, name, quality, notes, references } = trend;
 
+      const parsedReferences = (references && references.length)
+      ? references.map(({ reference_id, body }) => { return { id: reference_id, info: body } })
+      : [];
+
+      const filteredReferences = parsedReferences.reduce((acc, current) => {
+        const x = acc.find(item => item.id === current.id);
+        if (!x) {
+          return acc.concat([current]);
+        } else {
+          return acc;
+        }
+      }, []);
+
       return {
         specie: _specie_id,
         population: +_population_id,
@@ -376,9 +390,7 @@ export const selectPopulationTrendData = createSelector(
         notes: trim(notes) ? [
           { id: trend_id, info: trim(notes) }
         ] : [],
-        references: (references && references.length)
-          ? references.map(({ reference_id, body }) => { return { id: reference_id, info: body } })
-          : []
+        references: filteredReferences
       }
     }), 'publication_id', 'desc')
   }

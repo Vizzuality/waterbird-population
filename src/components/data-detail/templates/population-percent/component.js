@@ -97,7 +97,7 @@ const PopulationPercent = ({ data, user }) => {
                           <p className="title">
                             Population trend note <span>#{n.id}</span>
                           </p>
-                          <p>{n.info}</p>
+                          <p>{!!n.info && n.info}</p>
                         </Note>)}
                     >
                       <span className="tooltipped">N{n.id}</span>
