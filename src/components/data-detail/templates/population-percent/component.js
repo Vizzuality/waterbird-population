@@ -59,7 +59,7 @@ const PopulationPercent = ({ data, user }) => {
 
         <tbody>
 
-          {user && (data).map(d =>
+          {user.id && (data).map(d =>
 
             <Tooltip
               placement='top'
