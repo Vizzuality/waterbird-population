@@ -5,7 +5,6 @@ import './styles.scss';
 
 const PopulationsSelector = ({ data, selected, onChange }) => {
   const [current, setCurrent] = useState({});
-
   useEffect(() => {
     setCurrent(data.find(p => p.value === +selected) || data[0] || {});
   }, [selected])
