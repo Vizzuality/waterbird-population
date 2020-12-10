@@ -167,6 +167,10 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
       <div className="filters-content">
         {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
           <div className="filters">
+            <div className="filter-type">
+              <label>{label}</label>
+              {info ? info : null}
+            </div>
             <Select
               placeholder={placeholder}
               options={options}
@@ -180,7 +184,7 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
                   return data === selectProps.value[0]
                     ? (<div {...innerProps}>
                       <span>
-                         {data.label}
+                        {data.label}
                       </span>
                       {length >= 1 && <span>{` + ${length}`}</span>}
                     </div>)
