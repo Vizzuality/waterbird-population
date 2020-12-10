@@ -61,7 +61,7 @@ const PopulationSize = ({ data, user }) => {
         </thead>
 
         <tbody>
-          {(data).map(d =>
+          {user.id && (data).map(d =>
             <Tooltip
               placement='top'
               trigger="click"
@@ -103,7 +103,7 @@ const PopulationSize = ({ data, user }) => {
                           <p className="title">
                             Population size note <span>#{n.id}</span>
                           </p>
-                          <p>{n.info}</p>
+                          <p>{!!n.info && n.info}</p>
                         </Note>}
                     >
                       {n.id && n.info && (<span className="tooltipped">
@@ -135,7 +135,7 @@ const PopulationSize = ({ data, user }) => {
                       </Tooltip>
                     ))}
                   </span></td>
-                {user && (
+                {user.id && (
                   <td className="button">
                     <span className="cell-content">
                       <button
@@ -164,7 +164,11 @@ const PopulationSize = ({ data, user }) => {
 
 PopulationSize.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  user: PropTypes.number.isRequired
-}
+  user: PropTypes.number
+};
+
+PopulationSize.defaultProps = {
+  user: null
+};
 
 export default PopulationSize;

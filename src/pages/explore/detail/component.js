@@ -21,7 +21,9 @@ const ExploreDetailPage = (props) => {
   return (
     <div className="l-explore">
       <div className="map-section">
-        <MapContainer />
+        <div className="wrapper">
+          <MapContainer />
+        </div>
       </div>
       <div className="wrapper">
         <div className="results-section">

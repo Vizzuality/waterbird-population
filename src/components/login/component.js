@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
 import Cookies from 'js-cookie';
+import MediaQuery from 'react-responsive';
 import Button from 'components/button';
 import Modal from 'components/modal';
 import { fetchUser } from 'services/users';
+import Icon from 'components/icon';
 import CryptoJS from 'crypto-js';
 
+import { breakpoints } from 'utils/breakpoints';
 
 import './styles.scss';
 
@@ -53,7 +56,15 @@ const Login = ({ user, setUser, resetUser }) => {
   return (
     <div className="c-login">
       {user.name && (
-        <div className="dropdown">{user.name}
+        <div className="dropdown">
+          <MediaQuery minWidth={breakpoints.sm}>
+            {user.name}
+          </MediaQuery>
+
+          <MediaQuery maxWidth={breakpoints.sm}>
+            <Icon name="user-o" className="-big" style={{ fill: '#BFD630' }} />
+          </MediaQuery>
+
           <div className="dropdown-content">
             <div>{user.name}</div>
             <button aria-label="log-out" onClick={handleLogout}>

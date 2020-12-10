@@ -59,8 +59,7 @@ const PopulationPercent = ({ data, user }) => {
 
         <tbody>
 
-          {(data).map(d =>
-
+          {user.id && (data).map(d =>
             <Tooltip
               placement='top'
               onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
@@ -97,17 +96,17 @@ const PopulationPercent = ({ data, user }) => {
                           <p className="title">
                             Population trend note <span>#{n.id}</span>
                           </p>
-                          <p>{n.info}</p>
+                          <p>{!!n.info && n.info}</p>
                         </Note>)}
                     >
-                      <span className="tooltipped">N{n.id}</span>
+                      <a href={`trend-note-${n.id}`}><span className="tooltipped">N{n.id}</span></a>
                     </Tooltip>
                   ))}
                 </span>
                 </td>
                 <td className="button">
                   <span className="cell-content">
-                    {user && (
+                    {user.id && (
                       <button
                         aria-label="show-references"
                         className={classnames('comments-button',
@@ -133,7 +132,11 @@ const PopulationPercent = ({ data, user }) => {
 
 PopulationPercent.propTypes = {
   data: PropTypes.shape({}).isRequired,
-  user: PropTypes.number.isRequired
-}
+  user: PropTypes.number
+};
+
+PopulationPercent.defaultProps = {
+  user: null
+};
 
 export default PopulationPercent;

@@ -14,22 +14,24 @@ const ExplorePage = ({ setPopulations }) => {
 
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
-  },[])
+  }, [])
 
   return (
-  <div className="l-explore">
-    <div className="map-section">
-      <MapContainer />
-    </div>
-    <div className="wrapper">
-      <div className="results-section -large">
-        <Search  />
-        <DataControls type='overview' />
-        <FamilyList />
+    <div className="l-explore">
+      <div className="map-section">
+        <div className="wrapper">
+          <MapContainer />
+        </div>
+      </div>
+      <div className="wrapper">
+        <div className="results-section -large">
+          <Search />
+          <DataControls type='overview' />
+          <FamilyList />
+        </div>
       </div>
     </div>
-  </div>
- )
+  )
 };
 
 export default ExplorePage;

@@ -13,7 +13,7 @@ const References = ({ data }) => {
     </div>
     <ul>
       {data.map(({ id, info, type }) =>
-        <li key={id}>
+        <li id={type - id} key={id}>
           R{type}{id} - {info}
         </li>)}
     </ul>

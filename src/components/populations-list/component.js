@@ -18,8 +18,10 @@ const PopulationsList = ({ specieId, populationData }) => {
       d => {
         return (
           <section key={d.id} className={classnames('c-card-info',
-          { '-empty': !d.publication_id,
-            '-disabled': d.active === 0  })}>
+            {
+              '-empty': !d.publication_id,
+              '-disabled': d.active === 0
+            })}>
             <Link
               to={`/explore/${specieId}/${d.populationId}`}
               onClick={!d.publication_id ? e => e.preventDefault() : false}
@@ -30,7 +32,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                   <div className="title">
                     <h4>
                       Population {d.active === 0 && (<span>(INACTIVE)</span>)}
-                  </h4>
+                    </h4>
                   </div>
                   <h4 className="subtitle">{d.name}</h4>
                 </div>
@@ -53,151 +55,149 @@ const PopulationsList = ({ specieId, populationData }) => {
                   </div>
                 )}
               </div>
-              {d.publication_id
-                ? (<div className="wrapper">
-                  <div className="row">
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Size</span>
-                        <span className="card-data_result"><strong>{d.size}</strong></span>
-                      </div>
+              <div className="wrapper">
+                <div className="row">
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Size</span>
+                      <span className="card-data_result"><strong>{d.size}</strong></span>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Size estimate quality</span>
-                        <span className="card-data_result"><strong>{d.size_estimates_quality}</strong></span>
-                      </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Size estimate quality</span>
+                      <span className="card-data_result"><strong>{d.size_estimates_quality}</strong></span>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Trend</span>
-                        <span className="card-data_result"><strong>{d.trend}</strong></span>
-                      </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Trend</span>
+                      <span className="card-data_result"><strong>{d.trend}</strong></span>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span className="card-data_title">Trend quality</span>
-                        <span className="card-data_result"><strong>{d.trend_quality}</strong></span>
-                      </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span className="card-data_title">Trend quality</span>
+                      <span className="card-data_result"><strong>{d.trend_quality}</strong></span>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>1% Threshold</span>
-                        <span className="card-data_result"><strong>{d.percent}</strong></span>
-                      </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>1% Threshold</span>
+                      <span className="card-data_result"><strong>{d.percent}</strong></span>
                     </div>
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Notes</span>
-                        <div className="notes">
-                          {d.notes && d.notes.length && (
-                            d.notes.map((n, i) =>
-                              <Tooltip
-                                key={`${d.id}${d.populationId}${n.id}`}
-                                delay={0}
-                                arrow={false}
-                                duration={[0, 0]}
-                                content={(
-                                  <Note>
-                                    <p className="title">
-                                      Population {n.type} notes <span>#{n.id}</span>
-                                    </p>
-                                    <p>{n.note}</p>
-                                  </Note>)}
-                              >
-                                {n.id && <span className="tooltipped">
-                                  {i === d.notes.length - 1 ? ` ${n.reference}${n.id}` : ` ${n.reference}${n.id} `}
-                                </span>}
-                              </Tooltip>
-                            )
-                          )}
-                        </div>
+                  </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Notes</span>
+                      <div className="notes">
+                        {d.notes && d.notes.length && (
+                          d.notes.map((n, i) =>
+                            <Tooltip
+                              key={`${d.id}${d.populationId}${n.id}`}
+                              delay={0}
+                              arrow={false}
+                              duration={[0, 0]}
+                              content={(
+                                <Note>
+                                  <p className="title">
+                                    Population {n.type} notes <span>#{n.id}</span>
+                                  </p>
+                                  <p>{n.note}</p>
+                                </Note>)}
+                            >
+                              {n.id && <span className="tooltipped">
+                                {i === d.notes.length - 1 ? ` ${n.reference}${n.id}` : ` ${n.reference}${n.id} `}
+                              </span>}
+                            </Tooltip>
+                          )
+                        )}
+                      </div>
 
-                      </div>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Size - Year</span>
-                        <span className="card-data_result"><strong>{d.size_year}</strong></span>
-                      </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Size - Year</span>
+                      <span className="card-data_result"><strong>{d.size_year}</strong></span>
                     </div>
+                  </div>
 
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Size references</span>
-                        <div className="notes">
-                          {d.size_references && d.size_references.length && (
-                            d.size_references.map((n, i) =>
-                              <Tooltip
-                                key={`${d.id}${d.populationId}${n.id}`}
-                                delay={0}
-                                arrow={false}
-                                duration={[0, 0]}
-                                content={(
-                                  <Note>
-                                    <p className="title">
-                                      Population size reference <span>#{n.id}</span>
-                                    </p>
-                                    <p>{n.body}</p>
-                                  </Note>)}
-                              >
-                                {n.id && <span className="tooltipped">
-                                  {i === d.size_references.length - 1 ? `R${n.id}` : `R${n.id}, `}
-                                </span>}
-                              </Tooltip>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Trend - Year</span>
-                        <span className="card-data_result"><strong>{d.trend_year}</strong></span>
-                      </div>
-                    </div>
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>Trend references</span>
-                        <div className="notes">
-                          {d.trend_references && d.trend_references.length && (
-                            d.trend_references.map((n, i) =>
-                              <Tooltip
-                                key={`${d.id}${d.populationId}${n.id}`}
-                                delay={0}
-                                arrow={false}
-                                duration={[0, 0]}
-                                content={(
-                                  <Note>
-                                    <p className="title">
-                                      Population trend reference <span>#{n.id}</span>
-                                    </p>
-                                    <p>{n.body}</p>
-                                  </Note>)}
-                              >
-                                {n.id && <span className="tooltipped">
-                                  {i === d.trend_references.length - 1 ? `R${n.id}` : `R${n.id}, `}
-                                </span>}
-                              </Tooltip>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-2">
-                      <div className="card-data">
-                        <span>1% Yearset</span>
-                        <span className="card-data_result"><strong>{d.yearset}</strong></span>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Size references</span>
+                      <div className="notes">
+                        {d.size_references && d.size_references.length && (
+                          d.size_references.map((n, i) =>
+                            <Tooltip
+                              key={`${d.id}${d.populationId}${n.id}`}
+                              delay={0}
+                              arrow={false}
+                              duration={[0, 0]}
+                              content={(
+                                <Note>
+                                  <p className="title">
+                                    Population size reference <span>#{n.id}</span>
+                                  </p>
+                                  <p>{n.body}</p>
+                                </Note>)}
+                            >
+                              {n.id && <span className="tooltipped">
+                                {i === d.size_references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                              </span>}
+                            </Tooltip>
+                          )
+                        )}
                       </div>
                     </div>
                   </div>
-                </div>)
-                : <span className="card-data -empty">There is no data for the publication selected</span>}
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Trend - Year</span>
+                      <span className="card-data_result"><strong>{d.trend_year}</strong></span>
+                    </div>
+                  </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>Trend references</span>
+                      <div className="notes">
+                        {d.trend_references && d.trend_references.length && (
+                          d.trend_references.map((n, i) =>
+                            <Tooltip
+                              key={`${d.id}${d.populationId}${n.id}`}
+                              delay={0}
+                              arrow={false}
+                              duration={[0, 0]}
+                              content={(
+                                <Note>
+                                  <p className="title">
+                                    Population trend reference <span>#{n.id}</span>
+                                  </p>
+                                  <p>{n.body}</p>
+                                </Note>)}
+                            >
+                              {n.id && <span className="tooltipped">
+                                {i === d.trend_references.length - 1 ? `R${n.id}` : `R${n.id}, `}
+                              </span>}
+                            </Tooltip>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-2">
+                    <div className="card-data">
+                      <span>1% Yearset</span>
+                      <span className="card-data_result"><strong>{d.yearset}</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </Link>
           </section>
         )
