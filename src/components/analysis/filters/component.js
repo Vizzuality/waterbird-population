@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import orderBy from 'lodash/orderBy';
 
+import Sticky from 'react-stickynode';
+
 import Select from 'react-select';
 import Icon from 'components/icon';
 import ActiveFilters from './active-filters';
@@ -196,15 +198,17 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
           </div>
         )}
       </div>
-      <ActiveFilters
-        activeFilters={activeFilters}
-        filters={filters}
-        onClick={removeFilter} />
-      <ClearFilters
-        handleFilters={clearFilters}
-        activeFilters={activeFilters}
-        unsetteledFilters={false}
-      />
+      <Sticky innerZ={2}>
+        <ActiveFilters
+          activeFilters={activeFilters}
+          filters={filters}
+          onClick={removeFilter} />
+        <ClearFilters
+          handleFilters={clearFilters}
+          activeFilters={activeFilters}
+          unsetteledFilters={false}
+        />
+      </Sticky>
     </div>
   )
 }

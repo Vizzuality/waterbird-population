@@ -4,6 +4,16 @@
   position: relative;
   width: 100%;
 
+  .sticky-outer-wrapper {
+
+    &.active {
+
+      .sticky-inner-wrapper {
+        background-color: $white;
+      }
+    }
+  }
+
   .filters-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
