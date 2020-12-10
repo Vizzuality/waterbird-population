@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import orderBy from 'lodash/orderBy';
 
+import Sticky from 'react-stickynode';
+
 import Select from 'react-select';
 import Icon from 'components/icon';
 import ActiveFilters from './active-filters';
@@ -167,6 +169,10 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
       <div className="filters-content">
         {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
           <div className="filters">
+            <div className="filter-type">
+              <label>{label}</label>
+              {info ? info : null}
+            </div>
             <Select
               placeholder={placeholder}
               options={options}
@@ -180,7 +186,7 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
                   return data === selectProps.value[0]
                     ? (<div {...innerProps}>
                       <span>
-                         {data.label}
+                        {data.label}
                       </span>
                       {length >= 1 && <span>{` + ${length}`}</span>}
                     </div>)
@@ -192,15 +198,17 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
           </div>
         )}
       </div>
-      <ActiveFilters
-        activeFilters={activeFilters}
-        filters={filters}
-        onClick={removeFilter} />
-      <ClearFilters
-        handleFilters={clearFilters}
-        activeFilters={activeFilters}
-        unsetteledFilters={false}
-      />
+      <Sticky innerZ={2}>
+        <ActiveFilters
+          activeFilters={activeFilters}
+          filters={filters}
+          onClick={removeFilter} />
+        <ClearFilters
+          handleFilters={clearFilters}
+          activeFilters={activeFilters}
+          unsetteledFilters={false}
+        />
+      </Sticky>
     </div>
   )
 }

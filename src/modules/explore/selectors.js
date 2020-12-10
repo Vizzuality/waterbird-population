@@ -238,7 +238,7 @@ export const selectLastPublicationData = createSelector(
         });
 
         return {
-          population_id: d.id,
+          population_id: d.population_id,
           publication_id: publication,
           size_id: size.id,
           trend_id: trend.id,
@@ -268,7 +268,7 @@ export const selectPopulationOptions = createSelector(
 
       return {
         label: trim(p.name) || '-',
-        value: p.id,
+        value: p.population_id,
         family: p.family.name,
         specie: p.specie.commonname,
         scientificname: trim(p.specie.scientificname),
@@ -285,10 +285,9 @@ export const selectPopulationInfoData = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
 
     const ramsar = regions.filter(r => !!population[r.id]);
-
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
     return [
       [{ head: 'Order name', value: trim(population.family.ordername) || '-' }],
@@ -309,7 +308,7 @@ export const selectPopulationSizeData = createSelector(
   (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
     return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
@@ -401,7 +400,7 @@ export const selectPopulationPercentData = createSelector(
   (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
     return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
@@ -431,7 +430,7 @@ export const selectPopulationConservationFramework = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
 
     return population.conservation.map(p => p)
   }
@@ -442,7 +441,7 @@ export const selectPopulationReferences = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
 
     const references = {
       size: orderBy(uniqBy(flatten(population.sizes.map(s => s.references)), 'id').filter(r => r.id), 'id', 'desc'),
@@ -469,7 +468,7 @@ export const selectPopulationNotes = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
 
     return uniqBy(flatten([
       orderBy(population.sizes.map(s => {
