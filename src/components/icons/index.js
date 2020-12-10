@@ -3,12 +3,15 @@ import React from 'react';
 const Icons = () => (
   <svg
     aria-hidden="true"
-    style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden'}}
+    style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
   >
     <defs>
+      <symbol id="icon-user-o" viewBox="0 0 24 28">
+        <path d="M18.766 12.25c2.203 0.641 5.234 2.812 5.234 9.922 0 3.219-2.391 5.828-5.328 5.828h-13.344c-2.938 0-5.328-2.609-5.328-5.828 0-7.109 3.031-9.281 5.234-9.922-0.781-1.234-1.234-2.688-1.234-4.25 0-4.406 3.594-8 8-8s8 3.594 8 8c0 1.563-0.453 3.016-1.234 4.25zM12 2c-3.313 0-6 2.688-6 6s2.688 6 6 6 6-2.688 6-6-2.688-6-6-6zM18.672 26c1.828 0 3.328-1.703 3.328-3.828 0-4.922-1.656-8-4.75-8.156-1.406 1.234-3.234 1.984-5.25 1.984s-3.844-0.75-5.25-1.984c-3.094 0.156-4.75 3.234-4.75 8.156 0 2.125 1.5 3.828 3.328 3.828h13.344z"></path>
+      </symbol>
       <symbol id="icon-feedback_icon" viewBox="0 0 34 32">
         <title>feedback_icon</title>
         <path fill="none" stroke="#fff" style={{ stroke: 'var(--color1, #fff)' }} strokeLinejoin="miter" strokeLinecap="butt" strokeMiterlimit="4" strokeWidth="4" d="M3.429 4.364v23.636l9.333-7.091h16.333c1.288 0 2.333-1.059 2.333-2.364v-14.182c0-1.305-1.045-2.364-2.333-2.364h-23.333c-1.288 0-2.333 1.059-2.333 2.364z"></path>

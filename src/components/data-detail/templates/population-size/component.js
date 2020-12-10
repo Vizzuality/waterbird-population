@@ -103,7 +103,7 @@ const PopulationSize = ({ data, user }) => {
                           <p className="title">
                             Population size note <span>#{n.id}</span>
                           </p>
-                          <p>{n.info}</p>
+                          <p>{!!n.info && n.info}</p>
                         </Note>}
                     >
                       {n.id && n.info && (<span className="tooltipped">

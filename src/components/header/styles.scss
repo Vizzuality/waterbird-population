@@ -13,6 +13,10 @@
   img {
     max-width: 160px;
     height: auto;
+
+    @media (max-width: map-get($breakpoints, sm)) {
+      max-width: 100px;
+    }
   }
 
   .header-navigation {
