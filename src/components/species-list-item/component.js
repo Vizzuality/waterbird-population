@@ -35,8 +35,8 @@ const SpeciesListItem = ({ specie }) => {
       <div onClick={handleClick} className="results-title">
         <h2>
           <span>Species:</span>
-          <span className="name -scientific">{scientificname}</span>
-          <span className="name -specific">({commonname})</span>
+          <span className="name -specific">{commonname}</span>
+          <span className="name -scientific">({scientificname})</span>
           <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
         </h2>
         <Button

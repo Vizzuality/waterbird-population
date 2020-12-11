@@ -9,7 +9,7 @@ import Filters from 'components/analysis/filters';
 
 import "./styles.scss";
 
-const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
+const DataControls = ({ dataSpecs, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
 
   const [filtersVisibility, toggleVisibility] = useState(false);
 
@@ -17,7 +17,7 @@ const DataControls = ({ dataSpecs, populationsFiltered, data, filters, setFilter
     const filtersUpdate = {
       ...filters,
       [type]: type === 'publication_id'
-        ? { label: `${publications[0].description + '(default)'}`, value: publications[0].id }
+        ? { label: `${publications[0].description}`, value: publications[0].id }
         : filters[type].filter(f => f !== value)
     }
     setFilters(filtersUpdate);

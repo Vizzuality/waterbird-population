@@ -5,8 +5,9 @@ import classnames from 'classnames';
 import './styles.scss';
 
 
-const ActiveFilters = ({ filters, active, onClick }) => (
-  <section className="c-active-filters">
+const ActiveFilters = ({ filters, active, onClick, className }) => (
+  console.log(active) ||
+  <section className={classnames('c-active-filters', { [className]: className })}>
     {!!active.length && <p>Filtered by:</p>}
     {Object.entries(filters).map(filter =>
       filter && Object.values(filter[1]).length && filter[1].label
