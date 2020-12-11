@@ -6,7 +6,7 @@
   width: 100%;
   top: 0;
   left: 0px;
-  z-index: 1;
+  z-index: $z-index-2;
 
   .populations-selector--content {
     display: flex;
@@ -85,6 +85,45 @@
         }
       }
 
+      .populations-selector--content-dropdown {
+        min-width: 300px;
+
+        .react-select__control {
+          border: none;
+          background-color: $color-grey-5;
+        }
+
+        .react-select__indicator {
+          color: $white;
+        }
+
+        .react-select__control--menu-is-open {
+          .react-select__indicator {
+            transform: rotate(180deg);
+          }
+        }
+
+        .react-select__indicator-separator {
+          display: none;
+        }
+
+        .react-select__single-value {
+          color: $white;
+        }
+
+        .react-select__menu {
+          background-color: $color-grey-5;
+          color: $white;
+          font-size: $font-size-small;
+        }
+
+        .react-select__option {
+          &:hover {
+            background-color: $color-grey-5;
+          }
+        }
+      }
+
       .populations-selector--content-control {
         display: flex;
         align-items: center;
@@ -99,6 +138,7 @@
           opacity: 0;
           z-index: 1;
           cursor: pointer;
+          background-color: red;
         }
 
         button {
