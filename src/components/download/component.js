@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { CSVLink } from 'react-csv';
 import classnames from 'classnames';
-
+import { invokeCSVDownload, encodeAsCSVContent } from 'utils/csv';
 import {
   fetchDataToDownload,
   fetchPopulationsCardData
@@ -11,30 +10,32 @@ import {
 import Image from './download.svg';
 import './styles.scss';
 
-const Download = ({ type, dataSpecs, filename, headers, text, className, imageSize }) => {
-  const [data, setData] = useState('No data available')
-
-  const handleClick = (e) => {
-    e.stopPropagation();
-
-    (type === 'overview' || type === 'explore-detail') && fetchDataToDownload(dataSpecs).then(data => setData(data));
-    type === 'populations-card' && fetchPopulationsCardData(dataSpecs).then(data => setData(data));
-  };
+const Download = ({ type, dataSpecs, filename, text, className, imageSize }) => {
+  const handleClick = async () => {
+    const fetchFunction =
+      {
+        overview: fetchDataToDownload,
+        'explore-detail': fetchDataToDownload,
+        'populations-card': fetchPopulationsCardData
+      }[type] || (() => {});
+      const data = await fetchFunction(dataSpecs);
+      if (data) {
+        const title = `${filename}-${Date.now()}.csv`;
+        invokeCSVDownload(encodeAsCSVContent(data), title);
+      }
+    };
 
   return (
-    <CSVLink
+    <button
       className={classnames(
         'c-download',
-        className,
-        { '-disabled': !data } )}
-      data={data}
-      headers={headers}
+        className
+      )}
       onClick={handleClick}
-      filename={`${filename}-${Date.now()}.csv`}
     >
       <span>{text}</span>
       <img src={Image} alt="download" className={classnames(imageSize)} name="download" />
-    </CSVLink>
+    </button>
   )
 };
 
