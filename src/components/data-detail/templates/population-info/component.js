@@ -18,7 +18,9 @@ const PopulationInfo = ({ data }) => {
             <div key={ix} className="population-info--summary-item">
               {i.map(i2 => (
                 <div key={i2.head} className="population-info--summary-item-container">
-                  <div className="population-info--summary-item-head">{i2.head}</div>
+                  <div className="population-info--summary-item-head">
+                    {i2.head}
+                  </div>
                   <div style={{ backgroundColor: i2.color, border: `1px solid ${i2.border}` }}
                     className={classnames({
                       "population-info--summary-item-value": true,
@@ -26,6 +28,12 @@ const PopulationInfo = ({ data }) => {
                     })}
                   >
                     {i2.value}
+                    {' '}
+                    {i2.aside && (
+                      <span className="population-info--summary-item-value-aside">
+                        {i2.aside}
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}

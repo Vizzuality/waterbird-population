@@ -4,6 +4,10 @@
 
   padding-right: 40px;
 
+  &.-widgets {
+    margin-bottom: 20px;
+  }
+
   span {
     border-radius: 3px;
     background-color: rgba($color-2, .15);

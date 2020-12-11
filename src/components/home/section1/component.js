@@ -23,11 +23,11 @@ const Section1 = ({ setFilters, filters }) => {
 
   const label = (e) => {
     const renamedLabels = [
-      { value: 'CAF Action Plan', label: 'CMS/CAF: CMS Central Asian Flyway' },
-      { value: 'EAAFP Partnership', label: 'EAAF Partnership: East Asian-Australasian Flyway Partnership' },
-      { value: 'EUBD', label: 'EU BIRDS DIRECTIVE: EU Birds Directive' },
-      { value: 'AEWA', label: 'AEWA: African-Eurasian Migratory Waterbird Agreement' },
-      { value: 'WHSRN', label: 'WHSRN: Western Hemisphere Shorebird Reserve Network' },
+      { value: 'CAF Action Plan', label: 'CMS Central Asian Flyway' },
+      { value: 'EAAFP Partnership', label: 'East Asian-Australasian Flyway Partnership' },
+      { value: 'EUBD', label: 'EU Birds Directive' },
+      { value: 'AEWA', label: 'African-Eurasian Migratory Waterbird Agreement' },
+      { value: 'WHSRN', label: 'Western Hemisphere Shorebird Reserve Network' },
     ];
 
     return renamedLabels.reduce((acc, word) => {

@@ -7,8 +7,8 @@ import Sticky from 'react-stickynode';
 
 import Select from 'react-select';
 import Icon from 'components/icon';
-import ActiveFilters from './active-filters';
-import ClearFilters from './clear-filters';
+import ActiveFilters from 'components/filters/active-filters';
+import ClearFilters from 'components/filters/clear-filters';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -26,9 +26,9 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
   const [redList, setListCategories] = useState([]);
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
-    fetchPublications().then(data => setPublications(data));
+    fetchPublications().then(data => setPublications(data.reverse()));
     fetchConservationFrameworks().then(data => setFrameworks(data));
-    fetchFlyways().then(data => setFlyways(data));
+    fetchFlyways().then(data => setFlyways(orderBy(data, ['flywaygroup', 'flywayrange'])));
     fetchRedListCategories().then(data => setListCategories(data));
   }, []);
 
@@ -45,8 +45,8 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
     return { label: framework.code, value: framework.id }
   });
 
-  const flywayOptions = flyways.map(({ flywayrange, id }) => {
-    return { label: flywayrange, value: id }
+  const flywayOptions = flyways.map(({ flywayrange, flywaygroup, id }) => {
+    return { label: flywayrange + ' ' + `(${flywaygroup})`, value: id };
   });
 
   const ramsarRegionOptions = [
@@ -198,8 +198,9 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
           </div>
         )}
       </div>
-      <Sticky innerZ={2}>
+      <Sticky innerZ={1}>
         <ActiveFilters
+          className="-widgets"
           activeFilters={activeFilters}
           filters={filters}
           onClick={removeFilter} />

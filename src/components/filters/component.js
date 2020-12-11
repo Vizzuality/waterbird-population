@@ -37,7 +37,7 @@ const Filters = ({
     fetchFamilies().then(data => setFamilies(data));
     fetchPublications().then(data => setPublications(data.reverse()));
     fetchConservationFrameworks().then(data => setFrameworks(data));
-    fetchFlyways().then(data => setFlyways(data));
+    fetchFlyways().then(data => setFlyways(orderBy(data, ['flywaygroup', 'flywayrange'])));
     fetchRedListCategories().then(data => setListCategories(data));
   }, []);
 
@@ -57,9 +57,7 @@ const Filters = ({
   });
 
   const publicationOptions = publications.map(publication => {
-    const label = (publications[0].description === publication.description)
-      ? publication.description + ' (default)'
-      : publication.description;
+    const label = publication.description;
     return { label: label, value: publication.id }
   });
 
@@ -67,8 +65,8 @@ const Filters = ({
     return { label: framework.code, value: framework.id }
   });
 
-  const flywayOptions = flyways.map(({ flywayrange, id }) => {
-    return { label: flywayrange, value: id }
+  const flywayOptions = flyways.map(({ flywayrange, flywaygroup, id }) => {
+    return { label: flywayrange + ' ' + `(${flywaygroup})`, value: id };
   });
 
   const ramsarRegionOptions = [

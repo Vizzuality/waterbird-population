@@ -5,6 +5,10 @@
   padding: $padding-modal;
   max-width: 900px;
 
+  &.-widgets {
+    max-width: 100%;
+  }
+
   h3 {
     color: $color-grey-6;
     font-size: 30px;
