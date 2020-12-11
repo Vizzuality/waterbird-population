@@ -107,6 +107,10 @@
           display: none;
         }
 
+        .react-select__option {
+          background-color: $color-grey-5;
+        }
+
         .react-select__single-value {
           color: $white;
         }
