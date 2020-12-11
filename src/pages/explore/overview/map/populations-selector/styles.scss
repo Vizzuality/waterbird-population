@@ -10,6 +10,7 @@
   .populations-selector--content {
     display: flex;
     justify-content: space-around;
+    max-width: 500px;
     border-radius: 0 0 10px 10px;
     background-color: $color-grey-5;
     color: $white;
