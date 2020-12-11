@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
+import Select from 'react-select';
 import './styles.scss';
 
 const PopulationsSelector = ({ data, selected, onChange }) => {
@@ -9,31 +9,25 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
     setCurrent(data.find(p => p.value === +selected) || data[0] || {});
   }, [selected])
 
-  const onSelectChange = (e) => {
-    const { value } = e.currentTarget;
+  const onSelectChange = (selected) => {
+    const { value } = selected;
     setCurrent(data.find(p => p.value === +value));
 
     if (onChange) onChange(+value);
   }
-
   return (
     <div className="c-populations-selector">
       <div className="wrapper">
         <div className="populations-selector--content">
           <div className="populations-selector--content-info-wrapper">
             <h5>Population name:</h5>
-            <div className="populations-selector--content-control">
-              <h4>{current.label}</h4>
-              <select
-                className="populations-selector--content-dropdown"
-                value={current.value}
-                onChange={onSelectChange}
-              >
-                {data.map(p => (
-                  <option key={p.value} value={p.value}>{p.label}</option>
-                ))}
-              </select>
-            </div>
+            <Select
+              className="populations-selector--content-dropdown"
+              classNamePrefix="react-select"
+              value={current}
+              options={data}
+              onChange={onSelectChange}
+            />
           </div>
 
           <div className="populations-selector--content-info-wrapper">
@@ -42,13 +36,14 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
               <span style={{ backgroundColor: current.tag_color }}>{current.tag_status}</span>
               <div>
                 <p>{current.specie}</p>
-                <p className="-italic">{`(${current.scientificname})`}</p></div>
+                <p className="-italic">{`(${current.scientificname})`}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 PopulationsSelector.propTypes = {

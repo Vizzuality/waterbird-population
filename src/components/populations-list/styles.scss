@@ -10,6 +10,10 @@
   margin-bottom: 20px;
   @include card-background;
 
+  .border-right {
+    border-right: 2px $color-grey-3 solid;
+  }
+
   &:hover {
     box-shadow: 0 10px 10px 0 rgba($black, .09);
   }

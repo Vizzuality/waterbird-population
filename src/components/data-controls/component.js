@@ -9,7 +9,7 @@ import Filters from 'components/analysis/filters';
 
 import "./styles.scss";
 
-const DataControls = ({ dataSpecs, data, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
+const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilters, publications, page }) => {
 
   const [filtersVisibility, toggleVisibility] = useState(false);
 
@@ -32,40 +32,50 @@ const DataControls = ({ dataSpecs, data, filters, setFilters, resetFilters, acti
   }
 
   return (
-    <div className={classnames('c-data-configuration', { '-filters': !filtersVisibility } )}>
+    <div className={classnames('c-data-configuration', { '-filters': !filtersVisibility })}>
       <div className="data-configuration--buttons">
-      <Download
-        text={'Download results'}
-        type="explore-detail"
-        dataSpecs={dataSpecs}
-        data={data}
-        filename={'populations'}
-        className="-dashed"
-      />
-        {page !== 'ANALYZE' && <><ActiveFilters
-          filters={filters}
-          onClick={handleClick}
-          heading={'Filtered by:'}
-          active={activeFilters}
+        <Download
+          text={'Download results'}
+          type="explore-detail"
+          dataSpecs={dataSpecs}
+          filename={'populations'}
+          className="-dashed"
         />
-        <ClearFilters
-          handleFilters={handleFilters}
-          activeFilters={activeFilters}
-          unsetteledFilters={false}
-        /></>}
-      {page === 'ANALYZE' &&
-      <div className="data-filters">
-        <p>Filters configuration:</p>
-        <button
-          aria-label="filters-dropdown"
-          className={classnames({
-            '-open': filtersVisibility,
-            '-close': !filtersVisibility
-          })}
-          onClick={toggleFilters} />
-      </div>}
+        {page !== 'ANALYZE' && (
+          <>
+            <ActiveFilters
+              filters={filters}
+              onClick={handleClick}
+              heading={'Filtered by:'}
+              active={activeFilters}
+            />
+            <ClearFilters
+              handleFilters={handleFilters}
+              activeFilters={activeFilters}
+              unsetteledFilters={false}
+            />
+            <div>Click on map to reveal relevant populations</div>
+          </>
+        )}
+        {page === 'ANALYZE' && (
+          <div className="data-filters">
+            <p>Filters configuration:</p>
+            <button
+              aria-label="filters-dropdown"
+              className={classnames({
+                '-open': filtersVisibility,
+                '-close': !filtersVisibility,
+              })}
+              onClick={toggleFilters}
+            />
+          </div>
+        )}
       </div>
-      {filtersVisibility && <div className="filters"><Filters /></div>}
+      {filtersVisibility && (
+        <div className="filters">
+          <Filters />
+        </div>
+      )}
     </div>
   );
 };
