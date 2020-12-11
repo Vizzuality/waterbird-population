@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import Tooltip from '@tippyjs/react';
 
 import isEqual from 'lodash/isEqual';
 import isEmpty from 'lodash/isEmpty';
@@ -103,7 +104,9 @@ class Map extends Component {
       ...this.props.viewport // eslint-disable-line
     },
     flying: false,
-    loaded: false
+    loaded: false,
+    tooltip: null,
+    mousePosition: null
   };
 
   componentDidMount() {
@@ -158,10 +161,13 @@ class Map extends Component {
 
   onHover = (e) => {
     const { onHover } = this.props;
-
+    const { mousePosition, tooltip } = this.state;
     const { features } = e;
     if (features && features.length) {
-      const { id, source, sourceLayer } = features[0];
+      const { id, source, sourceLayer, properties: { populationname } } = features[0];
+      if (populationname && populationname !== this.state.tooltip) {
+        this.setState({ tooltip: populationname, mousePosition: e.center});
+      }
 
       if (this.HOVER.id) {
         this.map.setFeatureState(
@@ -185,6 +191,10 @@ class Map extends Component {
           },
           { hover: true }
         );
+      }
+    } else {
+      if (tooltip || mousePosition) {
+        this.setState({ tooltip: null, mousePosition: null });
       }
     }
 
@@ -310,8 +320,7 @@ class Map extends Component {
       mapboxApiAccessToken,
       ...mapboxProps
     } = this.props;
-    const { viewport, loaded, flying } = this.state;
-
+    const { viewport, loaded, flying, tooltip, mousePosition } = this.state;
     return (
       <div
         ref={(r) => {
@@ -322,6 +331,17 @@ class Map extends Component {
           [customClass]: !!customClass
         })}
       >
+        {mousePosition && <Tooltip
+          key={`tooltip-${tooltip}`}
+          delay={0}
+          arrow={false}
+          visible={tooltip}
+          content={
+            <div className="map-tooltip" style={{ top: mousePosition.y, left: mousePosition.x }}>
+              {`Population name: ${tooltip}`}
+            </div>
+          }
+        />}
         <ReactMapGL
           ref={(map) => {
             this.map = map && map.getMap();
