@@ -338,7 +338,7 @@ class Map extends Component {
           visible={tooltip}
           content={
             <div className="map-tooltip" style={{ top: mousePosition.y, left: mousePosition.x }}>
-              {`Population name: ${tooltip}`}
+              {tooltip}
             </div>
           }
         />}
