@@ -42,7 +42,7 @@ export const selectPopulationFiltered = createSelector(
         'conservation.conservation_framework',
         'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
       ],
-      threshold: 0.3,
+      threshold: 0.2,
     });
 
 
