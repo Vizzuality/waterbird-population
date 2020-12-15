@@ -54,7 +54,6 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
               activeFilters={activeFilters}
               unsetteledFilters={false}
             />
-            <div>Click on map to reveal relevant populations</div>
           </>
         )}
         {page === 'ANALYZE' && (
