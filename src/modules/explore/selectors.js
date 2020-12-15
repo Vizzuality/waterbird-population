@@ -42,7 +42,7 @@ export const selectPopulationFiltered = createSelector(
         'conservation.conservation_framework',
         'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
       ],
-      threshold: 0.1,
+      threshold: 0.3,
     });
 
 
@@ -265,7 +265,6 @@ export const selectPopulationOptions = createSelector(
 
     return _data.map(p => {
       const tag = tags.find(t => t.description === trim(p.specie.redlistcategory));
-
       return {
         label: trim(p.name) || '-',
         value: p.population_id,
@@ -284,9 +283,7 @@ export const selectPopulationInfoData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
-
     const population = _data.find(p => p.population_id === +_population_id) || _data[0];
-
     const ramsar = regions.filter(r => !!population[r.id]);
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
     return [
@@ -352,7 +349,7 @@ export const selectPopulationTrendData = createSelector(
   (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
     return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
