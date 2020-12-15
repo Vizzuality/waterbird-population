@@ -17,7 +17,7 @@ const PopulationInfo = ({ data }) => {
           return (
             <div key={ix} className="population-info--summary-item">
               {i.map(i2 => (
-                <div key={i2.head} className="population-info--summary-item-container">
+                <div key={i2.value} className="population-info--summary-item-container">
                   <div className="population-info--summary-item-head">
                     {i2.head}
                   </div>

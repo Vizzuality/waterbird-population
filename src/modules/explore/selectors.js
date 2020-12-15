@@ -42,7 +42,7 @@ export const selectPopulationFiltered = createSelector(
         'conservation.conservation_framework',
         'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
       ],
-      threshold: 0.1,
+      threshold: 0.2,
     });
 
 
@@ -265,7 +265,6 @@ export const selectPopulationOptions = createSelector(
 
     return _data.map(p => {
       const tag = tags.find(t => t.description === trim(p.specie.redlistcategory));
-
       return {
         label: trim(p.name) || '-',
         value: p.population_id,
@@ -284,9 +283,7 @@ export const selectPopulationInfoData = createSelector(
   [specie_id, population_id, data],
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
-
     const population = _data.find(p => p.population_id === +_population_id) || _data[0];
-
     const ramsar = regions.filter(r => !!population[r.id]);
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
     return [
@@ -352,7 +349,7 @@ export const selectPopulationTrendData = createSelector(
   (_specie_id, _population_id, _data, _user) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
-    const population = _data.find(p => p.id === +_population_id) || _data[0];
+    const population = _data.find(p => p.population_id === +_population_id) || _data[0];
     const publishedPopulations = population.publications.filter(p => p.published === 1);
 
     return orderBy((_user.name ? population.publications : publishedPopulations).map(p => {
@@ -575,49 +572,11 @@ export const selectPopulationLayers = createSelector(
 export const selectPopulationsLayersByLocation = createSelector(
   [specie_id, population_id, lonLat],
   (_specie_id, _population_id, _lonLat) => {
+    if (!_lonLat) return [];
     return [
       // GEOJSON DATA LAYER
       {
         id: 'populations-by-location',
-        type: 'geojson',
-        source: {
-          type: 'geojson',
-          data: `${process.env.REACT_APP_CARTO_BASE_URL}sql?q=SELECT * FROM species_and_flywaygroups WHERE
-          ST_Intersects(
-                     ST_SetSRID(
-                        ST_MakePoint({{lng}},{{lat}}),4326),the_geom) &api_key=${process.env.REACT_APP_CARTO_API_TOKEN}&format=geojson`,
-        },
-        render: {
-          layers: [
-            {
-              type: "fill",
-              //  "source-layer": "layer0",
-              paint: {
-                'fill-color': '#FFBB00',
-                'fill-opacity': 0.25
-              }
-            },
-            {
-              type: "line",
-              //  "source-layer": "layer0",
-              paint: {
-                "line-color": "#000000",
-                "line-opacity": 0.5,
-                "line-dasharray": [1, 2]
-              }
-            }
-          ]
-        },
-        paramsConfig: [
-          { key: 'lng', required: true },
-          { key: 'lat', required: true }
-        ],
-        interactionConfig: {
-          enable: true
-        }
-      },
-      {
-        id: 'location',
         type: 'geojson',
         source: {
           type: 'geojson',
@@ -646,16 +605,12 @@ export const selectPopulationsLayersByLocation = createSelector(
                 "circle-stroke-width": 5,
                 "circle-stroke-opacity": 0.2
               },
-              // metadata: {
-              //   position: 'top'
-              // }
+              metadata: {
+                position: 'top'
+              }
             },
           ]
         },
-        paramsConfig: [
-          { key: 'lng', required: true },
-          { key: 'lat', required: true }
-        ],
         interactionConfig: {
           enable: true
         }
@@ -685,6 +640,7 @@ export const selectPopulationProps = createStructuredSelector({
 
 export const selectPopulationDetailProps = createStructuredSelector({
   user,
+  populationsLayersByLocation: selectPopulationsLayersByLocation,
   pop: selectPopulationDownload,
   populationsFiltered: selectPopulationFiltered,
   populationOptions: selectPopulationOptions,
@@ -696,5 +652,4 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationReferences: selectPopulationReferences,
   populationNotes: selectPopulationNotes,
   populationLayers: selectPopulationLayers,
-  populationsLayersByLocation: selectPopulationsLayersByLocation
 });

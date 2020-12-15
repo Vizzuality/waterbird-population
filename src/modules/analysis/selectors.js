@@ -267,7 +267,6 @@ export const selectGeneralData = createSelector(
   [selectFamilyTrends, selectFamilyPopulations, selectRegionTrendsChart],
   (_familyTrends, _familyPopulations, _regionTrendsChart) => {
 
-
     return _familyTrends.map(f => {
 
       const total_populations = _familyPopulations.find(p => p.id === f.id).total_populations;
@@ -371,15 +370,6 @@ export const selectGeneralData = createSelector(
       }
     })
   });
-
-export const selectActiveFilters = createSelector(
-  [filters],
-  (_filters) => Object.entries(_filters).filter(f => f[1].length || f[1].label)
-);
-
-export const selectFiltersProps = createStructuredSelector({
-  activeFilters: selectActiveFilters
-});
 
 export const selectWidgetsProps = createStructuredSelector({
   families: selectFamilies,

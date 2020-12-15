@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import Download from "components/download";
 import ClearFilters from 'components/filters/clear-filters';
 import ActiveFilters from 'components/filters/active-filters';
-import Filters from 'components/analysis/filters';
+import FiltersAnalysys from 'components/analysis/filters';
 
 import "./styles.scss";
 
@@ -54,7 +54,6 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
               activeFilters={activeFilters}
               unsetteledFilters={false}
             />
-            <div>Click on map to reveal relevant populations</div>
           </>
         )}
         {page === 'ANALYZE' && (
@@ -71,10 +70,11 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
           </div>
         )}
       </div>
-      {filtersVisibility && (
-        <div className="filters">
-          <Filters />
-        </div>
+      {page === 'ANALYZE' && (
+        <FiltersAnalysys
+          visibility={filtersVisibility}
+          page={page}
+        />
       )}
     </div>
   );

@@ -16,6 +16,7 @@ import Map from 'components/map';
 import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
 import PopulationsSelector from './populations-selector';
+import PopulationsMessage from './populations-message';
 import Legend from 'components/map/legend';
 
 
@@ -39,7 +40,6 @@ export const MapContainer = ({
   const layers = populationsLayersByLocation.map(l => {
     return {
       ...l,
-      params: !!coordinates && !!l.paramsConfig && getParams(l.paramsConfig, { lng: coordinates[0], lat: coordinates[1] })
     }
   });
 
@@ -65,6 +65,9 @@ export const MapContainer = ({
 
   return (
     <div className='c-map-container'>
+      {!coordinates && <PopulationsMessage
+        data="Click on map to reveal relevant populations"
+      />}
       {coordinates && <PopulationsSelector
         data={data}
       />}

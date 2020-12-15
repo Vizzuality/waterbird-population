@@ -19,7 +19,7 @@ import { fetchRedListCategories } from 'services/red-list';
 import './styles.scss';
 
 
-const Filters = ({ activeFilters, filters, setFilters, publications, setPublications, resetFilters }) => {
+const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, setPublications, resetFilters, visibility, page }) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
@@ -165,58 +165,62 @@ const Filters = ({ activeFilters, filters, setFilters, publications, setPublicat
   };
 
   return (
-    <div className="c-filters">
-      <div className="filters-content">
-        {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
-          <div className="filters">
-            <div className="filter-type">
-              <label>{label}</label>
-              {info ? info : null}
+    <div className="c-filters-analyse">
+      {visibility && (
+        <div className="filters-content">
+          {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
+            <div className="filters">
+              <div className="filter-type">
+                <label>{label}</label>
+                {info ? info : null}
+              </div>
+              <Select
+                placeholder={placeholder}
+                options={options}
+                value={value}
+                isMulti={isMulti}
+                classNamePrefix="react-select"
+                onChange={value => changeFilterValue(isMulti, type, value)}
+                components={{
+                  MultiValueLabel: ({ data, selectProps, innerProps }) => {
+                    const length = selectProps.value.length - 1;
+                    return data === selectProps.value[0]
+                      ? (<div {...innerProps}>
+                        <span>
+                          {data.label}
+                        </span>
+                        {length >= 1 && <span>{` + ${length}`}</span>}
+                      </div>)
+                      : null
+                  },
+                  MultiValueRemove: () => null
+                }}
+              />
             </div>
-            <Select
-              placeholder={placeholder}
-              options={options}
-              value={value}
-              isMulti={isMulti}
-              classNamePrefix="react-select"
-              onChange={value => changeFilterValue(isMulti, type, value)}
-              components={{
-                MultiValueLabel: ({ data, selectProps, innerProps }) => {
-                  const length = selectProps.value.length - 1;
-                  return data === selectProps.value[0]
-                    ? (<div {...innerProps}>
-                      <span>
-                        {data.label}
-                      </span>
-                      {length >= 1 && <span>{` + ${length}`}</span>}
-                    </div>)
-                    : null
-                },
-                MultiValueRemove: () => null
-              }}
-            />
-          </div>
-        )}
-      </div>
-      <Sticky innerZ={1}>
-        <ActiveFilters
-          className="-widgets"
-          activeFilters={activeFilters}
-          filters={filters}
-          onClick={removeFilter} />
-        <ClearFilters
-          handleFilters={clearFilters}
-          activeFilters={activeFilters}
-          unsetteledFilters={false}
-        />
-      </Sticky>
+          )}
+        </div>
+      )}
+      {!!activeFilters.length && page === 'ANALYZE' && (
+        <Sticky innerZ={1}>
+          <ActiveFilters
+            className="-widgets"
+            active={activeFilters}
+            filters={filters}
+            onClick={removeFilter} />
+          <ClearFilters
+            handleFilters={clearFilters}
+            activeFilters={activeFilters}
+            unsetteledFilters={false}
+          />
+        </Sticky>
+      )}
     </div>
   )
 }
 
-Filters.propTypes = {
+FiltersAnalysys.propTypes = {
   activeFilters: PropTypes.array.isRequired,
   onClick: PropTypes.func.isRequired
 }
 
-export default Filters;
+export default FiltersAnalysys;
