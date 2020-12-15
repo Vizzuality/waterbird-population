@@ -40,7 +40,6 @@ export const MapContainer = ({
   const layers = populationsLayersByLocation.map(l => {
     return {
       ...l,
-      params: !!coordinates && !!l.paramsConfig && getParams(l.paramsConfig, { lng: coordinates[0], lat: coordinates[1] })
     }
   });
 
