@@ -73,7 +73,6 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
   };
 
   const handleClick = (type, value) => {
-    console.log(type, value);
 
     const filtersUpdate = {
       ...filters,

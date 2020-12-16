@@ -24,6 +24,7 @@ const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, set
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
   const [redList, setListCategories] = useState([]);
+
   useEffect(() => {
     fetchFamilies().then(data => setFamilies(data));
     fetchPublications().then(data => setPublications(data.reverse()));
@@ -38,7 +39,8 @@ const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, set
   });
 
   const publicationOptions = publications.map(publication => {
-    return { label: publication.description, value: publication.id }
+    const label = publication.description;
+    return { label: label, value: publication.id }
   });
 
   const conservationFrameworkOptions = conservationFrameworks.map(framework => {
@@ -62,15 +64,25 @@ const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, set
     return { label: `${d.iucn} (${d.description})`, value: d.id }
   });
 
-  // filters values
-  const selectedFamily = filters.family_id;
+  const OPTIONS = {
+    family_id: familyOptions,
+    publication_id: publicationOptions,
+    framework_id: conservationFrameworkOptions,
+    flyway_region_id: flywayOptions,
+    ramsar_region_id: ramsarRegionOptions,
+    red_list_id: redListOptions
+  };
+
+ // filters values
+  const selectedFamily = familyOptions.filter(o => filters.family_id.includes(o.value));
   const selectedPublication = publicationOptions.find(f => filters
     && filters.publication_id
-    && filters.publication_id.value === f.value);
-  const selectedFramework = filters.framework_id;
-  const selectedFlywayRegion = filters.flyway_region_id;
-  const selectedRamsarRegion = filters.ramsar_region_id;
-  const selectedRedList = filters.red_list_id;
+    && filters.publication_id === f.value);
+  const selectedFramework = conservationFrameworkOptions.filter(o => filters.framework_id.includes(o.value));
+  const selectedFlywayRegion = flywayOptions.filter(o => filters.flyway_region_id.includes(o.value));
+  const selectedRamsarRegion = ramsarRegionOptions.filter(o => filters.ramsar_region_id.includes(o.value));
+  const selectedRedList = redListOptions.filter(o => filters.red_list_id.includes(o.value));
+
 
   const filtersInfo = [
     {
@@ -147,7 +159,7 @@ const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, set
   const changeFilterValue = (isMulti, type, value) => {
     setFilters({
       ...filters,
-      [`${type}`]: isMulti ? value.map(v => v) : value,
+      [`${type}`]: isMulti ? value.map(v => v.value) : value.value,
     });
   };
   const removeFilter = (type, value) => {
@@ -206,7 +218,9 @@ const FiltersAnalysys = ({ activeFilters, filters, setFilters, publications, set
             className="-widgets"
             active={activeFilters}
             filters={filters}
-            onClick={removeFilter} />
+            onClick={removeFilter}
+            options={OPTIONS}
+          />
           <ClearFilters
             handleFilters={clearFilters}
             activeFilters={activeFilters}

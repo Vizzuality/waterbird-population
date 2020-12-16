@@ -53,7 +53,6 @@ export const selectPopulationFiltered = createSelector(
     return (
       (dataFiltered ? dataFiltered : populationsData)
         .filter(d => {
-
           const isFamily = _filters.family_id.length
             ? _filters.family_id.includes(d.family.id) : true;
 

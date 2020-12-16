@@ -177,7 +177,7 @@ export const fetchDataToDownload = (dataSpecs) => {
    ${population_id ? `and o.populationid=${population_id}` : ''}`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => console.log(data.rows) || data.rows )
+    .then(({ data }) => data.rows )
 };
 
 export const fetchPopulationsCardData = (dataSpecs) => {

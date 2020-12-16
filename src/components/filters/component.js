@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import Link from 'redux-first-router-link';
 import orderBy from 'lodash/orderBy';
 
@@ -173,10 +172,6 @@ const Filters = ({
   ];
 
   const changeFilterValue = (isMulti, type, value) => {
-    console.log({
-      ...newFiltersValues,
-      [`${type}`]: isMulti ? value.map(v => v.value) : value.value,
-    });
 
     setNewFiltersValues({
       ...newFiltersValues,
