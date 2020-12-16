@@ -6,6 +6,7 @@ import { setPopulations } from 'modules/explore/actions';
 import Component from './component';
 
 const mapStateToProps = state => ({
+  filters: state.population.filters,
   ...selectPopulationDetailProps(state)
 })
 

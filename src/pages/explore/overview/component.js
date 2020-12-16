@@ -3,14 +3,17 @@ import React, { useEffect } from 'react';
 import Search from 'components/search';
 import DataControls from 'components/data-controls';
 import FamilyList from 'components/family-list';
+import UrlComponent from 'components/url';
+import { URL_PROPS } from './url';
 import MapContainer from './map';
 
 // services
 import { fetchPopulations } from 'services/population';
 
+
 import '../styles.scss';
 
-const ExplorePage = ({ setPopulations }) => {
+const ExplorePage = ({ setPopulations, filters }) => {
 
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
@@ -18,6 +21,7 @@ const ExplorePage = ({ setPopulations }) => {
 
   return (
     <div className="l-explore">
+      <UrlComponent urlProps={URL_PROPS} />
       <div className="map-section">
         <div className="wrapper">
           <MapContainer />

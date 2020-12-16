@@ -1,5 +1,6 @@
 import {
   setFilters,
+  setSingleFilter,
   resetFilters,
   setPopulations,
   setPopulationsByLocation,
@@ -15,6 +16,10 @@ export default {
   [setFilters]: (state, { payload }) => ({
     ...state,
     filters: payload
+  }),
+  [setSingleFilter]: (state, { payload }) => ({
+    ...state,
+    filters: { ...state.filters, ...payload }
   }),
   [resetFilters]: (state) => ({
     ...state,

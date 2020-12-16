@@ -53,44 +53,29 @@ export const selectPopulationFiltered = createSelector(
     return (
       (dataFiltered ? dataFiltered : populationsData)
         .filter(d => {
-          const familyIds = _filters.family_id
-            && _filters.family_id.length
-            && _filters.family_id.map(f => f.value);
-          const isFamily = familyIds
-            ? familyIds.includes(d.family.id) : true;
+
+          const isFamily = _filters.family_id.length
+            ? _filters.family_id.includes(d.family.id) : true;
 
           const publications = d.publications.map(p => p.value);
-          const publicationId = _filters.publication_id
-            && _filters.publication_id.length
-            && _filters.publication_id.map(p => p.id);
-          const isPublication = publicationId
-            ? publications.includes(publicationId)
+
+          const isPublication = _filters.publication_id
+            ? publications.includes(_filters.publication_id)
             : true;
 
-          const conservationIds = _filters.framework_id
-            && _filters.framework_id.length
-            && _filters.framework_id.map(f => f.value);
-          const isProtected = conservationIds
-            ? conservationIds.includes(d.conservation[0].id)
-            : true;
-          const flywayIds = _filters.flyway_region_id
-            && _filters.flyway_region_id.length
-            && _filters.flyway_region_id.map(f => f.value);
-          const isFlyway = flywayIds
-            ? flywayIds.includes(d.flyways[0].id)
+          const isProtected = _filters.framework_id.length
+            ? _filters.framework_id.includes(d.conservation[0].id)
             : true;
 
-          const ramsarIds = _filters.ramsar_region_id
-            && _filters.ramsar_region_id.length
-            && _filters.ramsar_region_id.map(f => f.value);
-          const isRamsarRegion = ramsarIds
-            ? ramsarIds.some(r => d[r] === 1) : true;
+          const isFlyway = _filters.flyway_region_id.length
+            ? _filters.flyway_region_id.includes(d.flyways[0].id)
+            : true;
 
-          const redListIds = _filters.red_list_id
-            && _filters.red_list_id.length
-            && _filters.red_list_id.map(f => f.value);
-          const isRedList = redListIds
-            ? redListIds.includes(d.specie.redlistcategory_id) : true;
+          const isRamsarRegion = _filters.ramsar_region_id.length
+            ? _filters.ramsar_region_id.some(r => d[r] === 1) : true;
+
+          const isRedList = _filters.red_list_id.length
+            ? _filters.red_list_id.includes(d.specie.redlistcategory_id) : true;
 
           const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
           return array.every(d => d)
@@ -121,6 +106,7 @@ export const selectPopulationFamilies = createSelector(
   [selectPopulationFiltered],
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
+
 
     return orderBy(uniqBy(_data
       .map(p => {

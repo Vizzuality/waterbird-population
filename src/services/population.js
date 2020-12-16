@@ -48,6 +48,7 @@ export const fetchPopulations = (specieid) => {
     'commonname', specie_commonname,
     'scientificname', specie_scientificname,
     'redlistcategory', redlistcategory_name,
+    'redlistcategory_id', redlistcategory_id,
     'taxonomicorder', specie_taxonomic_order
   )
   as specie,
@@ -176,7 +177,7 @@ export const fetchDataToDownload = (dataSpecs) => {
    ${population_id ? `and o.populationid=${population_id}` : ''}`;
 
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => data.rows )
+    .then(({ data }) => console.log(data.rows) || data.rows )
 };
 
 export const fetchPopulationsCardData = (dataSpecs) => {

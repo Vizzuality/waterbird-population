@@ -82,15 +82,24 @@ const Filters = ({
     return { label: `${d.iucn} (${d.description})`, value: d.id }
   });
 
+  const OPTIONS = {
+    family_id: familyOptions,
+    publication_id: publicationOptions,
+    framework_id: conservationFrameworkOptions,
+    flyway_region_id: flywayOptions,
+    ramsar_region_id: ramsarRegionOptions,
+    red_list_id: redListOptions
+  };
+
   // filters values
-  const selectedFamily = newFiltersValues.family_id;
+  const selectedFamily = familyOptions.filter(o => newFiltersValues.family_id.includes(o.value));
   const selectedPublication = publicationOptions.find(f => newFiltersValues
     && newFiltersValues.publication_id
     && newFiltersValues.publication_id.value === f.value);
-  const selectedFramework = newFiltersValues.framework_id;
-  const selectedFlywayRegion = newFiltersValues.flyway_region_id;
-  const selectedRamsarRegion = newFiltersValues.ramsar_region_id;
-  const selectedRedList = newFiltersValues.red_list_id;
+  const selectedFramework = conservationFrameworkOptions.filter(o => newFiltersValues.framework_id.includes(o.value));
+  const selectedFlywayRegion = flywayOptions.filter(o => newFiltersValues.flyway_region_id.includes(o.value));
+  const selectedRamsarRegion = ramsarRegionOptions.filter(o => newFiltersValues.ramsar_region_id.includes(o.value));
+  const selectedRedList = redListOptions.filter(o => newFiltersValues.red_list_id.includes(o.value));
 
   const filtersInfo = [
     {
@@ -165,10 +174,12 @@ const Filters = ({
   ];
 
   const changeFilterValue = (isMulti, type, value) => {
+    console.log(isMulti, type, value)
     setNewFiltersValues({
       ...newFiltersValues,
-      [`${type}`]: isMulti ? value.map(v => v) : value,
+      [`${type}`]: isMulti ? value.map(v => v.value) : value.value,
     });
+    console.log(newFiltersValues, [`${type}`], isMulti ? value.map(v => v.value) : value.value)
   };
   const removeFilter = (type, value) => {
     const filtersUpdate = {
@@ -202,6 +213,7 @@ const Filters = ({
               components={{
                 MultiValueLabel: ({ data, selectProps, innerProps }) => {
                   const length = selectProps.value.length - 1;
+                  console.log(data, selectProps, innerProps)
                   return data === selectProps.value[0]
                     ? (<div {...innerProps}>
                       <span>
@@ -222,6 +234,7 @@ const Filters = ({
           filters={newFiltersValues}
           onClick={removeFilter}
           active={activeFilters}
+          options={OPTIONS}
         />
         <ClearFilters
           handleUnsetteledFilters={setNewFiltersValues}
