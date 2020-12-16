@@ -16,6 +16,7 @@
     "d3-ease": "^1.0.6",
     "d3-format": "^2.0.0",
     "deck.gl": "7.3.6",
+    "downloadjs": "^1.4.7",
     "fuse.js": "^6.4.1",
     "js-cookie": "^2.2.1",
     "layer-manager": "^3.0.6",
