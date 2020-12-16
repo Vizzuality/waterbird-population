@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import classnames from 'classnames';
+import kebabCase from 'lodash/kebabCase';
 
 // components
 import Icon from 'components/icon';
@@ -46,6 +47,7 @@ const PopulationsList = ({ specieId, populationData }) => {
                     <Download
                       text={'Download data'}
                       type="populations-card"
+                      filename={`population-${kebabCase(d.name)}`}
                       dataSpecs={{
                         populationId: d.populationId,
                         publicationId: d.publication_id,
