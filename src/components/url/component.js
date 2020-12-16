@@ -32,7 +32,7 @@ class UrlComponent extends PureComponent {
   componentDidUpdate(prevProps) {
     const { url } = this.props;
     const { url: prevUrl } = prevProps;
-    console.log(url)
+
     if (url !== prevUrl) replace(url);
   }
 

@@ -5,29 +5,45 @@ import classnames from 'classnames';
 import './styles.scss';
 
 
-const ActiveFilters = ({ filters, active, onClick, className, options }) => {
+const ActiveFilters = ({ filters, active, onClick, className, options = {} }) => {
   return (
     <section className={classnames('c-active-filters', { [className]: className })}>
 
-    {!!active.length && <p>Filtered by:</p>}
+    {!!active.length && (
+      <p>Filtered by:</p>
+    )}
+
     {Object.keys(filters).map(k => {
+      if (!filters[k]) return null;
+
+      if (Array.isArray(filters[k])) {
+        if (!filters[k].length) return null;
+
+        return filters[k].map(f => {
+          const label = options[k].find(o => o.value === f)?.label;
+
+          if (!label) return null;
+
+          return (
+            <span
+              className={classnames({ '-clickable': onClick })}
+              onClick={() => onClick(k, f)}
+            >
+              {options[k].find(o => o.value === f)?.label}
+            </span>
+          )
+        });
+      }
+
       return (
         <span
-          className={classnames({ '-clickable': onClick })}
-          onClick={() => onClick({ [k]: filters[k] })}
+          className={classnames({ '-clickable': onClick && k !== 'publication_id' })}
+          onClick={k !== 'publication_id' ? () => onClick(k, filters[k]): null}
         >
-          {/* {options && options[k].find(o => o.value === filters[k]).label} */}
-          hola
+          {options[k].find(o => o.value === filters[k])?.label}
         </span>
-      )
-    }
-      // filter && Object.values(filter[1]).length && filter[1].label
-      //   ? !filter[1].label.includes('default') && (<span
-      //     className={classnames({ '-clickable': onClick })}
-      //     onClick={() => onClick(filter[0], filter[1])}
-      //   >{filter[1].label}</span>)
-      //   : filter[1].map(f => <span className={classnames({ '-clickable': onClick })} onClick={() => onClick(filter[0], f)}>{f.label}</span>)
-    )}
+      );
+    })}
   </section>
   )
 };

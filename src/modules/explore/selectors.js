@@ -57,7 +57,7 @@ export const selectPopulationFiltered = createSelector(
           const isFamily = _filters.family_id.length
             ? _filters.family_id.includes(d.family.id) : true;
 
-          const publications = d.publications.map(p => p.value);
+          const publications = d.publications.map(p => p.id);
 
           const isPublication = _filters.publication_id
             ? publications.includes(_filters.publication_id)
@@ -78,6 +78,7 @@ export const selectPopulationFiltered = createSelector(
             ? _filters.red_list_id.includes(d.specie.redlistcategory_id) : true;
 
           const array = [isFamily, isProtected, isPublication, isFlyway, isRamsarRegion, isRedList];
+
           return array.every(d => d)
         }
       )
@@ -607,7 +608,15 @@ export const selectPopulationsLayersByLocation = createSelector(
 
 export const selectActiveFilters = createSelector(
   [filters],
-  (_filters) => Object.entries(_filters).filter(f => f[1].length || f[1].label)
+  (_filters) => {
+    return Object.keys(_filters).filter(k => {
+      if (Array.isArray(_filters[k])) {
+        return !!_filters[k].length
+      }
+
+      return !!_filters[k];
+    })
+  }
 );
 
 

@@ -14,7 +14,6 @@ export const getUrlFromParams = createSelector(
     return _urlProps.reduce((acc, current) => {
 
       const value = get(_state, current.redux);
-      console.log(_urlProps, _state, current)
       return {
         ...acc,
         [current.value]: value
