@@ -56,18 +56,16 @@ export const selectPopulationFiltered = createSelector(
           const isFamily = _filters.family_id.length
             ? _filters.family_id.includes(d.family.id) : true;
 
-          const publications = d.publications.map(p => p.id);
-
           const isPublication = _filters.publication_id
-            ? publications.includes(_filters.publication_id)
+            ? d.publications.some(f => f.id === _filters.publication_id)
             : true;
 
           const isProtected = _filters.framework_id.length
-            ? _filters.framework_id.includes(d.conservation[0].id)
+            ? d.conservation.some(c => _filters.framework_id.includes(c.id))
             : true;
 
           const isFlyway = _filters.flyway_region_id.length
-            ? _filters.flyway_region_id.includes(d.flyways[0].id)
+            ? d.flyways.some(c => _filters.flyway_region_id.includes(c.id))
             : true;
 
           const isRamsarRegion = _filters.ramsar_region_id.length
@@ -152,7 +150,7 @@ export const selectPopulationsData = createSelector(
       const orderedPublicationsSizes = orderBy(
         d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
-      const publication = d.publications.find(p => _publicationSelected.value ? p.id === _publicationSelected.value : p.id === orderedPublicationsSizes[0].publication_id);
+      const publication = d.publications.find(p => _publicationSelected ? p.id === _publicationSelected : p.id === orderedPublicationsSizes[0].publication_id);
       const size = publication ? d.sizes.find(s => s.publication_id === publication.id) : [];
       const trend = publication ? d.trends.find(s => s.publication_id === publication.id) : [];
       const percentLevel = publication ? d.populationonepercentlevel.find(s => s.publication_id === publication.id) : [];
