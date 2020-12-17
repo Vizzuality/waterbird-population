@@ -140,7 +140,7 @@ export const selectPopulationSpecies = createSelector(
 );
 
 export const selectPopulationsData = createSelector(
-  [data, specieId, user, publicationSelected],
+  [selectPopulationFiltered, specieId, user, publicationSelected],
   (_data, _specieId, _user, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);

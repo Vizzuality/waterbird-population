@@ -11,7 +11,7 @@ export const data = (state) => state ?.analysis.populations.data;
 export const trends = (state) => state ?.analysis.trends.data;
 export const categories = (state) => state ?.analysis.trend_categories.data;
 export const publications = (state) => state ?.population.publications;
-export const publicationSelected = (state) => state ?.analysis.filters.publication_id;
+export const publicationSelected = (state) => state ?.population.filters.publication_id;
 export const filters = (state) => state ?.population.filters;
 
 
@@ -45,8 +45,8 @@ export const selectFilteredData = createSelector(
       const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc']);
 
       const publication = d.publications.find(
-        p => _publicationSelected.value
-          ? p.id === _publicationSelected.value
+        p => _publicationSelected
+          ? p.id === _publicationSelected
           : p.id === (orderedPublicationsSizes[0].publication_id));
 
       const selectedOnePercentLevel = publication ? d.populationonepercentlevel.filter(s => s.publication_id === publication.id) : [];
@@ -64,6 +64,7 @@ export const selectFilteredData = createSelector(
     })
 
     return publicationData.filter(d => {
+
       const isFamily = _filters.family_id.length
         ? _filters.family_id.includes(d.family.id) : true;
 
@@ -80,6 +81,10 @@ export const selectFilteredData = createSelector(
 
       const isRedList = _filters.red_list_id.length
         ? _filters.red_list_id.includes(d.specie.redlistcategory_id) : true;
+
+        // const isPublication = _filters.publication_id
+        // ? publications.includes(_filters.publication_id)
+        // : true;
 
       const array = [isFamily, isProtected, isFlyway, isRamsarRegion, isRedList];
       return array.every(d => d)

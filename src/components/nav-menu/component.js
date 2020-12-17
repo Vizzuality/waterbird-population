@@ -8,7 +8,7 @@ import { menuItems } from './constants';
 
 import './styles.scss';
 
-const NavMenu = ({ className, current }) => {
+const NavMenu = ({ className, current, query }) => {
 
   const [active, setMenu] = useState(false);
 
@@ -38,7 +38,7 @@ const NavMenu = ({ className, current }) => {
           item => (!item.dropdown && !item.component)
             ? <div key={item.name} className="nav-menu-item">
               <Link
-                to={{ type: `${item.type}`, pathname: `${item.path}` }}
+                to={{ type: `${item.type}`, pathname: `${item.path}`, query: query }}
                 onClick={handleClick}
               >
                 <h3 className={classnames({ '-active': current === item.type })}>
@@ -50,7 +50,8 @@ const NavMenu = ({ className, current }) => {
                 <Link to={{
                   type: `${item.type}`,
                   pathname: `${item.path}`,
-                  payload: { id: `${item.dropdown.options[0].id}` }
+                  payload: { id: `${item.dropdown.options[0].id}` },
+                  query: query
                 }}
                   onClick={handleClick}
                 >
@@ -64,7 +65,8 @@ const NavMenu = ({ className, current }) => {
                       <Link to={{
                         type: `${item.type}`,
                         pathname: `${item.path}`,
-                        payload: { id: `${opt.id}` }
+                        payload: { id: `${opt.id}` },
+                        query: query
                       }}
                         onClick={handleClick}
                       >
@@ -84,7 +86,12 @@ const NavMenu = ({ className, current }) => {
 
 NavMenu.propTypes = {
   className: PropTypes.string.isRequired,
-  current: PropTypes.string.isRequired
+  current: PropTypes.string.isRequired,
+  query: PropTypes.shape({})
+};
+
+NavMenu.propTypes = {
+  query: {}
 };
 
 export default NavMenu;
