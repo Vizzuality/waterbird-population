@@ -6,13 +6,13 @@ import uniqBy from 'lodash/uniqBy';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { regions } from 'modules/explore/constants';
 
-export const specie_id = (state) => state?.router?.payload?.specie_id;
-export const data = (state) => state?.analysis.populations.data;
-export const trends = (state) => state?.analysis.trends.data;
-export const categories = (state) => state?.analysis.trend_categories.data;
-export const publications = (state) => state?.population.publications;
-export const publicationSelected = (state) => state?.analysis.filters.publication_id;
-export const filters = (state) => state?.population.filters;
+export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
+export const data = (state) => state ?.analysis.populations.data;
+export const trends = (state) => state ?.analysis.trends.data;
+export const categories = (state) => state ?.analysis.trend_categories.data;
+export const publications = (state) => state ?.population.publications;
+export const publicationSelected = (state) => state ?.population.filters.publication_id;
+export const filters = (state) => state ?.population.filters;
 
 
 export const selectFilteredData = createSelector(
@@ -45,8 +45,8 @@ export const selectFilteredData = createSelector(
       const orderedPublicationsSizes = orderBy(d.sizes, ['endyear', 'publication_id'], ['desc', 'desc']);
 
       const publication = d.publications.find(
-        p => _publicationSelected.value
-          ? p.id === _publicationSelected.value
+        p => _publicationSelected
+          ? p.id === _publicationSelected
           : p.id === (orderedPublicationsSizes[0].publication_id));
 
       const selectedOnePercentLevel = publication ? d.populationonepercentlevel.filter(s => s.publication_id === publication.id) : [];
@@ -64,36 +64,27 @@ export const selectFilteredData = createSelector(
     })
 
     return publicationData.filter(d => {
-      const familyIds = _filters.family_id
-        && _filters.family_id.length
-        && _filters.family_id.map(f => f.value);
-      const isFamily = familyIds
-        ? familyIds.includes(d.family.id) : true;
 
-      const conservationIds = _filters.framework_id
-        && _filters.framework_id.length
-        && _filters.framework_id.map(f => f.value);
-      const isProtected = conservationIds
-        ? conservationIds.includes(d.conservation[0].id)
-        : true;
-      const flywayIds = _filters.flyway_region_id
-        && _filters.flyway_region_id.length
-        && _filters.flyway_region_id.map(f => f.value);
-      const isFlyway = flywayIds
-        ? flywayIds.includes(d.flyways[0].id)
+      const isFamily = _filters.family_id.length
+        ? _filters.family_id.includes(d.family.id) : true;
+
+      const isProtected = _filters.framework_id.length
+        ? _filters.framework_id.includes(d.conservation[0].id)
         : true;
 
-      const ramsarIds = _filters.ramsar_region_id
-        && _filters.ramsar_region_id.length
-        && _filters.ramsar_region_id.map(f => f.value);
-      const isRamsarRegion = ramsarIds
-        ? ramsarIds.some(r => d[r] === 1) : true;
+      const isFlyway = _filters.flyway_region_id.length
+        ? _filters.flyway_region_id.includes(d.flyways[0].id)
+        : true;
 
-      const redListIds = _filters.red_list_id
-        && _filters.red_list_id.length
-        && _filters.red_list_id.map(f => f.value);
-      const isRedList = redListIds
-        ? redListIds.includes(d.specie.redlistcategory_id) : true;
+      const isRamsarRegion = _filters.ramsar_region_id.length
+        ? _filters.ramsar_region_id.some(r => d[r] === 1) : true;
+
+      const isRedList = _filters.red_list_id.length
+        ? _filters.red_list_id.includes(d.specie.redlistcategory_id) : true;
+
+        // const isPublication = _filters.publication_id
+        // ? publications.includes(_filters.publication_id)
+        // : true;
 
       const array = [isFamily, isProtected, isFlyway, isRamsarRegion, isRedList];
       return array.every(d => d)

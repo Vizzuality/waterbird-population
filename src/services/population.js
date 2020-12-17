@@ -48,6 +48,7 @@ export const fetchPopulations = (specieid) => {
     'commonname', specie_commonname,
     'scientificname', specie_scientificname,
     'redlistcategory', redlistcategory_name,
+    'redlistcategory_id', redlistcategory_id,
     'taxonomicorder', specie_taxonomic_order
   )
   as specie,
