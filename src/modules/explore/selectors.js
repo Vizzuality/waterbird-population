@@ -152,7 +152,8 @@ export const selectPopulationsData = createSelector(
       const orderedPublicationsSizes = orderBy(
         d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
-      const publication = d.publications.find(p => _publicationSelected.value ? p.id === _publicationSelected.value : p.id === orderedPublicationsSizes[0].publication_id);
+
+      const publication = d.publications.find(p => _publicationSelected && _publicationSelected.value ? p.id === _publicationSelected.value : p.id === orderedPublicationsSizes[0].publication_id);
       const size = publication ? d.sizes.find(s => s.publication_id === publication.id) : [];
       const trend = publication ? d.trends.find(s => s.publication_id === publication.id) : [];
       const percentLevel = publication ? d.populationonepercentlevel.find(s => s.publication_id === publication.id) : [];
