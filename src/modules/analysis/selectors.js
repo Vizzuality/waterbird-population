@@ -69,11 +69,11 @@ export const selectFilteredData = createSelector(
         ? _filters.family_id.includes(d.family.id) : true;
 
       const isProtected = _filters.framework_id.length
-        ? _filters.framework_id.includes(d.conservation[0].id)
+        ? d.conservation.some(c => _filters.framework_id.includes(c.id))
         : true;
 
       const isFlyway = _filters.flyway_region_id.length
-        ? _filters.flyway_region_id.includes(d.flyways[0].id)
+        ? d.flyways.some(c => _filters.flyway_region_id.includes(c.id))
         : true;
 
       const isRamsarRegion = _filters.ramsar_region_id.length
@@ -82,11 +82,11 @@ export const selectFilteredData = createSelector(
       const isRedList = _filters.red_list_id.length
         ? _filters.red_list_id.includes(d.specie.redlistcategory_id) : true;
 
-        // const isPublication = _filters.publication_id
-        // ? publications.includes(_filters.publication_id)
-        // : true;
+      const isPublication = _filters.publication_id
+        ? d.publications.some(f => f.id === _filters.publication_id)
+        : true;
 
-      const array = [isFamily, isProtected, isFlyway, isRamsarRegion, isRedList];
+      const array = [isFamily, isProtected, isFlyway, isRamsarRegion, isRedList, isPublication];
       return array.every(d => d)
     }
     )
@@ -259,6 +259,8 @@ export const selectGeneralData = createSelector(
   (_familyTrends, _familyPopulations, _regionTrendsChart) => {
 
     return _familyTrends.map(f => {
+
+      console.log(f);
 
       const total_populations = _familyPopulations.find(p => p.id === f.id).total_populations;
 

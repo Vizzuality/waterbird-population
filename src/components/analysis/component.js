@@ -24,15 +24,15 @@ const Analysis = ({
 }) => {
 
   useEffect(() => {
-    fetchPopulations().then(data => {
-      setPopulations(data);
-    });
-    fetchTrends().then(data => {
-      setTrends(data);
-    });
-    fetchTrendCategories().then(data => {
-      setTrendCategories(data)
-    });
+    Promise.all([
+      fetchPopulations(),
+      fetchTrends(),
+      fetchTrendCategories()
+    ]).then((data) => {
+      setTrendCategories(data[2]);
+      setTrends(data[1]);
+      setPopulations(data[0]);
+    })
   }, [])
 
   return (

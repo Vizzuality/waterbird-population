@@ -136,10 +136,10 @@ export const fetchTrends = () => {
   //   id,
   //   name`;
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-  .then(({ data, status }) => { return { data: data.rows, status }})
-  .catch((e) => {
-    console.log(e, 'error')
-  });
+    .then(({ data, status }) => { return { data: data.rows, status }})
+    .catch((e) => {
+      console.log(e, 'error')
+    });
 };
 
 export const fetchTrendCategories = () => {
