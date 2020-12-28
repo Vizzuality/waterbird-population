@@ -6,13 +6,13 @@ import uniqBy from 'lodash/uniqBy';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { regions } from 'modules/explore/constants';
 
-export const specie_id = (state) => state ?.router ?.payload ?.specie_id;
-export const data = (state) => state ?.analysis.populations.data;
-export const trends = (state) => state ?.analysis.trends.data;
-export const categories = (state) => state ?.analysis.trend_categories.data;
-export const publications = (state) => state ?.population.publications;
-export const publicationSelected = (state) => state ?.population.filters.publication_id;
-export const filters = (state) => state ?.population.filters;
+export const specie_id = (state) => state?.router?.payload?.specie_id;
+export const data = (state) => state?.analysis.populations.data;
+export const trends = (state) => state?.analysis.trends.data;
+export const categories = (state) => state?.analysis.trend_categories.data;
+export const publications = (state) => state?.population.publications;
+export const publicationSelected = (state) => state?.population.filters.publication_id;
+export const filters = (state) => state?.population.filters;
 
 
 export const selectFilteredData = createSelector(
@@ -259,8 +259,6 @@ export const selectGeneralData = createSelector(
   (_familyTrends, _familyPopulations, _regionTrendsChart) => {
 
     return _familyTrends.map(f => {
-
-      console.log(f);
 
       const total_populations = _familyPopulations.find(p => p.id === f.id).total_populations;
 

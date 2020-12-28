@@ -38,7 +38,7 @@ const TrendsInfo = [
     ),
   },
   {
-    title: 'References for population trens.',
+    title: 'References for population trends.',
     description: (
       <div>
         <p>In cases where numerous sources have been used to calculate the trend, all sources are given, and explanation is provided in the Notes.</p>

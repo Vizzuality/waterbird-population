@@ -46,6 +46,7 @@ export const fetchPopulations = (specieid) => {
   jsonb_build_object(
     'id', specie_id,
     'commonname', specie_commonname,
+    'specid', specid,
     'scientificname', specie_scientificname,
     'redlistcategory', redlistcategory_name,
     'redlistcategory_id', redlistcategory_id,
@@ -117,6 +118,7 @@ export const fetchPopulations = (specieid) => {
   northamerica,
   oceania,
   note,
+  specid,
   species_id,
   specie_id,
   active,

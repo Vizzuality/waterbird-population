@@ -8,6 +8,7 @@ import * as map from 'modules/map';
 import * as population from 'modules/explore';
 import * as user from 'modules/user';
 import * as analysis from 'modules/analysis';
+import * as references from 'modules/references';
 
 const {
   initialDispatch,
@@ -22,6 +23,7 @@ const reducers = combineReducers({
   population: handleModule(population),
   user: handleModule(user),
   analysis: handleModule(analysis),
+  references: handleModule(references)
 });
 
 const middleware = applyMiddleware(routerMiddleware);

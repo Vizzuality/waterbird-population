@@ -6,6 +6,7 @@ import { fetchImages } from 'services/species';
 
 // components
 import Button from 'components/button';
+import Icon from 'components/icon';
 import PopulationsList from 'components/populations-list';
 
 import './styles.scss';
@@ -17,6 +18,7 @@ const SpeciesListItem = ({ specie }) => {
     redlistcategory,
     scientificname,
     color,
+    specid
   } = specie;
 
   const [image, setImage] = useState('');
@@ -32,13 +34,21 @@ const SpeciesListItem = ({ specie }) => {
 
   return (
     <section className="c-data-results">
-      <div onClick={handleClick} className="results-title">
-        <h2>
-          <span>Species:</span>
-          <span className="name -specific">{commonname}</span>
-          <span className="name -scientific">({scientificname})</span>
-          <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
-        </h2>
+      <div className="results-content">
+        <div className="results-title">
+          <h2 onClick={handleClick} >
+            <span>Species:</span>
+            <span className="name -specific">{commonname}</span>
+            <span className="name -scientific">({scientificname})</span>
+            <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
+          </h2>
+
+          <a href={`http://datazone.birdlife.org/species/factsheet/${specid}`}>
+            <Icon name="launch" className="-big" />
+          </a>
+        </div>
+
+
         <Button
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           className={classnames('-border -secondary',
@@ -64,6 +74,6 @@ const SpeciesListItem = ({ specie }) => {
 
 SpeciesListItem.propTypes = {
   specie: PropTypes.shape({}).isRequired
-}
+};
 
 export default SpeciesListItem;

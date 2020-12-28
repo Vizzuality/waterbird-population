@@ -8,9 +8,12 @@ import {
   fetchPopulationsCardData
 } from 'services/population';
 
+import { fetchReferencesToDownload } from 'services/references';
+
 import Image from './download.svg';
 import './styles.scss';
 import download from 'downloadjs';
+
 
 const Download = ({ type, dataSpecs, filename, text, className, imageSize }) => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +22,8 @@ const Download = ({ type, dataSpecs, filename, text, className, imageSize }) => 
     const fetchFunction = {
       overview: fetchDataToDownload,
       'explore-detail': fetchDataToDownload,
-      'populations-card': fetchPopulationsCardData
+      'populations-card': fetchPopulationsCardData,
+      'references': fetchReferencesToDownload
     }[type] || (() => {});
     const data = await fetchFunction(dataSpecs);
     if (data) {

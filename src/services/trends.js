@@ -93,48 +93,6 @@ export const fetchTrends = () => {
     family_name,
     familyorder_name`;
 
-
-  // const q = `with population_data as (SELECT
-  //   jsonb_agg((select row_to_json(_)
-  //     from (select s.*, p.*) as _)::jsonb) as population,
-
-  //   f.name,
-  //   f.id,
-  //   s.id as species_id,
-  //   p.familyname_id as family_name_id,
-  //   p.species_id as species_id,
-  //   p.populationname as population_name,
-  //   p.id as population_id,
-  //   pt.id as trend_id,
-  //   pt.trendcode as trend_code,
-  //   pt.trendsum as trend_state
-
-  // FROM family f
-  // LEFT JOIN species_1 s ON s.familyname_id = f.id
-  // LEFT JOIN populationname p ON f.id = s.familyname_id
-  // LEFT JOIN populationtrend pt ON pt.population_id = p.id
-  // LEFT JOIN trend t ON t.id = pt.trend_id)
-
-  // select
-  //   id,
-  //   name,
-  //   jsonb_build_object(
-  //     'id', species_id,
-  //     'name', family_name,
-  //     'ordername', familyorder_name
-  //   )
-  //   as species,
-  //   jsonb_agg(distinct jsonb_build_object(
-  //     'id', population_trend_id,
-  //     'name', trend_code,
-  //     'state', trend_sum
-  //   ))
-  //   as trends
-
-  //   from population_data
-  //   group by
-  //   id,
-  //   name`;
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
     .then(({ data, status }) => { return { data: data.rows, status }})
     .catch((e) => {

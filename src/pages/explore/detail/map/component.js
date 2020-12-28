@@ -24,7 +24,7 @@ export const MapContainer = ({
   setRouter,
   basemap
 }) => {
-  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 20, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
