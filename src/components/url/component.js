@@ -17,11 +17,11 @@ class UrlComponent extends PureComponent {
     urlProps.forEach(r => {
       const action = this.props[r.action];
       const payload = paramsFromUrl[r.value];
-
+      const parseData = Array.isArray(payload) ? payload.map(p => parseInt(p)) : parseInt(payload);
 
       // Dispatch action
       if (r.key) {
-        action({ [r.key]: payload });
+        action({ [r.key]: parseData });
       }
       else {
         action(payload)
