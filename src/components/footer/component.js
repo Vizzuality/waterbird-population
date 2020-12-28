@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavMenu from 'components/nav-menu';
 import Register from 'components/register';
-import Image from './images/logo_EAD.png';
+import Image from './images/logo_EAAD.png';
 
 import './styles.scss';
 
