@@ -21,6 +21,7 @@ export const user = (state) => state?.user;
 export const search = (state) => state?.population.search;
 export const lonLat = (state) => state?.map.lonLat;
 export const populations_by_location = (state) => state?.population.populationsByLocation.data;
+export const basemap = (state) => state?.map.selectedBasemap;
 
 export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
@@ -472,8 +473,8 @@ export const selectPopulationNotes = createSelector(
 );
 
 export const selectPopulationLayers = createSelector(
-  [specie_id, population_id],
-  (_specie_id, _population_id) => {
+  [specie_id, population_id, basemap],
+  (_specie_id, _population_id, _basemap) => {
     return [
       // GEOJSON DATA LAYER
       {
@@ -495,8 +496,8 @@ export const selectPopulationLayers = createSelector(
               type: "fill",
               //  "source-layer": "layer0",
               paint: {
-                'fill-color': '#FFBB00',
-                'fill-opacity': 0.25
+                'fill-color': _basemap === 'satellite' ? 'FCC501' : '#FFBB00',
+                'fill-opacity': _basemap === 'satellite' ? 0.35 : 0.25
               }
             },
             {
@@ -508,8 +509,9 @@ export const selectPopulationLayers = createSelector(
               //  "source-layer": "layer0",
               paint: {
                 "line-color": "#000000",
-                "line-opacity": 0.5,
-                "line-dasharray": [1, 2]
+                "line-width": _basemap === 'satellite' ? 1.25 : 1,
+                "line-opacity": _basemap === 'satellite' ? 0.6 : 0.5,
+                "line-dasharray": _basemap === 'satellite' ? [3, 1] : [1,2]
               }
             },
             {
@@ -526,7 +528,7 @@ export const selectPopulationLayers = createSelector(
                   '#FFBB00',
                   '#000'
                 ],
-                'fill-opacity': 0.05
+                'fill-opacity': 0.15
               }
             },
             {
@@ -538,8 +540,9 @@ export const selectPopulationLayers = createSelector(
               //  "source-layer": "layer0",
               paint: {
                 "line-color": "#000000",
-                "line-opacity": 0.5,
-                "line-dasharray": [1, 2]
+                "line-width": _basemap === 'satellite' ? 1.25 : 1,
+                "line-opacity": _basemap === 'satellite' ? 0.6 : 0.5,
+                "line-dasharray": _basemap === 'satellite' ? [3, 1] : [1,2]
               }
             }
           ]
