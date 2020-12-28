@@ -31,7 +31,6 @@ export const selectPopulationFiltered = createSelector(
     if (!_data || isEmpty(_data)) return [];
 
     const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
-
     const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.population_id));
     const populationsData = _populations_by_location.length ? populationsByLocation : _data;
 
@@ -50,7 +49,7 @@ export const selectPopulationFiltered = createSelector(
       .search(_search)
       .map(d => d.item)
 
-    return (
+      return (
       (dataFiltered ? dataFiltered : populationsData)
         .filter(d => {
           const isFamily = _filters.family_id.length
@@ -130,6 +129,7 @@ export const selectPopulationSpecies = createSelector(
         ...p.specie,
         scientificname: trim(p.specie.scientificname),
         commonname: trim(p.specie.commonname),
+        factsheetref: p.specie.specid,
         redlistcategory: p.specie.redlistcategory,
         color: tag.color
       }
@@ -151,7 +151,7 @@ export const selectPopulationsData = createSelector(
         d.sizes.filter(s => s.publication_id !== draftId[0]),
         ['endyear', 'publication_id'], ['desc', 'desc']);
 
-      const publication = d.publications.find(p => _publicationSelected && _publicationSelected.value ? p.id === _publicationSelected.value : p.id === orderedPublicationsSizes[0].publication_id);
+      const publication = d.publications.find(p => _publicationSelected ? p.id === _publicationSelected : p.id === orderedPublicationsSizes[0].publication_id);
 
       const size = publication ? d.sizes.find(s => s.publication_id === publication.id) : [];
       const trend = publication ? d.trends.find(s => s.publication_id === publication.id) : [];

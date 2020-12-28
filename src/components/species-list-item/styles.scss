@@ -2,59 +2,74 @@
 
 .c-data-results {
 
-  .results-title {
+  .results-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
 
-    h1 {
-      font-size: 24px;
-      line-height: 29px;
-    }
+    .results-title {
+      display: flex;
+      align-items: flex-end;
+      padding: 20px 0;
 
-    h2 {
-      font-size: 18px;
-      line-height: 21px;
+      h1 {
+        font-size: 24px;
+        line-height: 29px;
+      }
 
-      span {
-        &.name {
-          color: $color-2;
+      h2 {
+        font-size: 18px;
+        line-height: 21px;
 
-          &.-scientific {
-            font-weight: bold;
-            font-style: italic;
-          }
+        span {
+          &.name {
+            color: $color-2;
 
-          &.-specific {
-            font-style: normal;
+            &.-scientific {
+              font-weight: bold;
+              font-style: italic;
+            }
+
+            &.-specific {
+              font-style: normal;
+            }
           }
         }
       }
-    }
 
-    span {
-      padding-right: 15px;
+      span {
+        padding-right: 15px;
 
-      &.tag {
-        display:inline-block;
-        border-radius: 4px;
-        padding: 5px 10px 5px 25px;
-        color: $white;
-        font-size: 10px;
-        line-height: 11px;
-        position: relative;
+        &.tag {
+          display:inline-block;
+          border-radius: 4px;
+          padding: 5px 10px 5px 25px;
+          color: $white;
+          font-size: 10px;
+          line-height: 11px;
+          position: relative;
 
-        &:before {
-          content: '';
-          position: absolute;
-          border-radius: 50%;
-          top: 50%;
-          left: 10px;
-          transform: translateY(-50%);
-          height: 6px;
-          width: 6px;
-          background-color: $white;
+          &:before {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            height: 6px;
+            width: 6px;
+            background-color: $white;
+          }
+        }
+      }
+
+      a {
+        display: flex;
+        justify-content: flex-end;
+        padding-left: 20px;
+
+        svg {
+          fill: $color-grey-4;
         }
       }
     }

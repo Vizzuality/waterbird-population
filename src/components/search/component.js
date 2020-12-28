@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'components/button';
 import Icon from 'components/icon';
 import Modal from 'components/modal';
 import Filters from 'components/filters';

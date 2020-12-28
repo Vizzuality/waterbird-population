@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TabInfo from 'pages/static-tabs';
+import References from 'pages/downloads/references';
 
 import Analysis from 'components/analysis';
 import SpeciesPopulationInfo from 'pages/data/constants/s&p.js';
@@ -15,6 +16,7 @@ import FSInfo from 'pages/credits/constants/fs.js';
 import ECInfo from 'pages/credits/constants/ec.js';
 import AboutInfo from 'pages/about/constants/info.js';
 import ContactInfo from 'pages/about/constants/contact.js';
+import DownloadsInfo from 'pages/downloads/constants/downloads.js';
 import TermsInfo from 'pages/about/constants/terms.js';
 import FAQInfo from 'pages/about/constants/faqs.js';
 
@@ -122,6 +124,23 @@ const PagesInfo = {
       {
         id: 'faqs',
         content: <TabInfo info={FAQInfo} />
+      }
+    ]
+  },
+  DOWNLOADS: {
+    title: 'Downloads',
+    tabs: [
+      { name: 'Downloads', id: 'downloads' },
+      { name: 'References', id: 'references' }
+    ],
+    info: [
+      {
+        id: 'downloads',
+        content: <TabInfo info={DownloadsInfo} />
+      },
+      {
+        id: 'references',
+        content: <References />
       }
     ]
   }

@@ -16,7 +16,7 @@ import './styles.scss';
 
 const DEFAULT_VIEWPORT = {
   zoom: 2,
-  latitude: 0,
+  latitude: 20,
   longitude: 0
 };
 

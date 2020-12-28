@@ -57,7 +57,7 @@ export const menuItems = [
     dropdown: {
       options: [
         { name: 'Info', id: 'info' },
-        { name: 'Contact', id: 'contact' },
+        { name: 'Contact us', id: 'contact' },
         { name: 'Terms of use', id: 'terms' },
         { name: 'Frequently Asked Questions', id: 'faqs' }
       ],
@@ -65,5 +65,17 @@ export const menuItems = [
     component: false,
     path: '/about',
     type: 'ABOUT',
+  },
+  {
+    name: 'Downloads',
+    dropdown: {
+      options: [
+        { name: 'Downloads', id: 'downloads' },
+        { name: 'References', id: 'references' }
+      ],
+    },
+    component: false,
+    path: '/downloads',
+    type: 'DOWNLOADS',
   }
 ];

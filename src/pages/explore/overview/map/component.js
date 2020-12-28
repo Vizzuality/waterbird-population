@@ -7,8 +7,6 @@ import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
 import { Popup } from 'react-map-gl'
 
-import { getParams } from 'utils/layers';
-
 import { fetchPopulationsByLocation } from 'services/population';
 
 // Components
@@ -29,7 +27,7 @@ export const MapContainer = ({
   scrollZoom = false,
   basemap
 }) => {
-  const [viewport, setViewport] = useState({ zoom: 1, latitude: 0, longitude: 0 });
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 20, longitude: 0 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
@@ -156,7 +154,7 @@ MapContainer.defaultProps = {
     width: window.innerWidth,
     height: window.innerHeight,
     longitude: 0,
-    latitude: 0,
+    latitude: 20,
     zoom: 2,
     maxZoom: 16,
     bearing: 0,

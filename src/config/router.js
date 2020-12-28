@@ -42,6 +42,10 @@ export const routes = {
     page: 'about',
     path: '/about/:id'
   },
+  DOWNLOADS: {
+    page: 'downloads',
+    path: '/downloads/:id'
+  },
   MAP: {
     page: 'map',
     path: '/map'

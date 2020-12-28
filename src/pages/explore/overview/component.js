@@ -13,7 +13,7 @@ import { fetchPopulations } from 'services/population';
 
 import '../styles.scss';
 
-const ExplorePage = ({ setPopulations, filters }) => {
+const ExplorePage = ({ setPopulations }) => {
 
   useEffect(() => {
     fetchPopulations().then((data) => setPopulations(data));
