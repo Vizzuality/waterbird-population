@@ -21,6 +21,8 @@ import Legend from 'components/map/legend';
 export const MapContainer = ({
   coordinates,
   populationsLayersByLocation,
+  loadingLocation,
+  dataLocation,
   populationsNumber,
   setPopulationsByLocation,
   setLocation,
@@ -123,12 +125,11 @@ export const MapContainer = ({
                 longitude={coordinates[0]}
                 closeButton={false}
               >
-                {populationsNumber && populationsNumber.length === 1
-                  ? `Population name: ${populationsNumber[0].name.toUpperCase()}`
-                  : `There are ${populationsNumber.length} populations flying through this point`}
+                {populationsNumber && populationsNumber.length === 1 && `Population name: ${populationsNumber[0].name.toUpperCase()}`}
+                {!loadingLocation && !!dataLocation.length && `There are ${populationsNumber.length} populations flying through this point`}
+                {!loadingLocation && !dataLocation.length && "There are 0 populations flying through this point"}
               </Popup>
             )}
-
           </Fragment>
         }
       </Map>

@@ -142,6 +142,7 @@ export const selectPopulationsData = createSelector(
   [selectPopulationFiltered, specieId, user, publicationSelected],
   (_data, _specieId, _user, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
+
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
     return orderBy(populationsBySpecie.map(d => {
       const draftId = d.publications
