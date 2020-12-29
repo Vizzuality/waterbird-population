@@ -277,7 +277,7 @@ export const selectPopulationInfoData = createSelector(
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
     return [
       [{ head: 'Order name', value: trim(population.family.ordername) || '-' }, { head: 'Order family', value: trim(population.family.name) || '-' }],
-      [{ head: 'Name', value: trim(population.specie.commonname) || '-', aside: `(${trim(population.specie.scientificname)})` || '-'  }, { head: 'Global Red List', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
+      [{ head: 'Common / Sci. name', value: trim(population.specie.commonname) || '-', aside: `(${trim(population.specie.scientificname)})` || '-'  }, { head: 'Global Red List', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [{ head: 'Breeding range', value: trim(population.breedingrange) || '-' }, { head: 'Non-breeding name', value: trim(population.nonbreedingrange) || '-' }],
       [{ head: 'Ramsar regions', value: ramsar.map(r => r.name).join(',') }],
