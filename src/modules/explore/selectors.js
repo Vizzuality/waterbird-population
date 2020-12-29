@@ -105,15 +105,16 @@ export const selectPopulationFamilies = createSelector(
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
-
     return orderBy(uniqBy(_data
       .map(p => {
+
         return {
           ...p.family,
           name: trim(p.family.name),
-          ordername: trim(p.family.ordername)
+          ordername: trim(p.family.ordername),
+          disposition: p.family.disposition
         }
-      }), 'id'), 'name')
+      }), 'id'), ['disposition', 'name'])
   }
 );
 
@@ -142,6 +143,7 @@ export const selectPopulationsData = createSelector(
   [selectPopulationFiltered, specieId, user, publicationSelected],
   (_data, _specieId, _user, _publicationSelected) => {
     if (!_data || isEmpty(_data)) return [];
+
     const populationsBySpecie = _data.filter(d => d.specie.id === _specieId);
     return orderBy(populationsBySpecie.map(d => {
       const draftId = d.publications
@@ -275,7 +277,7 @@ export const selectPopulationInfoData = createSelector(
     const tag = tags.find(t => t.description === trim(population.specie.redlistcategory));
     return [
       [{ head: 'Order name', value: trim(population.family.ordername) || '-' }, { head: 'Order family', value: trim(population.family.name) || '-' }],
-      [{ head: 'Name', value: trim(population.specie.commonname) || '-', aside: `(${trim(population.specie.scientificname)})` || '-'  }, { head: 'Global Red List', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
+      [{ head: 'Common / Sci. name', value: trim(population.specie.commonname) || '-', aside: `(${trim(population.specie.scientificname)})` || '-'  }, { head: 'Global Red List', value: trim(population.specie.redlistcategory), className: "-tag", color: tag.color, border: tag.border && tag.border }],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [{ head: 'Breeding range', value: trim(population.breedingrange) || '-' }, { head: 'Non-breeding name', value: trim(population.nonbreedingrange) || '-' }],
       [{ head: 'Ramsar regions', value: ramsar.map(r => r.name).join(',') }],

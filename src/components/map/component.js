@@ -15,9 +15,9 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.scss';
 
 const DEFAULT_VIEWPORT = {
-  zoom: 2,
-  latitude: 20,
-  longitude: 0
+  zoom: 1,
+  latitude: 40,
+  longitude: 10
 };
 
 class Map extends Component {

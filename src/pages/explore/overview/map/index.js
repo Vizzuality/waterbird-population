@@ -12,6 +12,8 @@ const mapStateToProps = state => ({
   router: state.router,
   coordinates: state.map.lonLat,
   isOpen: state.map.popUp,
+  loadingLocation: state.population.populationsByLocation.loading,
+  dataLocation: state.population.populationsByLocation.data,
   ...selectMapProps(state),
   ...selectPopulationDetailProps(state),
   ...selectPopulationProps(state)

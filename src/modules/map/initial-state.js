@@ -8,7 +8,7 @@ export default {
     {
       id: 'satellite',
       name: 'Satellite',
-      url: `mapbox://styles/wetlands/ck9x3us8v12121iph9ravzb5u`
+      url: `mapbox://styles/wetlands/ckck92nu94rr41io0so2o2xui`
     }
   ],
   selectedBasemap: 'light',

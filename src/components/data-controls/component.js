@@ -101,7 +101,7 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
           filename={'populations'}
           className="-dashed"
         />
-        {page !== 'ANALYZE' && (
+        {page !== 'ANALYZE' && page !== 'EXPLORE_DETAIL' && (
           <>
             <ActiveFilters
               filters={filters}
