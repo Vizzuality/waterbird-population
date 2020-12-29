@@ -40,7 +40,8 @@ export const fetchPopulations = (specieid) => {
   jsonb_build_object(
     'id', family_id,
     'name', family_name,
-    'ordername', familyorder_name
+    'ordername', familyorder_name,
+    'disposition', family_disposition
   )
   as family,
   jsonb_build_object(
@@ -128,6 +129,7 @@ export const fetchPopulations = (specieid) => {
   family_id,
   family_name,
   familyorder_name,
+  family_disposition,
   redlistcategory_name,
   redlistcategory_id`
 

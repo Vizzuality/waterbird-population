@@ -105,15 +105,16 @@ export const selectPopulationFamilies = createSelector(
   (_data) => {
     if (!_data || isEmpty(_data)) return [];
 
-
     return orderBy(uniqBy(_data
       .map(p => {
+
         return {
           ...p.family,
           name: trim(p.family.name),
-          ordername: trim(p.family.ordername)
+          ordername: trim(p.family.ordername),
+          disposition: p.family.disposition
         }
-      }), 'id'), 'name')
+      }), 'id'), ['disposition', 'name'])
   }
 );
 

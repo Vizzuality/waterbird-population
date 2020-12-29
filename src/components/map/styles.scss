@@ -5,11 +5,31 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+
+
+
 }
 
 .c-map-container {
   height: 60vh; //header and search height
   position: relative;
+
+    &.map-detail-container {
+      .mapboxgl-map {
+        .mapboxgl-control-container {
+          .mapboxgl-ctrl-bottom-right {
+            top: 0;
+            right: 0;
+          }
+
+          .mapboxgl-ctrl-bottom-left {
+            bottom: 30px;
+            left: unset;
+            right: 20px;
+          }
+        }
+      }
+    }
 }
 
 .map-tooltip {

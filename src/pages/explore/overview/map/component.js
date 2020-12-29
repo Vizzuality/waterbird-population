@@ -29,7 +29,7 @@ export const MapContainer = ({
   scrollZoom = false,
   basemap
 }) => {
-  const [viewport, setViewport] = useState({ zoom: 1, latitude: 20, longitude: 0 });
+  const [viewport, setViewport] = useState({ zoom: 1, latitude: 40, longitude: 10 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
@@ -64,7 +64,7 @@ export const MapContainer = ({
   const data = coordinates && `${numberFormat(coordinates[0])}, ${' '} ${numberFormat(coordinates[1])}`
 
   return (
-    <div className='c-map-container'>
+    <div className="c-map-container map-detail-container">
       {!coordinates && <PopulationsMessage
         data="Click on map to reveal relevant populations"
       />}
@@ -75,6 +75,7 @@ export const MapContainer = ({
         viewport={viewport}
         scrollZoom={scrollZoom}
         mapStyle={basemap}
+        className="explore-overview"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         interactiveLayerIds={interactiveLayerIds}
         onClick={(e) => {
@@ -125,9 +126,12 @@ export const MapContainer = ({
                 longitude={coordinates[0]}
                 closeButton={false}
               >
-                {populationsNumber && populationsNumber.length === 1 && `Population name: ${populationsNumber[0].name.toUpperCase()}`}
-                {!loadingLocation && !!dataLocation.length && `There are ${populationsNumber.length} populations flying through this point`}
-                {!loadingLocation && !dataLocation.length && "There are 0 populations flying through this point"}
+                {populationsNumber && populationsNumber.length === 1
+                  && `There is one population flying through this point. Population name: ${populationsNumber[0].name.toUpperCase()}`}
+                {!loadingLocation && !!dataLocation.length && populationsNumber.length > 1
+                  && `There are ${populationsNumber.length} populations flying through this point`}
+                {!loadingLocation && !dataLocation.length
+                  && "There are 0 populations flying through this point"}
               </Popup>
             )}
           </Fragment>

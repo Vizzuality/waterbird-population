@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 
-import { selectPopulationProps } from 'modules/explore/selectors';
+import { selectPopulationProps, selectFiltersProps } from 'modules/explore/selectors';
 
 import Component from './component';
 
 const mapStateToProps = state => ({
   loading: state.population.loading,
-  ...selectPopulationProps(state)
+  ...selectPopulationProps(state),
+  ...selectFiltersProps(state)
 })
 
 export default connect(mapStateToProps)(Component);

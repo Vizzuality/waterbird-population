@@ -1,10 +1,11 @@
 @import 'styles/settings';
 
-.c-data-results {
+.c-family-results {
 
   cursor: pointer;
+  width: 100%;
 
-  .results-title {
+  .family-results-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,6 +74,13 @@
       border-radius: 3px;
       padding: 0px 20px;
       line-height: 21px;
+    }
+  }
+
+  .family-results-detail {
+
+    &.-hidden {
+      display: none;
     }
   }
 }

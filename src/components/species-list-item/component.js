@@ -33,10 +33,10 @@ const SpeciesListItem = ({ specie }) => {
   };
 
   return (
-    <section className="c-data-results">
-      <div className="results-content">
-        <div className="results-title">
-          <h2 onClick={handleClick} >
+    <section className="c-species-results">
+      <div className="species-results-header">
+        <div className="species-results-title">
+          <h2 onClick={handleClick}>
             <span>Species:</span>
             <span className="name -specific">{commonname}</span>
             <span className="name -scientific">({scientificname})</span>
@@ -54,11 +54,12 @@ const SpeciesListItem = ({ specie }) => {
           className={classnames('-border -secondary',
             { '-collapse': !isCollapsed }
           )}
+          onClick={handleClick}
         >
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
       </div>
-      <div className={classnames('results-description', {
+      <div className={classnames('species-results-description', {
         '-hidden': isCollapsed
       })}>
         {image.thumbnail && <img src={image.thumbnail.source} alt={image.title} />}

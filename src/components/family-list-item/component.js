@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -9,18 +9,21 @@ import SpeciesList from 'components/species-list';
 import './styles.scss';
 
 
-const FamilyListItem = ({ family }) => {
+const FamilyListItem = ({ family, allCollapsed }) => {
 
-  const [isCollapsed, toggleCollapse] = useState(true);
+  const [isCollapsed, toggleCollapse] = useState(allCollapsed);
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
 
+  useEffect(() => {
+    toggleCollapse(allCollapsed)
+  }, [allCollapsed]);
 
   return (
-    <section className="c-data-results">
-      <div onClick={handleClick} className="results-title">
+    <section className="c-family-results">
+      <div onClick={handleClick} className="family-results-header">
         <h1>
           <span>Family:</span>
           <span className="name">{family.name}</span>
@@ -39,7 +42,7 @@ const FamilyListItem = ({ family }) => {
       </div>
 
       {!isCollapsed && (
-        <div className="results-detail">
+        <div className="family-results-detail">
           <SpeciesList familyId={family.id} />
         </div>
       )}
