@@ -6,7 +6,10 @@ import orderBy from 'lodash/orderBy';
 import Download from "components/download";
 import ClearFilters from 'components/filters/clear-filters';
 import ActiveFilters from 'components/filters/active-filters';
-import FiltersAnalysys from 'components/analysis/filters';
+import Filters from 'components/filters';
+import Modal from 'components/modal';
+import Button from 'components/button';
+import Icon from 'components/icon';
 
 import { fetchFamilies } from 'services/families';
 import { fetchPublications } from 'services/publications';
@@ -87,10 +90,6 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
     resetFilters();
   };
 
-  const toggleFilters = () => {
-    toggleVisibility(!filtersVisibility);
-  }
-
   return (
     <div className={classnames('c-data-configuration', { '-filters': !filtersVisibility })}>
       <div className="data-configuration--buttons">
@@ -101,42 +100,46 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
           filename={'populations'}
           className="-dashed"
         />
-        {page !== 'ANALYZE' && page !== 'EXPLORE_DETAIL' && (
-          <>
-            <ActiveFilters
-              filters={filters}
-              onClick={handleClick}
-              heading={'Filtered by:'}
-              active={activeFilters}
-              options={OPTIONS}
-            />
-            <ClearFilters
-              handleFilters={handleFilters}
-              activeFilters={activeFilters}
-              unsetteledFilters={false}
-            />
-          </>
-        )}
         {page === 'ANALYZE' && (
-          <div className="data-filters">
-            <p>Filters configuration:</p>
-            <button
-              aria-label="filters-dropdown"
-              className={classnames({
-                '-open': filtersVisibility,
-                '-close': !filtersVisibility,
-              })}
-              onClick={toggleFilters}
-            />
-          </div>
+          <Button
+            aria-label="show-advanced-filters"
+            className="-background -secondary -big"
+            onClick={toggleVisibility}
+          >
+            <Icon name="filter" className="-medium" />
+            Advanced filters
+          </Button>
         )}
+
       </div>
-      {page === 'ANALYZE' && (
-        <FiltersAnalysys
+      {page !== 'EXPLORE_DETAIL' && (
+        <>
+          <ActiveFilters
+            filters={filters}
+            onClick={handleClick}
+            heading={'Filtered by:'}
+            active={activeFilters}
+            options={OPTIONS}
+          />
+          <ClearFilters
+            handleFilters={handleFilters}
+            activeFilters={activeFilters}
+            unsetteledFilters={false}
+          />
+        </>
+      )}
+
+      <Modal
+        isOpen={filtersVisibility}
+        onRequestClose={() => toggleVisibility(false)}
+        style={{ width: '900px' }}
+      >
+        <Filters
           visibility={filtersVisibility}
           page={page}
+          onClick={toggleVisibility}
         />
-      )}
+      </Modal>
     </div>
   );
 };

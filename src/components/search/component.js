@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from 'component/button';
+// components
+import Button from 'components/button';
 import Icon from 'components/icon';
 import Modal from 'components/modal';
 import Filters from 'components/filters';
@@ -23,21 +24,29 @@ const Search = ({ activeFilters, families, setSearch }) => {
   }
   return (
     <div className="c-search">
-      <input
-        autoFocus
-        type="search"
-        className="search-input"
-        placeholder='Search family, species, conservation framework...'
-        onChange={updateSearch}
-      />
-      <Button
-        aria-label="show-advanced-filters"
-        className="-background -secondary -huge"
-        onClick={handleClick}
-      >
-        <Icon name="filter" className="-big"/>
-        Advanced filters
-      </Button>
+      <div className="wrapper">
+        <div className="row">
+          <div className="col-md-10 col-sm-9">
+            <input
+              autoFocus
+              type="search"
+              className="search-input"
+              placeholder='Search family, species, conservation framework...'
+              onChange={updateSearch}
+            />
+          </div>
+          <div className="col-md-2 col-sm-3">
+            <Button
+              aria-label="show-advanced-filters"
+              className="-background -secondary -big"
+              onClick={handleClick}
+            >
+              <Icon name="filter" className="-medium" />
+              Advanced filters
+            </Button>
+          </div>
+        </div>
+      </div>
       <Modal
         isOpen={isOpen}
         onRequestClose={() => toggleModal(false)}
