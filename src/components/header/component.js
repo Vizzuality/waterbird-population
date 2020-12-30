@@ -10,12 +10,12 @@ const Header = () => (
   <div className="c-header">
     <div className="wrapper">
       <div className="row">
-        <div className="col-sm-3">
+        <div className="col-xs-3">
           <Link to={{ type: "HOME", pathname: "/" }}>
             <img src={Logo} alt="Wetlands International" />
           </Link>
         </div>
-        <div className="col-sm-9">
+        <div className="col-xs-9">
           <div className="header-navigation">
             <NavMenu className='header' />
             <Login />

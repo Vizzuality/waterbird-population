@@ -4,17 +4,18 @@ import Select from 'react-select';
 import './styles.scss';
 
 const PopulationsSelector = ({ data, selected, onChange }) => {
-  const [current, setCurrent] = useState({});
+  const [current, setCurrent] = useState(data[0] || {});
   useEffect(() => {
     setCurrent(data.find(p => p.value === +selected) || data[0] || {});
-  }, [selected])
+  }, [selected, data])
 
   const onSelectChange = (selected) => {
     const { value } = selected;
     setCurrent(data.find(p => p.value === +value));
 
     if (onChange) onChange(+value);
-  }
+  };
+
   return (
     <div className="c-populations-selector">
       <div className="wrapper">
@@ -33,7 +34,11 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
           <div className="populations-selector--content-info-wrapper">
             <h5>Species:</h5>
             <div className="populations-selector--content-info">
-              <span style={{ backgroundColor: current.tag_color }}>{current.tag_status}</span>
+              <span
+                className={current.tag_color}
+                style={{ backgroundColor: current.tag_background }}>
+                  {current.tag_status}
+              </span>
               <div>
                 <p>{current.specie}</p>
                 <p className="-italic">{`(${current.scientificname})`}</p>
