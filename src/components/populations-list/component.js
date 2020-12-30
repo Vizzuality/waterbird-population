@@ -33,7 +33,7 @@ const PopulationsList = ({ specieId, populationData }) => {
               <div className="card-header">
                 <div className="card-title">
                   <div className="title">
-                    <h4>Population {d.active === 0 && <span>(INACTIVE)</span>}</h4>
+                    <h4>Population {d.active === 1 && <span>(INACTIVE)</span>}</h4>
                   </div>
                   <h4 className="subtitle">{d.name}</h4>
                 </div>
