@@ -60,6 +60,14 @@
             width: 6px;
             background-color: $white;
           }
+
+          &.dark {
+            color: $black;
+
+            &:before {
+              background-color: $black;
+            }
+          }
         }
       }
 

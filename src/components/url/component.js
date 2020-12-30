@@ -21,7 +21,9 @@ class UrlComponent extends PureComponent {
 
       // Dispatch action
       if (r.key) {
-        action({ [r.key]: parseData });
+        r.key === 'ramsar_region_id'
+        ? action({ [r.key]: payload })
+        : action({ [r.key]: parseData });
       }
       else {
         action(payload)

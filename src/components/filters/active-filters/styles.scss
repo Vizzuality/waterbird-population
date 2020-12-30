@@ -10,7 +10,7 @@
 
   span {
     border-radius: 3px;
-    background-color: rgba($color-2, .15);
+    background-color: rgba($color-2, .35);
     padding: 4px 10px;
     margin-right: 10px;
     color:$color-2;
@@ -22,6 +22,7 @@
 
     &.-clickable {
       padding-right: 25px;
+      background-color: rgba($color-2, .15);
 
       &:after {
         content: '+';

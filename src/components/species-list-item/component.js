@@ -18,6 +18,7 @@ const SpeciesListItem = ({ specie }) => {
     redlistcategory,
     scientificname,
     color,
+    backgroundColor,
     specid
   } = specie;
 
@@ -40,7 +41,12 @@ const SpeciesListItem = ({ specie }) => {
             <span>Species:</span>
             <span className="name -specific">{commonname}</span>
             <span className="name -scientific">({scientificname})</span>
-            <span style={{ backgroundColor: color }} className="tag">{redlistcategory}</span>
+            <span
+              style={{ backgroundColor: backgroundColor }}
+              className={classnames(`tag ${color}` )}
+            >
+              {redlistcategory}
+            </span>
           </h2>
 
           <a href={`http://datazone.birdlife.org/species/factsheet/${specid}`}>
