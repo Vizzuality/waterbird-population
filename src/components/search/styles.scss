@@ -26,26 +26,4 @@
       border-bottom: 1px solid rgba($color-grey-8, 0.2);
      }
   }
-
-  .search-filters__btn {
-    display: flex;
-    justify-content: flex-end;
-
-    button {
-      display: flex;
-      background-color: $color-2;
-      padding: 20px;
-      border-radius: 9px;
-      color: $white;
-      font-family: $font-family-1;
-
-      :first-child {
-        margin-right: 5px;
-      }
-
-      @media (max-width: map-get($breakpoints, sm)) {
-        font-size: 12px;
-      }
-    }
-  }
 }

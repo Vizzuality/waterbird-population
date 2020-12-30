@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+// components
+import Button from 'components/button';
 import Icon from 'components/icon';
 import Modal from 'components/modal';
 import Filters from 'components/filters';
@@ -33,16 +36,14 @@ const Search = ({ activeFilters, families, setSearch }) => {
             />
           </div>
           <div className="col-md-2 col-sm-3">
-            <div className="search-filters__btn">
-              <button
-                aria-label="show-advanced-filters"
-                className="-background -secondary -big"
-                onClick={handleClick}
-              >
-                <Icon name="filter" className="-medium" />
-                Advanced filters
-              </button>
-            </div>
+            <Button
+              aria-label="show-advanced-filters"
+              className="-background -secondary -big"
+              onClick={handleClick}
+            >
+              <Icon name="filter" className="-medium" />
+              Advanced filters
+            </Button>
           </div>
         </div>
       </div>

@@ -27,14 +27,13 @@ export const familyId = (state, props) => props?.familyId;
 export const specieId = (state, props) => props?.specieId;
 
 export const selectPopulationFiltered = createSelector(
-  [data, filters, search, populations_by_location],
-  (_data, _filters, _search, _populations_by_location) => {
+  [data, filters, search, populations_by_location, lonLat],
+  (_data, _filters, _search, _populations_by_location, _lonLat) => {
     if (!_data || isEmpty(_data)) return [];
 
     const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
     const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.population_id));
-    const populationsData = _populations_by_location.length ? populationsByLocation : _data;
-
+    const populationsData = _lonLat ? populationsByLocation : _data;
     const fuse = _search && _search.length && new Fuse(populationsData, {
       keys: [
         'family.name', 'family.ordername',
@@ -133,6 +132,7 @@ export const selectPopulationSpecies = createSelector(
         commonname: trim(p.specie.commonname),
         factsheetref: p.specie.specid,
         redlistcategory: p.specie.redlistcategory,
+        backgroundColor: tag.backgroundColor,
         color: tag.color
       }
     }), 'id'), 'taxonomicorder');
@@ -223,7 +223,7 @@ export const selectLastPublicationData = createSelector(
 
         setFilters({
           ..._filters,
-          'publication_id': { label: publication.name, value: publication.id }
+          'publication_id': publication.id
         });
 
         return {

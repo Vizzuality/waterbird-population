@@ -25,29 +25,36 @@ const FamilyList = ({ populationFamilies, loading, activeFilters }) => {
     toggleCollapse(!isCollapsed);
   };
 
+  if (!populationFamilies) return null;
+
   return (
-    <div className="c-population-results">
-      <Button
-          aria-label={isCollapsed ? 'Expand All' : 'Collapse All'}
-          className={classnames('-border -secondary',
-            { '-collapse': !isCollapsed }
-          )}
-          onClick={handleClick}
-        >
-          {isCollapsed ? 'Expand All' : 'Collapse All'}
-        </Button>
-      {!populationFamilies || !populationFamilies.length
-        ? <div>Sorry, we couldn't find any results matching your search.</div>
-        : populationFamilies.map(family => {
-          return (
+    <div className="c-data-results">
+      {!!populationFamilies.length && (
+        <>
+          <Button
+            aria-label={isCollapsed ? 'Expand All' : 'Collapse All'}
+            className={classnames('data-results-btn -border -secondary',
+              { '-collapse': !isCollapsed }
+            )}
+            onClick={handleClick}
+          >
+            {isCollapsed ? 'Expand All' : 'Collapse All'}
+          </Button>
+          {populationFamilies.map(family => (
             <FamilyListItem
               key={family.id}
               family={family}
               allCollapsed={isCollapsed}
             />
-          )
-        }
-        )}
+          ))}
+        </>
+      )}
+
+      {!populationFamilies.length && (
+        <div className="data-empty">
+          Sorry, we couldn't find any results matching your search.
+        </div>
+      )}
     </div>
   );
 };

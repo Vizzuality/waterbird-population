@@ -36,12 +36,14 @@ const ActiveFilters = ({ filters, active, onClick, className, options = {} }) =>
       }
 
       return (
-        <span
+        <p>
+          <span
           className={classnames({ '-clickable': onClick && k !== 'publication_id' })}
           onClick={k !== 'publication_id' ? () => onClick(k, filters[k]): null}
         >
-          {options[k].find(o => o.value === filters[k])?.label}
+          Publication: {options[k].find(o => o.value === filters[k])?.label}
         </span>
+        </p>
       );
     })}
   </section>
