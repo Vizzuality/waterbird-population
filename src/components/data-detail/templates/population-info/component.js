@@ -21,7 +21,7 @@ const PopulationInfo = ({ data }) => {
                   <div className="population-info--summary-item-head">
                     {i2.head}
                   </div>
-                  <div style={{ backgroundColor: i2.color, border: `1px solid ${i2.border}` }}
+                  <div style={{ backgroundColor: i2.backgroundColor, border: `1px solid ${i2.border}` }}
                     className={classnames({
                       "population-info--summary-item-value": true,
                       [i2.className]: !!i2.className
