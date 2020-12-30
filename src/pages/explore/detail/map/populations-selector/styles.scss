@@ -26,7 +26,8 @@
         align-items: center;
 
         span {
-          display: inline-flex;
+          display: flex;
+          justify-content: center;
           box-sizing: border-box;
           align-items: center;
           height: 25px;
@@ -35,10 +36,13 @@
           margin-right: 10px;
           font-size: 9px;
           padding: 5px;
-          padding-left: 7px;
-          color: $color-grey-8;
-          align-content: center;
-          text-align: center;
+          color: $white;
+          white-space: nowrap;
+          flex-shrink: 0;
+
+          &.-dark {
+            color: $black;
+          }
         }
       }
 
@@ -87,6 +91,10 @@
 
       .populations-selector--content-dropdown {
         min-width: 300px;
+
+        @media (max-width: map-get($breakpoints, sm)) {
+          min-width: unset;
+        }
 
         .react-select__control {
           border: none;
@@ -142,7 +150,6 @@
           opacity: 0;
           z-index: 1;
           cursor: pointer;
-          background-color: red;
         }
 
         button {
