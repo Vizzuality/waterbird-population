@@ -4,7 +4,7 @@
 
   &.-tabs {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 30px 75px;
     border-bottom: 1px solid $color-grey-3;
   }
@@ -15,6 +15,7 @@
     font-weight: bold;
     line-height: 26px;
     position: relative;
+    padding: 0 10px;
 
     &.active:after {
       content: '';
