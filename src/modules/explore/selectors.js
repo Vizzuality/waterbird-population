@@ -328,7 +328,7 @@ export const selectPopulationSizeData = createSelector(
         notes: trim(notes) ? [
           { id: size_id, info: trim(notes) }
         ] : [],
-        references: filteredReferences
+        references: orderBy(filteredReferences, 'id')
       }
     }), 'publication_id', 'desc')
   }
@@ -374,7 +374,7 @@ export const selectPopulationTrendData = createSelector(
         notes: trim(notes) ? [
           { id: trend_id, info: trim(notes) }
         ] : [],
-        references: filteredReferences
+        references: orderBy(filteredReferences, 'id')
       }
     }), 'publication_id', 'desc')
   }
@@ -429,22 +429,11 @@ export const selectPopulationReferences = createSelector(
     const population = _data.find(p => p.population_id === +_population_id) || _data[0];
 
     const references = {
-      size: orderBy(uniqBy(flatten(population.sizes.map(s => s.references)), 'id').filter(r => r.id), 'id', 'desc'),
-      trend: orderBy(uniqBy(flatten(population.trends.map(s => s.references)), 'id').filter(r => r.id), 'id', 'desc'),
+      size: orderBy(uniqBy(flatten(population.sizes.map(s => s.references)), 'id').filter(r => r.id), 'id'),
+      trend: orderBy(uniqBy(flatten(population.trends.map(s => s.references)), 'id').filter(r => r.id), 'id'),
     };
 
-    return [
-      ...references.size && references.size.length
-        ? references.size.map(s => {
-          return { id: s.id, info: s.body, type: 'S' }
-        })
-        : [],
-      ...references.trend && references.trend.length
-        ? references.trend.map(s => {
-          return { id: s.id, info: s.body, type: 'T' }
-        })
-        : []
-    ];
+    return uniqBy(references.size.concat(references.trend), 'id')
   }
 );
 

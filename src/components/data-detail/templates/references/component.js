@@ -12,15 +12,17 @@ const References = ({ data }) => {
       <h2>References</h2>
     </div>
     <ul>
-      {data.map(({ id, info, type }) =>
-        <li id={type - id} key={id}>
-          R{type}{id} - {info}
+      {data.map(({ id, body }) =>
+        <li id={id} key={id}>
+          R{id} - {body}
         </li>)}
     </ul>
   </div>
 };
 
 References.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.arrayOf(
+    PropTypes.shape({})
+  ).isRequired
 }
 export default References;
