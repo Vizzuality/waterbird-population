@@ -3,12 +3,12 @@ export default {
     {
       id: 'light',
       name: 'Light',
-      url: 'mapbox://styles/wetlands/ckjaa0lzb7nht19o5w267pfbm'
+      url: 'mapbox://styles/mapbox/light-v9'
     },
     {
       id: 'satellite',
       name: 'Satellite',
-      url: 'mapbox://styles/wetlands/ckjaaqt88i6l519qkmhmcuq3n'
+      url: 'mapbox://styles/wetlands/ckck92nu94rr41io0so2o2xui'
     }
   ],
   selectedBasemap: 'light',
