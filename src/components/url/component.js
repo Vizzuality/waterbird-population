@@ -13,7 +13,6 @@ class UrlComponent extends PureComponent {
 
   componentDidMount() {
     const { urlProps, paramsFromUrl } = this.props;
-
     urlProps.forEach(r => {
       const action = this.props[r.action];
       const payload = paramsFromUrl[r.value];

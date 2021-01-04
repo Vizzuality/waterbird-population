@@ -33,7 +33,7 @@ const Section1 = ({ setFilters, filters }) => {
     return renamedLabels.reduce((acc, word) => {
       return acc.includes(word.value) ? acc.replace(word.value, word.label) : acc;
     }, e);
-  }
+  };
 
   return (
     <section className="c-section1">
@@ -65,8 +65,8 @@ const Section1 = ({ setFilters, filters }) => {
                   <div className="col-lg-4 col-md-6 col-xsm-12 center-xs">
                     <li key={code}>
                       <Link
-                        to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
-                        onClick={() => handleClick({ label: code, value: id })}
+                        to={{ type: "EXPLORE", payload: { pathname: "explore" }, query: { conservation: id } }}
+                        onClick={() =>  handleClick(id)}
                       >
                         {label(code)}
                       </Link>
@@ -76,7 +76,7 @@ const Section1 = ({ setFilters, filters }) => {
                 <div className="col-lg-4 col-md-6 col-xsm-12 center-xs">
                   <li key='ramsar'>
                     <Link
-                      to={{ type: "EXPLORE", payload: { pathname: "explore" } }}
+                      to={{ type: "EXPLORE", payload: { pathname: "explore" }, query: { conservation: [1, 2, 3, 4, 5] } }}
                       onClick={() => handleClick([1, 2, 3, 4, 5])}
                     >
                       RAMSAR: Ramsar Convention on Wetlands
