@@ -82,6 +82,14 @@ export const selectPopulationFiltered = createSelector(
   }
 );
 
+export const selectPopulationFilteredIds = createSelector(
+  [selectPopulationFiltered],
+  (_data) => {
+    if (!_data || isEmpty(_data)) return [];
+    return _data.map(d => d.population_id)
+  }
+);
+
 export const selectPopulationDownload = createSelector(
   [selectPopulationFiltered],
   (_data) => {
@@ -632,6 +640,7 @@ export const selectPopulationDetailProps = createStructuredSelector({
   populationsLayersByLocation: selectPopulationsLayersByLocation,
   pop: selectPopulationDownload,
   populationsFiltered: selectPopulationFiltered,
+  populationsFilteredIds: selectPopulationFilteredIds,
   populationOptions: selectPopulationOptions,
   populationInfoData: selectPopulationInfoData,
   populationConservationFramework: selectPopulationConservationFramework,

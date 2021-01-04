@@ -19,7 +19,17 @@ import { fetchRedListCategories } from 'services/red-list';
 
 import "./styles.scss";
 
-const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilters, publications, page, setPublications }) => {
+const DataControls = ({
+  dataSpecs,
+  populationsFilteredIds,
+  filters,
+  setFilters,
+  resetFilters,
+  activeFilters,
+  publications,
+  page,
+  setPublications
+}) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
   const [flyways, setFlyways] = useState([]);
@@ -95,8 +105,8 @@ const DataControls = ({ dataSpecs, filters, setFilters, resetFilters, activeFilt
       <div className="data-configuration--buttons">
         <Download
           text={'Download results'}
-          type="explore-detail"
-          dataSpecs={dataSpecs}
+          type={page ==='EXPLORE' ? 'explore-overview' : 'explore-detail'}
+          dataSpecs={page ==='EXPLORE' ? { population_ids: populationsFilteredIds } : dataSpecs}
           filename={'populations'}
           className="-dashed"
         />

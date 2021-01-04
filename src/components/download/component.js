@@ -20,7 +20,7 @@ const Download = ({ type, dataSpecs, filename, text, className, imageSize }) => 
   const handleClick = async () => {
     setLoading(true);
     const fetchFunction = {
-      overview: fetchDataToDownload,
+      'explore-overview': fetchDataToDownload,
       'explore-detail': fetchDataToDownload,
       'populations-card': fetchPopulationsCardData,
       'references': fetchReferencesToDownload

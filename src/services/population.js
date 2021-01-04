@@ -141,8 +141,7 @@ export const fetchPopulations = (specieid) => {
 };
 
 export const fetchDataToDownload = (dataSpecs) => {
-  const { specie_id, population_id } = dataSpecs;
-
+  const { specie_id, population_id, population_ids } = dataSpecs;
   const q = `SELECT
     populationname,
     breedingrange,
@@ -177,6 +176,7 @@ export const fetchDataToDownload = (dataSpecs) => {
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
+   ${population_ids ? `where o.populationid IN (${population_ids})` : ''}
    ${specie_id ? `where species_id=${specie_id}` : ''}
    ${population_id ? `and o.populationid=${population_id}` : ''}`;
 
