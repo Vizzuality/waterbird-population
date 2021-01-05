@@ -61,7 +61,7 @@ const PopulationTrend = ({ data, user }) => {
         </thead>
 
         <tbody>
-          {user.id && (data).map(d =>
+          {(data).map(d =>
             <Tooltip
               placement='top'
               onClickOutside={() => handleClickComments(`${d.trend_id} - ${d.publication_id}`)}

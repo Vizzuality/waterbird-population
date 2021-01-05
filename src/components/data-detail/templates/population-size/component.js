@@ -14,7 +14,6 @@ const PopulationSize = ({ data, user }) => {
 
   const [isCollapsed, toggleCollapse] = useState(true);
   const [visible, toggleVisibility] = useState({});
-
   const handleClick = () => {
     toggleCollapse(!isCollapsed)
   };
@@ -59,9 +58,8 @@ const PopulationSize = ({ data, user }) => {
             <th />
           </tr>
         </thead>
-
         <tbody>
-          {user.id && (data).map(d =>
+          {(data).map(d =>
             <Tooltip
               placement='top'
               trigger="click"
@@ -79,7 +77,7 @@ const PopulationSize = ({ data, user }) => {
                   sizeId={d.size_id}
                   visible={visible[`${d.size_id} - ${d.publication_id}`]}
                   onClose={() => handleClickComments(`${d.size_id} - ${d.publication_id}`)}
-                />}
+              />}
             >
               <tr
                 key={`${d.specie}${d.population}${d.publication_id}`}

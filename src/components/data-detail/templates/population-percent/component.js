@@ -59,7 +59,7 @@ const PopulationPercent = ({ data, user }) => {
 
         <tbody>
 
-          {user.id && (data).map(d =>
+          {(data).map(d =>
             <Tooltip
               placement='top'
               onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
