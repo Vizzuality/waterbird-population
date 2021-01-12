@@ -7,7 +7,7 @@ import './styles.scss';
 
 const ActiveFilters = ({ filters, active, onClick, className, options = {} }) => {
   return (
-    <section className={classnames('c-active-filters', { [className]: className })}>
+    <section key={filters['publication_id']} className={classnames('c-active-filters', { [className]: className })}>
 
     {!!active.length && (
       <p>Filtered by:</p>
@@ -34,7 +34,6 @@ const ActiveFilters = ({ filters, active, onClick, className, options = {} }) =>
           )
         });
       }
-
       return (
         <p>
           <span
