@@ -17,7 +17,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
   };
 
   return (
-    <div className="c-populations-selector">
+    <div className="c-populations-selector-map-detail">
       <div className="wrapper">
         <div className="populations-selector--content">
           <div className="populations-selector--content-info-wrapper">

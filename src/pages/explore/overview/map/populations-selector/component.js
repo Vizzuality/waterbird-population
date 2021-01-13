@@ -13,7 +13,7 @@ const PopulationsSelector = ({ data, setLocation, resetPopulationsByLocation }) 
   };
 
   return (
-    <div className="c-populations-selector">
+    <div className="c-populations-selector-map-overview">
       <div className="wrapper">
         <div className="populations-selector--content">
           <div className="populations-selector--content-info-wrapper">

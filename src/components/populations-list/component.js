@@ -13,7 +13,8 @@ import Download from 'components/download';
 
 import './styles.scss';
 
-const PopulationsList = ({ specieId, populationData }) => {
+const PopulationsList = ({ specieId, populationData, query }) => {
+  if (!populationData || !populationData.length) return null;
   return (
     populationData.map(
       d => {
@@ -26,7 +27,12 @@ const PopulationsList = ({ specieId, populationData }) => {
             })}
           >
             <Link
-              to={`/explore/${specieId}/${d.populationId}`}
+              to={{
+                type: 'EXPLORE_DETAIL',
+                pathname: '/explore',
+                payload: { specie_id: specieId, population_id: d.populationId },
+                query: query
+              }}
               onClick={!d.publication_id ? (e) => e.preventDefault() : false}
               on
             >
