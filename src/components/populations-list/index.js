@@ -3,4 +3,9 @@ import { selectPopulationProps } from 'modules/explore/selectors';
 
 import Component from './component';
 
-export default connect(selectPopulationProps)(Component);
+const mapStateToProps = (state, props) => ({
+  query: state.router.query,
+  ...selectPopulationProps(state, props),
+})
+
+export default connect(mapStateToProps)(Component);

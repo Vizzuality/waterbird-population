@@ -5,8 +5,12 @@ import { fetchPopulations } from 'services/population';
 
 import DataControls from 'components/data-controls';
 import DataDetail from 'components/data-detail';
+import UrlComponent from 'components/url';
+
+import { URL_PROPS } from './url';
 
 import MapContainer from './map';
+
 
 import '../styles.scss';
 
@@ -20,6 +24,7 @@ const ExploreDetailPage = (props) => {
 
   return (
     <div className="l-explore">
+      <UrlComponent urlProps={URL_PROPS} />
       <div className="map-section">
         <div className="wrapper">
           <MapContainer />
