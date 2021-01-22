@@ -60,7 +60,7 @@ const DataControls = ({
   });
 
   const flywayOptions = flyways.map(({ flywayrange, flywaygroup, id }) => {
-    return { label: flywayrange + ' ' + `(${flywaygroup})`, value: id };
+    return { label: `${flywayrange}${' '}(${flywaygroup})`, value: id };
   });
 
   const ramsarRegionOptions = [
@@ -134,7 +134,7 @@ const DataControls = ({
           <ClearFilters
             handleFilters={handleFilters}
             activeFilters={activeFilters}
-            unsetteledFilters={false}
+            unsetteledFilters={[]}
           />
         </>
       )}

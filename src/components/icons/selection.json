@@ -4,6 +4,77 @@
     {
       "icon": {
         "paths": [
+          "M66.783 712.348v267.13h890.435v-267.13",
+          "M512 44.522v667.826",
+          "M244.87 445.217l267.13 267.13 267.13-267.13"
+        ],
+        "attrs": [
+          {
+            "fill": "none",
+            "strokeLinejoin": "round",
+            "strokeLinecap": "round",
+            "strokeMiterlimit": "4",
+            "strokeWidth": 89.04347826086956
+          },
+          {
+            "fill": "none",
+            "strokeLinejoin": "round",
+            "strokeLinecap": "round",
+            "strokeMiterlimit": "4",
+            "strokeWidth": 89.04347826086956
+          },
+          {
+            "fill": "none",
+            "strokeLinejoin": "round",
+            "strokeLinecap": "round",
+            "strokeMiterlimit": "4",
+            "strokeWidth": 89.04347826086956
+          }
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "download"
+        ],
+        "grid": 16,
+        "colorPermutations": {}
+      },
+      "attrs": [
+        {
+          "fill": "none",
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round",
+          "strokeMiterlimit": "4",
+          "strokeWidth": 89.04347826086956
+        },
+        {
+          "fill": "none",
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round",
+          "strokeMiterlimit": "4",
+          "strokeWidth": 89.04347826086956
+        },
+        {
+          "fill": "none",
+          "strokeLinejoin": "round",
+          "strokeLinecap": "round",
+          "strokeMiterlimit": "4",
+          "strokeWidth": 89.04347826086956
+        }
+      ],
+      "properties": {
+        "order": 83,
+        "id": 4,
+        "name": "download",
+        "prevSize": 32
+      },
+      "setIdx": 3,
+      "setId": 11,
+      "iconIdx": 4
+    },
+    {
+      "icon": {
+        "paths": [
           "M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298q0 34-26 60t-60 26h-596q-36 0-61-25t-25-61v-596q0-36 25-61t61-25h298v86h-298v596h596z"
         ],
         "attrs": [
@@ -347,128 +418,6 @@
       "setIdx": 2,
       "setId": 0,
       "iconIdx": 0
-    },
-    {
-      "icon": {
-        "paths": [
-          "M522.667 960c22.4 0 37.333-7.467 52.267-22.4l425.6-425.6-104.533-104.533-298.667 298.667v-642.133h-149.333v642.133l-298.667-298.667-104.533 104.533 425.6 425.6c14.933 14.933 29.867 22.4 52.267 22.4z"
-        ],
-        "attrs": [
-          {
-            "fill": "rgb(2, 130, 176)"
-          }
-        ],
-        "isMulticolor": false,
-        "isMulticolor2": false,
-        "grid": 0,
-        "tags": [
-          "download_02"
-        ],
-        "colorPermutations": {
-          "2130176125525525516360771": [
-            {
-              "f": 1
-            }
-          ]
-        }
-      },
-      "attrs": [
-        {
-          "fill": "rgb(2, 130, 176)"
-        }
-      ],
-      "properties": {
-        "order": 20,
-        "id": 7,
-        "name": "download_simple",
-        "prevSize": 32
-      },
-      "setIdx": 2,
-      "setId": 0,
-      "iconIdx": 1
-    },
-    {
-      "icon": {
-        "paths": [
-          "M66.783 712.348v267.13h890.435v-267.13",
-          "M512 44.522v667.826",
-          "M244.87 445.217l267.13 267.13 267.13-267.13"
-        ],
-        "attrs": [
-          {
-            "fill": "none",
-            "strokeLinejoin": "round",
-            "strokeLinecap": "round",
-            "strokeMiterlimit": "4",
-            "strokeWidth": 89.04347826086956
-          },
-          {
-            "fill": "none",
-            "strokeLinejoin": "round",
-            "strokeLinecap": "round",
-            "strokeMiterlimit": "4",
-            "strokeWidth": 89.04347826086956
-          },
-          {
-            "fill": "none",
-            "strokeLinejoin": "round",
-            "strokeLinecap": "round",
-            "strokeMiterlimit": "4",
-            "strokeWidth": 89.04347826086956
-          }
-        ],
-        "isMulticolor": false,
-        "isMulticolor2": false,
-        "grid": 0,
-        "tags": [
-          "download"
-        ],
-        "colorPermutations": {
-          "2130176125525525516360771": [
-            {
-              "s": 0
-            },
-            {
-              "s": 0
-            },
-            {
-              "s": 0
-            }
-          ]
-        }
-      },
-      "attrs": [
-        {
-          "fill": "none",
-          "strokeLinejoin": "round",
-          "strokeLinecap": "round",
-          "strokeMiterlimit": "4",
-          "strokeWidth": 89.04347826086956
-        },
-        {
-          "fill": "none",
-          "strokeLinejoin": "round",
-          "strokeLinecap": "round",
-          "strokeMiterlimit": "4",
-          "strokeWidth": 89.04347826086956
-        },
-        {
-          "fill": "none",
-          "strokeLinejoin": "round",
-          "strokeLinecap": "round",
-          "strokeMiterlimit": "4",
-          "strokeWidth": 89.04347826086956
-        }
-      ],
-      "properties": {
-        "order": 19,
-        "id": 6,
-        "name": "download",
-        "prevSize": 32
-      },
-      "setIdx": 2,
-      "setId": 0,
-      "iconIdx": 2
     },
     {
       "icon": {

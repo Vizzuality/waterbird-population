@@ -11,7 +11,6 @@ const ClearFilters = ({
   resetFilters,
   handleUnsetteledFilters
 }) => {
-
   if ((!activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
     || (!activeFilters.length && !unsetteledFilters)) return null;
 

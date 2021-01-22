@@ -4,13 +4,19 @@
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: space-between;
   margin-top: -74px;
   z-index: $z-index-1;
+  padding: 0 $flexboxgrid-outer-margin/2;
+
+  @media screen and (min-width: map-get($flexboxgrid-breakpoints, md)) {
+    padding: 0 $flexboxgrid-outer-margin;
+  }
 
   input {
     padding: 20px;
     height: 100%;
-    width: 100%;
+    flex: 1;
     margin-right: 8px;
     position: relative;
     border-radius: $border-radius;

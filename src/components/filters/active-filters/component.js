@@ -50,7 +50,7 @@ const ActiveFilters = ({ filters, active, onClick, className, options = {} }) =>
 };
 
 ActiveFilters.propTypes = {
-  filters: PropTypes.array.isRequired,
+  filters: PropTypes.shape({}).isRequired,
   active: PropTypes.array,
   onClick: PropTypes.func.isRequired
 };
