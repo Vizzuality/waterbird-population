@@ -64,7 +64,7 @@ const Filters = ({
   });
 
   const flywayOptions = flyways.map(({ flywayrange, flywaygroup, id }) => {
-    return { label: flywayrange + ' ' + `(${flywaygroup})`, value: id };
+    return { label: `${flywayrange}${' '}(${flywaygroup})`, value: id };
   });
 
   const ramsarRegionOptions = [

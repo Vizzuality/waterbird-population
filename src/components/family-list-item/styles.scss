@@ -17,70 +17,16 @@
 
       span {
 
-        &.name {
+        padding-right: 15px;
+
+        &.family-name {
           font-weight: bold;
         }
-      }
-    }
 
-    h2 {
-      font-size: 18px;
-      line-height: 21px;
-
-      span {
-        &.name {
-          color: $color-2;
+        &.family-scientificname {
+          font-style: italic;
         }
       }
-    }
-
-    span {
-      padding-right: 15px;
-
-      &.-cientific {
-        font-weight: bold;
-      }
-
-      &.-specific {
-        font-style: italic;
-      }
-
-      &.tag {
-        display: inline-block;
-        border-radius: 4px;
-        padding: 5px 10px 5px 25px;
-        color: $white;
-        font-size: 10px;
-        line-height: 11px;
-        position: relative;
-
-        &:before {
-          content: '';
-          position: absolute;
-          border-radius: 50%;
-          top: 50%;
-          left: 10px;
-          transform: translateY(-50%);
-          height: 6px;
-          width: 6px;
-          background-color: $white;
-        }
-      }
-    }
-
-    button {
-      box-sizing: border-box;
-      border: 2px solid rgba($color-grey-8, 0.2);
-      border-radius: 3px;
-      padding: 0px 20px;
-      line-height: 21px;
-    }
-  }
-
-  .family-results-detail {
-
-    &.-hidden {
-      display: none;
     }
   }
 }

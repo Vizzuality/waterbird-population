@@ -9,7 +9,6 @@ import { menuItems } from './constants';
 import './styles.scss';
 
 const NavMenu = ({ className, current, query }) => {
-
   const [active, setMenu] = useState(false);
 
   const handleClick = () => {

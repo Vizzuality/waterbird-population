@@ -8,7 +8,6 @@ import SpeciesList from 'components/species-list';
 
 import './styles.scss';
 
-
 const FamilyListItem = ({ family, allCollapsed }) => {
 
   const [isCollapsed, toggleCollapse] = useState(allCollapsed);
@@ -26,7 +25,8 @@ const FamilyListItem = ({ family, allCollapsed }) => {
       <div onClick={handleClick} className="family-results-header">
         <h1>
           <span>Family:</span>
-          <span className="name">{family.name}</span>
+          <span className="family-name">{family.englishname}</span>
+          <span className="family-scientificname">({family.name})</span>
         </h1>
         <Button
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
@@ -38,7 +38,6 @@ const FamilyListItem = ({ family, allCollapsed }) => {
           )}>
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
-
       </div>
 
       {!isCollapsed && (

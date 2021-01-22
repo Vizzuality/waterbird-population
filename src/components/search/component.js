@@ -24,9 +24,7 @@ const Search = ({ activeFilters, families, setSearch }) => {
   }
   return (
     <div className="c-search">
-      <div className="wrapper">
-        <div className="row">
-          <div className="col-md-10 col-sm-9">
+
             <input
               autoFocus
               type="search"
@@ -34,8 +32,6 @@ const Search = ({ activeFilters, families, setSearch }) => {
               placeholder='Search family, species, conservation framework...'
               onChange={updateSearch}
             />
-          </div>
-          <div className="col-md-2 col-sm-3">
             <Button
               aria-label="show-advanced-filters"
               className="-background -secondary -big"
@@ -44,9 +40,7 @@ const Search = ({ activeFilters, families, setSearch }) => {
               <Icon name="filter" className="-medium" />
               Advanced filters
             </Button>
-          </div>
-        </div>
-      </div>
+
       <Modal
         isOpen={isOpen}
         onRequestClose={() => toggleModal(false)}

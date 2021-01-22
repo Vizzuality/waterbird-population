@@ -36,12 +36,7 @@ const Icons = () => (
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M21.236 10.764l-10.473 10.473"></path>
         <path fill="none" stroke="#3f3c4d" style={{ stroke: 'var(--color3, #3f3c4d)' }} strokeLinejoin="miter" strokeLinecap="square" strokeMiterlimit="4" strokeWidth="3.2" d="M21.236 21.236l-10.473-10.473"></path>
       </symbol>
-      <symbol id="icon-download_simple" viewBox="0 0 32 32">
-        <title>download_simple</title>
-        <path fill="#0282b0" style={{ fill: 'var(--color2, #0282b0)' }} d="M16.333 30c0.7 0 1.167-0.233 1.633-0.7l13.3-13.3-3.267-3.267-9.333 9.333v-20.067h-4.667v20.067l-9.333-9.333-3.267 3.267 13.3 13.3c0.467 0.467 0.933 0.7 1.633 0.7z"></path>
-      </symbol>
       <symbol id="icon-download" viewBox="0 0 32 32">
-        <title>download</title>
         <path strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2.7826" d="M2.087 22.261v8.348h27.826v-8.348"></path>
         <path strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2.7826" d="M16 1.391v20.87"></path>
         <path strokeLinejoin="round" strokeLinecap="round" strokeMiterlimit="4" strokeWidth="2.7826" d="M7.652 13.913l8.348 8.348 8.348-8.348"></path>

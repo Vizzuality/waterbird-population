@@ -53,6 +53,7 @@ const PopulationsList = ({ specieId, populationData, query }) => {
                     <Download
                       text={'Download data'}
                       type="populations-card"
+
                       filename={`population-${kebabCase(d.name)}`}
                       dataSpecs={{
                         populationId: d.populationId,

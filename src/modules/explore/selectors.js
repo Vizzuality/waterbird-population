@@ -119,6 +119,7 @@ export const selectPopulationFamilies = createSelector(
           ...p.family,
           name: trim(p.family.name),
           ordername: trim(p.family.ordername),
+          englishname: trim(p.family.english_name),
           disposition: p.family.disposition
         }
       }), 'id'), ['disposition', 'name'])
@@ -475,6 +476,7 @@ export const selectPopulationNotes = createSelector(
 export const selectPopulationLayers = createSelector(
   [specie_id, population_id, basemap],
   (_specie_id, _population_id, _basemap) => {
+
     return [
       // GEOJSON DATA LAYER
       {
@@ -496,8 +498,8 @@ export const selectPopulationLayers = createSelector(
               type: "fill",
               //  "source-layer": "layer0",
               paint: {
-                'fill-color': _basemap === 'satellite' ? 'FCC501' : '#FFBB00',
-                'fill-opacity': _basemap === 'satellite' ? 0.35 : 0.25
+                'fill-color': _basemap === 'satellite' ? '#0282B0' : '#FFBB00',
+                'fill-opacity': _basemap === 'satellite' ? 0.5 : 0.25
               }
             },
             {

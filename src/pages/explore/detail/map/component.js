@@ -24,6 +24,7 @@ export const MapContainer = ({
   setRouter,
   basemap
 }) => {
+
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 40, longitude: 10 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
@@ -32,6 +33,7 @@ export const MapContainer = ({
   const parsedLayers = populationLayers.map(l => {
     return {
       ...l,
+      key: basemap,
       params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
     }
   });
