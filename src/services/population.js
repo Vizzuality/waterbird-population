@@ -157,6 +157,8 @@ export const fetchDataToDownload = (dataSpecs) => {
     s.maximum,
     s.notes,
     s.population_id,
+    sp.commonname AS species_commonname,
+    sp.scientificname AS species_scientificname,
     o.yearset,
     o.onepercent,
     o.populationid,
@@ -172,6 +174,7 @@ export const fetchDataToDownload = (dataSpecs) => {
     trend.trendsum
   FROM populationname n
   LEFT JOIN populationsize s ON n.id = s.population_id
+  LEFT JOIN species_1 sp ON n.species_id = sp.id
   LEFT JOIN populationonepercentlevel o ON n.id = o.populationid
   LEFT JOIN populationtrend t ON n.id = t.population_id
   LEFT JOIN populationpublication p ON p.population_id = s.population_id

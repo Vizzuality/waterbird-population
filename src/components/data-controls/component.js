@@ -106,7 +106,7 @@ const DataControls = ({
         <Download
           text={'Download results'}
           type={page ==='EXPLORE' ? 'explore-overview' : 'explore-detail'}
-          dataSpecs={page ==='EXPLORE' ? { population_ids: populationsFilteredIds } : dataSpecs}
+          dataSpecs={page ==='EXPLORE' && activeFilters.length ? { population_ids: populationsFilteredIds } : dataSpecs}
           filename={'populations'}
           className="-dashed"
         />
