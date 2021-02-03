@@ -10,7 +10,6 @@ import Component from './component';
 const mapStateToProps = state => ({
   search: state.population.search,
   lonLat: state.map.lonLat,
-  page: state.router.type,
   ...selectPopulationProps(state),
 });
 

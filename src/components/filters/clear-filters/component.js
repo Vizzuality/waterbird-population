@@ -14,14 +14,10 @@ const ClearFilters = ({
   resetLocation,
   resetSearch,
   search,
-  lonLat,
-  page
+  lonLat
 }) => {
 
-  if ((page !== 'ANALYZE' && !lonLat && search === '' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
-    || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
-
-  if ((page === 'ANALYZE' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
+  if ((!lonLat && search === '' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
     || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
 
   const handleFilters = () => {
