@@ -19,6 +19,10 @@ button {
   &:focus {
     outline: 0;
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 strong {
@@ -30,5 +34,6 @@ a {
   font-weight: 600;
   text-decoration: none;
 }
+
 
 

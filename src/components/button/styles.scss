@@ -119,5 +119,9 @@
   * {
     margin-right: 15px;
   }
+
+  @media print {
+    display: none;
+  }
 }
 

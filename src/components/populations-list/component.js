@@ -23,7 +23,7 @@ const PopulationsList = ({ specieId, populationData, query }) => {
             key={d.id}
             className={classnames('c-card-info', {
               '-empty': !d.publication_id,
-              '-disabled': d.active === 0,
+              '-disabled': d.active === 1, // carto csntool database -> 0 = active
             })}
           >
             <Link
@@ -39,7 +39,8 @@ const PopulationsList = ({ specieId, populationData, query }) => {
               <div className="card-header">
                 <div className="card-title">
                   <div className="title">
-                    <h4>Population {d.active === 0 && <span>(INACTIVE)</span>}</h4>
+                  {/* carto csntool database 0 = active */}
+                    <h4>Population {d.active === 1 && <span>(INACTIVE)</span>}</h4>
                   </div>
                   <h4 className="subtitle">{d.name}</h4>
                 </div>

@@ -1,6 +1,7 @@
 import isEmpty from 'lodash/isEmpty';
 import trim from 'lodash/trim';
 import uniqBy from 'lodash/uniqBy';
+import orderBy from 'lodash/orderBy'
 
 import { createSelector, createStructuredSelector } from 'reselect';
 
@@ -10,7 +11,7 @@ export const selectReferences = createSelector(
   [data],
   (_data) => {
     if (!_data || isEmpty(_data)) return null;
-    return uniqBy(_data.map(d => `${trim(d.body)} ${d.notes && trim(d.notes)}`));
+    return uniqBy(orderBy(_data, 'id').map(d => `R${d.id} - ${trim(d.body)} ${d.notes && trim(d.notes)}`));
   }
 );
 

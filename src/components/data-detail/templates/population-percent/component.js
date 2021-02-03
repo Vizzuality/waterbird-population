@@ -35,7 +35,7 @@ const PopulationPercent = ({ data, user }) => {
         <Button
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
           onClick={handleClick}
-          className={classnames('-secondary -medium',
+          className={classnames('-secondary -medium .-noPrint',
             {
               '-background': isCollapsed,
               '-border': !isCollapsed

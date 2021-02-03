@@ -8,6 +8,7 @@ export const setPopulationsByLocation = createAction('POPULATIONS/SET_POPULATION
 export const resetPopulationsByLocation = createAction('POPULATIONS/RESET_POPULATIONS_BY_LOCATION');
 export const setPublications = createAction('POPULATIONS/SET_PUBLICATIONS');
 export const setSearch = createAction('POPULATIONS/SET_SEARCH');
+export const resetSearch = createAction('POPULATIONS/RESET_SEARCH');
 export const setCurrent = createAction('POPULATIONS/SET_CURRENT');
 
 

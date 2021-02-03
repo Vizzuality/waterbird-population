@@ -9,14 +9,27 @@ const ClearFilters = ({
   activeFilters,
   unsetteledFilters,
   resetFilters,
-  handleUnsetteledFilters
+  handleUnsetteledFilters,
+  resetPopulationsByLocation,
+  resetLocation,
+  resetSearch,
+  search,
+  lonLat,
+  page
 }) => {
-  if ((!activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
-    || (!activeFilters.length && !unsetteledFilters)) return null;
+
+  if ((page !== 'ANALYZE' && !lonLat && search === '' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
+    || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
+
+  if ((page === 'ANALYZE' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
+    || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
 
   const handleFilters = () => {
     handleUnsetteledFilters && handleUnsetteledFilters(initialState.filters);
     resetFilters();
+    resetPopulationsByLocation();
+    resetLocation(); // Remove lonLat to update map and Location Pop up
+    resetSearch(); // Remove input search
   };
 
   return (
@@ -25,7 +38,7 @@ const ClearFilters = ({
       className="c-clear-filters"
       onClick={handleFilters}
     >
-      Clear filters
+      Clear filters and search criteria
     </button>
   )
 };
