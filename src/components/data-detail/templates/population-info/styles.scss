@@ -21,6 +21,10 @@
           border-left: none;
         }
       }
+
+      @media print {
+        padding: 5px;
+      }
     }
 
     .population-info--summary-item-container {
@@ -65,5 +69,9 @@
       font-weight: $font-weight-bold;
       font-style: italic;
     }
+  }
+
+  @media print {
+    page-break-after: always;
   }
 }

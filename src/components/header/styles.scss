@@ -26,5 +26,9 @@
     justify-content: flex-end;
     align-items: center;
     z-index: $z-index-5;
+
+    @media print {
+      display: none;
+    }
   }
 }

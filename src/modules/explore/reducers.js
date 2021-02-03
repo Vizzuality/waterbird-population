@@ -7,7 +7,8 @@ import {
   resetPopulationsByLocation,
   setPublications,
   setCurrent,
-  setSearch
+  setSearch,
+  resetSearch
 } from './actions';
 
 import initialState from './initial-state';
@@ -54,5 +55,10 @@ export default {
   [setSearch]: (state, { payload }) => ({
     ...state,
     search: payload
+  }),
+  [resetSearch]: (state) =>
+  ({
+    ...state,
+    search: ({ ...state }, initialState.search)
   }),
 };

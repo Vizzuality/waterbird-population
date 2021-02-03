@@ -30,7 +30,6 @@ export const selectPopulationFiltered = createSelector(
   [data, filters, search, populations_by_location, lonLat],
   (_data, _filters, _search, _populations_by_location, _lonLat) => {
     if (!_data || isEmpty(_data)) return [];
-
     const populationsIdsByLocation = _populations_by_location.map(p => p.wpepopid);
     const populationsByLocation = _data.filter(d => populationsIdsByLocation.includes(d.population_id));
     const populationsData = _lonLat ? populationsByLocation : _data;
@@ -41,7 +40,8 @@ export const selectPopulationFiltered = createSelector(
         'conservation.conservation_framework',
         'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
       ],
-      threshold: 0.2,
+      location: 2,
+      threshold: 0.5,
     });
 
 

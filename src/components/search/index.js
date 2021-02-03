@@ -3,5 +3,8 @@ import { setSearch } from 'modules/explore/actions';
 
 import Component from './component';
 
+const mapStateToProps = state => ({
+  searchValue: state.population.search
+});
 
-export default connect(null, { setSearch })(Component);
+export default connect(mapStateToProps, { setSearch })(Component);

@@ -46,6 +46,10 @@
       }
     }
   }
+
+  @media print {
+    display: none;
+  }
 }
 
 

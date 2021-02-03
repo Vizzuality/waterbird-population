@@ -20,4 +20,9 @@
     width: 100%;
     background-color: rgba($color-grey-8, 0.5);
   }
-};
+
+  @media print {
+    page-break-after: always;
+    padding-bottom: 10px;
+  }
+}

@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import orderBy from 'lodash/orderBy';
 
 import Download from "components/download";
+import Print from "components/print";
 import ClearFilters from 'components/filters/clear-filters';
 import ActiveFilters from 'components/filters/active-filters';
 import Filters from 'components/filters';
@@ -25,6 +26,7 @@ const DataControls = ({
   filters,
   setFilters,
   resetFilters,
+  resetPopulationsByLocation,
   activeFilters,
   publications,
   page,
@@ -97,6 +99,7 @@ const DataControls = ({
   };
 
   const handleFilters = () => {
+    resetPopulationsByLocation();
     resetFilters();
   };
 
@@ -105,8 +108,8 @@ const DataControls = ({
       <div className="data-configuration--buttons">
         <Download
           text={'Download results'}
-          type={page ==='EXPLORE' ? 'explore-overview' : 'explore-detail'}
-          dataSpecs={page ==='EXPLORE' && activeFilters.length ? { population_ids: populationsFilteredIds } : dataSpecs}
+          type={page === 'EXPLORE' ? 'explore-overview' : 'explore-detail'}
+          dataSpecs={page === 'EXPLORE' && activeFilters.length ? { population_ids: populationsFilteredIds } : dataSpecs}
           filename={'populations'}
           className="-dashed"
         />
@@ -119,6 +122,9 @@ const DataControls = ({
             <Icon name="filter" className="-medium" />
             Advanced filters
           </Button>
+        )}
+        {page === 'EXPLORE_DETAIL' && (
+          <Print />
         )}
 
       </div>

@@ -13,8 +13,11 @@
     padding: 0 $flexboxgrid-outer-margin;
   }
 
-  .map-legend-wrapper {
+  @media print {
+    display: none;
+  }
 
+  .map-legend-wrapper {
     position: absolute;
     bottom: 50px;
     z-index: $z-index-1;
@@ -103,6 +106,10 @@
           color: $color-grey-8;
         }
       }
+    }
+
+    @media print {
+      display: none;
     }
   }
 }

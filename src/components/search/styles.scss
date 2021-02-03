@@ -13,11 +13,27 @@
     padding: 0 $flexboxgrid-outer-margin;
   }
 
+  .search-input-container {
+    position: relative;
+    flex: 1;
+    margin-right: 8px;
+
+    .search-input--btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+
+      &.-hidden {
+        display: none;
+      }
+    }
+  }
+
   input {
     padding: 20px;
     height: 100%;
-    flex: 1;
-    margin-right: 8px;
+    width: 100%;
     position: relative;
     border-radius: $border-radius;
     box-shadow: 0 4px 12px 0 rgba($black, 0.08);

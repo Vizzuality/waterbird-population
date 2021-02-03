@@ -30,14 +30,6 @@ const Legend = () => {
           </div>
           <BasemapSelector />
         </div>
-        {/* <ul>
-        {activeFlyways.map(flyway=>
-          <li key={flyway.id}>
-            <span style={{ backgroundColor: flyway.color }} />
-            <p>{flyway.layer}</p>
-          </li>
-        )}
-      </ul> */}
       </div>
     </div>
   )
