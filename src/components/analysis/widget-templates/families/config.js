@@ -77,39 +77,36 @@ export const CONFIG = {
           },
           tickCount: 6,
           unit: '%',
-          label: ({ viewBox }) => {
-            const { y } = viewBox;
-            const cx = - y / 2 + 50;
-            const cy = 20;
-            const rot = `270 60 60`;
-            return (
-              <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
-                FAMILIES
-                </text>
-            );
-          },
         },
         yAxis: {
           type: 'category',
           dataKey: 'name',
-          tick: {
-            fontSize: 10,
-            fill: 'rgba(0,0,0,0.54)'
+          tick: (props) => {
+            const { x, y, payload } = props;
+            const { index, value } = payload;
+            return (
+              <g>
+                <text x={x - 10} y={y} lineheight="19" className="" textAnchor="end" dominantBaseline="central">
+                  <tspan fill="rgba(0,0,0,0.85)" fontSize="12">{value}</tspan>
+                  <tspan fill="rgba(0,0,0,0.85)" fontSize="12">{' '}</tspan>
+                  <tspan fill="rgba(0,0,0,0.85)" lineheight="29" fontStyle="italic" fontSize="12">({data[index].scientific_name})</tspan>
+                </text>
+              </g>
+            );
           },
           width: 200,
-          // label: ({ viewBox }) => {
-          //   const { y, height } = viewBox;
-
-          //   const cx = - height +20;
-          //   const cy = 20;
-          //   const rot = `270 60 60`;
-          //   return (
-          //     <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
-          //       NUMBER OF POPULATIONS
-          //     </text>
-          //   );
-          // },
           interval: 0,
+          label: ({ viewBox }) => {
+            const { y, height } = viewBox;
+            const cx = - height / 2;
+            const cy = 10;
+            const rot = `270 60 60`;
+            return (
+              <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
+                FAMILIES
+              </text>
+            );
+          },
         },
         legend: {
           align: 'left',

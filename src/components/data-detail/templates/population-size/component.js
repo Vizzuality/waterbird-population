@@ -10,9 +10,8 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationSize = ({ data, user }) => {
-
-  const [isCollapsed, toggleCollapse] = useState(true);
+const PopulationSize = ({ data, user, publication }) => {
+  const [isCollapsed, toggleCollapse] = useState(publication ? true : false);
   const [visible, toggleVisibility] = useState({});
   const handleClick = () => {
     toggleCollapse(!isCollapsed)

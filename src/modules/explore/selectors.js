@@ -40,8 +40,13 @@ export const selectPopulationFiltered = createSelector(
         'conservation.conservation_framework',
         'specie.commonname', 'specie.redlistcategory', 'specie.scientificname'
       ],
-      location: 2,
-      threshold: 0.5,
+      shouldSort: true,
+      includeMatches: true,
+      threshold: 0.1,
+      location: 0,
+      distance: 300,
+      maxPatternLength: 32,
+      minMatchCharLength: 1
     });
 
 
@@ -132,7 +137,6 @@ export const selectPopulationSpecies = createSelector(
     if (!_data || isEmpty(_data)) return [];
 
     const populationsByFamily = _data.filter(d => d.family.id === _familyId);
-
     return orderBy(uniqBy(populationsByFamily.map(p => {
       const tag = tags.find(t => t.description === trim(p.specie.redlistcategory));
       return {

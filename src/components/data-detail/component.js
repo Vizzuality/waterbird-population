@@ -20,15 +20,16 @@ const DataDetail = (props) =>  {
     populationPercentData,
     populationReferences,
     populationNotes,
-    user
+    user,
+    publication
   } = props;
   return (
     <div className="c-data-detail">
       <PopulationInfo data={populationInfoData} />
       <ConservationFramework data={populationConservationFramework} />
-      <PopulationSize data={populationSizeData} user={user} />
-      <PopulationTrend data={populationTrendData} user={user} />
-      <PopulationPercent data={populationPercentData} user={user} />
+      <PopulationSize data={populationSizeData} user={user} publication={publication} />
+      <PopulationTrend data={populationTrendData} user={user} publication={publication} />
+      <PopulationPercent data={populationPercentData} user={user} publication={publication} />
       <References data={populationReferences} />
       <Notes data={populationNotes} />
     </div>

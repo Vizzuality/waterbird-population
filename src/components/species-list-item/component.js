@@ -49,7 +49,7 @@ const SpeciesListItem = ({ specie }) => {
             </span>
           </h2>
 
-          <a href={`http://datazone.birdlife.org/species/factsheet/${specid}`}>
+          <a href={`http://datazone.birdlife.org/species/factsheet/${specid}`} target="_blank" rel="noopener noreferrer">
             <Icon name="launch" className="-big" />
           </a>
         </div>

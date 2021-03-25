@@ -10,9 +10,9 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationTrend = ({ data, user }) => {
+const PopulationTrend = ({ data, user, publication }) => {
 
-  const [isCollapsed, toggleCollapse] = useState(true);
+  const [isCollapsed, toggleCollapse] = useState(publication ? true : false);
   const [visible, toggleVisibility] = useState({});
 
   const handleClick = () => {
@@ -25,7 +25,6 @@ const PopulationTrend = ({ data, user }) => {
       [id]: !visible[id]
     });
   };
-
 
   return (
     <div className={classnames('c-population-trend',
