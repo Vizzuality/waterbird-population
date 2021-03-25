@@ -99,7 +99,7 @@ export const CONFIG = {
             return (
               <text x={-250} y={y / 2} transform={`rotate(270)`} textAnchor="middle">
                 NUMBER OF POPULATIONS
-                </text>
+              </text>
             );
           },
           tickFormatter: value => Math.round(value),

@@ -76,7 +76,12 @@ class Map extends Component {
     onViewportChange: PropTypes.func,
 
     /** A function that exposes the viewport */
-    getCursor: PropTypes.func
+    getCursor: PropTypes.func,
+
+    /** A boolean that prevents an error in Firefox print view */
+    /** If true , the map's canvas can be exported to a PNG using map.getCanvas().toDataURL() .
+    * False by default as a performance optimization. */
+    preserveDrawingBuffer: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -317,6 +322,7 @@ class Map extends Component {
       touchZoom,
       touchRotate,
       doubleClickZoom,
+      preserveDrawingBuffer,
       mapboxApiAccessToken,
       ...mapboxProps
     } = this.props;
@@ -353,6 +359,7 @@ class Map extends Component {
           {...viewport}
           width="100%"
           height="100%"
+
           // INTERACTIVE
           dragPan={!flying && dragPan}
           dragRotate={!flying && dragRotate}
@@ -372,6 +379,7 @@ class Map extends Component {
 
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
+          preserveDrawingBuffer={preserveDrawingBuffer || false}
         >
           {loaded &&
             !!this.map &&

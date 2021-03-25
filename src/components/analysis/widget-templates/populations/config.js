@@ -46,9 +46,18 @@ export const CONFIG = {
         yAxis: {
           type: 'category',
           dataKey: 'name',
-          tick: {
-            fontSize: 10,
-            fill: 'rgba(0,0,0,0.54)'
+          tick: (props) => {
+            const { x, y, payload } = props;
+            const { index, value } = payload;
+            return (
+              <g>
+                <text x={x - 10} y={y} lineheight="19" className="" textAnchor="end" dominantBaseline="central">
+                  <tspan fill="rgba(0,0,0,0.85)" fontSize="12">{data[index].english_name}</tspan>
+                  <tspan fill="rgba(0,0,0,0.85)" fontSize="12">{' '}</tspan>
+                  <tspan fill="rgba(0,0,0,0.85)" lineheight="29" fontStyle="italic" fontSize="12">({value})</tspan>
+                </text>
+              </g>
+            );
           },
           width: 200,
           label: ({ viewBox }) => {
@@ -59,7 +68,7 @@ export const CONFIG = {
             return (
               <text x={cx} y={cy} transform={`rotate(${rot})`} textAnchor="middle">
                 FAMILIES
-                </text>
+              </text>
             );
           },
           interval: 0,

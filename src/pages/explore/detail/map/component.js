@@ -90,6 +90,7 @@ export const MapContainer = ({
         scrollZoom={scrollZoom}
         mapStyle={basemap}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
+        preserveDrawingBuffer={true}
         interactiveLayerIds={interactiveLayerIds}
         onClick={(e) => {
           if (e && e.features && e.features[0]) {

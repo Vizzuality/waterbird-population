@@ -106,7 +106,7 @@ export const selectFamilies = createSelector(
           name: trim(p.family.name),
           ordername: trim(p.family.ordername)
         }
-      }), 'id'), 'name')
+      }), 'id'), ['disposition', 'name'])
   }
 );
 
@@ -115,11 +115,10 @@ export const selectFamilyTrends = createSelector(
   [selectFamilies, selectFilteredData, categories],
   (_families, _data, _categories) => {
     if (!_data || isEmpty(_data)) return [];
-
     let populationsByFamily = _families
       .map(f => _data.filter(d => trim(f.id) === trim(d.family.id) && d.trends.length))
 
-    return populationsByFamily
+    return orderBy(uniqBy(populationsByFamily
       .filter(p => p.length)
       .map(p => {
 
@@ -143,14 +142,14 @@ export const selectFamilyTrends = createSelector(
               : 0
           }
         })
-
         return {
           id: p[0].family.id,
-          name: `${trim(p[0].family.name)}, (${trim(p[0].family.ordername)})`,
+          name: trim(p[0].family.english_name),
+          scientific_name: trim(p[0].family.name),
           trendsCount,
           percentage
         }
-      })
+      }), 'id'), 'taxonomicorder')
   });
 
 export const selectFamilyPopulations = createSelector(
@@ -170,7 +169,8 @@ export const selectFamilyPopulations = createSelector(
 
         return {
           id: p[0].family.id,
-          name: `${trim(p[0].family.name)}, (${trim(p[0].family.ordername)})`,
+          name: `${trim(p[0].family.name)}`,
+          english_name: `${trim(p[0].family.english_name)}`,
           total_populations: populationsIds.length
         }
       }), 'total_populations', 'desc')
@@ -190,6 +190,7 @@ export const selectFamilyTrendsChart = createSelector(
       const total = d.trendsCount.reduce((a, b) => a + parseInt(Object.values(b)), 0);
       return {
         name: d.name,
+        scientific_name: d.scientific_name,
         'stable or fluctuating': stable,
         increasing: increasing,
         declining: declining,
@@ -215,6 +216,7 @@ export const selectRegionTrendsChart = createSelector(
               ? trim(t.name)
               : null
             ),
+
           trend: _data
             .filter(d => d[r.id] === 1)
             .map(t => t.trends
@@ -225,7 +227,6 @@ export const selectRegionTrendsChart = createSelector(
     });
 
     return populationsByRegion.map(population => {
-
       const filteredNames = Object.values(population)[0].name.filter(t => t);
       const filteredTrends = Object.values(population)[0].trend.filter(t => t.length);
 

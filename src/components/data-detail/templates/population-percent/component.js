@@ -9,9 +9,9 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationPercent = ({ data, user }) => {
+const PopulationPercent = ({ data, user, publication }) => {
 
-  const [isCollapsed, toggleCollapse] = useState(true);
+  const [isCollapsed, toggleCollapse] = useState(publication ? true : false);
   const [visible, toggleVisibility] = useState({});
 
   const handleClick = () => {
