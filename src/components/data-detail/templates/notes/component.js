@@ -7,7 +7,7 @@ import './styles.scss';
 const Notes = ({ data }) => {
 
   if (!data.length) return null;
-  return <div className="c-references">
+  return <div className="c-notes">
     <div className="header">
       <h2>Notes</h2>
     </div>

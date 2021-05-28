@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import { toCamelCase } from 'utils/strings';
 
-import { fetchComments, createComment } from 'services/comments';
+import { fetchComments, createComment, updateComment } from 'services/comments';
 
 import Button from 'components/button';
 
@@ -55,6 +55,10 @@ const Comments = ({
     onClose();
   };
 
+  const handleComment = () => {
+    updateComment('hola');
+  }
+
   if (!visible) return null;
 
   return (
@@ -92,6 +96,11 @@ const Comments = ({
             >
               Cancel
             </Button>
+            <Button
+            aria-label="cancel"
+              onClick={handleComment}
+              disable={isDisable}
+              className="-background -tertiary -big">update comment</Button>
 
             <Button
               aria-label="submit"

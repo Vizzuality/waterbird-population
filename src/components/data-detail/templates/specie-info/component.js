@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import './styles.scss';
 
-const PopulationInfo = ({ data }) => {
+const SpecieInfo = ({ data }) => {
   return (
-    <div className={classnames('c-population-info')}>
+    <div className={classnames('c-population-specie-info')}>
       <div className="header">
-        <h2>Population information</h2>
+        <h2>Species information</h2>
       </div>
 
       <div className="population-info--summary">
@@ -17,7 +17,13 @@ const PopulationInfo = ({ data }) => {
             <div key={ix} className="population-info--summary-item">
               {i.map((i2) => (
                 <div key={i2.value} className="population-info--summary-item-container">
-                  <div className="population-info--summary-item-head">{i2.head}</div>
+                  <div
+                    className={classnames('population-info--summary-item-head', {
+                      [i2.className]: !!i2.className,
+                    })}
+                  >
+                    {i2.head}
+                  </div>
                   <div
                     style={{
                       backgroundColor: i2.backgroundColor,
@@ -40,12 +46,12 @@ const PopulationInfo = ({ data }) => {
   );
 };
 
-PopulationInfo.propTypes = {
+SpecieInfo.propTypes = {
   data: PropTypes.array,
 };
 
-PopulationInfo.defaultProps = {
+SpecieInfo.defaultProps = {
   data: [],
 };
 
-export default PopulationInfo;
+export default SpecieInfo;
