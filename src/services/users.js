@@ -33,7 +33,6 @@ export const registerUser = (data) => {
     email,
     password,
     company,
-    phone,
     request_date,
     comments
   )
@@ -42,7 +41,6 @@ export const registerUser = (data) => {
     '${data.email}',
     '${data.password}',
     '${data.company}',
-    '${data.phone}',
     '${date}',
     '${data.comments}'
   ) `;
