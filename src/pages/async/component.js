@@ -1,5 +1,12 @@
+import React from 'react';
 import loadable from '@loadable/component';
 
-const AsyncPage = loadable((props) => import(`pages/${props.page}`));
+// components
+
+import Spinner from 'components/spinner';
+
+const AsyncPage = loadable((props) => import(`pages/${props.page}`), {
+  fallback: <Spinner />,
+});
 
 export default AsyncPage;

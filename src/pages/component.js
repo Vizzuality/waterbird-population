@@ -7,7 +7,10 @@ const Pages = ({ router }) => {
   const { page } = routesMap[type];
   return (
     <>
-      {Object.keys(routesMap).map(route => page === routesMap[route].page && <AsyncPage key={page} page={page} router={router} /> )}
+      {Object.keys(routesMap).map(
+        (route) =>
+          page === routesMap[route].page && <AsyncPage key={page} page={page} router={router} />
+      )}
     </>
   );
 };
@@ -15,9 +18,8 @@ const Pages = ({ router }) => {
 Pages.propTypes = {
   router: PropTypes.shape({
     type: PropTypes.string,
-    routesMap: PropTypes.shape({})
+    routesMap: PropTypes.shape({}),
   }).isRequired,
-
 };
 
 export default Pages;

@@ -238,7 +238,7 @@ export const selectPopulationsData = createSelector(
         })
         .filter((p) => p.publication_id),
       ['active'],
-      ['desc']
+      ['asc']
     );
   }
 );

@@ -25,7 +25,7 @@ const PagesInfo = {
     title: 'Analyze',
     tabs: false,
     tabsInfo: false,
-    content: <Analysis />
+    content: <Analysis />,
   },
   BACKGROUND: {
     title: 'Background',
@@ -33,26 +33,26 @@ const PagesInfo = {
       { name: 'What are Waterbirds?', id: 'WAW' },
       { name: 'What is waterbird population?', id: 'WIWP' },
       { name: 'What are flyways?', id: 'WAF' },
-      { name: 'Glossary', id: 'Glossary' }
+      { name: 'Glossary', id: 'Glossary' },
     ],
     info: [
       {
         id: 'WAW',
-        content: <TabInfo info={WAWInfo} />
+        content: <TabInfo info={WAWInfo} />,
       },
       {
         id: 'WIWP',
-        content: <TabInfo info={WIWPInfo} />
+        content: <TabInfo info={WIWPInfo} />,
       },
       {
         id: 'WAF',
-        content: <TabInfo info={WAFInfo} />
+        content: <TabInfo info={WAFInfo} />,
       },
       {
         id: 'Glossary',
-        content: <TabInfo info={glossaryInfo} />
-      }
-    ]
+        content: <TabInfo info={glossaryInfo} />,
+      },
+    ],
   },
   DATA: {
     title: 'Data presentation',
@@ -60,45 +60,45 @@ const PagesInfo = {
       { name: 'Species & Population', id: 'SP' },
       { name: 'Population Estimates', id: 'PE' },
       { name: 'Population Trends', id: 'PT' },
-      { name: '1% threshold', id: 'Threshold' }
+      { name: '1% threshold', id: 'Threshold' },
     ],
     info: [
       {
         id: 'SP',
-        content: <TabInfo info={SpeciesPopulationInfo} />
+        content: <TabInfo info={SpeciesPopulationInfo} />,
       },
       {
         id: 'PE',
-        content: <TabInfo info={PopulationEstimatesInfo} />
+        content: <TabInfo info={PopulationEstimatesInfo} />,
       },
       {
         id: 'PT',
         intro: '',
-        content: <TabInfo info={PopulationTrendsInfo} />
+        content: <TabInfo info={PopulationTrendsInfo} />,
       },
       {
         id: 'Threshold',
         intro: '',
-        content: <TabInfo info={ThresholdInfo} />
-      }
+        content: <TabInfo info={ThresholdInfo} />,
+      },
     ],
   },
   CREDITS: {
     title: 'Credits',
     tabs: [
       { name: 'Funders & Supporters', id: 'fs' },
-      { name: 'Editors & Contributors', id: 'ec' }
+      { name: 'Editors & Contributors', id: 'ec' },
     ],
     info: [
       {
         id: 'fs',
-        content: <TabInfo info={FSInfo} />
+        content: <TabInfo info={FSInfo} />,
       },
       {
         id: 'ec',
-        content: <TabInfo info={ECInfo} />
-      }
-    ]
+        content: <TabInfo info={ECInfo} />,
+      },
+    ],
   },
   ABOUT: {
     title: 'About',
@@ -106,44 +106,44 @@ const PagesInfo = {
       { name: 'Info', id: 'info' },
       { name: 'Contact', id: 'contact' },
       { name: 'Terms of use', id: 'terms' },
-      { name: 'Frequently Asked Questions', id: 'faqs' }
+      { name: 'Frequently Asked Questions', id: 'faqs' },
     ],
     info: [
       {
         id: 'info',
-        content: <TabInfo info={AboutInfo} />
+        content: <TabInfo info={AboutInfo} />,
       },
       {
         id: 'contact',
-        content: <TabInfo info={ContactInfo} />
+        content: <TabInfo info={ContactInfo} />,
       },
       {
         id: 'terms',
-        content: <TabInfo info={TermsInfo} />
+        content: <TabInfo info={TermsInfo} />,
       },
       {
         id: 'faqs',
-        content: <TabInfo info={FAQInfo} />
-      }
-    ]
+        content: <TabInfo info={FAQInfo} />,
+      },
+    ],
   },
   DOWNLOADS: {
     title: 'Downloads',
     tabs: [
       { name: 'Downloads', id: 'downloads' },
-      { name: 'References', id: 'references' }
+      { name: 'References', id: 'references' },
     ],
     info: [
       {
         id: 'downloads',
-        content: <TabInfo info={DownloadsInfo} />
+        content: <TabInfo info={DownloadsInfo} />,
       },
       {
         id: 'references',
-        content: <References />
-      }
-    ]
-  }
-}
+        content: <References />,
+      },
+    ],
+  },
+};
 
 export default PagesInfo;
