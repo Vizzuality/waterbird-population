@@ -60,10 +60,6 @@ const SpeciesListItem = ({ specie }) => {
       </div>
       <div className={classnames('species-results-description', { '-hidden': isCollapsed })}>
         {image.thumbnail && <img src={image.thumbnail.source} alt={image.title} />}
-        <p>
-          {image.description &&
-            `${image.description.charAt(0).toUpperCase() + image.description.slice(1)}.`}
-        </p>
       </div>
 
       {!isCollapsed && <PopulationsList specieId={specie.id} />}
