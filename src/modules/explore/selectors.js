@@ -353,7 +353,7 @@ export const selectPopulationInfoData = createSelector(
     return [
       [
         { head: 'Order name', value: trim(population.family.ordername) || '-' },
-        { head: 'Order family', value: trim(population.family.name) || '-' },
+        { head: 'Family name', value: trim(population.family.name) || '-' },
       ],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [
@@ -611,7 +611,7 @@ export const selectPopulationLayers = createSelector(
     return [
       // GEOJSON DATA LAYER
       {
-        id: 'populations-by-specie',
+        id: `populations-by-specie-${_basemap}`,
         type: 'geojson',
         source: {
           type: 'geojson',
@@ -649,10 +649,10 @@ export const selectPopulationLayers = createSelector(
                 'fill-color': [
                   'case',
                   ['boolean', ['feature-state', 'hover'], false],
-                  '#FFBB00',
-                  '#000',
+                  _basemap === 'satellite' ? '#0282B0' : '#FFBB00',
+                  _basemap === 'satellite' ? '#72B9D2' : '#000000',
                 ],
-                'fill-opacity': 0.15,
+                'fill-opacity': _basemap === 'satellite' ? 0.5 : 0.15,
               },
             },
             {

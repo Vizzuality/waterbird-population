@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import isEmpty from 'lodash/isEmpty';
 
 import { LayerManager, Layer } from 'layer-manager/dist/components';
 import { PluginMapboxGl } from 'layer-manager';
-import { Popup } from 'react-map-gl'
+import { Popup } from 'react-map-gl';
 
 import { getParams } from 'utils/layers';
 
@@ -15,56 +16,53 @@ import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
 import PopulationsSelector from 'pages/explore/detail/map/populations-selector';
 
-
 export const MapContainer = ({
   populationOptions,
   populationLayers,
   scrollZoom = false,
   router,
   setRouter,
-  basemap
+  basemap,
 }) => {
-
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 40, longitude: 10 });
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
 
-  const parsedLayers = populationLayers.map(l => {
+  const parsedLayers = populationLayers.map((l) => {
     return {
       ...l,
-      key: basemap,
-      params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id })
-    }
+      params: !!l.paramsConfig && getParams(l.paramsConfig, { specieid: router.payload.specie_id }),
+    };
   });
 
   const onZoomChange = (zoom) => {
     setViewport({
       zoom,
-      transitionDuration: 250
+      transitionDuration: 250,
     });
   };
 
-  const onAfterAdd = layerModel => {
+  const onAfterAdd = (layerModel) => {
     if (!isEmpty(layerModel.interactionConfig)) {
-      layerModel.mapLayer.layers.forEach(l => {
+      layerModel.mapLayer.layers.forEach((l) => {
         const { id } = l;
 
         if (!interactiveLayerIds.includes(id)) {
-          setInteractiveLayerIds(prevInteractiveLayersIds => [...prevInteractiveLayersIds, id]);
+          setInteractiveLayerIds((prevInteractiveLayersIds) => [...prevInteractiveLayersIds, id]);
         }
       });
     }
   };
 
-  const onAfterRemove = layerModel => {
+  const onAfterRemove = (layerModel) => {
     if (!isEmpty(layerModel.interactionConfig)) {
-      layerModel.mapLayer.layers.forEach(l => {
+      layerModel.mapLayer.layers.forEach((l) => {
         const { id } = l;
 
         if (interactiveLayerIds.includes(id)) {
-          setInteractiveLayerIds(prevInteractiveLayersIds => {
-            const arr = prevInteractiveLayersIds.filter(e => e !== id);
+          setInteractiveLayerIds((prevInteractiveLayersIds) => {
+            const arr = prevInteractiveLayersIds.filter((e) => e !== id);
 
             return arr;
           });
@@ -74,15 +72,15 @@ export const MapContainer = ({
   };
 
   return (
-    <div className='c-map-container'>
+    <div className="c-map-container">
       <PopulationsSelector
         data={populationOptions}
         selected={+router.payload.population_id}
         onChange={(value) => {
           setRouter('EXPLORE_DETAIL', {
             specie_id: router.payload.specie_id,
-            population_id: value
-          })
+            population_id: value,
+          });
         }}
       />
       <Map
@@ -98,18 +96,17 @@ export const MapContainer = ({
 
             setRouter('EXPLORE_DETAIL', {
               specie_id: router.payload.specie_id,
-              population_id: id
-            })
+              population_id: id,
+            });
           }
         }}
         onHover={(e) => {
           if (e && e.features) {
-            e.features.forEach(f => (
+            e.features.forEach((f) =>
               setHoverInteractions({
-                [f.source]: f.properties
+                [f.source]: f.properties,
               })
-            ));
-
+            );
           }
         }}
         onMouseLeave={() => {
@@ -117,24 +114,20 @@ export const MapContainer = ({
           setLngLat(null);
         }}
       >
-
-        {(map) =>
+        {(map) => (
           <Fragment>
-            <LayerManager
-              map={map}
-              plugin={PluginMapboxGl}
-            >
-              {!!parsedLayers && parsedLayers.map((l, i) => {
-                return (
-                  <Layer
-                    key={l.id}
-                    {...l}
-                    onAfterAdd={onAfterAdd}
-                    onAfterRemove={onAfterRemove}
-                  />
-                )
-
-              })}
+            <LayerManager map={map} plugin={PluginMapboxGl}>
+              {!!parsedLayers &&
+                parsedLayers.map((l) => {
+                  return (
+                    <Layer
+                      key={l.id}
+                      {...l}
+                      onAfterAdd={onAfterAdd}
+                      onAfterRemove={onAfterRemove}
+                    />
+                  );
+                })}
             </LayerManager>
 
             {lngLat && hoverInteractions['populations-by-specie'] && (
@@ -148,14 +141,11 @@ export const MapContainer = ({
               </Popup>
             )}
           </Fragment>
-        }
+        )}
       </Map>
 
       <MapControls>
-        <ZoomControl
-          viewport={viewport}
-          onClick={onZoomChange}
-        />
+        <ZoomControl viewport={viewport} onClick={onZoomChange} />
       </MapControls>
       <Legend />
     </div>
@@ -163,9 +153,21 @@ export const MapContainer = ({
 };
 
 MapContainer.propTypes = {
+  router: PropTypes.shape({
+    payload: PropTypes.shape({
+      population_id: PropTypes.number,
+      specie_id: PropTypes.number,
+    }),
+  }).isRequired,
+  scrollZoom: PropTypes.bool,
+  setRouter: PropTypes.func.isRequired,
+  basemap: PropTypes.string.isRequired,
+  populationOptions: PropTypes.shape({}).isRequired,
+  populationLayers: PropTypes.array.isRequired,
 };
 
 MapContainer.defaultProps = {
+  scrollZoom: false,
 };
 
 export default MapContainer;

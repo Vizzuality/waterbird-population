@@ -138,12 +138,14 @@ const DataControls = ({
       </div>
       {page !== 'EXPLORE_DETAIL' && (
         <>
-          <div className="data-configuration--download">
-            <Link to="/downloads/downloads">
-              <span>Download results</span>
-              <img src={Image} alt="download" name="download" />
-            </Link>
-          </div>
+          {page === 'EXPLORE' && (
+            <div className="data-configuration--download">
+              <Link to="/downloads/downloads">
+                <span>Go to downloads</span>
+                <img src={Image} alt="download" name="download" />
+              </Link>
+            </div>
+          )}
           <ActiveFilters
             filters={filters}
             onClick={handleClick}

@@ -11,30 +11,39 @@ import { selectWidgetsProps } from 'modules/analysis/selectors';
 import { setPopulations, setTrends, setTrendCategories } from 'modules/analysis/actions';
 
 const widgetTemplates = new Map([
-  ['families', {
-    component: StackedBarChart
-  }],
-  ['populations', {
-    component: BarChart
-  }],
-  ['estimates', {
-    component: EstimatesBarChart
-  }]
+  [
+    'families',
+    {
+      component: StackedBarChart,
+    },
+  ],
+  [
+    'populations',
+    {
+      component: BarChart,
+    },
+  ],
+  [
+    'estimates',
+    {
+      component: EstimatesBarChart,
+    },
+  ],
 ]);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   populationsLoaded: state.analysis.populations.loading,
   trendsLoaded: state.analysis.trends.loading,
   trend_categoriesLoaded: state.analysis.trend_categories.loading,
   widgets: state.analysis.widgets,
   widgetTemplates,
-  ...selectWidgetsProps(state)
+  ...selectWidgetsProps(state),
 });
 
 const mapDispatchToProps = {
   setPopulations,
   setTrends,
-  setTrendCategories
+  setTrendCategories,
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(Component);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);

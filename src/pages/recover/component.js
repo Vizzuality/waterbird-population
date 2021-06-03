@@ -16,7 +16,6 @@ import './styles.scss';
 const RecoverPage = ({ router, setRouter, setUser }) => {
   const { id, email } = router;
 
-  const [isOpen, toggleModal] = useState(!!id && !!email);
   const [form, changeState] = useState({
     email: '',
     password: '',
@@ -54,7 +53,7 @@ const RecoverPage = ({ router, setRouter, setUser }) => {
 
   return (
     <div className="l-recover" style={{ backgroundImage: `url(${Image})` }}>
-      <Modal isOpen={isOpen} onRequestClose={() => onClose()}>
+      <Modal isOpen={true} onRequestClose={(e) => onClose(e)}>
         <div className="login-modal-container">
           <h3>
             <span>Welcome back,</span> create new password

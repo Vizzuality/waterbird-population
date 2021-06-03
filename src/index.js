@@ -5,17 +5,12 @@ import { Provider } from 'react-redux';
 
 import Cookies from 'js-cookie';
 
-import Header from 'components/header';
-import Pages from 'pages';
-import Footer from 'components/footer';
-import Icons from 'components/icons';
-
+import App from './app';
 import { setUser } from 'modules/user/actions';
 
 import 'styles/index.scss';
 
-const App = () => {
-  const page = store.getState().router.type;
+const Main = () => {
   const user = Cookies.get('user');
   if (user) {
     store.dispatch(setUser(JSON.parse(user)));
@@ -23,15 +18,9 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <div className="app">
-        {page !== 'IMAGES' && page !== 'RECOVER' && <Header />}
-        <Pages className="l-pages" />
-        {page !== 'IMAGES' && page !== 'RECOVER' && <Footer />}
-        {page !== 'IMAGES' && <div id="transifex-picker" />}
-        <Icons />
-      </div>
+      <App />
     </Provider>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Main />, document.getElementById('root'));

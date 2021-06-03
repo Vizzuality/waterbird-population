@@ -17,7 +17,7 @@ import './styles.scss';
 const DEFAULT_VIEWPORT = {
   zoom: 1,
   latitude: 40,
-  longitude: 10
+  longitude: 10,
 };
 
 class Map extends Component {
@@ -39,7 +39,7 @@ class Map extends Component {
     /** An object that defines the bounds */
     bounds: PropTypes.shape({
       bbox: PropTypes.array,
-      options: PropTypes.shape({})
+      options: PropTypes.shape({}),
     }),
 
     /** A boolean that allows panning */
@@ -80,7 +80,7 @@ class Map extends Component {
 
     /** A boolean that prevents an error in Firefox print view */
     /** If true , the map's canvas can be exported to a PNG using map.getCanvas().toDataURL() .
-    * False by default as a performance optimization. */
+     * False by default as a performance optimization. */
     preserveDrawingBuffer: PropTypes.bool,
   };
 
@@ -92,15 +92,15 @@ class Map extends Component {
     dragPan: true,
     dragRotate: true,
 
-    onViewportChange: () => { },
-    onLoad: () => { },
-    onHover: () => { },
-    onReady: () => { },
+    onViewportChange: () => {},
+    onLoad: () => {},
+    onHover: () => {},
+    onReady: () => {},
     getCursor: ({ isHovering, isDragging }) => {
       if (isHovering) return 'pointer';
       if (isDragging) return 'grabbing';
       return 'grab';
-    }
+    },
   };
 
   state = {
@@ -111,26 +111,23 @@ class Map extends Component {
     flying: false,
     loaded: false,
     tooltip: null,
-    mousePosition: null
+    mousePosition: null,
   };
 
   componentDidMount() {
     const { bounds, onReady } = this.props;
-    if (!isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every(b => !!b)) {
+    if (!isEmpty(bounds) && !!bounds.bbox && bounds.bbox.every((b) => !!b)) {
       this.fitBounds(0);
     }
 
     onReady({
       map: this.map,
-      mapContainer: this.mapContainer
+      mapContainer: this.mapContainer,
     });
   }
 
   componentDidUpdate(prevProps) {
-    const {
-      viewport: prevViewport,
-      bounds: prevBounds,
-    } = prevProps;
+    const { viewport: prevViewport, bounds: prevBounds } = prevProps;
     const { viewport, bounds } = this.props;
     const { viewport: stateViewport } = this.state;
 
@@ -138,7 +135,7 @@ class Map extends Component {
       !isEmpty(bounds) &&
       !isEqual(bounds, prevBounds) &&
       !!bounds.bbox &&
-      bounds.bbox.every(b => !!b)
+      bounds.bbox.every((b) => !!b)
     ) {
       this.fitBounds();
     }
@@ -148,8 +145,8 @@ class Map extends Component {
         // eslint-disable-line
         viewport: {
           ...stateViewport,
-          ...viewport
-        }
+          ...viewport,
+        },
       });
     }
   }
@@ -160,7 +157,7 @@ class Map extends Component {
 
     onLoad({
       map: this.map,
-      mapContainer: this.mapContainer
+      mapContainer: this.mapContainer,
     });
   };
 
@@ -169,9 +166,14 @@ class Map extends Component {
     const { mousePosition, tooltip } = this.state;
     const { features } = e;
     if (features && features.length) {
-      const { id, source, sourceLayer, properties: { populationname } } = features[0];
+      const {
+        id,
+        source,
+        sourceLayer,
+        properties: { populationname },
+      } = features[0];
       if (populationname && populationname !== this.state.tooltip) {
-        this.setState({ tooltip: populationname, mousePosition: e.center});
+        this.setState({ tooltip: populationname, mousePosition: e.center });
       }
 
       if (this.HOVER.id) {
@@ -203,13 +205,13 @@ class Map extends Component {
       }
     }
 
-    if (!!onHover) onHover(e);
+    if (onHover) onHover(e);
   };
 
   onClick = (e) => {
     const { onClick } = this.props;
     if (onClick) onClick(e);
-  }
+  };
 
   onMouseOut = (e) => {
     const { onMouseOut } = this.props;
@@ -230,8 +232,8 @@ class Map extends Component {
 
     this.HOVER = {};
 
-    if (!!onMouseLeave) onMouseLeave(e);
-  }
+    if (onMouseLeave) onMouseLeave(e);
+  };
 
   onViewportChange = (v, i) => {
     const { onViewportChange } = this.props;
@@ -245,7 +247,7 @@ class Map extends Component {
     const { viewport } = this.state;
     const newViewport = {
       ...viewport,
-      ...v
+      ...v,
     };
 
     this.setState({ viewport: newViewport });
@@ -268,7 +270,7 @@ class Map extends Component {
         pitch,
         zoom,
         latitude: lat,
-        longitude: lng
+        longitude: lng,
       };
 
       // Publish new viewport and save it into the state
@@ -286,9 +288,9 @@ class Map extends Component {
       height: this.mapContainer.offsetHeight,
       bounds: [
         [bbox[0], bbox[1]],
-        [bbox[2], bbox[3]]
+        [bbox[2], bbox[3]],
       ],
-      ...options
+      ...options,
     });
 
     const newViewport = {
@@ -297,12 +299,12 @@ class Map extends Component {
       latitude,
       zoom,
       transitionDuration,
-      transitionInterruption: TRANSITION_EVENTS.UPDATE
+      transitionInterruption: TRANSITION_EVENTS.UPDATE,
     };
 
     this.setState({
       flying: true,
-      viewport: newViewport
+      viewport: newViewport,
     });
     onViewportChange(newViewport);
 
@@ -334,20 +336,22 @@ class Map extends Component {
         }}
         className={classnames({
           'c-map': true,
-          [customClass]: !!customClass
+          [customClass]: !!customClass,
         })}
       >
-        {mousePosition && <Tooltip
-          key={`tooltip-${tooltip}`}
-          delay={0}
-          arrow={false}
-          visible={tooltip}
-          content={
-            <div className="map-tooltip" style={{ top: mousePosition.y, left: mousePosition.x }}>
-              {tooltip}
-            </div>
-          }
-        />}
+        {mousePosition && (
+          <Tooltip
+            key={`tooltip-${tooltip}`}
+            delay={0}
+            arrow={false}
+            visible={tooltip}
+            content={
+              <div className="map-tooltip" style={{ top: mousePosition.y, left: mousePosition.x }}>
+                {tooltip}
+              </div>
+            }
+          />
+        )}
         <ReactMapGL
           ref={(map) => {
             this.map = map && map.getMap();
@@ -359,7 +363,6 @@ class Map extends Component {
           {...viewport}
           width="100%"
           height="100%"
-
           // INTERACTIVE
           dragPan={!flying && dragPan}
           dragRotate={!flying && dragRotate}
@@ -376,16 +379,11 @@ class Map extends Component {
           onMouseLeave={this.onMouseLeave}
           onClick={this.onClick}
           getCursor={getCursor}
-
           transitionInterpolator={new FlyToInterpolator()}
           transitionEasing={easeCubic}
           preserveDrawingBuffer={preserveDrawingBuffer || false}
         >
-          {loaded &&
-            !!this.map &&
-            typeof children === 'function' &&
-            children(this.map)}
-
+          {loaded && !!this.map && typeof children === 'function' && children(this.map)}
         </ReactMapGL>
       </div>
     );

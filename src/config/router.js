@@ -20,7 +20,7 @@ export const routes = {
   },
   EXPLORE_DETAIL: {
     page: 'explore/detail',
-    path: '/explore-detail/:specie_id/:population_id?',
+    path: '/explore/:specie_id/:population_id?',
   },
   RECOVER: {
     page: 'recover',

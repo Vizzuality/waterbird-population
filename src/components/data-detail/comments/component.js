@@ -107,15 +107,6 @@ const Comments = ({
               Cancel
             </Button>
             <Button
-              aria-label="cancel"
-              onClick={handleComment}
-              disable={isDisable}
-              className="-background -tertiary -big"
-            >
-              update comment
-            </Button>
-
-            <Button
               aria-label="submit"
               type="submit"
               onClick={sendComment}
