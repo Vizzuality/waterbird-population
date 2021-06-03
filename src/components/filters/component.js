@@ -23,7 +23,7 @@ const Filters = ({
   activeFilters,
   onClick,
   publications,
-  setPublications
+  setPublications,
 }) => {
   const [families, setFamilies] = useState([]);
   const [conservationFrameworks, setFrameworks] = useState([]);
@@ -32,35 +32,35 @@ const Filters = ({
   const [newFiltersValues, setNewFiltersValues] = useState(filters);
 
   useEffect(() => {
-    fetchFamilies().then(data => setFamilies(data));
-    fetchPublications().then(data => setPublications(data.reverse()));
-    fetchConservationFrameworks().then(data => setFrameworks(data));
-    fetchFlyways().then(data => setFlyways(orderBy(data, ['flywaygroup', 'flywayrange'])));
-    fetchRedListCategories().then(data => setListCategories(data));
-  }, []);
+    fetchFamilies().then((data) => setFamilies(data));
+    fetchPublications().then((data) => setPublications(data.reverse()));
+    fetchConservationFrameworks().then((data) => setFrameworks(data));
+    fetchFlyways().then((data) => setFlyways(orderBy(data, ['flywaygroup', 'flywayrange'])));
+    fetchRedListCategories().then((data) => setListCategories(data));
+  }, [setPublications]);
 
   const handleClick = () => {
     //toggle modal
     onClick();
   };
   const handleFilters = () => {
-    setFilters(newFiltersValues)
+    setFilters(newFiltersValues);
     //toggle modal
     onClick();
   };
 
   // Filters options
-  const familyOptions = families.map(family => {
-    return { label: family.name, value: family.id }
+  const familyOptions = families.map((family) => {
+    return { label: family.name, value: family.id };
   });
 
-  const publicationOptions = publications.map(publication => {
+  const publicationOptions = publications.map((publication) => {
     const label = publication.description;
-    return { label: label, value: publication.id }
+    return { label: label, value: publication.id };
   });
 
-  const conservationFrameworkOptions = conservationFrameworks.map(framework => {
-    return { label: framework.code, value: framework.id }
+  const conservationFrameworkOptions = conservationFrameworks.map((framework) => {
+    return { label: framework.code, value: framework.id };
   });
 
   const flywayOptions = flyways.map(({ flywayrange, flywaygroup, id }) => {
@@ -73,11 +73,11 @@ const Filters = ({
     { value: 'europe', label: 'Europe' },
     { value: 'neotropics', label: 'Neotropics' },
     { value: 'northamerica', label: 'North America' },
-    { value: 'oceania', label: 'Oceania' }
+    { value: 'oceania', label: 'Oceania' },
   ];
 
-  const redListOptions = redList.map(d => {
-    return { label: `${d.iucn} (${d.description})`, value: d.id }
+  const redListOptions = redList.map((d) => {
+    return { label: `${d.iucn} (${d.description})`, value: d.id };
   });
 
   const OPTIONS = {
@@ -86,18 +86,29 @@ const Filters = ({
     framework_id: conservationFrameworkOptions,
     flyway_region_id: flywayOptions,
     ramsar_region_id: ramsarRegionOptions,
-    red_list_id: redListOptions
+    red_list_id: redListOptions,
   };
 
   // filters values
-  const selectedFamily = familyOptions.filter(o => newFiltersValues.family_id.includes(o.value));
-  const selectedPublication = publicationOptions.find(f => newFiltersValues
-    && newFiltersValues.publication_id
-    && newFiltersValues.publication_id === f.value);
-  const selectedFramework = conservationFrameworkOptions.filter(o => newFiltersValues.framework_id.includes(o.value));
-  const selectedFlywayRegion = flywayOptions.filter(o => newFiltersValues.flyway_region_id.includes(o.value));
-  const selectedRamsarRegion = ramsarRegionOptions.filter(o => newFiltersValues.ramsar_region_id.includes(o.value));
-  const selectedRedList = redListOptions.filter(o => newFiltersValues.red_list_id.includes(o.value));
+  const selectedFamily = familyOptions.filter((o) => newFiltersValues.family_id.includes(o.value));
+  const selectedPublication = publicationOptions.find(
+    (f) =>
+      newFiltersValues &&
+      newFiltersValues.publication_id &&
+      newFiltersValues.publication_id === f.value
+  );
+  const selectedFramework = conservationFrameworkOptions.filter((o) =>
+    newFiltersValues.framework_id.includes(o.value)
+  );
+  const selectedFlywayRegion = flywayOptions.filter((o) =>
+    newFiltersValues.flyway_region_id.includes(o.value)
+  );
+  const selectedRamsarRegion = ramsarRegionOptions.filter((o) =>
+    newFiltersValues.ramsar_region_id.includes(o.value)
+  );
+  const selectedRedList = redListOptions.filter((o) =>
+    newFiltersValues.red_list_id.includes(o.value)
+  );
 
   const filtersInfo = [
     {
@@ -106,7 +117,7 @@ const Filters = ({
       options: familyOptions,
       value: selectedFamily,
       placeholder: 'All families',
-      isMulti: true
+      isMulti: true,
     },
     {
       label: 'Publication',
@@ -115,7 +126,7 @@ const Filters = ({
       defaultValue: selectedPublication,
       value: selectedPublication,
       placeholder: 'All publications',
-      isMulti: false
+      isMulti: false,
     },
     {
       label: 'Conservation Framework',
@@ -128,7 +139,7 @@ const Filters = ({
         <Link to="/background/Glossary">
           <Icon name="info" />
         </Link>
-      )
+      ),
     },
     {
       label: 'Biogeographic/ Flyway region',
@@ -141,7 +152,7 @@ const Filters = ({
         <Link target="_blank" rel="noopener noreferrer" to="/images/Biogeographic">
           <Icon name="info" />
         </Link>
-      )
+      ),
     },
     {
       label: 'Ramsar region',
@@ -154,7 +165,7 @@ const Filters = ({
         <Link target="_blank" rel="noopener noreferrer" to="/images/Ramsar">
           <Icon name="info" />
         </Link>
-      )
+      ),
     },
     {
       label: 'Global Red List',
@@ -164,39 +175,42 @@ const Filters = ({
       placeholder: 'All',
       isMulti: true,
       info: (
-        <a target="_blank" rel="noopener noreferrer" href="https://www.iucnredlist.org/resources/categories-and-criteria#categories">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.iucnredlist.org/resources/categories-and-criteria#categories"
+        >
           <Icon name="info" />
         </a>
-      )
-    }
+      ),
+    },
   ];
 
   const changeFilterValue = (isMulti, type, value) => {
-
     setNewFiltersValues({
       ...newFiltersValues,
-      [`${type}`]: isMulti ? value.map(v => v.value) : value.value,
+      [`${type}`]: isMulti ? value.map((v) => v.value) : value.value,
     });
   };
-
 
   const removeFilter = (type, value) => {
     const filtersUpdate = {
       ...newFiltersValues,
-      [type]: type === 'publication_id'
-        ? orderBy(publicationOptions, 'value', 'desc')[0]
-        : newFiltersValues[type].filter(f => f !== value)
-    }
+      [type]:
+        type === 'publication_id'
+          ? orderBy(publicationOptions, 'value', 'desc')[0]
+          : newFiltersValues[type].filter((f) => f !== value),
+    };
     setNewFiltersValues(filtersUpdate);
-    setFilters(filtersUpdate)
+    setFilters(filtersUpdate);
   };
 
   return (
     <div className="c-filters">
       <h3>Filter options:</h3>
       <div className="filters-content">
-        {filtersInfo.map(({ label, type, placeholder, options, isMulti, defaultValue, value, info }) =>
-          <div className="filters">
+        {filtersInfo.map(({ label, type, placeholder, options, isMulti, value, info }) => (
+          <div key={`${type}-${label}`} className="filters">
             <div className="filter-type">
               <label>{label}</label>
               {info ? info : null}
@@ -209,25 +223,23 @@ const Filters = ({
               defaultValue={type === 'publication_id' && filters.publication_id}
               isMulti={isMulti}
               classNamePrefix="react-select"
-              onChange={value => changeFilterValue(isMulti, type, value)}
+              onChange={(value) => changeFilterValue(isMulti, type, value)}
               components={{
                 MultiValueLabel: ({ data, selectProps, innerProps }) => {
                   const length = selectProps.value.length - 1;
 
-                  return data === selectProps.value[0]
-                    ? (<div {...innerProps}>
-                      <span>
-                        {data.label}
-                      </span>
+                  return data === selectProps.value[0] ? (
+                    <div {...innerProps}>
+                      <span>{data.label}</span>
                       {length >= 1 && <span>{` + ${length}`}</span>}
-                    </div>)
-                    : null
+                    </div>
+                  ) : null;
                 },
-                MultiValueRemove: () => null
+                MultiValueRemove: () => null,
               }}
             />
           </div>
-        )}
+        ))}
       </div>
       <div className="filters-controls">
         <ActiveFilters
@@ -240,7 +252,10 @@ const Filters = ({
         <ClearFilters
           handleUnsetteledFilters={setNewFiltersValues}
           activeFilters={activeFilters}
-          unsetteledFilters={newFiltersValues && Object.values(newFiltersValues).filter(filter => filter && filter.length)}
+          unsetteledFilters={
+            newFiltersValues &&
+            Object.values(newFiltersValues).filter((filter) => filter && filter.length)
+          }
         />
       </div>
       <div className="filters-buttons">
@@ -255,17 +270,18 @@ const Filters = ({
         <Button
           aria-label="apply-filters"
           onClick={handleFilters}
-          className='-background -secondary -big'>
+          className="-background -secondary -big"
+        >
           Apply filters
         </Button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 Filters.propTypes = {
   activeFilters: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired
-}
+  onClick: PropTypes.func.isRequired,
+};
 
 export default Filters;
