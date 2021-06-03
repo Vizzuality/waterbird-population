@@ -58,11 +58,15 @@ const Analysis = ({
 };
 
 Analysis.propTypes = {
-  infoId: PropTypes.shape({
-    intro: PropTypes.string,
-    content: PropTypes.string,
-    tabs: PropTypes.array,
-  }).isRequired,
+  widgets: PropTypes.array.isRequired,
+  widgetTemplates: PropTypes.shape({}).isRequired,
+  setPopulations: PropTypes.func.isRequired,
+  setTrends: PropTypes.func.isRequired,
+  setTrendCategories: PropTypes.func.isRequired,
+  populationsLoaded: PropTypes.bool.isRequired,
+  trendsLoaded: PropTypes.bool.isRequired,
+  trend_categoriesLoaded: PropTypes.bool.isRequired,
+  generalData: PropTypes.array.isRequired,
 };
 
 export default Analysis;
