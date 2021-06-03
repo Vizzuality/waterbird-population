@@ -48,9 +48,13 @@ const RecoverPage = ({ router, setRouter, setUser }) => {
     });
   };
 
+  const onClose = () => {
+    setRouter('HOME', {});
+  };
+
   return (
     <div className="l-recover" style={{ backgroundImage: `url(${Image})` }}>
-      <Modal isOpen={isOpen} onRequestClose={() => toggleModal(false)}>
+      <Modal isOpen={isOpen} onRequestClose={() => onClose()}>
         <div className="login-modal-container">
           <h3>
             <span>Welcome back,</span> create new password
