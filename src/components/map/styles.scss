@@ -8,6 +8,11 @@
   padding-bottom: 10px;
 
   @media print {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+
     overflow: visible;
     height: 40vh;
     width: 100vw;
@@ -35,6 +40,10 @@
             display: none;
           }
         }
+
+        @media print {
+          display: none;
+        }
       }
     }
   }
@@ -43,6 +52,8 @@
     height: 40vh;
     width: 100vw;
   }
+
+
 }
 
 .map-tooltip {

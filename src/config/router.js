@@ -24,7 +24,7 @@ export const routes = {
   },
   RECOVER: {
     page: 'recover',
-    path: '/recover/:id/:email',
+    path: '/recover',
   },
   ANALYZE: {
     page: 'analyze',

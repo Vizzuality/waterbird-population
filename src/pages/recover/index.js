@@ -6,7 +6,7 @@ import { setUser } from 'modules/user/actions';
 import Component from './component';
 
 const mapStateToProps = (state) => ({
-  router: state.router.payload,
+  router: state.router.query,
 });
 
 const mapDispatchToProps = { setRouter, setUser };

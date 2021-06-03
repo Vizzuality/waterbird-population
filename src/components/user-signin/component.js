@@ -27,8 +27,12 @@ const SigInSigupContainer = ({ user, resetUser, modalContent }) => {
     resetUser();
   };
 
+  const onRequestClose = () => {
+    toggleModal(!isOpen);
+  };
+
   return (
-    <div className="c-login">
+    <div key={`${content}-${isOpen}`} className="c-login">
       {content === 'sign-in' && user.name && (
         <div className="dropdown">
           <MediaQuery minWidth={breakpoints.sm}>{user.name}</MediaQuery>
@@ -57,11 +61,11 @@ const SigInSigupContainer = ({ user, resetUser, modalContent }) => {
         </Button>
       )}
 
-      <Modal isOpen={isOpen} onRequestClose={() => toggleModal(false)}>
+      <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
         {content === 'sign-in' ? (
           <Login handleContent={() => setContent('sig-up')} toggleModal={toggleModal} />
         ) : (
-          <Register toggleModal={toggleModal} />
+          <Register />
         )}
       </Modal>
     </div>

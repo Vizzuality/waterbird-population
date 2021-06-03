@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setUser, resetUser } from 'modules/user/actions';
+import { setUser } from 'modules/user/actions';
 
 import Component from './component';
 
@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   setUser,
-  resetUser,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);
