@@ -23,6 +23,17 @@ export const fetchUser = (email, password) => {
     });
 };
 
+export const fetchUserByEmailAndId = (email, id) => {
+  const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
+  const q = `SELECT * FROM users WHERE email='${email}' AND cartodb_id='${id}'`;
+  return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
+    .then(({ data }) => data.rows[0])
+    .catch((e) => {
+      // const { status, statusText } = response;
+      console.log(e);
+    });
+};
+
 export const registerUser = (data) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
 
@@ -48,9 +59,14 @@ export const registerUser = (data) => {
   return API.post(`sql?q=${q}&api_key=${api_key}`);
 };
 
-export const updateUser = (column_to_update, update, condition) => {
+export const updateUserByIdAndEmail = (new_password, id, email) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-  const q = `UPDATE user SET ${column_to_update} = '${update}' WHERE ${condition}`;
-
-  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`);
+  const q = `UPDATE users SET password = '${new_password}' WHERE cartodb_id = ${id} AND email = '${email}'`;
+  return new Promise((resolve, reject) => {
+    try {
+      API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`);
+    } catch (err) {
+      reject(err);
+    }
+  });
 };

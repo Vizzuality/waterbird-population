@@ -1,0 +1,51 @@
+@import 'styles/settings';
+
+.c-login {
+
+  .dropdown {
+    padding: 5px 30px;
+    border-radius: 9px;
+    border: 2px solid $color-1;
+    text-align: center;
+    position: relative;
+    margin-right: 5px;
+
+    .dropdown-content {
+      background-color: $white;
+      display: none;
+    }
+
+    &:hover {
+      color: rgba($color-grey-8, 1);
+
+      .dropdown-content {
+        box-sizing: border-box;
+        padding: 20px;
+        text-align: left;
+        display: block;
+        flex-direction: column;
+        position: absolute;
+        left: 0;
+        top: 40px;
+        min-width: 100px;
+        z-index: 1;
+        line-height: 22px;
+
+        * {
+          padding: 10px 0;
+        }
+
+        button {
+          text-align: left;
+          padding: 0;
+          font-family: $font-family-1;
+          pointer-events: all;
+        }
+      }
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

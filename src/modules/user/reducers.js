@@ -1,5 +1,5 @@
-import { setUser, resetUser } from "./actions";
-import initialState from "./initial-state";
+import { setUser, resetUser, updateUserByIdAndEmail } from './actions';
+import initialState from './initial-state';
 
 export default {
   [setUser]: (state, { payload }) => ({
@@ -7,7 +7,10 @@ export default {
     email: payload.email,
     password: payload.password,
     id: payload.id || payload.cartodb_id,
-    rol: payload.rol
+    rol: payload.rol,
   }),
-  [resetUser]: () => ({ ...initialState})
+  [updateUserByIdAndEmail]: ({ payload }) => ({
+    password: payload.password,
+  }),
+  [resetUser]: () => ({ ...initialState }),
 };

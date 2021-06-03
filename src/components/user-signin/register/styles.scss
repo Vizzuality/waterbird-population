@@ -14,3 +14,11 @@
   }
 }
 
+.c-register {
+  .text {
+    color: $color-grey-8;
+    line-height: 19px;
+    font-family: $font-family-1;
+    cursor: pointer;
+  }
+}

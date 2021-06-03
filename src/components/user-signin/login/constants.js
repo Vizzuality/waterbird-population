@@ -9,4 +9,17 @@ export const RECOVER_PASSWORD_EMAIL_DETAILS = {
   subject: 'Password reminder',
 };
 
+export const defaultRegistrationForm = {
+  name: '',
+  password: '',
+  email: '',
+  company: '',
+  comments: '',
+};
+
+export const defaultLoginForm = {
+  email: '',
+  password: '',
+};
+
 export default RECOVER_PASSWORD_EMAIL_DETAILS;

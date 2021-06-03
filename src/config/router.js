@@ -8,59 +8,64 @@ import { NOT_FOUND } from 'redux-first-router';
 export const routes = {
   HOME: {
     page: 'home',
-    path: '/'
+    path: '/',
   },
   [NOT_FOUND]: {
     page: 'not-found',
-    path: '/404'
+    path: '/404',
   },
   EXPLORE: {
     page: 'explore/overview',
-    path: '/explore'
+    path: '/explore',
   },
   EXPLORE_DETAIL: {
     page: 'explore/detail',
-    path: '/explore/:specie_id/:population_id?'
+    path: '/explore-detail/:specie_id/:population_id?',
+  },
+  RECOVER: {
+    page: 'recover',
+    path: '/recover/:id/:email',
   },
   ANALYZE: {
     page: 'analyze',
-    path: '/analyze'
+    path: '/analyze',
   },
   BACKGROUND: {
     page: 'background',
-    path: '/background/:id'
+    path: '/background/:id',
   },
   DATA: {
     page: 'data',
-    path: '/data/:id'
+    path: '/data/:id',
   },
   CREDITS: {
     page: 'credits',
-    path: '/credits/:id'
+    path: '/credits/:id',
   },
   ABOUT: {
     page: 'about',
-    path: '/about/:id'
+    path: '/about/:id',
   },
   DOWNLOADS: {
     page: 'downloads',
-    path: '/downloads/:id'
+    path: '/downloads/:id',
   },
   MAP: {
     page: 'map',
-    path: '/map'
+    path: '/map',
   },
   IMAGES: {
     page: 'images',
-    path: '/images/:id'
-  }
+    path: '/images/:id',
+  },
 };
 
 const options = {
   location: 'router',
   querySerializer: {
     stringify: qs.stringify,
-    parse: (url) => qs.parse(url, { arrayFormat: 'comma', parseNumbers: true, parseBooleans: true })
+    parse: (url) =>
+      qs.parse(url, { arrayFormat: 'comma', parseNumbers: true, parseBooleans: true }),
   },
   restoreScroll: restoreScroll({
     shouldUpdateScroll: (prev, current) => {
@@ -72,8 +77,8 @@ const options = {
         return prev.prev.pathname !== current.pathname ? [0, 0] : false;
       }
       return prev.pathname !== current.pathname ? [0, 0] : false;
-    }
-  })
+    },
+  }),
 };
 
 export default connectRoutes(routes, options);
