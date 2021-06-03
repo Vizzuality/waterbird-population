@@ -16,6 +16,10 @@
       font-size: 24px;
       font-weight: bold;
       line-height: 29px;
+
+      @media print {
+        line-height: 0;
+      }
     }
   }
 

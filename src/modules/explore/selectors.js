@@ -347,7 +347,6 @@ export const selectPopulationInfoData = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
     const population = _data.find((p) => p.population_id === +_population_id) || _data[0];
-    const conservation = population.conservation.map((c) => c.conservation_framework).join(',');
     const ramsar = regions.filter((r) => !!population[r.id]);
 
     return [
@@ -360,13 +359,7 @@ export const selectPopulationInfoData = createSelector(
         { head: 'Breeding range', value: trim(population.breedingrange) || '-' },
         { head: 'Non-breeding range', value: trim(population.nonbreedingrange) || '-' },
       ],
-      [
-        {
-          head: population.conservation.length > 1 ? 'Conserv. frameworks' : 'Conserv. framework',
-          value: conservation,
-        },
-        { head: 'Ramsar regions', value: ramsar.map((r) => r.name).join(',') },
-      ],
+      [{ head: 'Ramsar regions', value: ramsar.map((r) => r.name).join(',') }],
       [{ head: 'Active', value: population.active === 0 ? 'No' : 'Yes' }],
       [{ head: 'Notes', value: trim(population.note) || '-', className: '-italic' }],
     ];

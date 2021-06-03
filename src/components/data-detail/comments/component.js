@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 import { toCamelCase } from 'utils/strings';
 
-import { fetchComments, createComment, updateComment } from 'services/comments';
+import { fetchComments, createComment } from 'services/comments';
 
 import Button from 'components/button';
 
@@ -55,10 +55,6 @@ const Comments = ({
       date: new Date(),
     });
     onClose();
-  };
-
-  const handleComment = () => {
-    updateComment('hola');
   };
 
   if (!visible) return null;
