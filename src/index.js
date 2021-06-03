@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from 'config/store';
@@ -17,7 +16,7 @@ import 'styles/index.scss';
 
 const App = () => {
   const page = store.getState().router.type;
-  const user = Cookies.get('user')
+  const user = Cookies.get('user');
   if (user) {
     store.dispatch(setUser(JSON.parse(user)));
   }
@@ -25,14 +24,14 @@ const App = () => {
   return (
     <Provider store={store}>
       <div className="app">
-        {page !== 'IMAGES' && <Header />}
+        {page !== 'IMAGES' && page !== 'RECOVER' && <Header />}
         <Pages className="l-pages" />
-        {page !== 'IMAGES' && <Footer />}
+        {page !== 'IMAGES' && page !== 'RECOVER' && <Footer />}
         {page !== 'IMAGES' && <div id="transifex-picker" />}
         <Icons />
       </div>
     </Provider>
-  )
+  );
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
