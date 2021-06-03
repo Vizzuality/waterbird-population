@@ -1,11 +1,16 @@
 import { connect } from 'react-redux';
 
 import { selectFiltersProps, selectPopulationDetailProps } from 'modules/explore/selectors';
-import { setFilters, resetFilters, setPublications, resetPopulationsByLocation } from 'modules/explore/actions';
+import {
+  setFilters,
+  resetFilters,
+  setPublications,
+  resetPopulationsByLocation,
+} from 'modules/explore/actions';
 
 import Component from './component';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   page: state.router.type,
   filters: state.population.filters,
   publications: state.population.publications,
@@ -13,9 +18,14 @@ const mapStateToProps = state => ({
   search: state.population.search,
   lonLat: state.map.lonLat,
   ...selectFiltersProps(state),
-  ...selectPopulationDetailProps(state)
-})
+  ...selectPopulationDetailProps(state),
+});
 
-const mapDispatchToProps = { setFilters, resetFilters, setPublications, resetPopulationsByLocation };
+const mapDispatchToProps = {
+  setFilters,
+  resetFilters,
+  setPublications,
+  resetPopulationsByLocation,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Component);

@@ -9,6 +9,28 @@
     margin-bottom: 20px;
   }
 
+  .data-configuration--download {
+    display: flex;
+    align-self: flex-end;
+    border: 1px dashed rgba(28, 27, 39, 0.4);
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: fit-content;
+
+    span {
+      color: $color-grey-5;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 20px;
+      margin-right: 20px;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
   .data-configuration--buttons {
     display: flex;
     justify-content: space-between;
