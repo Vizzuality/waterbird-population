@@ -54,4 +54,8 @@
   font-size: 12px;
 }
 
-
+a.mapboxgl-ctrl-logo {
+  @media print {
+    display: none;
+  }
+}

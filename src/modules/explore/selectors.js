@@ -630,7 +630,7 @@ export const selectPopulationLayers = createSelector(
               paint: {
                 'line-color': '#000000',
                 'line-width': _basemap === 'satellite' ? 1.25 : 1,
-                'line-opacity': _basemap === 'satellite' ? 0.6 : 0.5,
+                'line-opacity': _basemap === 'satellite' ? 0.9 : 0.5,
                 'line-dasharray': _basemap === 'satellite' ? [3, 1] : [1, 2],
               },
             },
@@ -642,8 +642,8 @@ export const selectPopulationLayers = createSelector(
                 'fill-color': [
                   'case',
                   ['boolean', ['feature-state', 'hover'], false],
-                  _basemap === 'satellite' ? '#0282B0' : '#FFBB00',
-                  _basemap === 'satellite' ? '#72B9D2' : '#000000',
+                  _basemap === 'satellite' ? '#0282BB' : '#FFBB00',
+                  _basemap === 'satellite' ? '#BFD630' : '#000000',
                 ],
                 'fill-opacity': _basemap === 'satellite' ? 0.5 : 0.15,
               },
