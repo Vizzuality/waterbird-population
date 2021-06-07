@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import cx from 'classnames';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import Cookies from 'js-cookie';
@@ -14,7 +15,7 @@ import { breakpoints } from 'utils/breakpoints';
 
 import './styles.scss';
 
-const SigInSigupContainer = ({ user, resetUser, modalContent }) => {
+const SigInSigupContainer = ({ user, resetUser, modalContent, className }) => {
   const [isOpen, toggleModal] = useState(false);
   const [content, setContent] = useState(modalContent);
 
@@ -35,7 +36,7 @@ const SigInSigupContainer = ({ user, resetUser, modalContent }) => {
   };
 
   return (
-    <div key={`${content}-${isOpen}`} className="c-login">
+    <div key={`${content}-${isOpen}`} className={cx('c-login', { [className]: !!className })}>
       {console.log(content)}
       {content === 'sign-in' && user.name && (
         <div className="dropdown">
@@ -86,6 +87,7 @@ SigInSigupContainer.propTypes = {
     id: PropTypes.number,
     email: PropTypes.string,
   }),
+  className: PropTypes.string,
 };
 
 SigInSigupContainer.defaultProps = {
@@ -93,6 +95,7 @@ SigInSigupContainer.defaultProps = {
     id: null,
     email: null,
   }),
+  className: '',
 };
 
 export default SigInSigupContainer;
