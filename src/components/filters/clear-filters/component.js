@@ -39,7 +39,12 @@ const ClearFilters = ({
   };
 
   return (
-    <button aria-label="clear-filters" className="c-clear-filters" onClick={handleFilters}>
+    <button
+      key={activeFilters}
+      aria-label="clear-filters"
+      className="c-clear-filters"
+      onClick={handleFilters}
+    >
       Clear filters and search criteria
     </button>
   );
