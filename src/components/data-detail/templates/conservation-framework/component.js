@@ -9,27 +9,20 @@ const ConservationFramework = ({ data }) => {
       <div className="header">
         <h2>Conservation Framework</h2>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Conservation Framework</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(d =>
-            <tr key={d.id}>
-              <td><span className="cell-content">{d.conservation_framework}</span></td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <ul>
+        {data.map((d) => (
+          <li key={d.id}>
+            <span className="cell-content">{d.conservation_framework}</span>
+            {d < data.length ? ',' : ''}
+          </li>
+        ))}
+      </ul>
     </div>
-  )
+  );
 };
 
 ConservationFramework.propTypes = {
-  data: PropTypes.shape({}).isRequired,
-}
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export default ConservationFramework;

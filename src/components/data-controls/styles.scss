@@ -7,6 +7,15 @@
 
   &.-filters {
     margin-bottom: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: $color-grey-1;
+  }
+
+  &.-primary {
+    background-color: $white;
   }
 
   .data-configuration--download {

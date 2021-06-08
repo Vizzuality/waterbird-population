@@ -109,7 +109,13 @@ const DataControls = ({
   };
 
   return (
-    <div className={classnames('c-data-configuration', { '-filters': !filtersVisibility })}>
+    <div
+      className={classnames(
+        'c-data-configuration',
+        { '-filters': !filtersVisibility },
+        { '-primary': page === 'ANALYZE' }
+      )}
+    >
       <div className="data-configuration--buttons">
         {page === 'ANALYZE' && (
           <>

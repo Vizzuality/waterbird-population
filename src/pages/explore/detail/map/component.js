@@ -28,7 +28,6 @@ export const MapContainer = ({
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
-
   const parsedLayers = populationLayers.map((l) => {
     return {
       ...l,

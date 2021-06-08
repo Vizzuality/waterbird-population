@@ -360,7 +360,7 @@ export const selectPopulationInfoData = createSelector(
         { head: 'Non-breeding range', value: trim(population.nonbreedingrange) || '-' },
       ],
       [{ head: 'Ramsar regions', value: ramsar.map((r) => r.name).join(',') }],
-      [{ head: 'Active', value: population.active === 0 ? 'No' : 'Yes' }],
+      [{ head: 'Active', value: population.active === 0 ? 'Yes' : 'No' }],
       [{ head: 'Notes', value: trim(population.note) || '-', className: '-italic' }],
     ];
   }

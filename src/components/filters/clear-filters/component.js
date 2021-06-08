@@ -14,11 +14,21 @@ const ClearFilters = ({
   resetLocation,
   resetSearch,
   search,
-  lonLat
+  lonLat,
 }) => {
-
-  if ((!lonLat && search === '' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
-    || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
+  if (
+    (!lonLat &&
+      search === '' &&
+      !activeFilters.length &&
+      unsetteledFilters &&
+      !unsetteledFilters.length) ||
+    (!lonLat &&
+      search === '' &&
+      !activeFilters.length &&
+      !activeFilters.length &&
+      !unsetteledFilters)
+  )
+    return null;
 
   const handleFilters = () => {
     handleUnsetteledFilters && handleUnsetteledFilters(initialState.filters);
@@ -29,25 +39,27 @@ const ClearFilters = ({
   };
 
   return (
-    <button
-      aria-label="clear-filters"
-      className="c-clear-filters"
-      onClick={handleFilters}
-    >
+    <button aria-label="clear-filters" className="c-clear-filters" onClick={handleFilters}>
       Clear filters and search criteria
     </button>
-  )
+  );
 };
 
 ClearFilters.propTypes = {
-  activeFilters: PropTypes.array.isRequired,
+  activeFilters: PropTypes.func.isRequired,
   unsetteledFilters: PropTypes.array.isRequired,
   resetFilters: PropTypes.func.isRequired,
-  handleUnsetteledFilters: PropTypes.func
+  handleUnsetteledFilters: PropTypes.func,
+  resetPopulationsByLocation: PropTypes.func.isRequired,
+  resetLocation: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func.isRequired,
+  search: PropTypes.string,
+  lonLat: PropTypes.array.isRequired,
 };
 
 ClearFilters.defaultProps = {
-  handleUnsetteledFilters: null
+  handleUnsetteledFilters: null,
+  search: '',
 };
 
 export default ClearFilters;

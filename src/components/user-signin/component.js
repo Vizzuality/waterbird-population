@@ -37,7 +37,6 @@ const SigInSigupContainer = ({ user, resetUser, modalContent, className }) => {
 
   return (
     <div key={`${content}-${isOpen}`} className={cx('c-login', { [className]: !!className })}>
-      {console.log(content)}
       {content === 'sign-in' && user.name && (
         <div className="dropdown">
           <MediaQuery minWidth={breakpoints.sm}>{user.name}</MediaQuery>
