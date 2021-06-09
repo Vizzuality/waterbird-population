@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import isEmpty from 'lodash/isEmpty';
@@ -16,6 +16,10 @@ import MapControls from 'components/map/controls';
 import ZoomControl from 'components/map/controls/zoom';
 import PopulationsSelector from 'pages/explore/detail/map/populations-selector';
 
+// services
+
+import { fetchPopulationsBBox } from 'services/population';
+
 export const MapContainer = ({
   populationOptions,
   populationLayers,
@@ -25,9 +29,25 @@ export const MapContainer = ({
   basemap,
 }) => {
   const [viewport, setViewport] = useState({ zoom: 1, latitude: 40, longitude: 10 });
+  const [bounds, setBounds] = useState(null);
   const [hoverInteractions, setHoverInteractions] = useState({});
   const [lngLat, setLngLat] = useState(null);
   const [interactiveLayerIds, setInteractiveLayerIds] = useState([]);
+
+  const pop_id = router.payload.population_id;
+
+  useEffect(() => {
+    fetchPopulationsBBox(pop_id).then(({ data }) => {
+      const { xmax = 179, xmin = -179, ymax = 89, ymin = -89 } = data;
+      setBounds({
+        bbox: [xmin, ymin, xmax, ymax],
+        options: {
+          padding: 50,
+        },
+      });
+    });
+  }, [pop_id]);
+
   const parsedLayers = populationLayers.map((l) => {
     return {
       ...l,
@@ -37,6 +57,7 @@ export const MapContainer = ({
 
   const onZoomChange = (zoom) => {
     setViewport({
+      ...viewport,
       zoom,
       transitionDuration: 250,
     });
@@ -84,6 +105,7 @@ export const MapContainer = ({
       />
       <Map
         viewport={viewport}
+        bounds={bounds}
         scrollZoom={scrollZoom}
         mapStyle={basemap}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
@@ -92,7 +114,6 @@ export const MapContainer = ({
         onClick={(e) => {
           if (e && e.features && e.features[0]) {
             const { id } = e.features[0];
-
             setRouter('EXPLORE_DETAIL', {
               specie_id: router.payload.specie_id,
               population_id: id,
