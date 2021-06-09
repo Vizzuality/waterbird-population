@@ -12,7 +12,7 @@ const ConservationFramework = ({ data }) => {
       <ul>
         {data.map((d) => (
           <li key={d.id}>
-            <span className="cell-content">{d.conservation_framework}</span>
+            <span className="cell-content">{d.conservation_framework || '-'}</span>
             {d < data.length ? ',' : ''}
           </li>
         ))}
