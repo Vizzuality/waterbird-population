@@ -251,6 +251,7 @@ export const fetchPopulationsByLocation = (lng, lat) => {
   );
 };
 
+// returns BBOX by pop id
 export const fetchPopulationsBBox = (id) => {
   // const q = `SELECT ST_Envelope(the_geom) as the_geom from species_and_flywaygroups where wpepopid = ${id}`;
   const q = `WITH bbox as (
@@ -269,26 +270,3 @@ SELECT the_geom,
     }
   );
 };
-
-// export const fetchPopulationsBBox = (pop_id, spec_id) => {
-//   // const q = `SELECT ST_Envelope(the_geom) as the_geom from species_and_flywaygroups where wpepopid = ${id}`;
-//   const q = `WITH bbox as (
-//     SELECT ST_Envelope(the_geom) as the_geom
-//     FROM species_and_flywaygroups where wpepopid = ${pop_id}
-// ), allBbox as (
-//   SELECT ST_Envelope(the_geom) as the_geom
-//   FROM species_and_flywaygroups where wpesppid = ${spec_id}
-// )
-// SELECT
-//     the_geom,
-//     ST_Xmin(the_geom) as xmin,
-//     ST_Ymin(the_geom) as ymin,
-//     ST_Xmax(the_geom) as xmax,
-//     ST_Ymax(the_geom) as ymax FROM bbox WHERE the_geom IN (SELECT the_geom FROM allBbox)`;
-
-//   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
-//     ({ data, status }) => {
-//       return { data: data.rows[0] || {}, status };
-//     }
-//   );
-// };

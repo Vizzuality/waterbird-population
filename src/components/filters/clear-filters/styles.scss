@@ -11,4 +11,8 @@
   pointer-events: all;
   padding: 20px 0;
   white-space: nowrap;
+
+  &.-widgets {
+    padding: 10px 0;
+  }
 }

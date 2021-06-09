@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import initialState from 'modules/explore/initial-state';
 
@@ -15,6 +16,7 @@ const ClearFilters = ({
   resetSearch,
   search,
   lonLat,
+  page,
 }) => {
   if (
     (!lonLat &&
@@ -42,7 +44,7 @@ const ClearFilters = ({
     <button
       key={activeFilters}
       aria-label="clear-filters"
-      className="c-clear-filters"
+      className={cx('c-clear-filters', { '-widgets': page === 'ANALYZE'})}
       onClick={handleFilters}
     >
       Clear filters and search criteria
@@ -60,6 +62,7 @@ ClearFilters.propTypes = {
   resetSearch: PropTypes.func.isRequired,
   search: PropTypes.string,
   lonLat: PropTypes.array.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 ClearFilters.defaultProps = {
