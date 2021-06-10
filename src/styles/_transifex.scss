@@ -1,0 +1,55 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+#transifex-picker {
+  position: fixed;
+  bottom: 0;
+  left: 100px;
+  padding: 5px 30px 5px 20px;
+  border-radius: 10px 10px 0 0;
+  background-color: $color-grey-5;
+  color: $white;
+  font-family: $font-family-1;
+  font-size: 10px;
+  letter-spacing: 1px;
+  line-height: 11px;
+  text-transform: uppercase;
+  z-index: 50;
+
+  .txlive-langselector-list {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-radius: 10px 10px 0 0;
+    color: $white;
+    padding: 10px 0;
+    background-color: $color-grey-5;
+    box-shadow: 0 0 4px rgba($black, 0.3 );
+    list-style-type: none;
+
+    li {
+      padding: 5px;
+      text-align: center;
+    }
+  }
+
+  .txlive-langselector-toggle {
+    .txlive-langselector-marker {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 6px;
+        right: 13px;
+        transform: translateY(-50%);
+        cursor: pointer;
+        @include arrow(8px,2px, $white, 'down');
+      }
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+

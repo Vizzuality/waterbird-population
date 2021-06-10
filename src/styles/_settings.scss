@@ -1,0 +1,97 @@
+// Colors
+$white:      #fff !default;
+$black:      #000 !default;
+
+$color-1: #BFD630;
+$color-2: #0282B0;
+$color-3: #1D1E2E;
+
+// // Greys
+$color-grey-1: #F7F9F9;
+$color-grey-2: #F2F2F2;
+$color-grey-3: #D8D8D8;
+
+$color-grey-4: #979797;
+$color-grey-5: #3F3C4D;
+$color-grey-6: #222222;
+$color-grey-7: #1D1C2B;
+$color-grey-8: #1C1B27;
+$color-grey-9: #393F44;
+$color-grey-10: #E5E5E5;
+
+
+// // Font
+$body-line-height: 26px;
+$font-family-1: 'Aller';
+$font-family-2: 'Open Sans', sans-serif;
+$font-family-bold: 'Aller-Bold';
+
+// Font size
+$font-size-small: 14px;
+
+
+// Spacing
+$padding: 50px;
+$padding-modal: 45px;
+
+// Explore section spacing
+// explore headers
+$padding-title: 10px 0;
+// explore detail templates
+$padding-bottom-data-detail-sections: 20px;
+
+
+// Border
+$border-radius: 10px;
+
+$z-index-1: 1;
+$z-index-2: 2;
+$z-index-3: 3;
+$z-index-4: 4;
+$z-index-5: 10;
+
+$font-weight-regular: 300;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Breakpoints
+// https://getbootstrap.com/docs/4.0/layout/overview/#responsive-breakpoints
+$xsm: 300px;
+$sm: 576px;
+$md: 768px;
+$lg: 1024px;
+$xlg: 1200px;
+
+$breakpoints: (
+  xsm: $xsm,
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xlg: $xlg
+);
+
+// Flexbox grid
+$sm: 30rem;
+$md: 48rem;
+$lg: 62rem;
+$xlg: 80rem;
+
+$flexboxgrid-max-width: 1280px;
+$flexboxgrid-grid-columns: 12;
+$flexboxgrid-gutter-width: 1.5rem;
+$flexboxgrid-outer-margin: 1.5rem;
+$flexboxgrid-breakpoints: (
+  sm: $sm,
+  md: $md,
+  lg: $lg,
+  xlg: $xlg
+);
+
+
+// card styles
+@mixin card-background {
+  box-sizing: border-box;
+  background-color: $white;
+  border: 1px solid rgba($color-grey-8, 0.1);
+  border-radius: $border-radius;
+}

@@ -1,0 +1,141 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.c-data-detail {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 29px;
+
+      @media print {
+        line-height: 0;
+      }
+    }
+  }
+
+  table {
+    width: calc(100% + 10px);
+    text-align: left;
+    line-height: 19px;
+    margin: 0 -5px;
+    border-collapse: separate;
+
+    th {
+      padding-bottom: 10px;
+
+      &:first-child {
+        padding-left: 5px;
+      }
+
+      &:last-child {
+        padding-right: 5px;
+      }
+
+      @media print {
+        page-break-after: always;
+      }
+    }
+
+    td {
+      background-clip: padding-box;
+      .cell-content {
+        &:first-child {
+          padding-left: 5px;
+        }
+
+        &:last-child {
+          padding-right: 5px;
+        }
+      }
+    }
+
+
+    tbody {
+      font-family: $font-family-2;
+      font-size: 14px;
+      font-weight: bold;
+
+      td {
+        padding: 5px 0;
+
+        &.button {
+          display: flex;
+          justify-content: flex-end;
+
+          .comments-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: $font-family-1;
+            text-align: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+            color: $color-grey-8;
+            font-weight: bold;
+            line-height: 20px;
+            font-size: 14px;
+            border-radius: 3px;
+
+            &.-primary {
+              padding: 1px 5px;
+              border: 2px solid rgba($color-2, 0.5);
+            }
+
+            &.-secondary {
+              border: 2px solid rgba($color-grey-8, 0.5);
+              box-shadow: 0 4px 12px 0 rgba($color-3, .02);
+            }
+          }
+        }
+
+        .tooltipped {
+          font-weight: bold;
+          text-decoration: underline;
+          color: $color-2;
+        }
+      }
+
+      tr {
+        &.-active {
+          td {
+            background-clip: padding-box;
+            border-top: 1px solid rgba(28,27,39,0.1);
+            border-bottom: 1px solid rgba(28,27,39,0.1);
+            background-color: #FFFFFF;
+            box-sizing: content-box;
+          }
+
+          td {
+            &:first-child  {
+              border-top-left-radius: 10px;
+              border-bottom-left-radius: 10px;
+              border-top: 1px solid rgba(28,27,39,0.1);
+              border-bottom: 1px solid rgba(28,27,39,0.1);
+              border-left: 1px solid rgba(28,27,39,0.1);
+            }
+          }
+
+          td {
+            &:last-child {
+              border-top-right-radius: 10px;
+              border-bottom-right-radius: 10px;
+              border-top: 1px solid rgba(28,27,39,0.1);
+              border-bottom: 1px solid rgba(28,27,39,0.1);
+              border-right: 1px solid rgba(28,27,39,0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+}

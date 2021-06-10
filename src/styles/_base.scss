@@ -1,0 +1,39 @@
+@import './settings.scss';
+@import 'styles/mixins';
+
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: $body-line-height;
+  font-family: $font-family-1;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: 0;
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: $color-3;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+

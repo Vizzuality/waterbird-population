@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "name": "waterbird-population",
+  "build": {
+    "env": {
+      "NODE_PATH": "@waterbird-population-node_path",
+      "SASS_PATH": "@waterbird-population-sass_path",
+      "REACT_APP_MAPBOX_ACCESS_TOKEN": "@waterbird-population-react_app_mapbox_access_token",
+      "REACT_APP_CARTO_API_TOKEN": "@waterbird-population-react_app_carto_api_token",
+      "REACT_APP_CARTO_BASE_URL": "@waterbird-population-react_app_carto_base_url",
+      "REACT_APP_TRANSIFEX_API_KEY": "@waterbird-population-react_app_transifex_api_key"
+    }
+  },
+  "env": {
+    "NODE_PATH": "@waterbird-population-node_path",
+    "SASS_PATH": "@waterbird-population-sass_path",
+    "REACT_APP_MAPBOX_ACCESS_TOKEN": "@waterbird-population-react_app_mapbox_access_token",
+    "REACT_APP_CARTO_BASE_URL": "@waterbird-population-react_app_carto_base_url",
+    "REACT_APP_CARTO_API_TOKEN": "@waterbird-population-react_app_carto_api_token"
+  }
+}

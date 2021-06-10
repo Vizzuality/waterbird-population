@@ -1,12 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import store from 'config/store';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import Cookies from 'js-cookie';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+import App from './app';
+import { setUser } from 'modules/user/actions';
+
+import 'styles/index.scss';
+
+const Main = () => {
+  const user = Cookies.get('user');
+  if (user) {
+    store.dispatch(setUser(JSON.parse(user)));
+  }
+
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+};
+
+ReactDOM.render(<Main />, document.getElementById('root'));

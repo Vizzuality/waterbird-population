@@ -1,0 +1,52 @@
+@import 'styles/settings';
+
+.react-select__menu {
+  z-index: 2 !important;
+}
+
+
+.react-select__placeholder {
+  font-size: 14px;
+  display: flex;
+  color: rgba($black, 0.85) !important;
+  font-family: $font-family-1;
+  font-style: italic;
+  letter-spacing: 0;
+  line-height: 20px;
+  text-shadow: 0 1px 4px 0 rgba($white, 0.5);
+  overflow: hidden;
+}
+
+.react-select__multi-value__label {
+  background-color:$white;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  span {
+    font-size: 14px;
+    font-family: $font-family-1;
+  }
+}
+
+.react-select__single-value {
+  font-size: 14px;
+  font-family: $font-family-1;
+}
+
+.react-select-Input {
+  display: none;
+}
+
+.react-select__value-container {
+  height: 45px;
+}
+
+.react-select__value-container--is-multi {
+
+  .react-select__multi-value {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}

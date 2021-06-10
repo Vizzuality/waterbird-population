@@ -1,0 +1,102 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.c-data-configuration {
+  display: flex;
+  flex-direction: column;
+
+  &.-filters {
+    margin-bottom: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: -120px;
+    z-index: 1;
+    background-color: $color-grey-1;
+  }
+
+  &.-primary {
+    background-color: $white;
+  }
+
+  .data-configuration--download {
+    display: flex;
+    align-self: flex-end;
+    border: 1px dashed rgba(28, 27, 39, 0.4);
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: fit-content;
+
+    span {
+      color: $color-grey-5;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 20px;
+      margin-right: 20px;
+    }
+
+    img {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .data-configuration--buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px 0;
+    margin: 10px 0;
+    position: relative;
+    align-items: center;
+
+    .data-filters {
+      display: flex;
+      align-items: center;
+
+      :first-child {
+        margin-right: 20px;
+      }
+
+      button {
+        height: 45px;
+        width: 45px;
+        border-radius: 10px;
+        background-color: $white;
+        box-shadow: 0 4px 12px 0 rgba(0,0,0,0.08);
+
+        &.-close {
+          &:after {
+            @include arrow(9px,2px, $color-grey-8, 'down');
+          }
+        }
+
+        &.-open {
+          &:after {
+            @include arrow(9px,2px, $color-grey-8, 'up');
+          }
+        }
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 2px;
+      margin: 0 auto;
+      background-color: $color-grey-3;
+    }
+
+    .filters-controls {
+      display: flex;
+      justify-content: space-between;
+      padding-left: 40px;
+      flex: 1;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

@@ -1,0 +1,33 @@
+@import 'styles/settings';
+
+.c-select {
+  min-width: 250px;
+
+  .react-select__control {
+    padding: 5px 10px;
+    width: 100%;
+
+    .react-select__value-container {
+      color: $color-grey-8;
+      font-style: italic;
+      font-family: $font-family-1;
+      font-size: 14px;
+      line-height: 20px;
+      text-shadow: 0 1px 4px 0 rgba($black, 0.5);
+    }
+    .react-select__indicator-separator {
+      padding: 10px;
+      display: none;
+    }
+
+    .react-select__dropdown-indicator {
+      svg {
+        fill: $black;
+      }
+    }
+    .react-select__placeholder {
+      color: rgba($black, 0.85);
+      font-style: italic;
+    }
+  }
+}

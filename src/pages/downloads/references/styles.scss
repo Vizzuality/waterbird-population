@@ -1,0 +1,14 @@
+.l-references {
+  position: relative;
+  width: 100%;
+
+  .references-button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  li {
+    list-style-type: disc;
+  }
+}

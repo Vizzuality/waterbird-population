@@ -1,0 +1,145 @@
+# view created for population query
+
+DROP VIEW IF EXISTS population_all_data;
+
+CREATE VIEW population_all_data AS
+SELECT
+  jsonb_agg((select row_to_json(_)
+	from (select ps.*, refs.*) as _)::jsonb) as reference,
+  jsonb_agg((select row_to_json(_)
+                  from (select pt.*, reft.*) as _)::jsonb) as population_size_reference,
+  ps.populationsize_id,
+  p.publication_id,
+  n.id as population_id,
+  fly.id AS flyway_id,
+  fly.flywayrange AS flyway_range,
+  fly.flywaygroup AS flyway_group,
+  n.populationname as name,
+  n.breedingrange,
+  n.nonbreedingrange,
+  n.species_id,
+  n.active,
+  n.africa,
+  n.asia,
+  n.europe,
+  n.neotropics,
+  n.northamerica,
+  n.oceania,
+  n.note,
+  fo.id AS familyorder_id,
+  fo.name AS familyorder_name,
+  f.id AS family_id,
+  f.name AS family_name,
+  f.familyorder AS family_disposition,
+  sp.id AS specie_id,
+  sp.commonname AS specie_commonname,
+  sp.familyenglish AS family_english,
+  sp.scientificname AS specie_scientificname,
+  sp.taxonomicorder AS specie_taxonomic_order,
+  sp.specid,
+  r.id AS redlistcategory_id,
+  r.description AS redlistcategory_name,
+  prot.id AS population_protection_id,
+  prot.code AS population_conservation_framework,
+  prot.description AS population_conservation_framework_info,
+  q.description as qualitycodetrend_description,
+  s.startyear AS population_size_startyear,
+  s.endyear AS population_size_endyear,
+  s.minimum AS population_size_minimum,
+  s.maximum AS population_size_maximum,
+  s.notes AS population_size_notes,
+  s.estimatequality_id AS population_size_quality_id,
+  qc.description AS population_size_estimate_quality,
+  o.id as populationonepercentlevel_id,
+  o.yearset as populationonepercentlevel_yearset,
+  o.onepercent as populationonepercentlevel_onepercent,
+  o.note as populationonepercentlevel_note,
+  pub.published as pub_published,
+  pub.description AS pub_description,
+  t.trend_id as population_trend_id,
+  t.trendquality_id as population_trend_trendquality_id,
+  t.startyear as population_trend_startyear,
+  t.endyear as population_trend_endyear,
+  t.notes AS population_trend_notes,
+  trend.trendcode as trend_code,
+  trend.trendsum as trend_sum
+
+FROM populationname n
+ LEFT JOIN species_1 sp ON n.species_id = sp.id
+ LEFT JOIN family f ON f.id = sp.familyname_id
+ LEFT JOIN familyorder fo ON fo.id = f.grouping_id
+ LEFT JOIN redlistcategory r ON sp.iucn_id = r.id
+ LEFT JOIN populationprotection pp ON n.id = pp.population_id
+ LEFT JOIN protection prot ON pp.protection_id = prot.id
+ LEFT JOIN flyway fly ON n.flyway_id = fly.id
+ LEFT JOIN populationpublication p ON p.population_id = n.id
+ LEFT JOIN populationsize s ON p.populationsize_id = s.id
+ LEFT JOIN populationsizereferencecode ps ON ps.populationsize_id = s.id
+ LEFT JOIN reference refs ON refs.id = ps.reference_id
+ LEFT JOIN qualitycodesize qc ON qc.id = s.estimatequality_id
+ LEFT JOIN populationonepercentlevel o ON p.onepercent_id = o.id
+ LEFT JOIN publication pub ON pub.id = p.publication_id
+
+ LEFT JOIN populationtrend t ON p.populationtrend_id = t.id
+ LEFT JOIN populationtrendreferencecode pt ON t.id = pt.populationtrend_id
+ LEFT JOIN reference reft ON reft.id = pt.reference_id
+ LEFT JOIN trend trend ON trend.id = t.trend_id
+ LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id
+
+group by
+ ps.populationsize_id,
+  p.publication_id,
+  n.id,
+  fly.id,
+  fly.flywayrange,
+  fly.flywaygroup,
+  n.populationname,
+  n.breedingrange,
+  n.nonbreedingrange,
+  n.species_id,
+  n.active,
+  n.africa,
+  n.asia,
+  n.europe,
+  n.neotropics,
+  n.northamerica,
+  n.oceania,
+  n.note,
+  n.flyway_id,
+  fo.id,
+  fo.name,
+  f.id,
+  f.name,
+  f.familyorder,
+  sp.id,
+  sp.commonname,
+  sp.familyenglish,
+  sp.scientificname,
+  sp.taxonomicorder,
+  sp.specid,
+  r.id,
+  r.description,
+  prot.id,
+  prot.code,
+  prot.description,
+  q.description,
+  s.startyear,
+  s.endyear,
+  s.minimum,
+  s.maximum,
+  s.notes,
+  s.estimatequality_id,
+  qc.description,
+  o.id,
+  o.yearset,
+  o.onepercent,
+  o.note,
+  pub.published,
+  pub.description,
+  t.trend_id,
+  t.trendquality_id,
+  t.startyear,
+  t.endyear,
+  t.notes,
+  trend.trendcode,
+  trend.trendsum

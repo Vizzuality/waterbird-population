@@ -1,0 +1,46 @@
+@import 'styles/settings';
+
+.c-active-filters {
+
+  padding-right: 40px;
+
+  p {
+    margin-top: 10px;
+  }
+
+  &.-widgets {
+    margin-bottom: 0;
+
+    p {
+      margin-bottom: 5px;
+    }
+  }
+
+  span {
+    border-radius: 3px;
+    background-color: rgba($color-2, .35);
+    padding: 4px 10px;
+    margin-right: 10px;
+    color:$color-2;
+    font-size: 14px;
+    letter-spacing: 0;
+    line-height: 11px;
+    position: relative;
+    display: inline-block;
+
+    &.-clickable {
+      padding-right: 25px;
+      background-color: rgba($color-2, .15);
+
+      &:after {
+        content: '+';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(315deg);
+        font-size: 25px;
+        right: 5px;
+        color: $color-3;
+      }
+    }
+  }
+}

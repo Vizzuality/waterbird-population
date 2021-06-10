@@ -1,0 +1,13 @@
+@import 'styles/settings';
+
+.l-async-page {
+  min-height: 100vh;
+
+  .l-wrapper {
+    height: 100vh;
+    display: flex;
+    vertical-align: middle;
+    background-color: rgba($color-2, 0.2);
+    margin: auto;
+  }
+}

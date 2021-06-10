@@ -1,0 +1,83 @@
+
+@import 'styles/settings';
+
+.c-population-info {
+
+  .population-info--summary {
+    width: auto;
+
+    .population-info--summary-item {
+      display: flex;
+      padding: 5px 0;
+
+      > * {
+        margin-left: 30px;
+        padding-left: 30px;
+        border-left: 1px solid $color-grey-3;
+
+        &:first-child {
+          margin-left: 0;
+          padding-left: 0;
+          border-left: none;
+        }
+
+        @media print {
+          border: none;
+          margin: 0;
+          padding: 0;
+        }
+      }
+
+      @media print {
+        padding: 5px;
+        flex-direction: column;
+      }
+    }
+
+    .population-info--summary-item-container {
+      display: flex;
+    }
+
+    .population-info--summary-item-head {
+      padding-right: 30px;
+      min-width: 180px;
+    }
+
+    .population-info--summary-item-value {
+      font-size: 14px;
+      font-weight: $font-weight-bold;
+
+      &.-italic {
+        font-style: italic;
+      }
+
+      &.-tag {
+        display: inline-block;
+        position: relative;
+        font-weight: $font-weight-regular;
+        text-transform: uppercase;
+        font-size: 10px;
+        padding: 0px 10px;
+        padding-left: 20px;
+        color: white;
+        border-radius: 4px;
+
+        &:before {
+          content: "";
+          width: 6px;
+          height: 6px;
+          background: #FFF;
+          position: absolute;
+          left: 0px;
+          top: 50%;
+          transform: translate(7px, -50%);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+
+  @media print {
+    page-break-after: always;
+  }
+}

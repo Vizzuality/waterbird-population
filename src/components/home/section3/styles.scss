@@ -1,0 +1,39 @@
+@import 'styles/settings';
+
+.c-section3 {
+  padding: 200px 200px;
+  background-image: url('../images/map.png');
+  background-size: cover;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 80px;
+    box-sizing: border-box;
+    border: 1px solid rgba($color-grey-8, 0.1);
+    border-radius: 105.5px;
+    background-color: $white;
+    box-shadow: 0 10px 10px 0 rgba($black, 0.06);
+
+    @media (min-width: map-get($breakpoints, md)) {
+      flex-direction: row;
+    }
+  }
+
+  h2 {
+
+    @media (min-width: map-get($breakpoints, sm)) {
+      font-size: 28px;
+    }
+  }
+
+  a {
+    cursor: pointer;
+  }
+
+  @media (max-width: map-get($breakpoints, md)) {
+    padding: 150px 10px;
+  }
+}

@@ -1,0 +1,28 @@
+@import 'styles/settings';
+
+.c-population-size {
+  position: relative;
+  padding-bottom: $padding-bottom-data-detail-sections;
+
+  &.-collapse {
+    tbody {
+      tr:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba($color-grey-8, 0.5);
+  }
+
+  @media print {
+    page-break-after: always;
+    padding-bottom: 10px;
+  }
+}

@@ -1,0 +1,33 @@
+@import 'styles/settings';
+
+.c-menu-items {
+
+  &.-tabs {
+    display: flex;
+    justify-content: center;
+    padding: 30px 75px;
+    border-bottom: 1px solid $color-grey-3;
+  }
+
+  .menu-item {
+    font-family: $font-family-1;
+    color: $color-grey-7;
+    font-weight: bold;
+    line-height: 26px;
+    position: relative;
+    padding: 0 10px;
+
+    &.active:after {
+      content: '';
+      position: absolute;
+      width: 30px;
+      border-radius: 2.5px;
+      height: 5px;
+      background-color: $color-1;
+      bottom: -5px;
+      z-index: 2;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}

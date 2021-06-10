@@ -1,0 +1,64 @@
+@import 'styles/settings';
+
+.c-filters {
+  position: relative;
+  padding: $padding-modal;
+  max-width: 900px;
+
+  &.-widgets {
+    max-width: 100%;
+  }
+
+  h3 {
+    color: $color-grey-6;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 36px;
+  }
+
+  .modal-button {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .filters-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 45px;
+    padding: 40px 0 20px 0;
+    align-items: baseline;
+
+    .filters {
+      width: 240px;
+
+      .filter-type {
+        display: flex;
+        justify-content: space-between;
+
+        label {
+          display: block;
+          font-size: 14px;
+          line-height: 16px;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  .filters-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: flex-start;
+    padding-bottom: 40px;
+  }
+
+  .filters-buttons {
+    display: flex;
+    justify-content: center;
+
+    *:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+}

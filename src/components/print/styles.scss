@@ -1,0 +1,12 @@
+@import 'styles/settings';
+
+.c-print {
+  display: flex;
+  border: 1px dashed rgba($color-grey-8, 0.4);
+  border-radius: $border-radius;
+  padding: 20px 40px;
+  color: $color-grey-5;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+}

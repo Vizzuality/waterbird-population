@@ -1,0 +1,46 @@
+@import 'styles/settings';
+
+.c-notes {
+  position: relative;
+  padding-bottom: $padding-bottom-data-detail-sections + 20px;
+
+  ul {
+    li {
+      position: relative;
+      padding-left: 15px;
+      padding-bottom: 20px;
+      color: #042727;
+      line-height: 26px;
+
+      &:before {
+        content: '•';
+        color: $color-2;
+        position: absolute;
+        left: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    &.-collapse {
+      li:not(:first-child) {
+        display: none;
+      }
+    }
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 1px;
+    width: 100%;
+    background-color: rgba($color-grey-8, 0.5);
+  }
+
+  @media print {
+    padding-bottom: 10px;
+  }
+};

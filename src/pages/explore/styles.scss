@@ -1,0 +1,42 @@
+@import 'styles/settings';
+
+.l-explore {
+  background-color: $color-grey-1;
+  font-family: $font-family-1;
+
+  .results-section {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+
+    &.-large {
+      padding: 40px 0;
+    }
+
+    .results-buttons {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 0 100px 0;
+
+      .results-filters {
+        display: flex;
+        align-items: center;
+
+        :first-child {
+          margin-right: 20px;
+        }
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        position: absolute;
+        bottom: -120px;
+        left: 0;
+        background-color: $color-grey-3;
+      }
+    }
+  }
+}

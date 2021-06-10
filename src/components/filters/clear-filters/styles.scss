@@ -1,0 +1,18 @@
+@import 'styles/settings';
+
+.c-clear-filters {
+  display: flex;
+  font-family: $font-family-1;
+  font-size: 14px;
+  justify-content: flex-end;
+  line-height: 11px;
+  text-decoration: underline;
+  color: $color-2;
+  pointer-events: all;
+  padding: 20px 0;
+  white-space: nowrap;
+
+  &.-widgets {
+    padding: 10px 0;
+  }
+}

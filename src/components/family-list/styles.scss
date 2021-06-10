@@ -1,0 +1,15 @@
+@import 'styles/settings';
+
+.c-data-results {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+
+  .data-results-btn {
+    margin-bottom: 20px;
+  }
+
+  .data-empty {
+    width: 100%;
+  }
+}

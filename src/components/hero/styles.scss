@@ -1,0 +1,28 @@
+@import 'styles/settings';
+
+.c-hero {
+  background-color: $color-grey-1;
+  width: 100%;
+  height: 100%;
+  top: 86px;
+  position: relative;
+  padding: $padding;
+  padding-bottom: 0;
+
+
+  .hero-intro {
+    width: 50%;
+
+    h1 {
+      font-size: 55px;
+      font-weight: bold;
+      line-height: 58px;
+      padding: 15px;
+    }
+
+    p {
+      line-height: 26px;
+      padding: 15px;
+    }
+  }
+}

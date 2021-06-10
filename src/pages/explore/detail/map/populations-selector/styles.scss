@@ -1,0 +1,185 @@
+@import 'styles/settings';
+@import 'styles/mixins';
+
+.c-populations-selector-map-detail {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0px;
+  z-index: $z-index-2;
+
+  .populations-selector--content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 600px;
+    border-radius: 0 0 10px 10px;
+    background-color: $color-grey-5;
+    color: $white;
+    font-weight: bold;
+    padding: 15px 30px;
+
+    .populations-selector--content-info-wrapper {
+
+      .populations-selector--content-info {
+
+        display: flex;
+        align-items: center;
+
+        span {
+          display: flex;
+          justify-content: center;
+          box-sizing: border-box;
+          align-items: center;
+          height: 25px;
+          width: 25px;
+          border-radius: 50%;
+          margin-right: 10px;
+          font-size: 9px;
+          padding: 5px;
+          color: $white;
+          white-space: nowrap;
+          flex-shrink: 0;
+
+          &.-dark {
+            color: $black;
+          }
+        }
+      }
+
+      .populations-selector--content-control {
+        max-width: 400px;
+
+        h4 {
+          &:after {
+            position: absolute;
+            border: 2px solid $white;
+            top: 50%;
+            right: 25px;
+            @include arrow(10px,3px, $white, 'down');
+            transform: translateY(-50%) rotate(45deg);
+          }
+        }
+
+
+      }
+
+      h4 {
+        font-size: 24px;
+        letter-spacing: 0;
+        line-height: 26px;
+        padding-right: 50px;
+      }
+
+      h5 {
+        font-size: 12px;
+        letter-spacing: 1px;
+        line-height: 15px;
+        padding-bottom: 5px;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-family: $font-family-2;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+
+        &.-italic {
+          font-style: italic;
+        }
+      }
+
+      .populations-selector--content-dropdown {
+        min-width: 300px;
+
+        @media (max-width: map-get($breakpoints, sm)) {
+          min-width: unset;
+        }
+
+        .react-select__control {
+          border: none;
+          background-color: $color-grey-5;
+        }
+
+        .react-select__indicator {
+          color: $white;
+        }
+
+        .react-select__control--menu-is-open {
+          .react-select__indicator {
+            transform: rotate(180deg);
+          }
+        }
+
+        .react-select__indicator-separator {
+          display: none;
+        }
+
+        .react-select__option {
+          background-color: $color-grey-5;
+        }
+
+        .react-select__single-value {
+          color: $white;
+        }
+
+        .react-select__menu {
+          background-color: $color-grey-5;
+          color: $white;
+          font-size: $font-size-small;
+        }
+
+        .react-select__option {
+          &:hover {
+            background-color: $color-grey-5;
+          }
+        }
+      }
+
+      .populations-selector--content-control {
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        select {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          z-index: 1;
+          cursor: pointer;
+        }
+
+        button {
+          background-color:$white;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          position: relative;
+
+          svg {
+            fill: $color-grey-5;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+
+      &:not(:last-child) {
+        padding-right: 30px;
+      }
+    }
+  }
+
+  &.-collapse {
+    display: none;
+  }
+
+  @media print {
+    display: none;
+  }
+}

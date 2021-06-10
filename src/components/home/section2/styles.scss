@@ -1,0 +1,55 @@
+@import 'styles/settings';
+
+.c-section2 {
+  padding: 186px 0 150px 0;
+
+  img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    margin-left: -25px;
+  }
+
+  figure {
+    position: relative;
+
+    figcaption {
+      font-style: italic;
+      font-size: $font-size-small;
+      text-align: end;
+      margin-right: 45px;
+      margin-top: -80px;
+      position: absolute;
+      bottom: 10px;
+      left: -20px;
+    }
+  }
+
+  h2 {
+    font-size: 32px;
+    line-height: 43px;
+    padding: 20px;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+
+    li {
+      padding: 20px 0;
+
+      span {
+        font-family: $font-family-2;
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 27px;
+      }
+
+      p {
+        padding-top: 20px;
+        font-size: 14px;
+      }
+    }
+  }
+}
