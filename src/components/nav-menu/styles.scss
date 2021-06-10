@@ -11,7 +11,7 @@
     &.header {
       width: 40px;
       height: 40px;
-      margin-right: 40px;
+      margin-right: 20px;
 
       :hover {
         display: none;
@@ -59,10 +59,19 @@
       color: rgba($color-grey-8, 0.5);
       justify-content: flex-end;
 
+      .nav-menu-item {
+        padding-right: 50px;
+
+        @media (max-width: map-get($breakpoints, lg)) {
+          padding-right: 20px;
+        }
+      }
+
       h3 {
         box-sizing: border-box;
         position: relative;
         color: rgba($color-grey-8, 0.5);
+        display: flex;
 
         &.-active {
           color: $color-3;
@@ -111,6 +120,11 @@
               }
             }
           }
+        }
+
+
+        &:last-child {
+          margin-right: 20px;
         }
 
         @media (min-width: map-get($breakpoints, xlg)) {
@@ -170,6 +184,10 @@
         &.-active {
           display: block;
         }
+      }
+
+      .nav-menu-item {
+        padding-right: 30px;
       }
     }
 

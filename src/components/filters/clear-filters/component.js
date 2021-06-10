@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 
 import initialState from 'modules/explore/initial-state';
 
@@ -14,11 +15,22 @@ const ClearFilters = ({
   resetLocation,
   resetSearch,
   search,
-  lonLat
+  lonLat,
+  page,
 }) => {
-
-  if ((!lonLat && search === '' && !activeFilters.length && unsetteledFilters && !unsetteledFilters.length)
-    || (!lonLat && search === '' && !activeFilters.length && !activeFilters.length && !unsetteledFilters)) return null;
+  if (
+    (!lonLat &&
+      search === '' &&
+      !activeFilters.length &&
+      unsetteledFilters &&
+      !unsetteledFilters.length) ||
+    (!lonLat &&
+      search === '' &&
+      !activeFilters.length &&
+      !activeFilters.length &&
+      !unsetteledFilters)
+  )
+    return null;
 
   const handleFilters = () => {
     handleUnsetteledFilters && handleUnsetteledFilters(initialState.filters);
@@ -30,24 +42,32 @@ const ClearFilters = ({
 
   return (
     <button
+      key={activeFilters}
       aria-label="clear-filters"
-      className="c-clear-filters"
+      className={cx('c-clear-filters', { '-widgets': page === 'ANALYZE'})}
       onClick={handleFilters}
     >
       Clear filters and search criteria
     </button>
-  )
+  );
 };
 
 ClearFilters.propTypes = {
-  activeFilters: PropTypes.array.isRequired,
+  activeFilters: PropTypes.func.isRequired,
   unsetteledFilters: PropTypes.array.isRequired,
   resetFilters: PropTypes.func.isRequired,
-  handleUnsetteledFilters: PropTypes.func
+  handleUnsetteledFilters: PropTypes.func,
+  resetPopulationsByLocation: PropTypes.func.isRequired,
+  resetLocation: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func.isRequired,
+  search: PropTypes.string,
+  lonLat: PropTypes.array.isRequired,
+  page: PropTypes.string.isRequired,
 };
 
 ClearFilters.defaultProps = {
-  handleUnsetteledFilters: null
+  handleUnsetteledFilters: null,
+  search: '',
 };
 
 export default ClearFilters;

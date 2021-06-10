@@ -1,0 +1,24 @@
+@import 'styles/settings';
+
+.modal-container {
+  display: flex;
+
+  .register-image-container {
+    background-image: url('./images/GreatEgret_Sonsbeek.jpg');
+    width: 450px;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0 10px 10px 0;
+  }
+}
+
+.c-register {
+  .text {
+    color: $color-grey-8;
+    line-height: 19px;
+    font-family: $font-family-1;
+    cursor: pointer;
+  }
+}

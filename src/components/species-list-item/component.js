@@ -11,26 +11,18 @@ import PopulationsList from 'components/populations-list';
 
 import './styles.scss';
 
-
 const SpeciesListItem = ({ specie }) => {
-  const {
-    commonname,
-    redlistcategory,
-    scientificname,
-    color,
-    backgroundColor,
-    specid
-  } = specie;
+  const { commonname, redlistcategory, scientificname, color, backgroundColor, specid } = specie;
 
   const [image, setImage] = useState('');
   const [isCollapsed, toggleCollapse] = useState(true);
 
   useEffect(() => {
-    fetchImages(scientificname).then(data => setImage(data));
+    fetchImages(scientificname).then((data) => setImage(data));
   }, [scientificname]);
 
   const handleClick = () => {
-    toggleCollapse(!isCollapsed)
+    toggleCollapse(!isCollapsed);
   };
 
   return (
@@ -43,44 +35,48 @@ const SpeciesListItem = ({ specie }) => {
             <span className="name -scientific">({scientificname})</span>
             <span
               style={{ backgroundColor: backgroundColor }}
-              className={classnames(`tag ${color}` )}
+              className={classnames(`tag ${color}`)}
             >
               {redlistcategory}
             </span>
           </h2>
 
-          <a href={`http://datazone.birdlife.org/species/factsheet/${specid}`} target="_blank" rel="noopener noreferrer">
+          <a
+            href={`http://datazone.birdlife.org/species/factsheet/${specid}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon name="launch" className="-big" />
           </a>
         </div>
 
-
         <Button
           aria-label={isCollapsed ? 'Expand' : 'Collapse'}
-          className={classnames('-border -secondary',
-            { '-collapse': !isCollapsed }
-          )}
+          className={classnames('-border -secondary', { '-collapse': !isCollapsed })}
           onClick={handleClick}
         >
           {isCollapsed ? 'Expand' : 'Collapse'}
         </Button>
       </div>
-      <div className={classnames('species-results-description', {
-        '-hidden': isCollapsed
-      })}>
+      <div className={classnames('species-results-description', { '-hidden': isCollapsed })}>
         {image.thumbnail && <img src={image.thumbnail.source} alt={image.title} />}
-        <p>{image.description && `${image.description.charAt(0).toUpperCase() + image.description.slice(1)}.`}</p>
       </div>
 
-      {!isCollapsed && (
-        <PopulationsList specieId={specie.id} />
-      )}
+      {!isCollapsed && <PopulationsList specieId={specie.id} />}
     </section>
   );
 };
 
 SpeciesListItem.propTypes = {
-  specie: PropTypes.shape({}).isRequired
+  specie: PropTypes.shape({
+    id: PropTypes.number,
+  }).isRequired,
+  commonname: PropTypes.string.isRequired,
+  redlistcategory: PropTypes.string.isRequired,
+  scientificname: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  specid: PropTypes.string.isRequired,
 };
 
 export default SpeciesListItem;

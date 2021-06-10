@@ -4,34 +4,25 @@ import Chart from 'components/recharts';
 
 import config from './config';
 
-
-const Bars = (props) => {
-  const {
-    regionTrendsChart
-  } = props;
-
+const Bars = ({ regionTrendsChart }) => {
   const { chartConfig, chartData, zeros } = config.parse(regionTrendsChart);
 
   return (
     <div>
       NUMBER OF WATERBIRD ESTIMATES UPDATED IN EACH RAMSAR REGION BY POPULATION:
       <div className="c-widget">
-        {zeros.length
-          ?
-          <Chart
-            data={chartData}
-            config={chartConfig}
-          />
-          : <div className="widget-text">No data found matching filter criteria</div>
-        }
+        {zeros.length ? (
+          <Chart data={chartData} config={chartConfig} />
+        ) : (
+          <div className="widget-text">No data found matching filter criteria</div>
+        )}
       </div>
     </div>
   );
 };
 
 Bars.propTypes = {
-  data: PropTypes.array.isRequired,
-  id: PropTypes.array.isRequired
+  regionTrendsChart: PropTypes.array.isRequired,
 };
 
 export default Bars;

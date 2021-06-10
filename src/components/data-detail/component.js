@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import SpecieInfo from './templates/specie-info';
 import PopulationInfo from './templates/population-info';
 import ConservationFramework from './templates/conservation-framework';
 import PopulationSize from './templates/population-size';
@@ -10,9 +12,9 @@ import Notes from './templates/notes';
 
 import './styles.scss';
 
-
 const DataDetail = (props) =>  {
   const {
+    populationSpecieInfoData,
     populationInfoData,
     populationConservationFramework,
     populationSizeData,
@@ -21,10 +23,11 @@ const DataDetail = (props) =>  {
     populationReferences,
     populationNotes,
     user,
-    publication
+    publication,
   } = props;
   return (
     <div className="c-data-detail">
+      <SpecieInfo data={populationSpecieInfoData} />
       <PopulationInfo data={populationInfoData} />
       <ConservationFramework data={populationConservationFramework} />
       <PopulationSize data={populationSizeData} user={user} publication={publication} />
@@ -34,7 +37,19 @@ const DataDetail = (props) =>  {
       <Notes data={populationNotes} />
     </div>
   );
-}
+};
 
+DataDetail.propTypes = {
+  populationSpecieInfoData: PropTypes.shape({}).isRequired,
+  populationInfoData: PropTypes.shape({}).isRequired,
+  populationConservationFramework: PropTypes.shape({}).isRequired,
+  populationSizeData: PropTypes.shape({}).isRequired,
+  populationTrendData: PropTypes.shape({}).isRequired,
+  populationPercentData: PropTypes.shape({}).isRequired,
+  populationReferences: PropTypes.shape({}).isRequired,
+  populationNotes: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({}).isRequired,
+  publication: PropTypes.number.isRequired,
+};
 
 export default DataDetail;

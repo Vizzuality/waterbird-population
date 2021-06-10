@@ -13,13 +13,12 @@ import {
   Legend,
   ResponsiveContainer,
   ComposedChart,
-  Label
+  Label,
 } from 'recharts';
 
 import ChartTick from './tick';
 
 import './styles.scss';
-
 
 class Chart extends PureComponent {
   static propTypes = {
@@ -28,15 +27,15 @@ class Chart extends PureComponent {
     className: PropTypes.string,
     handleMouseMove: PropTypes.func,
     handleMouseLeave: PropTypes.func,
-    onReady: PropTypes.func
+    onReady: PropTypes.func,
   };
 
   static defaultProps = {
     className: '',
     handleMouseMove: null,
     handleMouseLeave: null,
-    onReady: null
-  }
+    onReady: null,
+  };
 
   componentDidMount() {
     const { onReady } = this.props;
@@ -50,7 +49,7 @@ class Chart extends PureComponent {
 
     Object.keys(yKeys).forEach((key) => {
       Object.keys(yKeys[key]).forEach((subKey) => {
-        if (data.some(d => d.key)) {
+        if (data.some((d) => d.key)) {
           maxValues.push(maxBy(data, subKey)[subKey]);
         }
       });
@@ -60,12 +59,7 @@ class Chart extends PureComponent {
   };
 
   render() {
-    const {
-      data,
-      config,
-      handleMouseMove,
-      handleMouseLeave
-    } = this.props;
+    const { data, config, handleMouseMove, handleMouseLeave } = this.props;
 
     const {
       margin = { top: 20, right: 0, left: 50, bottom: 0 },
@@ -91,14 +85,20 @@ class Chart extends PureComponent {
       tooltip,
       legend,
       unit,
-      unitFormat
+      unitFormat,
     } = content;
 
     const { bars } = yKeys;
     const maxYValue = this.findMaxValue(data, config);
 
     return (
-      <div ref={(r) => { this.chart = r; }} className="chart" style={{ height }}>
+      <div
+        ref={(r) => {
+          this.chart = r;
+        }}
+        className="chart"
+        style={{ height }}
+      >
         <ResponsiveContainer width="100%" height={height}>
           <ComposedChart
             stackOffset={stackOffset}
@@ -113,25 +113,22 @@ class Chart extends PureComponent {
             onMouseLeave={handleMouseLeave}
             {...chartProps}
           >
+            {cartesianGrid && <CartesianGrid {...cartesianGrid} />}
 
-          {cartesianGrid && (
-              <CartesianGrid
-                {...cartesianGrid}
-              />
-            )}
-
-            {cartesianAxis && (
-              <CartesianAxis
-                {...cartesianAxis}
-              />
-            )}
+            {cartesianAxis && <CartesianAxis {...cartesianAxis} />}
             {xAxis && (
               <XAxis
                 dataKey={xKey || ''}
                 axisLine={false}
                 tickLine={false}
                 tickCount={8}
-                tick={{ dy: 8, fontStyle: 'bold',  fontSize: '12px', fill: 'rgba(0,0,0,0.54)', textShadow: '0 2 4 0 rgba(0,0,0,0.5)' }}
+                tick={{
+                  dy: 8,
+                  fontStyle: 'bold',
+                  fontSize: '12px',
+                  fill: 'rgba(0,0,0,0.54)',
+                  textShadow: '0 2 4 0 rgba(0,0,0,0.5)',
+                }}
                 {...xAxis}
               />
             )}
@@ -141,58 +138,44 @@ class Chart extends PureComponent {
                 orientation={yAxis.orientation || 'left'}
                 tickMargin={0}
                 tickLine={false}
-                tick={(
+                tick={
                   <ChartTick
                     dataMax={maxYValue}
                     unit={unit || ''}
-                    unitFormat={unitFormat || (value => value)}
+                    unitFormat={unitFormat || ((value) => value)}
                     fill="#AAA"
                   />
-                )}
+                }
                 {...yAxis}
               />
             )}
 
-            {bars && Object.keys(bars).map(key => (
-              <Bar key={key} dataKey={key} dot={false} {...bars[key]}>
-                {!!bars[key].label && <Label {...bars[key].label} />}
+            {bars &&
+              Object.keys(bars).map((key) => (
+                <Bar key={key} dataKey={key} dot={false} {...bars[key]}>
+                  {!!bars[key].label && <Label {...bars[key].label} />}
 
-                {bars[key].itemColor && data.map(item => (
-                  <Cell
-                    key={`c_${item.color}`}
-                    fill={item.color}
-                  />
-                ))}
-              </Bar>
-            ))}
+                  {bars[key].itemColor &&
+                    data.map((item) => <Cell key={`c_${item.color}`} fill={item.color} />)}
+                </Bar>
+              ))}
 
             {layout === 'vertical' && xAxis && (
-              <XAxis
-                tick={{ fontSize: 12 }}
-                axisLine={false}
-                tickLine={false}
-                {...xAxis}
-              />
+              <XAxis tick={{ fontSize: 12 }} axisLine={false} tickLine={false} {...xAxis} />
             )}
 
             {tooltip && (
               <Tooltip
                 wrapperStyle={{
                   position: 'absolute',
-                  top: 0
+                  top: 0,
                 }}
                 isAnimationActive={false}
                 {...tooltip}
               />
             )}
 
-            {legend && (
-              <Legend
-                wrapperStyle={{ pointerEvents: 'none' }}
-                {...legend}
-                data={data}
-              />
-            )}
+            {legend && <Legend wrapperStyle={{ pointerEvents: 'none' }} {...legend} data={data} />}
           </ComposedChart>
         </ResponsiveContainer>
       </div>

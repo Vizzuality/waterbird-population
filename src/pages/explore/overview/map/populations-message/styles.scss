@@ -17,4 +17,8 @@
     font-weight: bold;
     padding: 15px 30px;
   }
+
+  @media print {
+    display: none;
+  }
 }

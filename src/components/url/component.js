@@ -9,24 +9,25 @@ class UrlComponent extends PureComponent {
     urlProps: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     urlFromParams: PropTypes.shape({}).isRequired,
     paramsFromUrl: PropTypes.shape({}).isRequired,
-  }
+  };
 
   componentDidMount() {
     const { urlProps, paramsFromUrl } = this.props;
-    urlProps.forEach(r => {
+    urlProps.forEach((r) => {
       const action = this.props[r.action];
       const payload = paramsFromUrl[r.value];
-      const parseData = Array.isArray(payload) ? payload.map(p => parseInt(p)) : parseInt(payload);
+      const parseData = Array.isArray(payload)
+        ? payload.map((p) => parseInt(p))
+        : parseInt(payload);
 
       // Dispatch action
       if (r.key) {
         r.key === 'ramsar_region_id'
-        ? action({ [r.key]: payload })
-        : action({ [r.key]: parseData });
+          ? action({ [r.key]: payload })
+          : action({ [r.key]: parseData });
+      } else {
+        action(payload);
       }
-      else {
-        action(payload)
-      };
     });
   }
 

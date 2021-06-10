@@ -2,11 +2,8 @@ import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
 
 const store = localforage.createInstance({
-  driver: [
-    localforage.INDEXEDDB,
-    localforage.LOCALSTORAGE
-  ],
-  name: 'wpe-comments'
+  driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
+  name: 'wpe-comments',
 });
 
 export const API = setup({
@@ -16,8 +13,8 @@ export const API = setup({
     // ignoreCache: process.env.NODE_ENV === 'development',
     maxAge: 15 * 60 * 1000,
     exclude: { query: false },
-    store
-  }
+    store,
+  },
 });
 
 export const fetchComments = (publication_id, population_id, size_id, trend_id, onepercet_id) => {
@@ -27,12 +24,12 @@ export const fetchComments = (publication_id, population_id, size_id, trend_id, 
     AND population_id = ${population_id}
     ${size_id ? `AND size_id = ${size_id}` : ''}
     ${trend_id ? `AND trend_id = ${trend_id}` : ''}
-    ${onepercet_id ? `AND onepercent_id = ${onepercet_id}` : ''}`
+    ${onepercet_id ? `AND onepercent_id = ${onepercet_id}` : ''}`;
 
   return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
     .then(({ data }) => data.rows)
     .catch((e) => {
-      console.log(e)
+      console.log(e);
     });
 };
 
@@ -45,10 +42,11 @@ export const createComment = ({
   trend_id,
   onepercent_id,
   comment,
-  date
+  date,
 }) => {
   const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
-  const idType = (size_id && 'size_id') || (trend_id && 'trend_id') || (onepercent_id && 'onepercent_id');
+  const idType =
+    (size_id && 'size_id') || (trend_id && 'trend_id') || (onepercent_id && 'onepercent_id');
   const Id = size_id || trend_id || onepercent_id;
 
   const q = `INSERT INTO comments (
@@ -67,23 +65,21 @@ export const createComment = ({
     '${Id}',
     '${comment}',
     '${date}'
-  )`
-  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`)
+  )`;
+  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`);
 };
 
 export const deleteComment = (params = {}, headers = {}) => {
   return API.delete('sql', { params }, { headers })
-    .then(response => console.log(response))
+    .then((response) => console.log(response))
     .catch((e) => {
-      console.log(e)
+      console.log(e);
     });
 };
 
-export const updateComment = (params = {}, headers = {}) => {
-  return API.patch('sql', { params }, { headers })
-    .then(response => console.log(response))
-    .catch((e) => {
-      console.log(e)
-    });
-};
+export const updateComment = (column_to_update, update, condition) => {
+  const api_key = `${process.env.REACT_APP_CARTO_API_TOKEN}`;
+  const q = `UPDATE comments SET ${column_to_update} = '${update}' WHERE ${condition}`;
 
+  return API.post(`sql?q=${encodeURIComponent(q)}&api_key=${api_key}`);
+};
