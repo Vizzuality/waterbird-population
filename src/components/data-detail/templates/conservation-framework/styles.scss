@@ -3,7 +3,7 @@
 .c-conservation-framework {
   position: relative;
   line-height: 19px;
-  padding-bottom: 40px;
+  padding-bottom: $padding-bottom-data-detail-sections;
 
   @media print {
     padding-bottom: 0;

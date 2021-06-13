@@ -7,15 +7,10 @@ import Icon from 'components/icon';
 Modal.setAppElement('#root');
 
 export default (props) => {
-
   const { children, onRequestClose, ...domProps } = props;
 
   return (
-    <Modal
-      className="c-modal"
-      onRequestClose={onRequestClose}
-      {...domProps}
-    >
+    <Modal className="c-modal" onRequestClose={onRequestClose} {...domProps}>
       <div className="modal-content">
         <button
           aria-label="close-modal"

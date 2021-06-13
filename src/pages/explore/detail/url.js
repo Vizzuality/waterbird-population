@@ -7,7 +7,7 @@ export const URL_PROPS = [
     redux: 'population.filters.family_id',
     action: setSingleFilter,
     required: false,
-    key: 'family_id'
+    key: 'family_id',
   },
   {
     type: 'number',
@@ -15,7 +15,7 @@ export const URL_PROPS = [
     redux: 'population.filters.publication_id',
     action: setSingleFilter,
     required: false,
-    key: 'publication_id'
+    key: 'publication_id',
   },
   {
     type: 'array',
@@ -23,7 +23,7 @@ export const URL_PROPS = [
     redux: 'population.filters.framework_id',
     action: setSingleFilter,
     required: false,
-    key: 'framework_id'
+    key: 'framework_id',
   },
   {
     type: 'array',
@@ -31,7 +31,7 @@ export const URL_PROPS = [
     redux: 'population.filters.flyway_region_id',
     action: setSingleFilter,
     required: false,
-    key: 'flyway_region_id'
+    key: 'flyway_region_id',
   },
   {
     type: 'array',
@@ -39,7 +39,7 @@ export const URL_PROPS = [
     redux: 'population.filters.ramsar_region_id',
     action: setSingleFilter,
     required: false,
-    key: 'ramsar_region_id'
+    key: 'ramsar_region_id',
   },
   {
     type: 'array',
@@ -47,9 +47,9 @@ export const URL_PROPS = [
     redux: 'population.filters.red_list_id',
     action: setSingleFilter,
     required: false,
-    key: 'red_list_id'
+    key: 'red_list_id',
   },
 ];
 export default {
-  URL_PROPS
+  URL_PROPS,
 };

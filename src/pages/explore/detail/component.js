@@ -11,16 +11,19 @@ import { URL_PROPS } from './url';
 
 import MapContainer from './map';
 
-
 import '../styles.scss';
 
 const ExploreDetailPage = (props) => {
-  const { router: { payload }, setPopulations, user, publication_selected } = props;
+  const {
+    router: { payload },
+    setPopulations,
+    user,
+    publication_selected,
+  } = props;
   const { specie_id } = payload;
-
   useEffect(() => {
-    fetchPopulations(+specie_id).then((data)=> setPopulations(data));
-  }, [specie_id])
+    fetchPopulations(+specie_id).then((data) => setPopulations(data));
+  }, [setPopulations, specie_id]);
 
   return (
     <div className="l-explore">
@@ -37,7 +40,7 @@ const ExploreDetailPage = (props) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default ExploreDetailPage;

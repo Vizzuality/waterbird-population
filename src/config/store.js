@@ -14,7 +14,7 @@ const {
   initialDispatch,
   reducer: routerReducer,
   middleware: routerMiddleware,
-  enhancer: routerEnhancer
+  enhancer: routerEnhancer,
 } = router;
 
 const reducers = combineReducers({
@@ -23,7 +23,7 @@ const reducers = combineReducers({
   population: handleModule(population),
   user: handleModule(user),
   analysis: handleModule(analysis),
-  references: handleModule(references)
+  references: handleModule(references),
 });
 
 const middleware = applyMiddleware(routerMiddleware);

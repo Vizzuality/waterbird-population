@@ -8,21 +8,22 @@ import info from './constants.js';
 import './styles.scss';
 
 const PopUp = ({ popUpState, coordinates, setPopUp }) => {
-
   useEffect(() => {
-    setPopUp && setPopUp(popUpState)
+    setPopUp && setPopUp(popUpState);
   }, [popUpState, setPopUp]);
 
   const handleClick = () => {
-    setPopUp && setPopUp(!popUpState)
-  }
+    setPopUp && setPopUp(!popUpState);
+  };
 
-  if(!popUpState || !coordinates) return null;
+  if (!popUpState || !coordinates) return null;
 
   return (
-    <div className={classnames('c-map-pop-up', {
-      '-collapse': !popUpState
-    })}>
+    <div
+      className={classnames('c-map-pop-up', {
+        '-collapse': !popUpState,
+      })}
+    >
       <div className="pop-up-content">
         <div className="content-info">
           <h5>Population name:</h5>
@@ -44,14 +45,14 @@ const PopUp = ({ popUpState, coordinates, setPopUp }) => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 PopUp.propTypes = {
   info: propTypes.shape({
     place: propTypes.string.isRequired,
-    coordinates: propTypes.string.isRequired
-  })
+    coordinates: propTypes.string.isRequired,
+  }),
 };
 
 export default PopUp;

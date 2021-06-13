@@ -6,16 +6,10 @@
   height: 100%;
   z-index: 0;
   padding-bottom: 10px;
-
-  @media print {
-    overflow: visible;
-    height: 40vh;
-    width: 100vw;
-  }
 }
 
 .c-map-container {
-  height: 60vh; //header and search height
+  height: 70vh; // header and search height
   position: relative;
 
   &.map-detail-container {
@@ -35,12 +29,16 @@
             display: none;
           }
         }
+
+        @media print {
+          display: none;
+        }
       }
     }
   }
 
   @media print {
-    height: 40vh;
+    height: 500px;
     width: 100vw;
   }
 }
@@ -56,4 +54,8 @@
   font-size: 12px;
 }
 
-
+a.mapboxgl-ctrl-logo {
+  @media print {
+    display: none;
+  }
+}

@@ -4,8 +4,16 @@
 
   padding-right: 40px;
 
+  p {
+    margin-top: 10px;
+  }
+
   &.-widgets {
-    margin-bottom: 20px;
+    margin-bottom: 0;
+
+    p {
+      margin-bottom: 5px;
+    }
   }
 
   span {

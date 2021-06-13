@@ -2,24 +2,21 @@ import { setup } from 'axios-cache-adapter';
 import localforage from 'localforage';
 
 const store = localforage.createInstance({
-  driver: [
-    localforage.INDEXEDDB,
-    localforage.LOCALSTORAGE
-  ],
-  name: 'wpe-populations'
+  driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
+  name: 'wpe-populations',
 });
 
 export const API = setup({
   baseURL: process.env.REACT_APP_CARTO_BASE_URL,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   },
   cache: {
     // ignoreCache: process.env.NODE_ENV === 'development',
     maxAge: 15 * 60 * 1000,
     exclude: { query: false },
-    store
-  }
+    store,
+  },
 });
 
 export const fetchPopulations = (specieid) => {
@@ -133,12 +130,14 @@ export const fetchPopulations = (specieid) => {
   familyorder_name,
   family_disposition,
   redlistcategory_name,
-  redlistcategory_id`
+  redlistcategory_id`;
 
   return API.get(`sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data, status }) => { return { data: data.rows, status }})
+    .then(({ data, status }) => {
+      return { data: data.rows, status };
+    })
     .catch((e) => {
-      console.log(e, 'error')
+      console.log(e, 'error');
     });
 };
 
@@ -185,8 +184,9 @@ export const fetchDataToDownload = (dataSpecs) => {
    ${specie_id ? `where species_id=${specie_id}` : ''}
    ${population_id ? `and o.populationid=${population_id}` : ''}`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => data.rows )
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
+    ({ data }) => data.rows
+  );
 };
 
 export const fetchPopulationsCardData = (dataSpecs) => {
@@ -227,15 +227,13 @@ export const fetchPopulationsCardData = (dataSpecs) => {
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trend_id
    ${publicationId ? `where p.publication_id=${publicationId}` : ''}
-   ${populationId ? `and o.populationid=${populationId}` : ''}`
-   ;
-
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data }) => data.rows )
+   ${populationId ? `and o.populationid=${populationId}` : ''}`;
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
+    ({ data }) => data.rows
+  );
 };
 
-
-export const fetchPopulationsByLocation = (lng,lat) => {
+export const fetchPopulationsByLocation = (lng, lat) => {
   const q = `SELECT commonname,
     flywaygroup,
     flywayrange,
@@ -246,6 +244,29 @@ export const fetchPopulationsByLocation = (lng,lat) => {
              ST_SetSRID(
                 ST_MakePoint(${lng},${lat}),4326),the_geom)`;
 
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`)
-    .then(({ data, status }) => { return { data: data.rows, status }})
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
+    ({ data, status }) => {
+      return { data: data.rows, status };
+    }
+  );
+};
+
+// returns BBOX by pop id
+export const fetchPopulationsBBox = (id) => {
+  // const q = `SELECT ST_Envelope(the_geom) as the_geom from species_and_flywaygroups where wpepopid = ${id}`;
+  const q = `WITH bbox as (
+    SELECT ST_Envelope(the_geom) as the_geom
+    FROM species_and_flywaygroups where wpepopid = ${id}
+)
+SELECT the_geom,
+    ST_Xmin(the_geom) as xmin,
+    ST_Ymin(the_geom) as ymin,
+    ST_Xmax(the_geom) as xmax,
+    ST_Ymax(the_geom) as ymax FROM bbox`;
+
+  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
+    ({ data, status }) => {
+      return { data: data.rows[0] || {}, status };
+    }
+  );
 };

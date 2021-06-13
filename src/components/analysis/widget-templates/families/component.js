@@ -4,34 +4,25 @@ import Chart from 'components/recharts';
 
 import config from './config';
 
-
-const Bars = (props) => {
-  const {
-    familyTrendsChart
-  } = props;
-
+const Bars = ({ familyTrendsChart }) => {
   const { chartConfig, chartData } = config.parse(familyTrendsChart);
 
   return (
     <div>
       POPULATION TRENDS BY SELECTED WATERBIRD FAMILIES:
       <div className="c-widget">
-        {familyTrendsChart.length
-          ?
-          <Chart
-            data={chartData}
-            config={chartConfig}
-          />
-          : <div>No data found matching filter criteria</div>
-        }
+        {familyTrendsChart.length ? (
+          <Chart data={chartData} config={chartConfig} />
+        ) : (
+          <div>No data found matching filter criteria</div>
+        )}
       </div>
     </div>
   );
 };
 
 Bars.propTypes = {
-  data: PropTypes.array.isRequired,
-  id: PropTypes.array.isRequired
+  familyTrendsChart: PropTypes.array.isRequired,
 };
 
 export default Bars;

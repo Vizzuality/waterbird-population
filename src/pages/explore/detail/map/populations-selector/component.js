@@ -6,12 +6,12 @@ import './styles.scss';
 const PopulationsSelector = ({ data, selected, onChange }) => {
   const [current, setCurrent] = useState(data[0] || {});
   useEffect(() => {
-    setCurrent(data.find(p => p.value === +selected) || data[0] || {});
-  }, [selected, data])
+    setCurrent(data.find((p) => p.value === +selected) || data[0] || {});
+  }, [selected, data]);
 
   const onSelectChange = (selected) => {
     const { value } = selected;
-    setCurrent(data.find(p => p.value === +value));
+    setCurrent(data.find((p) => p.value === +value));
 
     if (onChange) onChange(+value);
   };
@@ -36,8 +36,9 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
             <div className="populations-selector--content-info">
               <span
                 className={current.tag_color}
-                style={{ backgroundColor: current.tag_background }}>
-                  {current.tag_status}
+                style={{ backgroundColor: current.tag_background }}
+              >
+                {current.tag_status}
               </span>
               <div>
                 <p>{current.specie}</p>
@@ -54,7 +55,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
 PopulationsSelector.propTypes = {
   data: PropTypes.array,
   selected: PropTypes.number,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
 };
 
 PopulationsSelector.defaultProps = {
@@ -62,11 +63,10 @@ PopulationsSelector.defaultProps = {
     { label: 'Western Siberia/SW Asia, NE & Eastern Africa', value: 'population_id_1' },
     { label: 'Populations 2', value: 'population_id_2' },
     { label: 'Populations 3', value: 'population_id_3' },
-    { label: 'Populations 4', value: 'population_id_4' }
+    { label: 'Populations 4', value: 'population_id_4' },
   ],
   selected: null,
-  onChange: null
+  onChange: null,
 };
-
 
 export default PopulationsSelector;

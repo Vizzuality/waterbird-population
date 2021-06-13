@@ -12,45 +12,40 @@ const PopulationInfo = ({ data }) => {
       </div>
 
       <div className="population-info--summary">
-        {(data.map((i, ix) => {
-
+        {data.map((i, ix) => {
           return (
             <div key={ix} className="population-info--summary-item">
-              {i.map(i2 => (
+              {i.map((i2) => (
                 <div key={i2.value} className="population-info--summary-item-container">
-                  <div className="population-info--summary-item-head">
-                    {i2.head}
-                  </div>
-                  <div style={{ backgroundColor: i2.backgroundColor, border: `1px solid ${i2.border}` }}
+                  <div className="population-info--summary-item-head">{i2.head}</div>
+                  <div
+                    style={{
+                      backgroundColor: i2.backgroundColor,
+                      border: `1px solid ${i2.border}`,
+                    }}
                     className={classnames({
-                      "population-info--summary-item-value": true,
-                      [i2.className]: !!i2.className
+                      'population-info--summary-item-value': true,
+                      [i2.className]: !!i2.className,
                     })}
                   >
                     {i2.value}
-                    {' '}
-                    {i2.aside && (
-                      <span className="population-info--summary-item-value-aside">
-                        {i2.aside}
-                      </span>
-                    )}
                   </div>
                 </div>
               ))}
             </div>
           );
-        }))}
+        })}
       </div>
-    </div >
-  )
+    </div>
+  );
 };
 
 PopulationInfo.propTypes = {
-  data: PropTypes.array
-}
+  data: PropTypes.array,
+};
 
 PopulationInfo.defaultProps = {
-  data: []
-}
+  data: [],
+};
 
 export default PopulationInfo;

@@ -21,14 +21,16 @@ const Comments = ({
   trendId,
   onepercentId,
   visible,
-  onClose
+  onClose,
 }) => {
   const [isDisable, disableButton] = useState(true);
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState('');
 
   useEffect(() => {
-    fetchComments(publicationId, populationId, sizeId, trendId, onepercentId).then(data => setComments(data));
+    fetchComments(publicationId, populationId, sizeId, trendId, onepercentId).then((data) =>
+      setComments(data)
+    );
   }, [publicationId, populationId, sizeId, trendId, onepercentId]);
 
   const handleChange = (e) => {
@@ -50,7 +52,7 @@ const Comments = ({
       trend_id: trendId,
       onepercent_id: onepercentId,
       comment,
-      date: new Date()
+      date: new Date(),
     });
     onClose();
   };
@@ -59,20 +61,27 @@ const Comments = ({
 
   return (
     <div className="c-comments">
-
-      <h2>{title} <span>- {publicationName}</span></h2>
-      {(!comments || !comments.length) &&
-        <p className={classnames({'-published': published === 1})}>
+      <h2>
+        {title} <span>- {publicationName}</span>
+      </h2>
+      {(!comments || !comments.length) && (
+        <p className={classnames({ '-published': published === 1 })}>
           No comments for this publication
-        </p>}
-      {comments && comments.length > 0 && comments.map(({ name, date, comment }) =>
-        <div>
-          <h3>{toCamelCase(name)}<span>{date}</span></h3>
-          <div className="comments-content">
-            <p>{comment}</p>
-          </div>
-        </div>
+        </p>
       )}
+      {comments &&
+        comments.length > 0 &&
+        comments.map(({ name, date, comment }) => (
+          <div key={`${name}-${date}`}>
+            <h3>
+              {toCamelCase(name)}
+              <span>{date}</span>
+            </h3>
+            <div className="comments-content">
+              <p>{comment}</p>
+            </div>
+          </div>
+        ))}
       {published === 0 && (
         <section>
           <form method="post">
@@ -81,7 +90,8 @@ const Comments = ({
               name="Write your message"
               placeholder="Write your message"
               onChange={handleChange}
-              rows="4" />
+              rows="4"
+            />
           </form>
           <div className="tooltip-controls">
             <Button
@@ -92,25 +102,24 @@ const Comments = ({
             >
               Cancel
             </Button>
-
             <Button
               aria-label="submit"
               type="submit"
               onClick={sendComment}
-              className={classnames('-background -secondary -big',
-                { '-disable': isDisable })}
+              className={classnames('-background -secondary -big', { '-disable': isDisable })}
             >
               Add comment
             </Button>
           </div>
-        </section>)}
+        </section>
+      )}
     </div>
-  )
+  );
 };
 
 Comments.propTypes = {
   toggleComment: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired
-}
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default Comments;
