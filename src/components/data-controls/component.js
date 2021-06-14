@@ -128,7 +128,7 @@ const DataControls = ({
                   : dataSpecs
               }
               filename={'populations'}
-              className="-dashed"
+              className="-dashed -analyze"
             />
             <Button
               aria-label="show-advanced-filters"
@@ -180,6 +180,21 @@ const DataControls = ({
 
 DataControls.propTypes = {
   info: PropTypes.shape({}),
+  dataSpecs: PropTypes.shape({}),
+  populationsFilteredIds: PropTypes.arrayOf(PropTypes.number),
+  filters: PropTypes.shape({}),
+  setFilters: PropTypes.func.isRequired,
+  resetFilters: PropTypes.func.isRequired,
+  resetPopulationsByLocation: PropTypes.func.isRequired,
+  activeFilters: PropTypes.arrayOf(PropTypes.shape({})),
+  publications: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      description: PropTypes.string,
+    })
+  ),
+  page: PropTypes.string,
+  setPublications: PropTypes.func.isRequired,
 };
 
 export default DataControls;

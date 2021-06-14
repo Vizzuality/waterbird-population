@@ -44,7 +44,7 @@ const ClearFilters = ({
     <button
       key={activeFilters}
       aria-label="clear-filters"
-      className={cx('c-clear-filters', { '-widgets': page === 'ANALYZE'})}
+      className={cx('c-clear-filters', { '-widgets': page === 'ANALYZE' })}
       onClick={handleFilters}
     >
       Clear filters and search criteria
@@ -53,7 +53,7 @@ const ClearFilters = ({
 };
 
 ClearFilters.propTypes = {
-  activeFilters: PropTypes.func.isRequired,
+  activeFilters: PropTypes.array.isRequired,
   unsetteledFilters: PropTypes.array.isRequired,
   resetFilters: PropTypes.func.isRequired,
   handleUnsetteledFilters: PropTypes.func,
@@ -61,13 +61,15 @@ ClearFilters.propTypes = {
   resetLocation: PropTypes.func.isRequired,
   resetSearch: PropTypes.func.isRequired,
   search: PropTypes.string,
-  lonLat: PropTypes.array.isRequired,
-  page: PropTypes.string.isRequired,
+  lonLat: PropTypes.array,
+  page: PropTypes.string,
 };
 
 ClearFilters.defaultProps = {
   handleUnsetteledFilters: null,
   search: '',
+  lonLat: null,
+  page: null,
 };
 
 export default ClearFilters;

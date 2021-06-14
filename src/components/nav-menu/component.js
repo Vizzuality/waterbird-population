@@ -92,7 +92,7 @@ NavMenu.propTypes = {
 };
 
 NavMenu.propTypes = {
-  query: {},
+  query: null,
 };
 
 export default NavMenu;
