@@ -5,18 +5,16 @@ import PropTypes from 'prop-types';
 import SpeciesListItem from 'components/species-list-item';
 import Spinner from 'components/spinner';
 
-
 const SpeciesList = ({ populationSpecies }) => {
-
-  if (!populationSpecies || !populationSpecies.length) return <Spinner />
+  if (!populationSpecies || !populationSpecies.length) return <Spinner />;
 
   return populationSpecies.map((specie) => {
-    return <SpeciesListItem key={specie.id} specie={specie} />
-  })
+    return <SpeciesListItem key={specie.id} specie={specie} />;
+  });
 };
 
 SpeciesList.propTypes = {
-  populationSpecies: PropTypes.array.isRequired
-}
+  populationSpecies: PropTypes.array.isRequired,
+};
 
 export default SpeciesList;

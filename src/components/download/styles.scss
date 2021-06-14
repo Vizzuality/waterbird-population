@@ -5,6 +5,7 @@
   color: $color-2;
   font-size: 14px;
   font-weight: bold;
+  align-items: center;
 
   :first-child {
     padding: 0 15px;
@@ -31,12 +32,11 @@
     flex-direction: row-reverse;
     border: 1px dashed rgba($color-grey-8, 0.4);
     border-radius: $border-radius;
-    padding: 20px 40px;
+    padding: 20px;
     color: $color-grey-5;
     font-size: 14px;
     font-weight: bold;
     line-height: 20px;
-    margin-right: 20px;
 
     &.-collapse {
       color: $color-grey-8;
@@ -56,6 +56,10 @@
           @include arrow(9px,2px, $color-grey-8, 'down');
         }
       }
+    }
+
+    @media (max-width: map-get($breakpoints, sm)) {
+      padding: 20px 10px;
     }
   }
 

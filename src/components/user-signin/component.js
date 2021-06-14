@@ -78,7 +78,7 @@ const SigInSigupContainer = ({ user, resetUser, modalContent, className }) => {
 
 SigInSigupContainer.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
   }).isRequired,
   resetUser: PropTypes.func.isRequired,
   modalContent: PropTypes.string.isRequired,

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 class Tick extends React.Component {
   static propTypes = {
     x: PropTypes.number,
@@ -11,27 +10,18 @@ class Tick extends React.Component {
     unit: PropTypes.string.isRequired,
     unitFormat: PropTypes.func.isRequired,
     fill: PropTypes.string.isRequired,
-    backgroundColor: PropTypes.string
-  }
+    backgroundColor: PropTypes.string,
+  };
 
   static defaultProps = {
     x: 0,
     y: 0,
     payload: {},
-    backgroundColor: ''
-  }
+    backgroundColor: '',
+  };
 
-  render () {
-    const {
-      x,
-      y,
-      payload,
-      dataMax,
-      unit,
-      unitFormat,
-      fill,
-      backgroundColor
-    } = this.props;
+  render() {
+    const { x, y, payload, dataMax, unit, unitFormat, fill, backgroundColor } = this.props;
 
     const tickValue = payload && payload.value;
     const formattedTick = typeof tickValue !== 'undefined' ? unitFormat(tickValue) : 0;
@@ -45,14 +35,7 @@ class Tick extends React.Component {
             <feComposite in="SourceGraphic" />
           </filter>
         </defs>
-        <text
-          x="0"
-          y="3"
-          textAnchor="start"
-          fontSize="11px"
-          fontWeight={500}
-          fill={fill}
-        >
+        <text x="0" y="3" textAnchor="start" fontSize="11px" fontWeight={500} fill={fill}>
           {tick}
         </text>
       </g>

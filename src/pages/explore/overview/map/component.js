@@ -17,6 +17,8 @@ import PopulationsSelector from './populations-selector';
 import PopulationsMessage from './populations-message';
 import Legend from 'components/map/legend';
 
+import './styles.scss';
+
 export const MapContainer = ({
   coordinates,
   populationsLayersByLocation,
@@ -25,6 +27,7 @@ export const MapContainer = ({
   populationsNumber,
   setPopulationsByLocation,
   setLocation,
+  search,
   scrollZoom = false,
   basemap,
 }) => {
@@ -104,27 +107,30 @@ export const MapContainer = ({
           <Fragment>
             <LayerManager map={map} plugin={PluginMapboxGl}>
               {!!layers &&
-                layers.map((l, i) => {
+                layers.map((l) => {
                   return <Layer key={l.id} {...l} onAfterAdd={onAfterAdd} />;
                 })}
             </LayerManager>
-            {coordinates && hoverInteractions['populations-by-location'] && (
+            {coordinates && hoverInteractions['populations-by-location'] && !loadingLocation && (
               <Popup
                 key={hoverInteractions['populations-by-location']}
                 latitude={coordinates[1]}
                 longitude={coordinates[0]}
+                className="-map-pop-up"
                 closeButton={false}
               >
                 {populationsNumber &&
                   populationsNumber.length === 1 &&
-                  `There is one population flying through this point. Population name: ${populationsNumber[0].name.toUpperCase()}`}
+                  `There is one population overlaping with this location. Population name: ${populationsNumber[0].name.toUpperCase()}`}
                 {!loadingLocation &&
                   !!dataLocation.length &&
                   populationsNumber.length > 1 &&
                   `${populationsNumber.length} overlap with this location`}
                 {!loadingLocation &&
-                  !dataLocation.length &&
-                  'There are no populations overlaping with this location'}
+                  populationsNumber.length === 0 &&
+                  (search.length === 0
+                    ? 'There are no populations overlaping with this location'
+                    : 'There are no populations overlaping with this location matching your search')}
               </Popup>
             )}
           </Fragment>
@@ -142,6 +148,16 @@ export const MapContainer = ({
 
 MapContainer.propTypes = {
   viewport: PropTypes.shape({}),
+  coordinates: PropTypes.arrayOf(PropTypes.number),
+  populationsLayersByLocation: PropTypes.arrayOf(PropTypes.shape({})),
+  loadingLocation: PropTypes.bool,
+  dataLocation: PropTypes.arrayOf(PropTypes.shape({})),
+  populationsNumber: PropTypes.array,
+  setPopulationsByLocation: PropTypes.func,
+  setLocation: PropTypes.func,
+  scrollZoom: PropTypes.bool,
+  basemap: PropTypes.string.isRequired,
+  search: PropTypes.string.isRequired,
 };
 
 MapContainer.defaultProps = {

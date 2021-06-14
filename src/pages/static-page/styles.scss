@@ -21,4 +21,8 @@
   ul {
     margin: 20px 0;
   }
+
+  @media (max-width: map-get($breakpoints, md)) {
+    padding: 10px;
+  }
 }
