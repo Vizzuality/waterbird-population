@@ -128,7 +128,7 @@ const DataControls = ({
                   : dataSpecs
               }
               filename={'populations'}
-              className="-dashed -analyze"
+              className="-dashed"
             />
             <Button
               aria-label="show-advanced-filters"

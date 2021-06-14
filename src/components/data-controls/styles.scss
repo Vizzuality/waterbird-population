@@ -97,8 +97,14 @@
 
     @media (max-width: map-get($breakpoints, sm)) {
       flex-direction: column;
-      margin-right: 0;
-      margin-bottom: 20px;
+      align-items: center;
+
+      button {
+
+        &:first-child {
+          margin-bottom: 30px;
+        }
+      }
     }
   }
 
