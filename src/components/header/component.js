@@ -3,7 +3,7 @@ import Link from 'redux-first-router-link';
 import Logo from 'images/logo.png';
 import NavMenu from 'components/nav-menu';
 import SigInSigupContainer from 'components/user-signin';
-import Image from 'static/images/logo_EAAD_header.png';
+import Image from 'static/images/logo_EAAD.png';
 
 import './styles.scss';
 

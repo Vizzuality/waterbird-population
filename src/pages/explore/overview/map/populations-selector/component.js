@@ -6,7 +6,6 @@ import Icon from 'components/icon';
 import './styles.scss';
 
 const PopulationsSelector = ({ data, setLocation, resetPopulationsByLocation }) => {
-
   const handleClick = () => {
     resetPopulationsByLocation();
     setLocation(null);
@@ -33,18 +32,17 @@ const PopulationsSelector = ({ data, setLocation, resetPopulationsByLocation }) 
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 PopulationsSelector.propTypes = {
   data: PropTypes.string,
   setLocation: PropTypes.func.isRequired,
-  resetPopulationsByLocation: PropTypes.func.isRequired
+  resetPopulationsByLocation: PropTypes.func.isRequired,
 };
 
 PopulationsSelector.defaultProps = {
-  data: ''
+  data: '',
 };
-
 
 export default PopulationsSelector;
