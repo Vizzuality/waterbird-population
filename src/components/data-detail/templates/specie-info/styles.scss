@@ -73,6 +73,14 @@
           transform: translate(7px, -50%);
           border-radius: 50%;
         }
+
+        &.dark {
+          color: $black;
+
+          &:before {
+            background-color: $black;
+          }
+        }
       }
     }
   }
