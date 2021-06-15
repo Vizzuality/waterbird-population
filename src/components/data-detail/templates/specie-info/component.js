@@ -32,6 +32,7 @@ const SpecieInfo = ({ data }) => {
                     className={classnames({
                       'population-info--summary-item-value': true,
                       [i2.className]: !!i2.className,
+                      [i2.color]: !!i2.color,
                     })}
                   >
                     {i2.value}
