@@ -13,6 +13,7 @@ const PopulationInfo = ({ data }) => {
 
       <div className="population-info--summary">
         {data.map((i, ix) => {
+
           return (
             <div key={ix} className="population-info--summary-item">
               {i.map((i2) => (

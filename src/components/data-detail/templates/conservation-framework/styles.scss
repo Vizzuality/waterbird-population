@@ -5,6 +5,11 @@
   line-height: 19px;
   padding-bottom: $padding-bottom-data-detail-sections;
 
+  li {
+    display: inline-flex;
+    padding-right: 5px;
+  }
+
   @media print {
     padding-bottom: 0;
   }

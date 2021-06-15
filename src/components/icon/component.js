@@ -16,13 +16,13 @@ const Icon = ({ name, className, style }) => {
 Icon.propTypes = {
   name: PropTypes.string,
   className: PropTypes.string,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 Icon.defaultProps = {
   name: '',
   className: '',
-  style: {}
+  style: {},
 };
 
 export default Icon;
