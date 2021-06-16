@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 // services
 import { fetchPopulations } from 'services/population';
@@ -41,6 +42,17 @@ const ExploreDetailPage = (props) => {
       </div>
     </div>
   );
+};
+
+ExploreDetailPage.propTypes = {
+  router: PropTypes.shape({
+    payload: PropTypes.shape({
+      specie_id: PropTypes.number,
+    }),
+  }).isRequired,
+  setPopulations: PropTypes.func.isRequired,
+  user: PropTypes.number.isRequired,
+  publication_selected: PropTypes.number.isRequired,
 };
 
 export default ExploreDetailPage;

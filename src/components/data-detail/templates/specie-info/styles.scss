@@ -52,7 +52,8 @@
       }
 
       &.-tag {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         position: relative;
         font-weight: $font-weight-regular;
         text-transform: uppercase;
@@ -61,6 +62,11 @@
         padding-left: 20px;
         color: white;
         border-radius: 4px;
+        flex-shrink: 0;
+
+        @media print {
+          padding: 0;
+        }
 
         &:before {
           content: "";
@@ -72,6 +78,10 @@
           top: 50%;
           transform: translate(7px, -50%);
           border-radius: 50%;
+
+          @media print {
+            display: none;
+          }
         }
 
         &.dark {

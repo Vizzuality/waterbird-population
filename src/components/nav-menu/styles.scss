@@ -72,6 +72,7 @@
         position: relative;
         color: rgba($color-grey-8, 0.5);
         display: flex;
+        font-size: 14px;
 
         &.-active {
           color: $color-3;
@@ -150,12 +151,14 @@
         }
 
         h3 {
+
           &:after {
             position: absolute;
             top: 50%;
-            right: -20px;
-            @include arrow(9px,2px, $black, 'down');
-            transform: translateY(-50%) rotate(45deg);
+            right: -15px;
+            padding-bottom: 3px;
+            @include arrow(7px,2px, $black, 'down');
+            transform: translateY(calc(-50% - 2px)) rotate(45deg);
 
             @media (max-width: map-get($breakpoints, xlg)) {
               display: none;

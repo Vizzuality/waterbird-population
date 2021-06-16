@@ -140,12 +140,14 @@ const PopulationPercent = ({ data, user, publication }) => {
 };
 
 PopulationPercent.propTypes = {
-  data: PropTypes.shape({}).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   user: PropTypes.number,
+  publication: PropTypes.number.isRequired,
 };
 
 PopulationPercent.defaultProps = {
   user: null,
+  publication: PropTypes.number.isRequired,
 };
 
 export default PopulationPercent;
