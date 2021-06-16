@@ -22,10 +22,6 @@
       max-width: 500px;
     }
 
-    @media print {
-      display: none;
-    }
-
     .populations-selector--content-info-wrapper {
 
       .populations-selector--content-info {
@@ -89,6 +85,10 @@
 
         .react-select__indicator {
           color: $white;
+
+          @media print {
+            display: none;
+          }
         }
 
         .react-select__control--menu-is-open {

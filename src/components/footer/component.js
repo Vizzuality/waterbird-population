@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavMenu from 'components/nav-menu';
 import SigInSigupContainer from 'components/user-signin';
-import Image from 'static/images/logo_EAAD.png';
+import Image from 'static/images/logo_EAAD.jpg';
 
 import './styles.scss';
 
