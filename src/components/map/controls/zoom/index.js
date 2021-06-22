@@ -1,3 +1,1 @@
-import ZoomControlComponent from './component';
-
-export default ZoomControlComponent;
+export { default } from './component';

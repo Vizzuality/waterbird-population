@@ -162,7 +162,6 @@ export const MapContainer = ({
           </Fragment>
         )}
       </Map>
-
       <MapControls>
         <ZoomControl viewport={viewport} onClick={onZoomChange} />
       </MapControls>

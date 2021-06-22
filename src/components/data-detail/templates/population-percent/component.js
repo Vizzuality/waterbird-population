@@ -54,6 +54,7 @@ const PopulationPercent = ({ data, user }) => {
         <tbody>
           {data.map((d) => (
             <Tooltip
+              key={d.onepercent_id}
               placement="top"
               onClickOutside={() => handleClickComments(`${d.onepercent_id} - ${d.publication_id}`)}
               visible={visible[`${d.onepercent_id} - ${d.publication_id}`]}
