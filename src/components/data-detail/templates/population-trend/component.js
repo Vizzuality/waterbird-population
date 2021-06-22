@@ -10,8 +10,8 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationTrend = ({ data, user, publication }) => {
-  const [isCollapsed, toggleCollapse] = useState(publication ? true : false);
+const PopulationTrend = ({ data, user }) => {
+  const [isCollapsed, toggleCollapse] = useState(false);
   const [visible, toggleVisibility] = useState({});
 
   const handleClick = () => {
@@ -179,7 +179,6 @@ const PopulationTrend = ({ data, user, publication }) => {
 PopulationTrend.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   user: PropTypes.number,
-  publication: PropTypes.number.isRequired,
 };
 
 PopulationTrend.defaultProps = {

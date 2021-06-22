@@ -9,8 +9,8 @@ import Note from 'components/note';
 
 import './styles.scss';
 
-const PopulationPercent = ({ data, user, publication }) => {
-  const [isCollapsed, toggleCollapse] = useState(publication ? true : false);
+const PopulationPercent = ({ data, user }) => {
+  const [isCollapsed, toggleCollapse] = useState(false);
   const [visible, toggleVisibility] = useState({});
 
   const handleClick = () => {
@@ -142,12 +142,10 @@ const PopulationPercent = ({ data, user, publication }) => {
 PopulationPercent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   user: PropTypes.number,
-  publication: PropTypes.number.isRequired,
 };
 
 PopulationPercent.defaultProps = {
   user: null,
-  publication: PropTypes.number.isRequired,
 };
 
 export default PopulationPercent;
