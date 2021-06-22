@@ -85,10 +85,6 @@
 
         .react-select__indicator {
           color: $white;
-
-          @media print {
-            display: none;
-          }
         }
 
         .react-select__control--menu-is-open {
@@ -162,6 +158,10 @@
   }
 
   &.-collapse {
+    display: none;
+  }
+
+  @media print {
     display: none;
   }
 }

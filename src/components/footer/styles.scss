@@ -44,14 +44,24 @@
         margin-top: 20px;
       }
     }
+
     @media (max-width: map-get($breakpoints, md)) {
       flex-direction: column;
+    }
+
+    @media print {
+      display: none;
     }
   }
 
   .footer-navigation {
     width: 100%;
     display: flex;
+    overflow-y: auto;
+
+    @media print {
+      display: none;
+    }
   }
 
   aside {
@@ -68,17 +78,17 @@
 
     img {
       height: auto;
-      min-width: 200px;
-      padding: 5px;
+      width: 200px;
+      padding: 10px;
     }
 
     p {
       color: $color-3;
-      padding-top: 20px;
     }
-  }
 
-  @media print {
-    display: none;
+    @media print {
+      margin-top: 500px;
+      break-before: always;
+    }
   }
 }
