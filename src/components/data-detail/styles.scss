@@ -40,10 +40,6 @@
       &:last-child {
         padding-right: 5px;
       }
-
-      @media print {
-        page-break-after: always;
-      }
     }
 
     td {

@@ -94,6 +94,18 @@
       padding-left: 40px;
       flex: 1;
     }
+
+    @media (max-width: map-get($breakpoints, sm)) {
+      flex-direction: column;
+      align-items: center;
+
+      button {
+
+        &:first-child {
+          margin-bottom: 30px;
+        }
+      }
+    }
   }
 
   @media print {

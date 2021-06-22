@@ -10,16 +10,13 @@ import Button from 'components/button';
 import './styles.scss';
 
 const FamilyList = ({ populationFamilies, loading, activeFilters }) => {
-
-  const [isCollapsed, toggleCollapse] = useState(
-    !!activeFilters.length
-  );
+  const [isCollapsed, toggleCollapse] = useState(!!activeFilters.length);
 
   useEffect(() => {
-    toggleCollapse(!activeFilters.length)
+    toggleCollapse(!activeFilters.length);
   }, [activeFilters]);
 
-  if (loading) return <Spinner />
+  if (loading) return <Spinner />;
 
   const handleClick = () => {
     toggleCollapse(!isCollapsed);
@@ -33,26 +30,22 @@ const FamilyList = ({ populationFamilies, loading, activeFilters }) => {
         <>
           <Button
             aria-label={isCollapsed ? 'Expand All' : 'Collapse All'}
-            className={classnames('data-results-btn -border -secondary',
-              { '-collapse': !isCollapsed }
-            )}
+            className={classnames('data-results-btn -border -secondary', {
+              '-collapse': !isCollapsed,
+            })}
             onClick={handleClick}
           >
             {isCollapsed ? 'Expand All' : 'Collapse All'}
           </Button>
-          {populationFamilies.map(family => (
-            <FamilyListItem
-              key={family.id}
-              family={family}
-              allCollapsed={isCollapsed}
-            />
+          {populationFamilies.map((family) => (
+            <FamilyListItem key={family.id} family={family} allCollapsed={isCollapsed} />
           ))}
         </>
       )}
 
       {!populationFamilies.length && (
         <div className="data-empty">
-          Sorry, we couldn't find any results matching your search.
+          Sorry, we couldn&rsquo;t find any results matching your search.
         </div>
       )}
     </div>
@@ -60,13 +53,9 @@ const FamilyList = ({ populationFamilies, loading, activeFilters }) => {
 };
 
 FamilyList.propTypes = {
-  populationFamilies: PropTypes.arrayOf(
-    PropTypes.shape({})
-  ).isRequired,
+  populationFamilies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   loading: PropTypes.bool.isRequired,
-  activeFilters: PropTypes.arrayOf(
-    PropTypes.shape({})
-  ).isRequired,
+  activeFilters: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default FamilyList;

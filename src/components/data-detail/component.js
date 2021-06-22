@@ -12,7 +12,7 @@ import Notes from './templates/notes';
 
 import './styles.scss';
 
-const DataDetail = (props) =>  {
+const DataDetail = (props) => {
   const {
     populationSpecieInfoData,
     populationInfoData,

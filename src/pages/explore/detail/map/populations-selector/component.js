@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+
 import './styles.scss';
 
 const PopulationsSelector = ({ data, selected, onChange }) => {
@@ -15,7 +16,6 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
 
     if (onChange) onChange(+value);
   };
-
   return (
     <div className="c-populations-selector-map-detail">
       <div className="wrapper">
@@ -35,7 +35,7 @@ const PopulationsSelector = ({ data, selected, onChange }) => {
             <h5>Species:</h5>
             <div className="populations-selector--content-info">
               <span
-                className={current.tag_color}
+                className={`-tag ${current.tag_color}`}
                 style={{ backgroundColor: current.tag_background }}
               >
                 {current.tag_status}

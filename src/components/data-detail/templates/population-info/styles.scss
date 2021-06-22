@@ -46,38 +46,6 @@
     .population-info--summary-item-value {
       font-size: 14px;
       font-weight: $font-weight-bold;
-
-      &.-italic {
-        font-style: italic;
-      }
-
-      &.-tag {
-        display: inline-block;
-        position: relative;
-        font-weight: $font-weight-regular;
-        text-transform: uppercase;
-        font-size: 10px;
-        padding: 0px 10px;
-        padding-left: 20px;
-        color: white;
-        border-radius: 4px;
-
-        &:before {
-          content: "";
-          width: 6px;
-          height: 6px;
-          background: #FFF;
-          position: absolute;
-          left: 0px;
-          top: 50%;
-          transform: translate(7px, -50%);
-          border-radius: 50%;
-        }
-      }
     }
-  }
-
-  @media print {
-    page-break-after: always;
   }
 }

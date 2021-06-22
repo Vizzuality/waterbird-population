@@ -1,0 +1,9 @@
+@import 'styles/settings';
+
+.-map-pop-up {
+  display: flex;
+
+  @media (max-width: map-get($breakpoints, md)) {
+    max-width: 300px;
+  }
+}

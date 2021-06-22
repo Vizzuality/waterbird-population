@@ -13,6 +13,7 @@ const mapStateToProps = (state) => ({
   isOpen: state.map.popUp,
   loadingLocation: state.population.populationsByLocation.loading,
   dataLocation: state.population.populationsByLocation.data,
+  search: state.population.search,
   ...selectMapProps(state),
   ...selectPopulationDetailProps(state),
   ...selectPopulationProps(state),

@@ -338,6 +338,10 @@ export const selectPopulationSpecieInfoData = createSelector(
           border: tag.border && tag.border,
         },
       ],
+      [
+        { head: 'Order name', value: trim(population.family.ordername) || '-' },
+        { head: 'Family name', value: trim(population.family.name) || '-' },
+      ],
     ];
   }
 );
@@ -350,16 +354,12 @@ export const selectPopulationInfoData = createSelector(
     const ramsar = regions.filter((r) => !!population[r.id]);
 
     return [
-      [
-        { head: 'Order name', value: trim(population.family.ordername) || '-' },
-        { head: 'Family name', value: trim(population.family.name) || '-' },
-      ],
       [{ head: 'Population name', value: trim(population.name) || '-' }],
       [
         { head: 'Breeding range', value: trim(population.breedingrange) || '-' },
         { head: 'Non-breeding range', value: trim(population.nonbreedingrange) || '-' },
       ],
-      [{ head: 'Ramsar regions', value: ramsar.map((r) => r.name).join(',') }],
+      [{ head: 'Ramsar regions', value: ramsar.map((r) => r.name).join(', ') }],
       [{ head: 'Active', value: population.active === 0 ? 'Yes' : 'No' }],
       [{ head: 'Notes', value: trim(population.note) || '-', className: '-italic' }],
     ];

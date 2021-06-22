@@ -10,10 +10,10 @@ const ConservationFramework = ({ data }) => {
         <h2>Conservation Framework</h2>
       </div>
       <ul>
-        {data.map((d) => (
+        {data.map((d, i) => (
           <li key={d.id}>
-            <span className="cell-content">{d.conservation_framework || '-'}</span>
-            {d < data.length ? ',' : ''}
+            <span>{d.conservation_framework || '-'}</span>
+            {i < data.length - 1 ? ',' : ''}
           </li>
         ))}
       </ul>

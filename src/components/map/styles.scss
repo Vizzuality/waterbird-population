@@ -36,11 +36,6 @@
       }
     }
   }
-
-  @media print {
-    height: 500px;
-    width: 100vw;
-  }
 }
 
 .map-tooltip {
@@ -57,5 +52,12 @@
 a.mapboxgl-ctrl-logo {
   @media print {
     display: none;
+  }
+}
+
+.mapboxgl-map {
+  @media print {
+    height: 900px;
+    width: 100vh;
   }
 }
