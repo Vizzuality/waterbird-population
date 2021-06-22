@@ -1,4 +1,5 @@
 @import 'styles/settings';
+@import 'styles/mixins';
 
 .c-population-size {
   position: relative;
@@ -22,6 +23,6 @@
   }
 
   @media print {
-    padding-top: 140px;
+    @include print;
   }
 }

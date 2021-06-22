@@ -48,4 +48,8 @@
       font-weight: $font-weight-bold;
     }
   }
+
+  @media print {
+    padding-bottom: 40px;
+  }
 }
