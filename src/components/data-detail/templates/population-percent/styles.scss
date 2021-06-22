@@ -1,4 +1,5 @@
 @import 'styles/settings';
+@import 'styles/mixins';
 
 .c-population-percent {
   position: relative;
@@ -22,6 +23,7 @@
   }
 
   @media print {
-    padding-bottom: 10px;
+    @include print;
   }
-};
+}
+

@@ -17,7 +17,6 @@ import ZoomControl from 'components/map/controls/zoom';
 import PopulationsSelector from 'pages/explore/detail/map/populations-selector';
 
 // services
-
 import { fetchPopulationsBBox } from 'services/population';
 
 export const MapContainer = ({
@@ -163,7 +162,6 @@ export const MapContainer = ({
           </Fragment>
         )}
       </Map>
-
       <MapControls>
         <ZoomControl viewport={viewport} onClick={onZoomChange} />
       </MapControls>

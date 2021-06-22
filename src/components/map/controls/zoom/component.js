@@ -10,28 +10,26 @@ class ZoomControl extends PureComponent {
   static propTypes = {
     viewport: PropTypes.shape({}).isRequired,
     className: PropTypes.string,
-    onClick: PropTypes.func.isRequired
-  }
+    onClick: PropTypes.func.isRequired,
+  };
 
   static defaultProps = {
-    className: null
-  }
+    className: null,
+  };
 
   increaseZoom = (e) => {
     e.stopPropagation();
     const { viewport, onClick } = this.props;
     const { zoom, maxZoom } = viewport;
-
-    onClick(zoom === maxZoom ? zoom : zoom + 1);
-  }
+    onClick(zoom >= maxZoom ? maxZoom : zoom + 1);
+  };
 
   decreaseZoom = (e) => {
     e.stopPropagation();
     const { viewport, onClick } = this.props;
     const { zoom, minZoom } = viewport;
-
-    onClick(zoom === minZoom ? zoom : zoom - 1);
-  }
+    onClick(zoom <= minZoom ? minZoom : zoom - 1);
+  };
 
   render() {
     const { className, viewport } = this.props;
@@ -39,7 +37,7 @@ class ZoomControl extends PureComponent {
 
     const classNames = classnames({
       'c-zoom-control': true,
-      [className]: !!className
+      [className]: !!className,
     });
 
     const zoomInClass = classnames('zoom-control--btn', { '-disabled': zoom >= maxZoom });
@@ -69,5 +67,13 @@ class ZoomControl extends PureComponent {
     );
   }
 }
+
+ZoomControl.propTypes = {
+  viewport: PropTypes.shape({
+    zoom: PropTypes.number,
+    maxZoom: PropTypes.number,
+    minZoom: PropTypes.number,
+  }).isRequired,
+};
 
 export default ZoomControl;

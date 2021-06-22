@@ -16,7 +16,8 @@ import './styles.scss';
 
 const DEFAULT_VIEWPORT = {
   zoom: 2,
-  minZoom: 2,
+  minZoom: 1,
+  maxZoom: 10,
   latitude: 40,
   longitude: 10,
 };
@@ -236,7 +237,7 @@ class Map extends Component {
     if (onMouseLeave) onMouseLeave(e);
   };
 
-  onViewportChange = (v, i) => {
+  onViewportChange = (v) => {
     const { onViewportChange } = this.props;
     this.setState({ viewport: v });
     onViewportChange(v);

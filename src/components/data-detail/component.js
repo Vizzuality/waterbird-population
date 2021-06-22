@@ -27,14 +27,16 @@ const DataDetail = (props) => {
   } = props;
   return (
     <div className="c-data-detail">
-      <SpecieInfo data={populationSpecieInfoData} />
-      <PopulationInfo data={populationInfoData} />
-      <ConservationFramework data={populationConservationFramework} />
-      <PopulationSize data={populationSizeData} user={user} publication={publication} />
-      <PopulationTrend data={populationTrendData} user={user} publication={publication} />
-      <PopulationPercent data={populationPercentData} user={user} publication={publication} />
-      <References data={populationReferences} />
-      <Notes data={populationNotes} />
+      <div>
+        <SpecieInfo data={populationSpecieInfoData} />
+        <PopulationInfo data={populationInfoData} />
+        <ConservationFramework data={populationConservationFramework} />
+        <PopulationSize data={populationSizeData} user={user} publication={publication} />
+        <PopulationTrend data={populationTrendData} user={user} publication={publication} />
+        <PopulationPercent data={populationPercentData} user={user} publication={publication} />
+        <References data={populationReferences} />
+        <Notes data={populationNotes} />
+      </div>
     </div>
   );
 };

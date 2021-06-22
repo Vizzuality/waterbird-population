@@ -17,8 +17,6 @@ import PopulationsSelector from './populations-selector';
 import PopulationsMessage from './populations-message';
 import Legend from 'components/map/legend';
 
-import './styles.scss';
-
 export const MapContainer = ({
   coordinates,
   populationsLayersByLocation,

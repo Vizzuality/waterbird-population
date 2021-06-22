@@ -30,6 +30,12 @@
   }
 }
 
+@mixin print {
+  padding-top: 100px;
+  break-before: always;
+  border-bottom: none;
+}
+
 // Flexbox Mixins
 // http://philipwalton.github.io/solved-by-flexbox/
 // https://github.com/philipwalton/solved-by-flexbox

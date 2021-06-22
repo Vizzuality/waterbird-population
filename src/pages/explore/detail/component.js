@@ -20,6 +20,7 @@ const ExploreDetailPage = (props) => {
     setPopulations,
     user,
     publication_selected,
+    data,
   } = props;
   const { specie_id } = payload;
   useEffect(() => {
@@ -29,6 +30,17 @@ const ExploreDetailPage = (props) => {
   return (
     <div className="l-explore">
       <UrlComponent urlProps={URL_PROPS} />
+      <div className="wrapper title print-only">
+        <h1>
+          <span>Popuation name:</span>
+          <span className="-bold">{data[0]?.name}</span>
+        </h1>
+        <h2 className="print-only">
+          <span>Specie name:</span>
+          <span className="-bold">{data[0]?.specie.commonname}</span>
+          <span className="-bold -italic">{data[0]?.specie.scientificname}</span>
+        </h2>
+      </div>
       <div className="map-section">
         <div className="wrapper">
           <MapContainer />
@@ -53,6 +65,9 @@ ExploreDetailPage.propTypes = {
   setPopulations: PropTypes.func.isRequired,
   user: PropTypes.number.isRequired,
   publication_selected: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ExploreDetailPage;
