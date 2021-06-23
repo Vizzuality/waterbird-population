@@ -4,14 +4,14 @@ export const menuItems = [
     dropdown: false,
     component: false,
     path: '/explore',
-    type: 'EXPLORE'
+    type: 'EXPLORE',
   },
   {
     name: 'Analyze',
     dropdown: false,
     component: false,
     path: '/analyze',
-    type: 'ANALYZE'
+    type: 'ANALYZE',
   },
   {
     name: 'Background',
@@ -20,13 +20,13 @@ export const menuItems = [
         { name: 'What are Waterbirds?', id: 'WAW' },
         { name: 'What is waterbird population?', id: 'WIWP' },
         { name: 'What are flyways?', id: 'WAF' },
-        { name: 'Glossary', id: 'Glossary' }
-      ]
+        { name: 'Glossary', id: 'Glossary' },
+      ],
     },
     component: false,
     path: '/background',
     type: 'BACKGROUND',
-   },
+  },
   {
     name: 'Data presentation',
     dropdown: {
@@ -34,7 +34,8 @@ export const menuItems = [
         { name: 'Species & Population', id: 'SP' },
         { name: 'Population Estimates', id: 'PE' },
         { name: 'Population Trends', id: 'PT' },
-        { name: '1% threshold', id: 'Threshold' } ]
+        { name: '1% threshold', id: 'Threshold' },
+      ],
     },
     component: false,
     path: '/data',
@@ -45,8 +46,8 @@ export const menuItems = [
     dropdown: {
       options: [
         { name: 'Funders & Supporters', id: 'fs' },
-        { name: 'Editors & Contributors', id: 'ec' }
-      ]
+        { name: 'Editors & Contributors', id: 'ec' },
+      ],
     },
     component: false,
     path: '/credits',
@@ -59,7 +60,7 @@ export const menuItems = [
         { name: 'Info', id: 'info' },
         { name: 'Contact us', id: 'contact' },
         { name: 'Terms of use', id: 'terms' },
-        { name: 'Frequently Asked Questions', id: 'faqs' }
+        { name: 'Frequently Asked Questions', id: 'faqs' },
       ],
     },
     component: false,
@@ -71,11 +72,11 @@ export const menuItems = [
     dropdown: {
       options: [
         { name: 'Downloads', id: 'downloads' },
-        { name: 'References', id: 'references' }
+        { name: 'References', id: 'references' },
       ],
     },
     component: false,
     path: '/downloads',
     type: 'DOWNLOADS',
-  }
+  },
 ];

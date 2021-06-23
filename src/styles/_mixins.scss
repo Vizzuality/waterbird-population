@@ -32,7 +32,7 @@
 
 @mixin print {
   padding-top: 100px;
-  break-before: always;
+  break-before: page;
   border-bottom: none;
 }
 
