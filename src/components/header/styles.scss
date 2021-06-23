@@ -10,6 +10,10 @@
   z-index: $z-index-5;
   position: relative;
 
+  @media print {
+    height: auto;
+  }
+
   img {
     max-width: 160px;
     height: auto;
