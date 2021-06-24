@@ -228,11 +228,11 @@ export const fetchPopulationsCardData = (dataSpecs) => {
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id
   LEFT JOIN qualitycodesize qcs ON qcs.id = s.estimatequality_id
-   ${publicationId ? `where p.publication_id=${publicationId}` : ''}
-   ${populationId ? `and n.id=${populationId}` : ''}`;
-  return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
-    ({ data }) => data.rows
-  );
+   ${publicationId ? 'where p.publication_id is not null' : ''}
+   ${populationId ? `and n.id=${populationId}` : ''} and pub.description NOT like '%draft%'`;
+  return API.get(
+    `sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`
+  ).then(({ data }) => data.rows);
 };
 
 export const fetchPopulationsByLocation = (lng, lat) => {
