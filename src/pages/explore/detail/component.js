@@ -32,11 +32,11 @@ const ExploreDetailPage = (props) => {
       <UrlComponent urlProps={URL_PROPS} />
       <div className="wrapper title print-only">
         <h1>
-          <span>Popuation name:</span>
+          <span>Population name:</span>
           <span className="-bold">{data[0]?.name}</span>
         </h1>
         <h2 className="print-only">
-          <span>Specie name:</span>
+          <span>Species name:</span>
           <span className="-bold">{data[0]?.specie.commonname}</span>
           <span className="-bold -italic">{data[0]?.specie.scientificname}</span>
         </h2>
