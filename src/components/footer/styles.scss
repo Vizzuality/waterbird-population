@@ -80,10 +80,6 @@
     align-items: center;
     width: 100%;
 
-    @media print {
-      position: relative;
-    }
-
     img {
       height: auto;
       width: 200px;
@@ -92,11 +88,6 @@
 
     p {
       color: $color-3;
-    }
-
-    @media print {
-      margin-top: 500px;
-      break-before: page;
     }
   }
 }

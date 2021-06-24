@@ -42,6 +42,7 @@
   }
 
   @media print {
-    padding-bottom: 100px;
+    @include print;
+    padding-bottom: 200px;
   }
 };
