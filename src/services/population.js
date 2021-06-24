@@ -216,6 +216,7 @@ export const fetchPopulationsCardData = (dataSpecs) => {
   t.trend_id,
   t.trendquality_id,
   q.description,
+  qcs.description AS quality_code_size,
   trend.trendcode,
   trend.trendsum
   FROM populationname n
@@ -226,6 +227,7 @@ export const fetchPopulationsCardData = (dataSpecs) => {
   LEFT JOIN publication pub ON pub.id = p.publication_id
   LEFT JOIN trend trend ON trend.id = t.trend_id
   LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id
+  LEFT JOIN qualitycodesize qcs ON qcs.id = s.estimatequality_id
    ${publicationId ? `where p.publication_id=${publicationId}` : ''}
    ${populationId ? `and n.id=${populationId}` : ''}`;
   return API.get(`sql?q=${q}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`).then(
