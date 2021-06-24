@@ -8,6 +8,10 @@
   font-family: $font-family-1;
   position: relative;
 
+  @media print {
+    background-color: $white;
+  }
+
   h2 {
     font-size: 30px;
     font-weight: bold;
@@ -76,6 +80,10 @@
     align-items: center;
     width: 100%;
 
+    @media print {
+      position: relative;
+    }
+
     img {
       height: auto;
       width: 200px;
@@ -88,7 +96,7 @@
 
     @media print {
       margin-top: 500px;
-      break-before: always;
+      break-before: page;
     }
   }
 }
