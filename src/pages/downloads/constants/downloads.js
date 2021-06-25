@@ -9,9 +9,21 @@ const Downloads = [
         <div className="row">
           <div className="col-sm-9">
             <p>
-              AEWA Conservation Status Report Methodology Notes:
+              AEWA Conservation Status Report 8 Methodology Notes:
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/CSR7%20Methodology%20Notes.pdf">
+              <a href="http://downloads.wpp.wetlands.org/CSR8%20Methodology%20Notes.pdf">
+                [PDF]
+              </a>
+            </p>
+          </div>
+        </div>
+        
+        <div className="row">
+          <div className="col-sm-9">
+            <p>
+              AEWA Conservation Status Report 7 Methodology Notes:
+              {' '}
+              <a href="http://downloads.wpp.wetlands.org/CSR7%20Methodology%20Notes.pdf">
                 [PDF]
               </a>
             </p>
@@ -23,11 +35,11 @@ const Downloads = [
             <p>
               Waterbird Population Estimates 5 (2012):
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/wpe5.pdf">
+              <a href="http://downloads.wpp.wetlands.org/WPE5.pdf">
                 [PDF]
               </a>
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/wpe5.xls">
+              <a href="http://downloads.wpp.wetlands.org/WPE5.xls">
                 [XLS]
               </a>
             </p>
@@ -38,7 +50,7 @@ const Downloads = [
           <div className="col-sm-9">
             <p>Waterbird Population Estimates 4 (2007):
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/wpe4.xls">
+              <a href="http://downloads.wpp.wetlands.org/WPE4.xls">
                 [PDF]
               </a>
             </p>
@@ -48,19 +60,19 @@ const Downloads = [
 
         <div className="row">
           <div className="col-sm-9">
-            <p>Waterbird Population Estimates 3 (2002)</p>
+            <p>Waterbird Population Estimates 3 (2002): out of print</p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-sm-9">
-            <p>Waterbird Population Estimates 2 (1997)</p>
+            <p>Waterbird Population Estimates 2 (1997): out of print</p>
           </div>
         </div>
 
         <div className="row">
           <div className="col-sm-9">
-            <p>Waterbird Population Estimates 1 (1994)</p>
+            <p>Waterbird Population Estimates 1 (1994): out of print</p>
           </div>
         </div>
 
@@ -76,7 +88,7 @@ const Downloads = [
             <p>
               Major Flyways:
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/major_flyways.kml">
+              <a href="http://downloads.wpp.wetlands.org/major_flyways.kml">
                 [KML]
               </a>
             </p>
@@ -87,7 +99,7 @@ const Downloads = [
             <p>
               Ramsar Regions:
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/ramsar_regions.kml">
+              <a href="http://downloads.wpp.wetlands.org/ramsar_regions.kml">
                 [KML]
               </a>
             </p>
@@ -98,7 +110,7 @@ const Downloads = [
             <p>
               Biogeographic Regions:
               {' '}
-              <a href="http://wpe.wetlands.org/bundles/voidwalkerswpe/images/biogeographic_regions.kml">
+              <a href="http://downloads.wpp.wetlands.org/biogeographic_regions.kml">
                 [KML]
               </a>
             </p>
