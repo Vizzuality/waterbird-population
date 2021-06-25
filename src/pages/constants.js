@@ -31,7 +31,7 @@ const PagesInfo = {
     title: 'Background',
     tabs: [
       { name: 'What are Waterbirds?', id: 'WAW' },
-      { name: 'What is waterbird population?', id: 'WIWP' },
+      { name: 'What is a waterbird population?', id: 'WIWP' },
       { name: 'What are flyways?', id: 'WAF' },
       { name: 'Glossary', id: 'Glossary' },
     ],

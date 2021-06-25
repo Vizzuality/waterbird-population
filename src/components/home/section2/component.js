@@ -14,7 +14,6 @@ const Section2 = () => {
           <div className="col-md-5 col-sm-12">
             <figure>
               <img src={Image} alt="Wetlands International" />
-              <figcaption>by Tommy P. Pedersen</figcaption>
             </figure>
           </div>
           <div className="col-md-7 col-sm-12">
