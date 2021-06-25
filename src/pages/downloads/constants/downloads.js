@@ -6,30 +6,11 @@ const Downloads = [
     description: (
       <div>
         <br />
-        <div className="row">
-          <div className="col-sm-9">
-            <p>
-              AEWA Conservation Status Report 8 Methodology Notes:
-              {' '}
-              <a href="http://downloads.wpp.wetlands.org/CSR8%20Methodology%20Notes.pdf">
-                [PDF]
-              </a>
-            </p>
-          </div>
-        </div>
         
         <div className="row">
-          <div className="col-sm-9">
-            <p>
-              AEWA Conservation Status Report 7 Methodology Notes:
-              {' '}
-              <a href="http://downloads.wpp.wetlands.org/CSR7%20Methodology%20Notes.pdf">
-                [PDF]
-              </a>
-            </p>
-          </div>
+          <h2>Waterbird Population Estimates</h2>
         </div>
-
+        
         <div className="row">
           <div className="col-sm-9">
             <p>
@@ -51,7 +32,7 @@ const Downloads = [
             <p>Waterbird Population Estimates 4 (2007):
               {' '}
               <a href="http://downloads.wpp.wetlands.org/WPE4.xls">
-                [PDF]
+                [XLS]
               </a>
             </p>
 
@@ -75,13 +56,95 @@ const Downloads = [
             <p>Waterbird Population Estimates 1 (1994): out of print</p>
           </div>
         </div>
+        
+        <div className="row">
+          <h2>AEWA Conservation Status Reports</h2>
+        </div>
+                
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 7:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/document/7th-edition-conservation-status-report-csr7-including-annexes-1" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+        
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 6:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/document/report-conservation-status-migratory-waterbirds-agreement-area-sixth-edition" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 5:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/document/report-conservation-status-migratory-waterbirds-agreement-area-fifth-edition" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 4:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/document/report-conservation-status-migratory-waterbirds-agreement-area-4th-edition" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+        
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 3:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/publication/report-conservation-status-migratory-waterbirds-agreement-area-third-edition-ts-no-13" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 2:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/document/report-conservation-status-migratory-waterbirds-agreement-area-0" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
+        
+        <div className="row">
+          <div className="col-sm-9">
+            <p>AEWA Conservation Status Report 1:
+              {' '}
+              <a href="https://www.unep-aewa.org/en/publication/report-conservation-status-migratory-waterbirds-agreement-area-first-edition-ts-no-1" target="_blank">
+              [URL]
+              </a>
+            </p>
+          </div>
+        </div>
 
         <br />
+
         <div className="row">
           <h2>Geospatial Datasets</h2>
         </div>
-        <br />
 
+        <br />
 
         <div className="row">
           <div className="col-sm-9">
