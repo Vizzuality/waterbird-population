@@ -20,11 +20,18 @@
 
   .data-configuration--download {
     display: flex;
-    align-self: flex-end;
     border: 1px dashed rgba(28, 27, 39, 0.4);
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     width: fit-content;
+
+    &.right {
+      align-self: flex-end;
+    }
+
+    &.small {
+      padding: 10px 20px;
+    }
 
     span {
       color: $color-grey-5;

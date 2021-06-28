@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import orderBy from 'lodash/orderBy';
 
 // components
-import Download from 'components/download';
 import Link from 'redux-first-router-link';
 import Print from 'components/print';
 import ClearFilters from 'components/filters/clear-filters';
@@ -26,8 +25,6 @@ import Image from 'components/download/download.svg';
 import './styles.scss';
 
 const DataControls = ({
-  dataSpecs,
-  populationsFilteredIds,
   filters,
   setFilters,
   resetFilters,
@@ -119,17 +116,12 @@ const DataControls = ({
       <div className="data-configuration--buttons">
         {page === 'ANALYZE' && (
           <>
-            <Download
-              text={'Download results'}
-              type={page === 'EXPLORE' ? 'explore-overview' : 'explore-detail'}
-              dataSpecs={
-                page === 'EXPLORE' && activeFilters.length
-                  ? { population_ids: populationsFilteredIds }
-                  : dataSpecs
-              }
-              filename={'populations'}
-              className="-dashed"
-            />
+            <div className="data-configuration--download">
+              <Link to="/downloads/downloads">
+                <span>Go to downloads</span>
+                <img src={Image} alt="download" name="download" />
+              </Link>
+            </div>
             <Button
               aria-label="show-advanced-filters"
               className="-background -secondary -big"
@@ -145,7 +137,7 @@ const DataControls = ({
       {page !== 'EXPLORE_DETAIL' && (
         <>
           {page === 'EXPLORE' && (
-            <div className="data-configuration--download">
+            <div className="data-configuration--download right small">
               <Link to="/downloads/downloads">
                 <span>Go to downloads</span>
                 <img src={Image} alt="download" name="download" />
