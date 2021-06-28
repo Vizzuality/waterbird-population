@@ -74,21 +74,21 @@ const conservationFrameworkInfo = [
           <li>
             <img src={RamsarImage} alt="Ramsar Convention on Wetlands" />
             <p>
-              <strong>Ramsar,</strong>
+              <strong>Ramsar,</strong>{' '}
               <a href="https://www.ramsar.org">Ramsar Convention on Wetlands</a>
             </p>
           </li>
           <li>
             <img src={CBDImage} alt="Convention on Biological Diversity" />
             <p>
-              <strong>Ramsar,</strong>
+              <strong>Ramsar,</strong>{' '}
               <a href="https://www.cbd.int">Convention on Biological Diversity</a>
             </p>
           </li>
           <li>
             <img src={CAFFImage} alt="Conservation of Arctic Flora and Fauna" />
             <p>
-              <strong>CAFF,</strong>
+              <strong>CAFF,</strong>{' '}
               <a href="https://www.caff.is">Conservation of Arctic Flora and Fauna</a>
             </p>
           </li>
