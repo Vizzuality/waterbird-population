@@ -28,6 +28,26 @@ const speciesPopulationInfo = [
     ),
   },
   {
+    title: 'IUCN Global Red List of Threatened Animals',
+    description: (
+      <div id="redlist">
+        <p>
+          The Portal follows the IUCN Global Red List of Threatened Animals and the IUCN Red List Categories and Criteria that are an objective and widely accepted system for classifying species at high risk of extinction.
+        </p>
+        <p>BirdLife International coordinates the assessment of the status of the world's birds using these categories and criteria and, as the official Red Listing Authority for birds for the IUCN Red List, submits this information to be included on the IUCN Red List along with that of other animals and plants. An overview of the categories is given below. See also          
+          {' '}
+          <a
+            href="https://www.iucnredlist.org/resources/categories-and-criteria#categories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            IUCN Red List Categories and Criteria
+          </a>.
+        </p>
+      </div>
+    ),
+  },
+  {
     title: 'Populations.',
     description: (
       <div>

@@ -32,6 +32,7 @@ const WAFInfo = [
             from the breeding grounds to non-breeding areas, including intermediate resting and
             feeding places as well as the area within which the birds migrate.
           </blockquote>
+          <h3 id="majorflyways">Major waterbird flyways</h3>
           <p>
             This Portal follows the definition of the nine major waterbird flyways (Figure 1), based
             on the definition of flyways for shorebirds (some of the longest distance migrants)
@@ -43,6 +44,7 @@ const WAFInfo = [
             <img src={Flyway2Image} alt="The nine major waterbird flyways of the world" />
             <figcaption>1. The nine major waterbird flyways of the world</figcaption>
           </div>
+          <h3 id="realms">Biogeographic realms</h3>
           <p>
             The Portal also distinguishes between “flyway regions” and “biogeographic realms”. The
             demarcation of biogeographic realms (which are divisions of the land masses of the world
@@ -69,6 +71,7 @@ const WAFInfo = [
             definitive portrayal of the boundaries of flyways for all purposes. Nonetheless, it has
             proved to be useful in structuring elements for our analyses.
           </p>
+          <h3 id="flywayadminregions">Flyway administrative regions</h3>
           <p>
             Finally, for some analyses in reports, we have implemented a high-level aggregation of
             populations where either actual or potential multilateral agreements for the
@@ -80,6 +83,9 @@ const WAFInfo = [
             <img src={Flyway3Image} alt="The three major flyway administrative regions" />
             <figcaption>3. The three major flyway administrative regions</figcaption>
           </div>
+          <h3 id="ramsarregions">Ramsar regions</h3>
+          <p>The Ramsar Convention’s latest system of regionalization for technical and administrative purposes and as followed in the Portal : Africa, Asia, Europe, Latin America and the Caribbean (formerly Neotropics), North America (Canada, Mexico, and the United States) and Oceania. Regionalization is a significant factor in the operation of the Convention, in terms of the structure of the Standing Committee, the organization of Secretariat staff and duties, and the ways in which Contracting Parties cooperate through regional representation and meetings.
+          </p>
         </div>
       </div>
     ),
