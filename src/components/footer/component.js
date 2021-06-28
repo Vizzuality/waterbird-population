@@ -18,7 +18,7 @@ const Footer = () => {
           <h2>Do you want to take part?</h2>
           <div className="footer-controls">
             <a
-              href={`mailto:?to=post@wetlands.org`}
+              href={`mailto:?to=wpe@wetlands.org`}
               target="_blank"
               rel="noopener noreferrer"
               className="c-button -border -medium -tertiary"
