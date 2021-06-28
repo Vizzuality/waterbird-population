@@ -189,6 +189,56 @@ export const fetchDataToDownload = (dataSpecs) => {
   );
 };
 
+export const fetchDataToDownloadAnalyze = (dataSpecs) => {
+  const { specie_id } = dataSpecs;
+  const q = `SELECT
+    populationname,
+    breedingrange,
+    nonbreedingrange,
+    n.id,
+    species_id,
+    s.id AS population_size_id,
+    s.startyear,
+    s.endyear,
+    s.minimum,
+    s.maximum,
+    s.notes,
+    s.population_id,
+    sp.commonname AS species_commonname,
+    sp.scientificname AS species_scientificname,
+    o.yearset,
+    o.onepercent,
+    o.populationid,
+    p.publication_id,
+    pub.description AS pub_description,
+    pub.published,
+    t.startyear AS trend_start_year,
+    t.endyear AS trend_end_year,
+    t.trend_id,
+    t.trendquality_id,
+    q.description,
+    qcs.description AS quality_code_size,
+    trend.trendcode,
+    trend.trendsum
+  FROM populationname n
+  LEFT JOIN populationpublication p ON p.population_id = n.id
+  LEFT JOIN species_1 sp ON n.species_id = sp.id
+  LEFT JOIN populationsize s ON s.id = p.populationsize_id
+  LEFT JOIN populationonepercentlevel o ON o.id = p.onepercent_id
+  LEFT JOIN populationtrend t ON t.id = p.populationtrend_id
+  LEFT JOIN publication pub ON pub.id = p.publication_id
+  LEFT JOIN trend trend ON trend.id = t.trend_id
+  LEFT JOIN qualitycodetrend q ON q.id = t.trendquality_id
+  LEFT JOIN qualitycodesize qcs ON qcs.id = s.estimatequality_id
+  where p.publication_id is not null
+   ${specie_id ? `where species_id=${specie_id}` : ''}
+   and pub.description NOT like '%draft%'`;
+
+  return API.get(
+    `sql?q=${encodeURIComponent(q)}&api_key=${process.env.REACT_APP_CARTO_API_TOKEN}`
+  ).then(({ data }) => data.rows);
+};
+
 export const fetchPopulationsCardData = (dataSpecs) => {
   const { populationId, publicationId } = dataSpecs;
 
