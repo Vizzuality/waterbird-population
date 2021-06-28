@@ -161,7 +161,7 @@
           top: -50px;
           right: -75px;
 
-          @media (max-width: map-get($breakpoints, md)) {
+          @media (max-width: map-get($breakpoints, lg)) {
             display: none;
           }
         }
@@ -169,6 +169,22 @@
 
       .text-image {
         width: 75%;
+
+        @media (max-width: map-get($breakpoints, lg)) {
+          width: 100%;
+        }
+      }
+
+      figure {
+        &.image-container {
+        min-height: 400px;
+
+        img {
+          margin-left: -75px;
+          margin-bottom: 20px;
+          width: calc(100% + 150px);
+        }
+      }
       }
 
       .full-width {

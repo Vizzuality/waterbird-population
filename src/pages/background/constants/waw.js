@@ -33,7 +33,7 @@ const WAWInfo = [
           ‘waterfowl’ and, in particular, considering the complications that would arise from
           applying the definition rigidly to every species.
         </p>
-        <figure>
+        <figure className="image-container">
           <img src={Image2} className="full-width" alt="Red-breasted Merganser, by John Anderson" />
           <figcaption>Red-breasted merganser, by John Anderson</figcaption>
         </figure>
