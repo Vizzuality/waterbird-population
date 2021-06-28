@@ -22,43 +22,43 @@ function Tooltip({ payload, settings, style, hideZeros, title, type }) {
     <div>
       {settings && settings.length && (
         <div className="chart_tooltip" style={style}>
-          {title && (<h3 className="data_title">{title}</h3>)}
-          {settings.map(
-            d => (hideZeros && values[d.key] ? null : (
+          {title && <h3 className="data_title">{title}</h3>}
+          {settings.map((d) =>
+            hideZeros && values[d.key] ? null : (
               <div
                 key={d.key}
                 className={classnames('data_line', {
-                  '-column': type === 'column'
+                  '-column': type === 'column',
                 })}
               >
-
                 {/* LABEL */}
-                {(d.key) && (
+                {d.key && (
                   <>
                     <div className="data_label">
                       {d.color && (
-                        <div
-                          className="data_color"
-                          style={{ backgroundColor: d.color }}
-                        />
+                        <div className="data_color" style={{ backgroundColor: d.color }} />
                       )}
                       {values && d.key && (
                         <>
-                          {d.key === 'break'
-                            ? <span className="break_label">{d.label}</span>
-                            : <span>{d.label || values[d.labelKey]}</span>}
+                          {d.key === 'break' ? (
+                            <span className="break_label">{d.label}</span>
+                          ) : (
+                            <span>{d.label || values[d.labelKey]}</span>
+                          )}
                         </>
                       )}
                     </div>
-                    <div className={classnames('data_value', {
-                      '-column': type === 'column'
-                    })}>
+                    <div
+                      className={classnames('data_value', {
+                        '-column': type === 'column',
+                      })}
+                    >
                       {values && d.key && getValue(d, values[d.key])}
                     </div>
                   </>
                 )}
               </div>
-            ))
+            )
           )}
         </div>
       )}
@@ -70,13 +70,13 @@ Tooltip.propTypes = {
   payload: PropTypes.arrayOf(PropTypes.shape({})),
   settings: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   style: PropTypes.shape({}),
-  hideZeros: PropTypes.bool
+  hideZeros: PropTypes.bool,
 };
 
 Tooltip.defaultProps = {
   payload: [],
   style: {},
-  hideZeros: false
+  hideZeros: false,
 };
 
 export default Tooltip;

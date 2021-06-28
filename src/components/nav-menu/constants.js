@@ -17,10 +17,10 @@ export const menuItems = [
     name: 'Background',
     dropdown: {
       options: [
-        { name: 'What are Waterbirds?', id: 'WAW' },
-        { name: 'What is waterbird population?', id: 'WIWP' },
+        { name: 'What are waterbirds?', id: 'WAW' },
+        { name: 'What is a waterbird population?', id: 'WIWP' },
         { name: 'What are flyways?', id: 'WAF' },
-        { name: 'Glossary', id: 'Glossary' },
+        { name: 'Conservation Frameworks', id: 'conservation-framework' },
       ],
     },
     component: false,

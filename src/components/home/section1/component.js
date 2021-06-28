@@ -37,21 +37,23 @@ const Section1 = ({ setFilters, filters }) => {
   return (
     <section className="c-section1">
       <div className="col-md-5 col-sm-12">
-        <img src={Image} alt="Wetlands International" />
+        <figure>
+          <img src={Image} alt="Wetlands International" />
+          <figcaption>by Tommy P. Pedersen</figcaption>
+        </figure>
       </div>
       <div className="wrapper">
         <div className="row start-xs">
           <div className="col-md-7 col-sm-12">
             <h1>
-              Waterbirds <br /> Populations Portal.
+              Waterbirds <br /> Populations Portal
             </h1>
           </div>
         </div>
         <div className="row">
           <div className="col-lg-7 col-md-8 col-sm-12">
             <p className="home-subtitle">
-              Obtain information on the status of waterbird species, providing a comprehensive basis
-              for management and decision-making.
+              Your source of the world’s latest waterbird population information.
             </p>
           </div>
         </div>

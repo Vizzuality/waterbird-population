@@ -11,7 +11,7 @@ import PopulationTrendsInfo from 'pages/data/constants/trends.js';
 import WAWInfo from 'pages/background/constants/waw.js';
 import WIWPInfo from 'pages/background/constants/wiwp.js';
 import WAFInfo from 'pages/background/constants/waf.js';
-import glossaryInfo from 'pages/background/constants/glossary.js';
+import conservationFrameworkInfo from 'pages/background/constants/conservation-framework.js';
 import FSInfo from 'pages/credits/constants/fs.js';
 import ECInfo from 'pages/credits/constants/ec.js';
 import AboutInfo from 'pages/about/constants/info.js';
@@ -31,9 +31,9 @@ const PagesInfo = {
     title: 'Background',
     tabs: [
       { name: 'What are Waterbirds?', id: 'WAW' },
-      { name: 'What is waterbird population?', id: 'WIWP' },
+      { name: 'What is a waterbird population?', id: 'WIWP' },
       { name: 'What are flyways?', id: 'WAF' },
-      { name: 'Glossary', id: 'Glossary' },
+      { name: 'Conservation framework', id: 'conservation-framework' },
     ],
     info: [
       {
@@ -49,8 +49,8 @@ const PagesInfo = {
         content: <TabInfo info={WAFInfo} />,
       },
       {
-        id: 'Glossary',
-        content: <TabInfo info={glossaryInfo} />,
+        id: 'conservation-framework',
+        content: <TabInfo info={conservationFrameworkInfo} />,
       },
     ],
   },

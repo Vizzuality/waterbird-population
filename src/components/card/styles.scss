@@ -105,9 +105,10 @@
       }
     }
 
-    &.Glossary {
+    &.conservation-framework {
 
       ul {
+        padding: 10px 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: $padding;
@@ -153,12 +154,25 @@
         grid-template-columns: 60% 30%;
         position: relative;
 
-        img {
+        .intro-image {
           position: absolute;
-          max-height: 440px;
+          width: 250px;
+          height: auto;
           top: -50px;
           right: -75px;
+
+          @media (max-width: map-get($breakpoints, sm)) {
+            display: none;
+          }
         }
+      }
+
+      .text-image {
+        width: 75%;
+      }
+
+      .full-width {
+        width: 100%;
       }
     }
 

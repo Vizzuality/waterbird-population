@@ -136,7 +136,7 @@ const Filters = ({
       placeholder: 'All frameworks',
       isMulti: true,
       info: (
-        <Link to="/background/Glossary">
+        <Link to={{ type: 'BACKGROUND', pathname: 'background', query: 'conservation-framework' }}>
           <Icon name="info" />
         </Link>
       ),

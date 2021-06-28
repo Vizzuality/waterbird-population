@@ -8,15 +8,32 @@
   background-image: url('../images/section1-bg.png');
   background-size: cover;
 
-  img {
+  figure {
     position: absolute;
-    top: 0px;
-    right: 0px;
-    max-width: 400px;
-    height: auto;
+    top: 0;
+    right: 0;
 
     @media (max-width: map-get($breakpoints, sm)) {
       display: none;
+    }
+
+    img {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      max-width: 400px;
+      height: auto;
+    }
+
+    figcaption {
+      font-style: italic;
+      font-size: $font-size-small;
+      text-align: end;
+      margin-right: 45px;
+      width: 400px;
+      position: absolute;
+      top: 300px;
+      right: 0;
     }
   }
 
