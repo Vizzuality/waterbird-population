@@ -18,13 +18,13 @@
       line-height: 43px;
     }
 
+    a {
+      color: $color-2;
+    }
+
     p {
       line-height: 26px;
       margin: 20px 0;
-
-      a {
-        color: $color-2;
-      }
     }
 
     > div {

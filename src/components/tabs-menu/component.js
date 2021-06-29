@@ -7,11 +7,7 @@ import Link from 'redux-first-router-link';
 import './styles.scss';
 
 const TabsMenu = ({ current, tabs, page }) => (
-  <div
-    className={classnames('c-menu-items', {
-      '-tabs': tabs,
-    })}
-  >
+  <div className={classnames('c-menu-items', { '-tabs': tabs }, { '-short': tabs.length < 3 })}>
     {tabs &&
       tabs.map((tab) => (
         <Link

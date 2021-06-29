@@ -4,9 +4,13 @@
 
   &.-tabs {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 30px 75px;
     border-bottom: 1px solid $color-grey-3;
+  }
+
+  &.-short {
+    justify-content: space-around;
   }
 
   .menu-item {

@@ -33,7 +33,7 @@ const PagesInfo = {
       { name: 'What are Waterbirds?', id: 'WAW' },
       { name: 'What is a waterbird population?', id: 'WIWP' },
       { name: 'What are flyways?', id: 'WAF' },
-      { name: 'Conservation framework', id: 'conservation-framework' },
+      { name: 'Conservation frameworks', id: 'conservation-framework' },
     ],
     info: [
       {

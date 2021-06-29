@@ -7,7 +7,7 @@ const ConservationFramework = ({ data }) => {
   return (
     <div className="c-conservation-framework">
       <div className="header">
-        <h2>Conservation Framework</h2>
+        <h2>Conservation frameworks</h2>
       </div>
       <ul>
         {data.map((d, i) => (
