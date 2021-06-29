@@ -71,7 +71,7 @@ const WAWInfo = [
           inshore waters, and could therefore be considered ‘waterbirds’ appropriate for inclusion
           in Waterbird Population Estimates. It has therefore been proposed that, for the sake of
           consistency, future editions of Waterbird Population Estimates should include at least
-          these groups of seabirds where they are covered by a regional conservation framework.
+          these groups of seabirds where they are covered by a regional conservation frameworks.
           Based on the{' '}
           <a
             href="https://www.unep-aewa.org/sites/default/files/document/res4_11_amendments_aewa_annexes_final_0.pdf"

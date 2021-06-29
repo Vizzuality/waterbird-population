@@ -129,7 +129,7 @@ const Filters = ({
       isMulti: false,
     },
     {
-      label: 'Conservation Framework',
+      label: 'Conservation frameworks',
       type: 'framework_id',
       options: conservationFrameworkOptions,
       value: selectedFramework,

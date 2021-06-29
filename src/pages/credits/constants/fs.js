@@ -4,18 +4,49 @@ const FSInfo = [
   {
     description: (
       <div className="l-fs-card">
-        <p>The following institutions have provided dedicated financial support to the development of the website and the publications that contribute information.</p>
+        <p>
+          The following institutions have provided dedicated financial support to the development of
+          the website and the publications that contribute information.
+        </p>
         <h2>Waterbird Populations Portal (2021)</h2>
         <ul>
-          <li>Environment Agency of Abu Dhabi</li>
+          <li>
+            <a href="https://www.ead.gov.ae/en" target="_blank" rel="noopener noreferrer">
+              Environment Agency of Abu Dhabi
+            </a>
+          </li>
         </ul>
         <h2>Waterbird Populations Estimates Portal (2012)</h2>
         <ul>
-          <li><a href="https://www.ramsar.org/" target="_blank" rel="noopener noreferrer">The Ramsar Convention on Wetlands</a></li>
-          <li><a href="https://www.canada.ca/en/environment-climate-change.html" target="_blank" rel="noopener noreferrer">Environment and Climate Change Canada</a></li>
-          <li><a href="https://www.medwaterbirds.net/" target="_blank" rel="noopener noreferrer">Waterbirds in the Mediterranean region</a></li>
-          <li><a href="https://www.ecologie.gouv.fr/" target="_blank" rel="noopener noreferrer">Ministère de la Transition Écologique, France</a></li>
-          <li><a href="https://mava-foundation.org/" target="_blank" rel="noopener noreferrer">MAVA Foundation</a></li>
+          <li>
+            <a href="https://www.ramsar.org/" target="_blank" rel="noopener noreferrer">
+              The Ramsar Convention on Wetlands
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.canada.ca/en/environment-climate-change.html"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Environment and Climate Change Canada
+            </a>
+          </li>
+          <li>
+            <a href="https://www.medwaterbirds.net/" target="_blank" rel="noopener noreferrer">
+              Waterbirds in the Mediterranean region
+            </a>
+          </li>
+          <li>
+            <a href="https://www.ecologie.gouv.fr/" target="_blank" rel="noopener noreferrer">
+              Ministère de la Transition Écologique, France
+            </a>
+          </li>
+          <li>
+            <a href="https://mava-foundation.org/" target="_blank" rel="noopener noreferrer">
+              MAVA Foundation
+            </a>
+          </li>
         </ul>
         <h2>Waterbird Population Estimates</h2>
         <ul>
@@ -39,20 +70,14 @@ const FSInfo = [
         <h2>Conservation Status Reviews of African Eurasian migratory waterbirds</h2>
         <ul>
           <li>African-Eurasian Migratory Waterbird Agreement (AEWA)</li>
-          <li>Governments of The Netherlands, Germany, France, the United Kingdom, the Czech Republic, Croatia and the European Commission</li>
+          <li>
+            Governments of The Netherlands, Germany, France, the United Kingdom, the Czech Republic,
+            Croatia and the European Commission
+          </li>
         </ul>
       </div>
     ),
-  }
+  },
 ];
 
 export default FSInfo;
-
-
-
-
-
-
-
-
-
