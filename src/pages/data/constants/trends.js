@@ -5,7 +5,7 @@ const TrendsInfo = [
     title: 'Population Trends.',
     description: (
       <div>
-        <p>The following trend codes are used in the online application:</p>
+        <p>The following trend codes are used in the Portal:</p>
         <ul>
           <li><span>DEC:</span> Declining</li>
           <li><span>INC:</span> Increasing</li>
@@ -22,7 +22,7 @@ const TrendsInfo = [
     title: 'Start & End Year.',
     description: (
       <div>
-        <p>All population trends require a start and end year that determines the period for which the trend applies. For the CSR reports, the trend period is shortened to a maximum of 10 years. In some arid and semi-arid regions (e.g. parts of Australia), where waterbird numbers are affected by cycles of draught and flood, longer periods were used to remove the impacts of short- or medium term fluctuations.</p>
+        <p>All population trends require a start and end year that determines the period for which the trend applies. For the CSR reports, the trend period is shortened to a maximum of 10 years. In some arid and semi-arid regions (e.g. parts of Australia), where waterbird numbers are affected by cycles of drought and flood, longer periods may be used to remove the impacts of shorter term fluctuations.</p>
       </div>
     )
   },

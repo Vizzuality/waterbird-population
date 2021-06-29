@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Spinner from 'components/spinner';
 import { encodeAsCSVContent } from 'utils/csv';
-import { fetchDataToDownload, fetchPopulationsCardData } from 'services/population';
+import {
+  fetchDataToDownload,
+  fetchDataToDownloadAnalyze,
+  fetchPopulationsCardData,
+} from 'services/population';
 
 import { fetchReferencesToDownload } from 'services/references';
 
@@ -21,6 +25,7 @@ const Download = ({ type, dataSpecs, filename, text, className, imageSize }) => 
         'explore-overview': fetchDataToDownload,
         'explore-detail': fetchDataToDownload,
         'populations-card': fetchPopulationsCardData,
+        analyze: fetchDataToDownloadAnalyze,
         references: fetchReferencesToDownload,
       }[type] || (() => {});
     const data = await fetchFunction(dataSpecs);

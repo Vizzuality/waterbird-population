@@ -4,9 +4,13 @@
 
   &.-tabs {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 30px 75px;
     border-bottom: 1px solid $color-grey-3;
+  }
+
+  &.-short {
+    justify-content: space-around;
   }
 
   .menu-item {
@@ -26,8 +30,7 @@
       background-color: $color-1;
       bottom: -5px;
       z-index: 2;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 10px;
     }
   }
 }

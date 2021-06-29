@@ -8,6 +8,10 @@
   font-family: $font-family-1;
   position: relative;
 
+  @media print {
+    background-color: $white;
+  }
+
   h2 {
     font-size: 30px;
     font-weight: bold;
@@ -84,11 +88,6 @@
 
     p {
       color: $color-3;
-    }
-
-    @media print {
-      margin-top: 500px;
-      break-before: always;
     }
   }
 }

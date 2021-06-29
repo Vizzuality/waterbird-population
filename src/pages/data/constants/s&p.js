@@ -6,16 +6,50 @@ const speciesPopulationInfo = [
     description: (
       <div>
         <p>
-          The taxonomy and nomenclature applied in the Waterbird Population Estimates online
-          application follows the one adopted by BirdLife International, the IUCN Global Red List
-          authority on birds. This decision is driven by practical conservation and data management
-          considerations. These include making it possible to use the data from the Waterbird
-          Population Estimates in the Global Red List assessments and also to apply both sources
+          The taxonomy and nomenclature applied in the Waterbird Populations Portal follows the
+          latest adopted by{' '}
+          <a
+            href="http://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Handbook of the Birds of the World and BirdLife International (2020)
+          </a>
+          . This provides detailed taxonomic notes and cross references to other taxonomic sources.
+          Therefore, these are not repeated in our Portal. This taxonomy is also adopted by BirdLife
+          International, the IUCN Red List authority on birds. This decision is driven by practical
+          conservation and data management considerations. These include making it possible to use
+          the data from the WPP in the Red List assessments and also to apply both sources
           consistently in conservation decision-making including the identification and designation
-          of key sites for waterbirds. The BirdLife Checklist
-          (http://www.birdlife.org/datazone/info/taxonomy) provides detailed taxonomic notes and
-          cross references to other taxonomic sources. Therefore, these are not repeated in this
-          database.
+          of key sites for waterbirds. Additionally, this taxonomy is followed by the Ramsar
+          Convention, Convention on Migratory Species and various flyway frameworks.
+        </p>
+      </div>
+    ),
+  },
+  {
+    title: 'IUCN Global Red List of Threatened Species',
+    description: (
+      <div id="redlist">
+        <p>
+          The Portal follows the IUCN Global Red List of Threatened Species and the IUCN Red List
+          Categories and Criteria that are an objective and widely accepted system for classifying
+          species at high risk of extinction.
+        </p>
+        <p>
+          BirdLife International coordinates the assessment of the status of the world&apos;s birds
+          using these categories and criteria and, as the official Red Listing Authority for birds
+          for the IUCN Red List, submits this information to be included on the IUCN Red List along
+          with that of other animals and plants. An overview of the categories is given below. See
+          also{' '}
+          <a
+            href="https://www.iucnredlist.org/resources/categories-and-criteria#categories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            IUCN Red List Categories and Criteria
+          </a>
+          .
         </p>
       </div>
     ),
@@ -28,12 +62,15 @@ const speciesPopulationInfo = [
           The population column contains the name of the subspecies concerned and/or a brief
           geographical description to separate the population from other populations of the same
           subspecies (or other populations of a monotypic species). The primary source for treatment
-          of species at subspecific level has been the Handbook of the Birds of the World (del Hoyo
-          et al. 1992, 1996). However, the treatment of the grebes follows O’Donnell & Fjeldså 1995,
-          and the herons follow Hafner et al. 2003 (see above). Some additional subspecies that are
-          recognised by other sources but not listed in the Handbook of the Birds of the World have
-          been included in brackets, as have newly recognised subspecies. Subspecies that are
-          considered by most modern authorities to be invalid are omitted.
+          of species at subspecific level has been the{' '}
+          <a
+            href="http://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Handbook of the Birds of the World and BirdLife International (2020)
+          </a>
+          .
         </p>
         <p>
           Populations that have been identified primarily on the basis of their breeding ranges have
@@ -41,28 +78,22 @@ const speciesPopulationInfo = [
           non-breeding (‘wintering’) ranges with the suffix (non-bre).
         </p>
         <p>
-          In case of populations, an agreement (e.g. AEWA) operates with standard lists of
-          populations and the list can be only changed after the proposal has been adopted by the
-          MOP. Similarly, Wetlands International provides waterbird population estimates to other
-          flyway instruments (such as the East Asian – Australasian Flyway Partnership and Western
-          Hemisphere Shorebird Reserve Network) and their processes would in the future guide us in
-          splitting or merging populations otherwise we may have compatibility issues.
+          In case of populations, an agreement, e.g. African Eurasian Waterbird Agreement (AEWA),
+          operates with standard lists of populations and the list can be only changed after the
+          proposal has been adopted by the Meeting Of Parties (MoP). Similarly, Wetlands
+          International provides waterbird population estimates to other flyway instruments (such as
+          the East Asian – Australasian Flyway Partnership and Western Hemisphere Shorebird Reserve
+          Network) and their processes would in the future guide us in splitting or merging
+          populations, otherwise we may have compatibility issues.
         </p>
         <p>
           The division of species into populations should not be regarded as definitive. When a
           population is defined and an estimate given, we consider the population to be a valid unit
           for the species concerned. The consequences of this approach will be that populations
           might be split into smaller geographical units in future editions of Waterbird Population
-          Estimates, but would be less likely to be merged into larger units. For waterbird
-          populations in the African-Eurasian region, maps that define flyways or other
-          biogeographic populations are available in the{' '}
-          <a href="http://dev.unep-wcmc.org/csn/default.html#state=home">
-            Critical Site Network Tool
-          </a>
-          . It is expected that development of a global Critical Site Network Tool will allow for
-          maps for all waterbird populations worldwide to be available online. For more information
-          on the definition of populations in this website, see{' '}
-          <a href="http://wpe.wetlands.org/Iwhatrwb">&quot;What is a waterbird population?&quot;</a>
+          Estimates, but would be less likely to be merged into larger units. For more information
+          on the definition of populations in this Portal, see{' '}
+          <a href="/background/WIWP">What is a waterbird population?</a>.
         </p>
       </div>
     ),

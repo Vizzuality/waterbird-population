@@ -27,9 +27,9 @@ const Card = ({ info, tabs, page, tab }) => {
 Card.propTypes = {
   info: PropTypes.shape({
     info: PropTypes.string,
-    tabs: PropTypes.shape({}),
+    tabs: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),
   }).isRequired,
-  page: PropTypes.shape({}).isRequired,
+  page: PropTypes.string.isRequired,
   tab: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.string]),
   tabs: PropTypes.oneOfType([PropTypes.shape({}), PropTypes.bool]),
 };

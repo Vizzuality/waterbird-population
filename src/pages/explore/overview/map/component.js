@@ -119,7 +119,7 @@ export const MapContainer = ({
               >
                 {populationsNumber &&
                   populationsNumber.length === 1 &&
-                  `There is one population overlaping with this location. Population name: ${populationsNumber[0].name.toUpperCase()}`}
+                  `There is one population overlapping with this location.`}
                 {!loadingLocation &&
                   !!dataLocation.length &&
                   populationsNumber.length > 1 &&
@@ -127,8 +127,8 @@ export const MapContainer = ({
                 {!loadingLocation &&
                   populationsNumber.length === 0 &&
                   (search.length === 0
-                    ? 'There are no populations overlaping with this location'
-                    : 'There are no populations overlaping with this location matching your search')}
+                    ? 'There are no populations overlapping with this location'
+                    : 'There are no populations overlapping with this location matching your search')}
               </Popup>
             )}
           </Fragment>
