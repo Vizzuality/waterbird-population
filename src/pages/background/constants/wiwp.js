@@ -149,6 +149,8 @@ const WIWPInfo = [
           However, these definitions mix concepts of taxonomy (species/sub-species/populations); and
           dispersion (populations separate all the year/part of the year/arbitrary splits of
           continuously distributed waterbirds); see figure below.
+        </p>
+        <figure>
           <img
             src={Image3}
             alt="The basis for defining different types of biogeographical populations, as per AEWA"
@@ -156,7 +158,8 @@ const WIWPInfo = [
           <figcaption>
             The basis for defining different types of biogeographical populations, as per AEWA
           </figcaption>
-        </p>
+        </figure>
+
         <p>
           An important consequence of the above definition is that one biogeographical population
           may consist of only one subspecies.
@@ -189,8 +192,8 @@ const WIWPInfo = [
           :
         </p>
         <blockquote>
-          "Range means all the areas of land or water that a migratory species inhabits, stays in
-          temporarily, crosses or overflies at any time on its normal migration route”.
+          &quot;Range means all the areas of land or water that a migratory species inhabits, stays
+          in temporarily, crosses or overflies at any time on its normal migration route&quot;.
         </blockquote>
         <p>
           As it is also stated in the flyway definition for populations, the range includes the

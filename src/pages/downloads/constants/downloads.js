@@ -5,7 +5,29 @@ const Downloads = [
     title: 'Download links',
     description: (
       <div>
-        <br />
+        <p>
+          In this Portal, we provide global updates linked to the Waterbird Population Estimates
+          series, produced as assessments of world’s migratory and resident waterbird populations,
+          particularly relevant to the Ramsar Convention and Convention on Biological Diversity. We
+          also provide information linked to the periodic reviews produced for AEWA and{' '}
+          <a
+            href="https://www.eaaflyway.net/decision-12-development-of-an-eaafp-conservation-status-review-pdf/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            EAAFP
+          </a>{' '}
+          under the Conservation Status Review (CSR) series.
+        </p>
+
+        <div className="row">
+          <div className="col-sm-9">
+            <p>
+              Waterbird Population Portal complete dataset:{' '}
+              <a href="http://downloads.wpp.wetlands.org/WPP.xlsx">[XLSX]</a>
+            </p>
+          </div>
+        </div>
 
         <div className="row">
           <h2>Waterbird Population Estimates</h2>

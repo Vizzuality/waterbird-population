@@ -9,7 +9,7 @@ const speciesPopulationInfo = [
           The taxonomy and nomenclature applied in the Waterbird Populations Portal follows the
           latest adopted by{' '}
           <a
-            href="https://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
+            href="http://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -28,6 +28,26 @@ const speciesPopulationInfo = [
     ),
   },
   {
+    title: 'IUCN Global Red List of Threatened Animals',
+    description: (
+      <div id="redlist">
+        <p>
+          The Portal follows the IUCN Global Red List of Threatened Animals and the IUCN Red List Categories and Criteria that are an objective and widely accepted system for classifying species at high risk of extinction.
+        </p>
+        <p>BirdLife International coordinates the assessment of the status of the world's birds using these categories and criteria and, as the official Red Listing Authority for birds for the IUCN Red List, submits this information to be included on the IUCN Red List along with that of other animals and plants. An overview of the categories is given below. See also
+          {' '}
+          <a
+            href="https://www.iucnredlist.org/resources/categories-and-criteria#categories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            IUCN Red List Categories and Criteria
+          </a>.
+        </p>
+      </div>
+    ),
+  },
+  {
     title: 'Populations.',
     description: (
       <div>
@@ -37,7 +57,7 @@ const speciesPopulationInfo = [
           subspecies (or other populations of a monotypic species). The primary source for treatment
           of species at subspecific level has been the{' '}
           <a
-            href="https://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
+            href="http://datazone.birdlife.org/userfiles/file/Species/Taxonomy/HBW-BirdLife_Checklist_v5_Dec20.zip"
             target="_blank"
             rel="noopener noreferrer"
           >

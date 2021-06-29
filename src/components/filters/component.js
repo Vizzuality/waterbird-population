@@ -136,7 +136,7 @@ const Filters = ({
       placeholder: 'All frameworks',
       isMulti: true,
       info: (
-        <Link to={{ type: 'BACKGROUND', pathname: 'background', query: 'conservation-framework' }}>
+        <Link target="_blank" rel="noopener noreferrer" to="/background/conservation-framework">
           <Icon name="info" />
         </Link>
       ),
@@ -149,7 +149,7 @@ const Filters = ({
       placeholder: 'All Biogeographic/ Flyway region',
       isMulti: true,
       info: (
-        <Link target="_blank" rel="noopener noreferrer" to="/images/Biogeographic">
+        <Link target="_blank" rel="noopener noreferrer" to="/background/WAF#realms">
           <Icon name="info" />
         </Link>
       ),
@@ -162,7 +162,7 @@ const Filters = ({
       placeholder: 'All Regions',
       isMulti: true,
       info: (
-        <Link target="_blank" rel="noopener noreferrer" to="/images/Ramsar">
+        <Link target="_blank" rel="noopener noreferrer" to="/background/WAF#ramsarregions">
           <Icon name="info" />
         </Link>
       ),
@@ -178,7 +178,7 @@ const Filters = ({
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://www.iucnredlist.org/resources/categories-and-criteria#categories"
+          href="/data/SP#redlist"
         >
           <Icon name="info" />
         </a>

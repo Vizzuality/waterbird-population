@@ -59,7 +59,7 @@ const Register = () => {
           </div>
 
           <a
-            href={`mailto:?to=post@wetlands.org&subject=Account activation&body=I’d like to take part of the Waterbirds initiative, please, activate my account. Name - ${name} ${' '}, Email - ${email}} `}
+            href={`mailto:?to=wpe@wetlands.org&subject=Account activation&body=I’d like to take part of the Waterbirds initiative, please, activate my account. Name - ${name} ${' '}, Email - ${email}} `}
             target="_blank"
             rel="noopener noreferrer"
             className="c-button -border -secondary"
@@ -75,7 +75,7 @@ const Register = () => {
           <p>
             Please try again or{' '}
             <a
-              href={`mailto:?to=post@wetlands.org&subject=Problems with register&`}
+              href={`mailto:?to=wpe@wetlands.org&subject=Problems with register&`}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -27,28 +27,41 @@ const conservationFrameworkInfo = [
             <img src={AEWAImage} alt="African-Eurasian Waterbird Agreement" />
             <p>
               <strong>AEWA,</strong>
-              <a href="https://www.unep-aewa.org/en"> African-Eurasian Waterbird Agreement.</a>
+              <a href="https://www.unep-aewa.org/en" target="_blank" rel="noopener noreferrer">
+                {' '}
+                African-Eurasian Waterbird Agreement.
+              </a>
             </p>
           </li>
           <li>
             <img src={WHSRNImage} alt="Western Hemisphere Shorebird Reserve Network." />
             <p>
               <strong>WHSRN,</strong>
-              <a href="https://whsrn.org/"> Western Hemisphere Shorebird Reserve Network.</a>
+              <a href="https://whsrn.org/" target="_blank" rel="noopener noreferrer">
+                {' '}
+                Western Hemisphere Shorebird Reserve Network.
+              </a>
             </p>
           </li>
           <li>
             <img src={CMSImage} alt="East Asian-Australasian Flyway Partnership" />
             <p>
               <strong>EAAF Partnership,</strong>
-              <a href="https://www.eaaflyway.net/"> East Asian-Australasian Flyway Partnership.</a>
+              <a href="https://www.eaaflyway.net/" target="_blank" rel="noopener noreferrer">
+                {' '}
+                East Asian-Australasian Flyway Partnership.
+              </a>
             </p>
           </li>
           <li>
             <img src={CMSImage} alt="Convention on Migratory Species" />
             <p>
               <strong>CMS,</strong>
-              <a href="https://www.cms.int/newsroom/?title=cop13">
+              <a
+                href="https://www.cms.int/newsroom/?title=cop13"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {' '}
                 Convention on Migratory Species.
               </a>
@@ -58,14 +71,21 @@ const conservationFrameworkInfo = [
             <img src={EAAFImage} alt="East Asian-Australasian Flyway Partnership" />
             <p>
               <strong>EAAF Partnership,</strong>
-              <a href="https://www.eaaflyway.net/"> East Asian-Australasian Flyway Partnership.</a>
+              <a href="https://www.eaaflyway.net/" target="_blank" rel="noopener noreferrer">
+                {' '}
+                East Asian-Australasian Flyway Partnership.
+              </a>
             </p>
           </li>
           <li>
             <img src={EUBDImage} alt="European Union Birds Directive" />
             <p>
               <strong>EUBD,</strong>
-              <a href="https://ec.europa.eu/environment/nature/legislation/birdsdirective/index_en.htm">
+              <a
+                href="https://ec.europa.eu/environment/nature/legislation/birdsdirective/index_en.htm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {' '}
                 European Union Birds Directive.
               </a>
@@ -75,21 +95,27 @@ const conservationFrameworkInfo = [
             <img src={RamsarImage} alt="Ramsar Convention on Wetlands" />
             <p>
               <strong>Ramsar,</strong>{' '}
-              <a href="https://www.ramsar.org">Ramsar Convention on Wetlands</a>
+              <a href="https://www.ramsar.org" target="_blank" rel="noopener noreferrer">
+                Ramsar Convention on Wetlands
+              </a>
             </p>
           </li>
           <li>
             <img src={CBDImage} alt="Convention on Biological Diversity" />
             <p>
               <strong>Ramsar,</strong>{' '}
-              <a href="https://www.cbd.int">Convention on Biological Diversity</a>
+              <a href="https://www.cbd.int" target="_blank" rel="noopener noreferrer">
+                Convention on Biological Diversity
+              </a>
             </p>
           </li>
           <li>
             <img src={CAFFImage} alt="Conservation of Arctic Flora and Fauna" />
             <p>
               <strong>CAFF,</strong>{' '}
-              <a href="https://www.caff.is">Conservation of Arctic Flora and Fauna</a>
+              <a href="https://www.caff.is" target="_blank" rel="noopener noreferrer">
+                Conservation of Arctic Flora and Fauna
+              </a>
             </p>
           </li>
         </ul>
