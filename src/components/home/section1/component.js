@@ -91,9 +91,9 @@ const Section1 = ({ setFilters, filters }) => {
                       to={{
                         type: 'EXPLORE',
                         payload: { pathname: 'explore' },
-                        query: { conservation: [5] },
+                        query: { publication: 5 },
                       }}
-                      onClick={() => handleClick([5])}
+                      onClick={() => handleClick(5)}
                     >
                       RAMSAR: Ramsar Convention on Wetlands
                     </Link>

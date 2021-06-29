@@ -26,10 +26,10 @@ const Section2 = () => {
               <div className="row">
                 <ul>
                   {Text.map(({ id, description }) => (
-                    <div className={`col-sm-${
-                      id === length && length % 2 ? 12 : 6}`}>
-                      <li key={id}>
-                        <span>0{id}</span><p>{description}</p>
+                    <div key={id} className={`col-sm-${id === length && length % 2 ? 12 : 6}`}>
+                      <li>
+                        <span>0{id}</span>
+                        <p>{description}</p>
                       </li>
                     </div>
                   ))}
