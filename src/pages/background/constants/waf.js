@@ -40,10 +40,10 @@ const WAFInfo = [
             Pacific Flyway that is important for a limited number of migratory populations of
             waterbirds.
           </p>
-          <div className="image-container">
+          <figure className="image-container">
             <img src={Flyway2Image} alt="The nine major waterbird flyways of the world" />
             <figcaption>1. The nine major waterbird flyways of the world</figcaption>
-          </div>
+          </figure>
           <h3 id="realms">Biogeographic realms</h3>
           <p>
             The Portal also distinguishes between “flyway regions” and “biogeographic realms”. The
@@ -55,10 +55,10 @@ const WAFInfo = [
             works well for a majority of waterbirds that migrate in the Americas, Asia-Pacific and
             Africa-Eurasia regions.
           </p>
-          <div className="image-container">
+          <figure className="image-container">
             <img src={Flyway1Image} alt="Biogeographic Realms of the world" />
             <figcaption>2. Biogeographic Realms of the world</figcaption>
-          </div>
+          </figure>
           <p>
             Against this simplified generalisation, some flyways are oriented more east-west. For
             example, in Eurasia, many species which breed in the eastern Palearctic move west to
@@ -79,12 +79,19 @@ const WAFInfo = [
             realms and flyways were also grouped into major flyway administrative regions, namely:
             Africa-Eurasia, the Americas and Asia-Pacific (Figure 3).
           </p>
-          <div className="image-container">
+          <figure className="image-container">
             <img src={Flyway3Image} alt="The three major flyway administrative regions" />
             <figcaption>3. The three major flyway administrative regions</figcaption>
-          </div>
+          </figure>
           <h3 id="ramsarregions">Ramsar regions</h3>
-          <p>The Ramsar Convention’s latest system of regionalization for technical and administrative purposes and as followed in the Portal : Africa, Asia, Europe, Latin America and the Caribbean (formerly Neotropics), North America (Canada, Mexico, and the United States) and Oceania. Regionalization is a significant factor in the operation of the Convention, in terms of the structure of the Standing Committee, the organization of Secretariat staff and duties, and the ways in which Contracting Parties cooperate through regional representation and meetings.
+          <p>
+            The Ramsar Convention’s latest system of regionalization for technical and
+            administrative purposes and as followed in the Portal : Africa, Asia, Europe, Latin
+            America and the Caribbean (formerly Neotropics), North America (Canada, Mexico, and the
+            United States) and Oceania. Regionalization is a significant factor in the operation of
+            the Convention, in terms of the structure of the Standing Committee, the organization of
+            Secretariat staff and duties, and the ways in which Contracting Parties cooperate
+            through regional representation and meetings.
           </p>
         </div>
       </div>

@@ -59,7 +59,7 @@ const Analysis = ({
 
 Analysis.propTypes = {
   widgets: PropTypes.array.isRequired,
-  widgetTemplates: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  widgetTemplates: PropTypes.shape({}).isRequired,
   setPopulations: PropTypes.func.isRequired,
   setTrends: PropTypes.func.isRequired,
   setTrendCategories: PropTypes.func.isRequired,

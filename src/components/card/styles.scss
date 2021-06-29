@@ -132,7 +132,7 @@
     &.WAF {
       position: relative;
 
-      div {
+      figure {
         position: relative;
         margin-bottom: 30px;
 
@@ -176,15 +176,16 @@
       }
 
       figure {
-        &.image-container {
-        min-height: 400px;
 
-        img {
-          margin-left: -75px;
-          margin-bottom: 20px;
-          width: calc(100% + 150px);
+        &.image-container {
+          min-height: 400px;
+
+          img {
+            margin-left: -75px;
+            margin-bottom: 20px;
+            width: calc(100% + 150px);
+          }
         }
-      }
       }
 
       .full-width {
@@ -205,7 +206,6 @@
 
         .image-text-container {
           padding-left: $padding;
-          max-width: 250px;
           max-height: 150px;
 
           p {
@@ -217,7 +217,20 @@
             font-size: 16px;
             font-style: italic;
             line-height: 26px;
+            max-width: 216px; //text width
           }
+        }
+      }
+
+      figure {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          max-width: 480px;
         }
       }
     }
