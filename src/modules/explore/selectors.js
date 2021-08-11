@@ -142,7 +142,11 @@ export const selectPopulationSpecies = createSelector(
     return orderBy(
       uniqBy(
         populationsByFamily.map((p) => {
-          const tag = tags.find((t) => t.description === trim(p.specie.redlistcategory));
+          const tag = tags.find(
+            (t) =>
+              t.description === trim(p.specie.redlistcategory) || t.description === 'Not recognised'
+          );
+
           return {
             ...p.specie,
             scientificname: trim(p.specie.scientificname),
@@ -150,6 +154,7 @@ export const selectPopulationSpecies = createSelector(
             factsheetref: p.specie.specid,
             redlistcategory: p.specie.redlistcategory,
             backgroundColor: tag.backgroundColor,
+            border: tag.border,
             color: tag.color,
           };
         }),
@@ -300,7 +305,11 @@ export const selectPopulationOptions = createSelector(
     if (!_specie_id || !_data || isEmpty(_data)) return [];
 
     return _data.map((p) => {
-      const tag = tags.find((t) => t.description === trim(p.specie.redlistcategory));
+      const tag = tags.find(
+        (t) =>
+          t.description === trim(p.specie.redlistcategory) || t.description === 'Not recognised'
+      );
+
       return {
         label: trim(p.name) || '-',
         value: p.population_id,
@@ -320,7 +329,12 @@ export const selectPopulationSpecieInfoData = createSelector(
   (_specie_id, _population_id, _data) => {
     if (!_specie_id || !_data || isEmpty(_data)) return [];
     const population = _data.find((p) => p.population_id === +_population_id) || _data[0];
-    const tag = tags.find((t) => t.description === trim(population.specie.redlistcategory));
+    const tag = tags.find(
+      (t) =>
+        t.description === trim(population.specie.redlistcategory) ||
+        t.description === 'Not recognised'
+    );
+
     return [
       [
         { head: 'Common name', value: trim(population.specie.commonname) || '-' },
