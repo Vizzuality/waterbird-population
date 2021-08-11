@@ -12,7 +12,15 @@ import PopulationsList from 'components/populations-list';
 import './styles.scss';
 
 const SpeciesListItem = ({ specie }) => {
-  const { commonname, redlistcategory, scientificname, color, backgroundColor, specid } = specie;
+  const {
+    commonname,
+    redlistcategory,
+    scientificname,
+    color,
+    backgroundColor,
+    border,
+    specid,
+  } = specie;
 
   const [image, setImage] = useState('');
   const [isCollapsed, toggleCollapse] = useState(true);
@@ -34,8 +42,8 @@ const SpeciesListItem = ({ specie }) => {
             <span className="name -specific">{commonname}</span>
             <span className="name -scientific">({scientificname})</span>
             <span
-              style={{ backgroundColor: backgroundColor }}
-              className={classnames(`tag ${color}`)}
+              style={{ backgroundColor: backgroundColor, borderColor: border }}
+              className={classnames(`tag ${color} `, { '-border': !!border })}
             >
               {redlistcategory}
             </span>
@@ -70,13 +78,14 @@ const SpeciesListItem = ({ specie }) => {
 SpeciesListItem.propTypes = {
   specie: PropTypes.shape({
     id: PropTypes.number,
+    commonname: PropTypes.string.isRequired,
+    redlistcategory: PropTypes.string.isRequired,
+    scientificname: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+    border: PropTypes.string.isRequired,
+    backgroundColor: PropTypes.string.isRequired,
+    specid: PropTypes.string.isRequired,
   }).isRequired,
-  commonname: PropTypes.string.isRequired,
-  redlistcategory: PropTypes.string.isRequired,
-  scientificname: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  backgroundColor: PropTypes.string.isRequired,
-  specid: PropTypes.string.isRequired,
 };
 
 export default SpeciesListItem;
