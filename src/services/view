@@ -5,9 +5,9 @@ DROP VIEW IF EXISTS population_all_data;
 CREATE VIEW population_all_data AS
 SELECT
   jsonb_agg((select row_to_json(_)
-	from (select ps.*, refs.*) as _)::jsonb) as reference,
+	from (select ps.*, refs.*) as _)::jsonb) as population_size_reference,
   jsonb_agg((select row_to_json(_)
-                  from (select pt.*, reft.*) as _)::jsonb) as population_size_reference,
+  from (select pt.*, reft.*) as _)::jsonb) as population_trend_reference,
   ps.populationsize_id,
   p.publication_id,
   n.id as population_id,
