@@ -79,5 +79,8 @@
     "husky": "^4.0.10",
     "prettier": "^2.0.4",
     "redux-devtools-cli": "^0.0.1-1"
+  },
+  "engines": {
+    "node": "12.22.12"
   }
 }
