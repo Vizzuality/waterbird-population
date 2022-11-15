@@ -89,7 +89,7 @@ export const fetchPopulations = (specieid) => {
     'startyear', population_trend_startyear,
     'endyear', population_trend_endyear,
     'notes', population_trend_notes,
-    'references', reference
+    'references', population_trend_reference
   ))
   as trends,
   jsonb_agg(distinct jsonb_build_object(
