@@ -28,14 +28,14 @@ export default {
   }),
   [setPopulations]: (state, { payload }) => ({
     ...state,
-    data: payload.data,
-    loading: !payload.status === 200,
+    data: payload?.data,
+    loading: !payload?.status === 200,
   }),
   [setPopulationsByLocation]: (state, { payload }) => ({
     ...state,
     populationsByLocation: {
-      data: payload.data,
-      loading: !payload.status === 200,
+      data: payload?.data,
+      loading: !payload?.status === 200,
     },
   }),
   [resetPopulationsByLocation]: (state) => ({
